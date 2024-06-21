@@ -7,7 +7,7 @@
 
     <div class="icon_container">
       <div class="icon_position">
-        <v-fab @click="escaner" class="icon_scanner" color="surface-variant" icon="mdi-qrcode-scan"></v-fab>
+        <v-fab @click="escaner" class="icon_scanner" elevation="4" color="surface-variant" icon="mdi-qrcode-scan"></v-fab>
       </div>
     </div>
     <footer-component></footer-component>

@@ -16,7 +16,7 @@ data () {
       return {
         items: [
           {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+            src: 'https://www.ruess.com.ar/sites/www.ruess.com.ar/files/styles/detalle_noticia/public/imagenes/30ff0d69a53a07c6ff16b16c481d5b83_xl2.png?itok=ZmDwGpff',
           },
           {
             src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',

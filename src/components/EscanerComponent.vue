@@ -3,7 +3,7 @@
     <p class="error">{{ error }}</p>
 
     <qrcode-stream :camera="camera" @init="onInit" @decode="onDecode" :paused="paused">
-        <button id="lector" class="btn btn-dark" @click="switchCamera">Cambiar Camera</button>
+        <v-btn id="lector" color="primary" @click="switchCamera">Cambiar Camara</v-btn>
     </qrcode-stream>
 </div>
 </template>
