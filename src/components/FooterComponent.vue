@@ -1,8 +1,8 @@
 <template>
     <v-footer
-      class="bg-grey-lighten-1 text-center d-flex flex-column"
+      class="footer"
     >
-      <div>
+      <div class="footer_icons">
         <v-btn
           v-for="icon in icons"
           :key="icon.icono"
@@ -13,13 +13,10 @@
         ></v-btn>
       </div>
   
-      <div class="pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      </div>
   
-      <v-divider></v-divider>
+      <v-divider class="footer_divider"></v-divider>
   
-      <div>
+      <div class="footer_register">
         {{ new Date().getFullYear() }} — <strong>Universidad Nacional de Lanus</strong>
       </div>
     </v-footer>
@@ -56,5 +53,25 @@ data: () => ({
 </script>
 
 <style scoped>
+.footer {
+  background-color: #78909C;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.footer_icons{
+  grid-column: 2/6;
+  grid-row: 1;
+}
+
+.footer_divider{
+  grid-column: 2/6;
+  grid-row: 2;
+}
+.footer_register {
+  grid-column: 2/6;
+  grid-row: 3;
+}
 
 </style>
