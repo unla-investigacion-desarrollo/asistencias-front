@@ -1,5 +1,8 @@
 export default {
-    usuario: null,
+    usuario: {
+        email: "",
+        password: ""
+    },
     spinner: false,
     tipoEventos: [],
     evento: {

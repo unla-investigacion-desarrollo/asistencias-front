@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import InicioView from '../views/InicioView.vue'
 import InscripcionView from '../views/InscripcionView.vue'
 import RolView from '../views/RolView.vue'
-
+import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
@@ -20,6 +20,11 @@ const routes = [
     path: '/nuevoRol',
     name: 'RolView',
     component: RolView
+  },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component: LoginView
   },
   {
     path: '/about',

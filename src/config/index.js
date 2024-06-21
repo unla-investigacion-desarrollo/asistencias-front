@@ -16,7 +16,7 @@ const normalizarDatos = payload => {
     return JSON.parse(payloadNormalizadoStr);
 };
 
-const dominio = "http://localhost:8080/api";
+const dominio = "http://localhost:8080"; 
 
   export {
     eventos,
