@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <v-form>
     <v-text-field
       v-model="model.nombre"
       :counter="45"
@@ -44,12 +44,12 @@
     >
       Enviar
     </v-btn>
-  </form>
+  </v-form>
 </template>
   
 <script>
 import { eventos } from "@/config/index";
-import { VNumberInput } from 'vuetify/labs/VNumberInput'
+import { VNumberInput } from 'vuetify/labs/VNumberInput';
 export default {
   name: 'FormularioInscripcion',
   components: { VNumberInput },

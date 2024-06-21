@@ -11,7 +11,7 @@ export default {
         fechaInicio: "",
         fechaFin: "",
         ubicacion: "",
-        estado: "",
+        estado: "creado",
         tipoEvento: "",
         nombreArchivo: "",
         archivo: null

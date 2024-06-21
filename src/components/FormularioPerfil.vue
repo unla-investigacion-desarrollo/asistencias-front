@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <v-form>
     <v-text-field
       v-model="model.rol"
       :counter="45"
@@ -14,11 +14,11 @@
     >
       Enviar
     </v-btn>
-  </form>
+  </v-form>
 </template>
   
 <script>
-import { AGREGAR_TIPO_USUARIO } from '../store/actions-types'
+import { AGREGAR_TIPO_USUARIO } from '../store/actions-types';
 export default {
   name: 'FormularioPerfil',
   components: { },

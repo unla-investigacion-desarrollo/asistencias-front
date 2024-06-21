@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <v-form>
     <v-text-field
       v-model="model.tipoEvento"
       :counter="45"
@@ -14,7 +14,7 @@
     >
       Enviar
     </v-btn>
-  </form>
+  </v-form>
 </template>
   
 <script>
