@@ -2,8 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 //import HomeView from '../views/HomeView.vue'
 import InicioView from '../views/InicioView.vue'
 import InscripcionView from '../views/InscripcionView.vue'
-import RolView from '../views/RolView.vue'
 import LoginView from '../views/LoginView.vue'
+import RolView from '../views/RolView.vue'
+import ErroresView from '../views/ErroresView.vue'
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/login',
     name: 'LoginView',
     component: LoginView
+  },
+  {
+    path: '/error/:mensaje',
+    name: 'ErroresView',
+    component: ErroresView
   },
   {
     path: '/about',
