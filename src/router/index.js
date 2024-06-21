@@ -6,6 +6,7 @@ import InscripcionView from '../views/InscripcionView.vue'
 import LoginView from '../views/LoginView.vue'
 import RolView from '../views/RolView.vue'
 import TipoEventoView from '../views/TipoEventoView.vue'
+import EscanerView from '../views/EscanerView.vue'
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/nuevoTipoEvento',
     name: 'TipoEventoView',
     component: TipoEventoView
+  },
+  {
+    path: '/escaner',
+    name: 'EscanerView',
+    component: EscanerView
   },
   {
     path: '/about',
