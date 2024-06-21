@@ -12,11 +12,12 @@ export default {
         fechaFin: "",
         ubicacion: "",
         estado: "",
-        tipoEvento: ""
+        tipoEvento: "",
+        nombreArchivo: "",
+        archivo: null
     },
     tipoEvento: {
-        nombre: "",
-        descripcion: ""
+        tipoEvento: "",
     },
     participante: {
         nombre: "",

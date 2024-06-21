@@ -1,6 +1,6 @@
+import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import api from "../api";
 
 export default {
 
@@ -14,9 +14,22 @@ export default {
         api.guardarTipoUsuario(payload)
         .then(response => {
         console.log(response);
-          if (response.data.status === "OK") {
+          if (response.status == "200") {
             context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
           } 
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
+        api.guardarTipoEvento(payload)
+        .then(response => {
+        console.log(response);
+          if (response.status == "200") {
+            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
+          } 
+          console.log(context.getters.getTipoEventos());
         })
         .catch(error => {
           console.log(error);

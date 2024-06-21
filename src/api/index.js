@@ -1,5 +1,5 @@
 import axios from "axios";
-import { normalizarDatos, dominio } from '../config/index'
+import { dominio, normalizarDatos } from '../config/index';
 
 const api = {
 
@@ -11,6 +11,11 @@ const api = {
   login(payload) {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/usuario/login`, body);
+  },
+
+  guardarTipoEvento(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/tipoEvento`, body);
   },
 };
 

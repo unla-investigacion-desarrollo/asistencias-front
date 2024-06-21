@@ -11,5 +11,8 @@ export default {
     },
     [MUTATIONS.GUARDAR_TIPO_USUARIO]: (state, payload) => {
         Vue.set(state, "tipoUsuario", payload);
+    },
+    [MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO]: (state, payload) => {
+        Vue.set(state, "tipoEvento", payload);
     }
 }
