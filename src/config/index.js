@@ -16,12 +16,13 @@ const normalizarDatos = payload => {
     return JSON.parse(payloadNormalizadoStr);
 };
 
+const estados = [ 'Creado', 'Iniciado', 'Terminado', 'Suspendido', 'Aplazado' ];
+
 const dominio = "http://localhost:8080"; 
 
-  export {
-    eventos,
-    normalizarCaracteres,
-    normalizarDatos,
-    dominio
-  }
+export {
+  dominio, estados, eventos,
+  normalizarCaracteres,
+  normalizarDatos
+};
 

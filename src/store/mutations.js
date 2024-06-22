@@ -14,5 +14,11 @@ export default {
     },
     [MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO]: (state, payload) => {
         Vue.set(state, "tipoEvento", payload);
+    },
+    [MUTATIONS.GUARDAR_AGREGAR_EVENTO]: (state, payload) => {
+        state.evento = payload;
+    },
+    [MUTATIONS.OBTENER_TIPOS_EVENTOS]: (state, payload) => {
+        state.tipoEventos = payload;
     }
 }

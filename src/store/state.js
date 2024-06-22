@@ -11,10 +11,9 @@ export default {
         fechaInicio: "",
         fechaFin: "",
         ubicacion: "",
-        estado: "creado",
-        tipoEvento: "",
-        nombreArchivo: "",
-        archivo: null
+        estado: "Creado",
+        te: {},
+        linkCertificado: ""
     },
     tipoEvento: {
         tipoEvento: "",

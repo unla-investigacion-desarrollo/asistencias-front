@@ -4,7 +4,7 @@
             class="mx-auto title_section"
         >
             <template v-slot:title>
-            <span class="title">Inscripción a Eventos</span>
+            <span class="title">Agregar Evento</span>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">

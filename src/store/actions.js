@@ -27,13 +27,38 @@ export default {
         .then(response => {
         console.log(response);
           if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
+            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
           } 
           console.log(context.getters.getTipoEventos());
         })
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+    [ACTIONS.AGREGAR_EVENTO] (context, payload) {
+      api.guardarEvento(payload)
+      .then(response => {
+      console.log(response);
+        if (response.status == "200") {
+          context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+        } 
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    },
+    [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
+      api.obtenerTiposEventos()
+      .then(response => {
+      console.log(response);
+        if (response.status == "200") {
+          context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, response.data);
+        } 
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  
 
 }

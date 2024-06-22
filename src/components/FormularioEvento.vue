@@ -1,53 +1,53 @@
 <template>
     <v-form>
         <v-text-field
-        v-model="model.nombre"
-        :counter="45"
-        label="Nombre"
-        :rules="validationText"
-        required
+          v-model="model.nombre"
+          :counter="45"
+          label="Nombre"
+          :rules="validationText"
+          required
         ></v-text-field>
         
         <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
 
         <v-text-field
-        v-model="model.fechaInicio"
-        label="Fecha de inicio"
-        :rules="validationText"
-        type="datetime-local" 
-        required
+          v-model="model.fechaInicio"
+          label="Fecha de inicio"
+          :rules="validationText"
+          type="datetime-local" 
+          required
         ></v-text-field>
 
         <v-text-field
-        v-model="model.fechaFin"
-        label="Fecha de fin"
-        type="datetime-local" 
+          v-model="model.fechaFin"
+          label="Fecha de fin"
+          type="datetime-local" 
         ></v-text-field>
 
         <v-select
-        v-model="model.ubicacion"
-        :items="edificios"
-        label="Ubicacion"
-        required
+          v-model="model.ubicacion"
+          :items="edificios"
+          label="Ubicacion"
+          required
         ></v-select>
 
         <v-select
-        v-model="model.tipoEvento"
-        :items="eventos"
-        label="Tipo de evento"
-        required
+          v-model="model.te"
+          :items="eventos"
+          :item-props="itemProps"
+          label="Tipo de evento"
+          required
         ></v-select>
 
-        <v-file-input
-        label="Certificado del evento"
-        v-model="model.archivo"
-        show-size
-    ></v-file-input>
+        <v-text-field
+          v-model="model.linkCertificado"
+          label="Link del certificado"
+        ></v-text-field>
 
         <v-btn
-        class="me-4"
-        color="primary"
-        @click="continuar"
+          class="me-4"
+          color="primary"
+          @click="continuar"
         >
         Enviar
         </v-btn>
@@ -56,8 +56,7 @@
   
 <script>
 import { edificios } from "@/config/edificios";
-import { eventos } from "@/config/index";
-
+import { AGREGAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEvento',
   components: {},
@@ -68,18 +67,11 @@ export default {
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
-      validationEmail: [
-        v => !!v || 'El campo es requerido',
-        v => (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v)) || 'El email no es valido',
-        ],
-      validationDNI: [
-        v => !!v || 'El campo es requerido'
-        ],
     };
   },
   computed: {
     eventos() {
-      return eventos;
+      return this.$store.getters.getTipoEventos();
     },
     edificios(){
         return edificios;
@@ -103,11 +95,21 @@ export default {
         return valor.trim() != "";
     }
   },
+  created() {
+
+      this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
+      console.log(this.$store.getters.getTipoEventos());
+  },
   methods: {
+    itemProps (item) {
+        return {
+          title: item.tipoEvento,
+        }
+      },
     continuar() {
         console.log(this.model);
         console.log("agregue el evento");
-      //this.$store.dispatch(AGREGAR_EVENTO, this.model);
+      this.$store.dispatch(AGREGAR_EVENTO, this.model);
     },
     
   }
