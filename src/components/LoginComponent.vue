@@ -5,6 +5,7 @@
       v-model="model.email"
       label="Email"
       :rules="validationEmail"
+      maxlength="45"
       required
     ></v-text-field>
 
@@ -13,16 +14,20 @@
       :counter="45"
       label="Contraseña"
       :rules="validationText"
+      maxlength="45"
       required
     ></v-text-field>
 
-    <v-btn
-      class="me-4"
+    <div class="button_container">
+      <v-btn
+      class="button_login"
       @click="continuar"
       color="primary"
     >
-      Enviar
-    </v-btn>
+      Iniciar sesión
+      </v-btn>
+    </div>
+    
   </v-form>
 </template>
   
@@ -47,7 +52,7 @@ export default {
     continuar() {
         console.log(this.model);
         console.log("me loguee");
-      //this.$store.dispatch(INSCRIPCION_EVENTO, this.model);
+      //this.$store.dispatch(LOGIN, this.model);
     },
     
   }
@@ -55,5 +60,13 @@ export default {
 </script>
 
 <style scoped>
-
+.button_container{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+}
+.button_login{
+  grid-column: 3/5;
+  grid-row: 1;
+}
 </style>

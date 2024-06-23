@@ -3,6 +3,7 @@
     <v-text-field
       v-model="model.nombre"
       :counter="45"
+      maxlength="45"
       label="Nombre"
       :rules="validationText"
       required
@@ -12,6 +13,7 @@
       v-model="model.apellido"
       :counter="45"
       label="Apellido"
+      maxlength="45"
       :rules="validationText"
       required
     ></v-text-field>
@@ -20,6 +22,7 @@
       controlVariant="default"
       label="DNI"
       :counter="8"
+      maxlength="8"
       v-model="model.dni"
       :rules="validationDNI"
     ></v-number-input>
