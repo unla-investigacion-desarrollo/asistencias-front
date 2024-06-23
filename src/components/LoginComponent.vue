@@ -20,7 +20,6 @@
 
     <div class="button_container">
       <v-btn
-      class="button_login"
       @click="continuar"
       color="primary"
     >
@@ -61,12 +60,6 @@ export default {
 
 <style scoped>
 .button_container{
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-}
-.button_login{
-  grid-column: 3/5;
-  grid-row: 1;
+  text-align: center;
 }
 </style>
