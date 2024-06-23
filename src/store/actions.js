@@ -58,7 +58,20 @@ export default {
       .catch(error => {
         console.log(error);
       });
-  }
+  },
+  [ACTIONS.ELIMINAR_TIPO_EVENTO] (context, payload) {
+    api.eliminarTipoEvento(payload.idTipoEvento)
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.ELIMINAR_TIPO_DE_EVENTO, payload);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+    });
+},
+
   
 
 }

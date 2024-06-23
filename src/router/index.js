@@ -2,12 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 //import HomeView from '../views/HomeView.vue'
 import ErroresView from '../views/ErroresView.vue'
 import EscanerView from '../views/EscanerView.vue'
+import EventoView from '../views/EventoView.vue'
 import InicioView from '../views/InicioView.vue'
 import InscripcionView from '../views/InscripcionView.vue'
 import LoginView from '../views/LoginView.vue'
 import RolView from '../views/RolView.vue'
 import TipoEventoView from '../views/TipoEventoView.vue'
-import EventoView from '../views/EventoView.vue'
+import ListaTiposEventosView from '../views/ListaTiposEventosView.vue'
 
 const routes = [
   {
@@ -39,6 +40,11 @@ const routes = [
     path: '/nuevoTipoEvento',
     name: 'TipoEventoView',
     component: TipoEventoView
+  },
+  {
+    path: '/listaTipoEvento',
+    name: 'ListaTiposEventosView',
+    component: ListaTiposEventosView
   },
   {
     path: '/nuevoEvento',

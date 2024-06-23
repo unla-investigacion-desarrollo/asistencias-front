@@ -26,6 +26,10 @@ const api = {
   obtenerTiposEventos() { 
     return axios.get(`${dominio}/api/tiposEventos`);
   },
+
+  eliminarTipoEvento(payload) {
+    return axios.delete(`${dominio}/api/eliminarTipoEvento/${payload}`);
+  },
 };
 
 export default api;

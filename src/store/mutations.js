@@ -20,5 +20,10 @@ export default {
     },
     [MUTATIONS.OBTENER_TIPOS_EVENTOS]: (state, payload) => {
         state.tipoEventos = payload;
-    }
+    },
+    [MUTATIONS.ELIMINAR_TIPO_DE_EVENTO]: (state, payload) => {
+        let lista = state.tipoEventos;
+        state.tipoEventos = lista.filter(e => e != payload);
+    },
+    
 }
