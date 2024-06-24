@@ -25,5 +25,11 @@ export default {
         let lista = state.tipoEventos;
         state.tipoEventos = lista.filter(e => e != payload);
     },
-    
+    [MUTATIONS.ELIMINAR_UN_EVENTO]: (state, payload) => {
+        let lista = state.eventos;
+        state.eventos = lista.filter(e => e != payload);
+    },
+    [MUTATIONS.MODIFICAR_UN_EVENTO]: (state, payload) => {
+        state.evento = payload;
+    },
 }

@@ -5,4 +5,5 @@ export default {
     getParticipante: state => () => state.participante,
     getTipoUsuario: state => () => state.tipoUsuario,
     getTipoEvento: state => () => state.tipoEvento,
+    getEventos: state => () => state.eventos,
   };

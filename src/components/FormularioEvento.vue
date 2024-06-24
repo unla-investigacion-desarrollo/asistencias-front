@@ -31,6 +31,12 @@
           required
         ></v-select>
 
+        <v-select v-if="estado"
+          v-model="model.estado"
+          :items="estados"
+          label="Estado"
+        ></v-select>
+
         <v-select
           v-model="model.te"
           :items="eventos"
@@ -56,10 +62,21 @@
   
 <script>
 import { edificios } from "@/config/edificios";
-import { AGREGAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { estados } from "@/config/index";
+import { AGREGAR_EVENTO, MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEvento',
   components: {},
+  props: {
+    estado: {
+      type: Boolean,
+      default: true
+    },
+    operacion: {
+      type: String,
+      default: "alta"
+    }
+  },
   data() {
     return {
       model: this.$store.getters.getEvento(),
@@ -75,6 +92,9 @@ export default {
     },
     edificios(){
         return edificios;
+    },
+    estados(){
+      return estados;
     },
     valiteText(value){
         let respuesta;
@@ -96,7 +116,6 @@ export default {
     }
   },
   created() {
-
       this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
       console.log(this.$store.getters.getTipoEventos());
   },
@@ -107,9 +126,13 @@ export default {
         }
       },
     continuar() {
-        console.log(this.model);
-        console.log("agregue el evento");
-      this.$store.dispatch(AGREGAR_EVENTO, this.model);
+      console.log(this.model);
+      console.log("agregue el evento");
+      if(this.operacion == "alta"){
+        this.$store.dispatch(AGREGAR_EVENTO, this.model);
+      } else {
+        this.$store.dispatch(MODIFICAR_EVENTO, this.model);
+      }
     },
     
   }

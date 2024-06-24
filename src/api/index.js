@@ -30,6 +30,15 @@ const api = {
   eliminarTipoEvento(payload) {
     return axios.delete(`${dominio}/api/eliminarTipoEvento/${payload}`);
   },
+
+  actualizarEvento(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/actualizarEvento/${payload.idEvento}`, body);
+  },
+
+  eliminarEvento(payload) {
+    return axios.delete(`${dominio}/api/eliminarEvento/${payload}`);
+  },
 };
 
 export default api;

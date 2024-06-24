@@ -71,7 +71,28 @@ export default {
       console.log(error);
     });
 },
-
-  
-
+[ACTIONS.MODIFICAR_EVENTO] (context, payload) {
+  api.guardarEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.MODIFICAR_UN_EVENTO, payload);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
+[ACTIONS.ELIMINAR_EVENTO] (context, payload) {
+  api.eliminarEvento(payload.idEvento)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, payload);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
 }

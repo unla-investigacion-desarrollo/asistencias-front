@@ -5,6 +5,7 @@ export default {
     },
     spinner: false,
     tipoEventos: [],
+    eventos: [],
     evento: {
         nombre: "",
         descripcion: "",
