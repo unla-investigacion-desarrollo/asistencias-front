@@ -1,6 +1,19 @@
 <template>
-    <v-container>        
-        <EscanerComponent></EscanerComponent>
+    <v-container>       
+      <v-card
+            class="mx-auto title_section"
+        >
+          <template v-slot:title>
+            <div class="title_content">
+              <span class="title">Escaner</span>
+            </div>
+          </template>
+
+          <v-card-text class="bg-surface-light pt-4">
+            <EscanerComponent></EscanerComponent>
+          </v-card-text>
+        </v-card> 
+        
     </v-container>
   </template>
   
@@ -19,5 +32,8 @@ export default {
 
 .title {
     color: #fff;
+}
+.title_content{
+  text-align: center;
 }
 </style>
