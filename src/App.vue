@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <menu-horizontal></menu-horizontal> 
+    <div class="spinner">
+      <v-progress-circular class="spinner_content" :size="100" v-if="cargando" color="error" indeterminate></v-progress-circular>
+    </div>
     <v-main>
       <router-view/>
     </v-main>
-
     <div class="icon_container">
       <div class="icon_position">
         <v-fab @click="escaner" class="icon_scanner" elevation="4" color="surface-variant" icon="mdi-qrcode-scan"></v-fab>
@@ -28,6 +30,11 @@ export default {
     escaner(){
       this.$router.push('escaner')
     }
+  },
+  computed:{
+    cargando(){
+      return this.$store.state.spinner;
+    }
   }
 }
 </script>
@@ -39,12 +46,17 @@ export default {
 .icon_container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    margin: 2% 0px 2% 0px;
+    margin: 2% 0px 5% 0px;
     grid-auto-rows: minmax(50px, auto);
 }
 
 .icon_position {
     grid-column: 6;
     grid-row: 1;
+}
+
+.spinner{
+    text-align: center;
+    margin: 25% 0px 2% 0px;
 }
 </style>
