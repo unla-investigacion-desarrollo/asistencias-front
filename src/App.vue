@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <menu-horizontal></menu-horizontal> 
-    <div class="spinner">
-      <v-progress-circular class="spinner_content" :size="100" v-if="cargando" color="error" indeterminate></v-progress-circular>
-    </div>
     <v-main>
       <router-view/>
     </v-main>
+    <div class="spinner">
+      <v-progress-circular class="spinner_content" :size="100" v-if="cargando" color="error" indeterminate></v-progress-circular>
+    </div>
     <div class="icon_container">
       <div class="icon_position">
         <v-fab @click="escaner" class="icon_scanner" elevation="4" color="surface-variant" icon="mdi-qrcode-scan"></v-fab>
@@ -57,6 +57,6 @@ export default {
 
 .spinner{
     text-align: center;
-    margin: 25% 0px 2% 0px;
+    margin: 2% 0px 2% 0px;
 }
 </style>

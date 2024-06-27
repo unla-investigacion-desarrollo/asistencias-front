@@ -48,6 +48,7 @@ export default {
       });
     },
     [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
       api.obtenerTiposEventos()
       .then(response => {
       console.log(response);
@@ -58,6 +59,7 @@ export default {
       .catch(error => {
         console.log(error);
       });
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
   [ACTIONS.ELIMINAR_TIPO_EVENTO] (context, payload) {
     api.eliminarTipoEvento(payload.idTipoEvento)
