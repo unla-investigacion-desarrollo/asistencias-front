@@ -23,24 +23,25 @@
       >
         <td>{{ item.idTipoEvento }}</td>
         <td>{{ item.tipoEvento }}</td>
-        <td><v-btn @click="editarItem(item)" color="warning" icon="mdi-pencil"></v-btn>
+        <td><ModalEditarTipoEvento @click="editarItem(item)"></ModalEditarTipoEvento>
             <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
         </td>
+        <td></td>
       </tr>
     </tbody>
   </v-table>
+  
+  
   </template>
 <script>
-import { ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import ModalEditarTipoEvento from '../components/ModalEditarTipoEvento.vue';
+import { ACTUALIZAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
   export default {
     name: 'ListaTipoEvento',
-    data: () => ({
-      headers: [
-        { title: 'ID', value: 'idTipoEvento' },
-        { title: 'Tipo de Evento', value: 'tipoEvento' },
-        { title: 'Acciones'},
-      ],
-    }),
+    components: { ModalEditarTipoEvento },
+    data(){
+      this.dialog = false;
+    },
     computed: {
         eventos() {
             return this.$store.getters.getTipoEventos();
@@ -48,7 +49,7 @@ import { ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-ty
   },
   methods: {
     editarItem(item){
-        return item;
+        this.$store.dispatch(ACTUALIZAR_TIPO_EVENTO, item);
     },
     eliminarItem(item){
         this.$store.dispatch(ELIMINAR_TIPO_EVENTO, item);

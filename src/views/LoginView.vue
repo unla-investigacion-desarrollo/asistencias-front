@@ -21,7 +21,7 @@ import LoginComponent from '../components/LoginComponent.vue';
 
   
   export default {
-    name: 'InscripcionView',
+    name: 'LoginView',
     components: { LoginComponent },
   }
 </script>

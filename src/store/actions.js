@@ -94,5 +94,8 @@ export default {
   .catch(error => {
     console.log(error);
   });
+},
+[ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
 }
 }
