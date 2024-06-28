@@ -39,6 +39,10 @@ const api = {
   eliminarEvento(payload) {
     return axios.delete(`${dominio}/api/eliminarEvento/${payload}`);
   },
+
+  obtenerEventos() { 
+    return axios.get(`${dominio}/api/eventos`);
+  },
 };
 
 export default api;

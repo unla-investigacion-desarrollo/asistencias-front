@@ -37,6 +37,7 @@
     <v-select
       v-model="model.evento"
       :items="eventos"
+      :item-props="itemProps"
       label="Evento"
       required
     ></v-select>
@@ -51,8 +52,8 @@
 </template>
   
 <script>
-import { eventos } from "@/config/index";
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
+import { OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
   components: { VNumberInput },
@@ -74,7 +75,7 @@ export default {
   },
   computed: {
     eventos() {
-      return eventos;
+      return this.$store.getters.getEventos();
     },
     valiteText(value){
         let respuesta;
@@ -101,7 +102,15 @@ export default {
         console.log("me inscribi");
       //this.$store.dispatch(INSCRIPCION_EVENTO, this.model);
     },
-    
+    itemProps (item) {
+        return {
+          title: item.nombre,
+        }
+      }
+  },
+  created() {
+      this.$store.dispatch(OBTENER_EVENTOS);
+      console.log(this.$store.getters.getEventos());
   }
 }
 </script>

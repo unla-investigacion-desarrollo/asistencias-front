@@ -24,7 +24,7 @@ export default {
         apellido: "",
         dni: "",
         email: "",
-        evento: ""
+        evento: {}
     },
     tipoUsuario: {
         rol: ""

@@ -28,4 +28,7 @@ export default {
     [MUTATIONS.MODIFICAR_UN_EVENTO]: (state, payload) => {
         state.evento = payload;
     },
+    [MUTATIONS.OBTENER_LISTA_EVENTOS]: (state, payload) => {
+        state.eventos = payload;
+    }
 }
