@@ -22,7 +22,7 @@
       controlVariant="default"
       label="DNI"
       :counter="8"
-      maxlength="8"
+      :max="99999999"
       v-model="model.dni"
       :rules="validationDNI"
     ></v-number-input>
