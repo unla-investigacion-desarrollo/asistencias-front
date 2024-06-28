@@ -42,12 +42,15 @@
       required
     ></v-select>
 
-    <v-btn
-      class="me-4"
-      @click="continuar"
-    >
+    <div class="container_button">
+      <v-btn
+        class="me-4"
+        color="primary"
+        @click="continuar"
+      >
       Enviar
-    </v-btn>
+      </v-btn>
+    </div>
   </v-form>
 </template>
   
@@ -116,5 +119,7 @@ export default {
 </script>
 
 <style scoped>
-
+.container_button{
+  text-align: center;
+}
 </style>

@@ -4,7 +4,9 @@
             class="mx-auto title_section"
         >
             <template v-slot:title>
-            <span class="title">Agregar nuevo Rol</span>
+              <div class="title_content">
+                <span class="title">Agregar nuevo Rol</span>
+              </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
@@ -30,5 +32,8 @@ export default {
 
 .title {
     color: #fff;
+}
+.title_content{
+  text-align: center;
 }
 </style>

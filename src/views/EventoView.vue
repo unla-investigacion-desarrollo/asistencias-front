@@ -4,7 +4,9 @@
             class="mx-auto title_section"
         >
             <template v-slot:title>
-            <span class="title">Agregar Evento</span>
+              <div class="title_content">
+                <span class="title">Agregar Evento</span>
+              </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
@@ -30,5 +32,8 @@ import FormularioEvento from '../components/FormularioEvento.vue';
 
 .title {
     color: #fff;
+}
+.title_content{
+  text-align: center;
 }
 </style>
