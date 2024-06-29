@@ -28,5 +28,13 @@ export default {
     },
     tipoUsuario: {
         rol: ""
+    },
+    inscripciones: [],
+    inscripcion: {
+        idInscripcion: "",
+        p: null,
+        e: null,
+        asistencia: false,
+        certificadoEnviado: false
     }
 }
