@@ -43,6 +43,21 @@ const api = {
   obtenerEventos() { 
     return axios.get(`${dominio}/api/eventos`);
   },
+
+  registrarParticipanteAlEvento(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/registrarParticipanteAlEvento`, body);
+  },
+
+  obtenerInscripciones() { 
+    return axios.get(`${dominio}/api/inscripciones`);
+  },
+
+  registrarAsistencia(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/registrarAsistencia`, body);
+  },
+
 };
 
 export default api;
