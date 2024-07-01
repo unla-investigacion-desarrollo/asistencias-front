@@ -114,4 +114,19 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.REGISTRAR_PARTICIPANTE_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.registrarParticipanteAlEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.REGISTRAR_PARTICIPANTE_AL_EVENTO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+
 }

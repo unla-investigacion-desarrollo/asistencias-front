@@ -30,5 +30,8 @@ export default {
     },
     [MUTATIONS.OBTENER_LISTA_EVENTOS]: (state, payload) => {
         state.eventos = payload;
-    }
+    },
+    [MUTATIONS.REGISTRAR_PARTICIPANTE_AL_EVENTO]: (state, payload) => {
+        state.inscripcion = payload;
+    }    
 }

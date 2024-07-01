@@ -35,7 +35,7 @@
     ></v-text-field>
 
     <v-select
-      v-model="model.evento"
+      v-model="modelE"
       :items="eventos"
       :item-props="itemProps"
       label="Evento"
@@ -56,13 +56,14 @@
   
 <script>
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { OBTENER_EVENTOS } from '../store/actions-types';
+import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
   components: { VNumberInput },
   data() {
     return {
       model: this.$store.getters.getParticipante(),
+      modelE: this.$store.getters.getEvento(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -103,7 +104,12 @@ export default {
     continuar() {
         console.log(this.model);
         console.log("me inscribi");
-      //this.$store.dispatch(INSCRIPCION_EVENTO, this.model);
+        let inscripcion = {
+          e: this.modelE,
+          p: this.model
+        }
+        console.log(inscripcion);
+      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, inscripcion);
     },
     itemProps (item) {
         return {
