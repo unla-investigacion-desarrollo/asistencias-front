@@ -1,5 +1,6 @@
 <template>
-    <v-container>
+  <div class="container">
+    <div class="content">
         <v-card
             class="mx-auto title_section"
         >
@@ -13,8 +14,8 @@
                 <FormularioPerfil></FormularioPerfil>
             </v-card-text>
         </v-card>
-
-    </v-container>
+      </div>
+    </div>
   </template>
   
   <script>
@@ -35,5 +36,30 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  margin: 5% 0px 0px 0px;
+}
+
+.content {
+  grid-column: 3/5;
+  grid-row: 1;
+}
+
+@media screen and (max-width: 600px) {
+.container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  margin: 5% 5% 0px 5%;
+}
+.content{
+  grid-column: 1/5;
+  grid-row: 1;
+}
 }
 </style>

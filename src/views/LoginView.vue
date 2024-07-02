@@ -45,7 +45,7 @@ import LoginComponent from '../components/LoginComponent.vue';
 }
 
 @media screen and (max-width: 600px) {
-  .login_container{
+.login_container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
