@@ -24,12 +24,12 @@
           type="datetime-local" 
         ></v-text-field>
 
-        <v-select
+        <v-autocomplete
           v-model="model.ubicacion"
           :items="edificios"
           label="Ubicacion"
           required
-        ></v-select>
+      ></v-autocomplete>
 
         <v-select v-if="estado"
           v-model="model.estado"
