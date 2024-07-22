@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-card
-            class="mx-auto title_section"
+            class="mx-auto title_section" :elevation="8"
         >
             <template v-slot:title>
               <div class="title_content">
@@ -9,7 +9,7 @@
               </div>
             </template>
 
-            <v-card-text class="bg-surface-light pt-4">
+            <v-card-text class="bg-surface-light pt-4" :elevation="8">
                 <ListaTipoEvento></ListaTipoEvento>
             </v-card-text>
         </v-card>
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.title_section { background-color: #455A64; }
+.title_section { background-color: #8e2736; }
 
 .title {
     color: #fff;

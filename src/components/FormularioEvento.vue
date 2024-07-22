@@ -1,42 +1,52 @@
 <template>
+
     <v-form>
-        <v-text-field
-          v-model="model.nombre"
-          :counter="45"
-          label="Nombre"
-          :rules="validationText"
-          required
-        ></v-text-field>
-        
-        <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
+      <div class="container">
+        <div class="nombre">
+          <v-text-field
+            v-model="model.nombre"
+            :counter="45"
+            label="Nombre"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </div>
+        <div class="descripcion">
+          <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
+        </div>
 
-        <v-text-field
-          v-model="model.fechaInicio"
-          label="Fecha de inicio"
-          :rules="validationText"
-          type="datetime-local" 
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="model.fechaFin"
-          label="Fecha de fin"
-          type="datetime-local" 
-        ></v-text-field>
-
-        <v-autocomplete
-          v-model="model.ubicacion"
-          :items="edificios"
-          label="Ubicacion"
-          required
-      ></v-autocomplete>
-
+        <div class="inicio">
+          <v-text-field
+            v-model="model.fechaInicio"
+            label="Fecha de inicio"
+            :rules="validationText"
+            type="datetime-local" 
+            required
+          ></v-text-field>
+        </div>
+        <div class="fin">
+          <v-text-field
+            v-model="model.fechaFin"
+            label="Fecha de fin"
+            type="datetime-local" 
+          ></v-text-field>
+        </div>
+        <div class="edificio">
+          <v-autocomplete
+            v-model="model.ubicacion"
+            :items="edificios"
+            label="Edificio"
+            required
+        ></v-autocomplete>
+      </div>
+      <div class="estado">
         <v-select v-if="estado"
           v-model="model.estado"
           :items="estados"
           label="Estado"
         ></v-select>
-
+      </div>
+      <div class="tevento">
         <v-select
           v-model="model.te"
           :items="eventos"
@@ -44,21 +54,33 @@
           label="Tipo de evento"
           required
         ></v-select>
-
+      </div>
+      <div class="ubicacion">
+          <v-text-field
+            v-model="model.ubicacion"
+            :counter="45"
+            label="Ubicacion"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </div>
+      <div class="certificado">
         <v-text-field
           v-model="model.linkCertificado"
           label="Link del certificado"
         ></v-text-field>
-
+      </div>
+      </div>
         <div class="container_button">
           <v-btn
             class="me-4"
-            color="primary"
+            :color="color"
             @click="continuar"
           >
-          Enviar
+          Guardar
           </v-btn>
       </div>
+    
     </v-form>
 </template>
   
@@ -82,6 +104,7 @@ export default {
   data() {
     return {
       model: this.$store.getters.getEvento(),
+      color: "#8e2736",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -144,5 +167,58 @@ export default {
 <style scoped>
 .container_button{
   text-align: center;
+}
+.container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  margin: 5% 5% 0px 5%;
+  grid-gap: 2%;
+}
+.nombre{
+  grid-column: 1/3;
+  grid-row: 1;
+}
+
+.descripcion{
+  grid-column: 1/5;
+  grid-row: 2;
+}
+
+.inicio {
+  grid-column: 1/3;
+  grid-row: 3;
+  margin-top: 12.5%;
+}
+
+.fin {
+  grid-column: 3/5;
+  grid-row: 3;
+  margin-top: 12.5%;
+}
+
+.estado {
+  grid-column: 3/5;
+  grid-row: 4;
+}
+
+.edificio {
+  grid-column: 1/3;
+  grid-row: 4;
+}
+
+.tevento{
+  grid-column: 3/5;
+  grid-row: 1;
+}
+
+.ubicacion {
+  grid-column: 1/5;
+  grid-row: 5;
+}
+
+.certificado {
+  grid-column: 1/5;
+  grid-row: 6;
 }
 </style>

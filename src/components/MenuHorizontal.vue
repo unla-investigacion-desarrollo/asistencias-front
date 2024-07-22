@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar :elevation="8" color="blue-grey-darken-4" title="Eventos UNLa">
+    <v-toolbar :elevation="8" :color="color" title="Eventos UNLa">
         <v-btn icon>
           <v-icon @click="login">mdi-account</v-icon>
         </v-btn>
@@ -20,6 +20,11 @@ export default {
             this.$router.push('login')
         }
     },
+    data() {
+        return {
+            color: "#8e2736"
+        }
+    }
 }
 </script>
 

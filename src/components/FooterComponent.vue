@@ -54,7 +54,7 @@ data: () => ({
 
 <style scoped>
 .footer {
-  background-color: #78909C;
+  background-color: #D32F2F;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(6, 1fr);

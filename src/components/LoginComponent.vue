@@ -21,7 +21,7 @@
     <div class="button_container">
       <v-btn
       @click="continuar"
-      color="primary"
+      :color="color"
     >
       Iniciar sesión
       </v-btn>
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       model: this.$store.getters.getUsuario(),
+      color: "#D32F2F",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',

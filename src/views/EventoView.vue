@@ -2,7 +2,7 @@
     <div class="container">
       <div class="content">
         <v-card
-            class="mx-auto title_section"
+            class="mx-auto title_section" :elevation="8"
         >
             <template v-slot:title>
               <div class="title_content">
@@ -29,7 +29,7 @@ import FormularioEvento from '../components/FormularioEvento.vue';
 </script>
   
 <style scoped>
-.title_section { background-color: #455A64; }
+.title_section { background-color: #8e2736; }
 
 .title {
     color: #fff;
@@ -46,7 +46,7 @@ import FormularioEvento from '../components/FormularioEvento.vue';
 }
 
 .content {
-  grid-column: 3/5;
+  grid-column: 2/6;
   grid-row: 1;
 }
 

@@ -2,7 +2,7 @@
     <div class="login_container">
       <div class="login_content">
         <v-card
-            class="mx-auto title_section"
+            class="mx-auto title_section" :elevation="8"
         >
             <template v-slot:title>
             <span class="title">Iniciar Sesión</span>
@@ -27,7 +27,7 @@ import LoginComponent from '../components/LoginComponent.vue';
 </script>
   
 <style scoped>
-.title_section { background-color: #455A64; text-align: center;}
+.title_section { background-color: #8e2736; text-align: center;}
 
 .title {
     color: #fff;
