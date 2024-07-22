@@ -2,7 +2,7 @@
     <v-text-field
       v-model="model.video"
       :counter="45"
-      label="Video"
+      label="Link del Video"
       :rules="validationText"
       required
     ></v-text-field>

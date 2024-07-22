@@ -2,7 +2,7 @@
     <v-text-field
       v-model="model.audio"
       :counter="45"
-      label="Audio"
+      label="Link del Audio"
       :rules="validationText"
       required
     ></v-text-field>

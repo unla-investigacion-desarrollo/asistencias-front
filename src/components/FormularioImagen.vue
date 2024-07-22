@@ -2,7 +2,7 @@
     <v-text-field
       v-model="model.imagen"
       :counter="45"
-      label="Imagen"
+      label="Link de la Imagen"
       :rules="validationText"
       required
     ></v-text-field>

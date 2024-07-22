@@ -11,9 +11,7 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <FormularioAudio></FormularioAudio>
-                <FormularioImagen></FormularioImagen>
-                <FormularioVideo></FormularioVideo>
+                <FormularioContenido></FormularioContenido>
             </v-card-text>
         </v-card>
       </div>
@@ -21,13 +19,10 @@
   </template>
   
   <script>
-import FormularioAudio from '@/components/FormularioAudio.vue';
-import FormularioImagen from '@/components/FormularioImagen.vue';
-import FormularioVideo from '@/components/FormularioVideo.vue';
-  
+import FormularioContenido from '@/components/FormularioContenido.vue';
   export default {
     name: 'ContenidoView',
-    components: { FormularioAudio, FormularioImagen, FormularioVideo },
+    components: { FormularioContenido },
   }
 </script>
   
