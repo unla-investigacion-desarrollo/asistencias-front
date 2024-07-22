@@ -1,14 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 //import HomeView from '../views/HomeView.vue'
+import ContenidoView from '../views/ContenidoView.vue'
 import ErroresView from '../views/ErroresView.vue'
 import EscanerView from '../views/EscanerView.vue'
 import EventoView from '../views/EventoView.vue'
 import InicioView from '../views/InicioView.vue'
 import InscripcionView from '../views/InscripcionView.vue'
+import ListaTiposEventosView from '../views/ListaTiposEventosView.vue'
 import LoginView from '../views/LoginView.vue'
 import RolView from '../views/RolView.vue'
 import TipoEventoView from '../views/TipoEventoView.vue'
-import ListaTiposEventosView from '../views/ListaTiposEventosView.vue'
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/escaner',
     name: 'EscanerView',
     component: EscanerView
+  },
+  {
+    path: '/contenido',
+    name: 'ContenidoView',
+    component: ContenidoView
   },
   {
     path: '/about',

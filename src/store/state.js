@@ -36,5 +36,18 @@ export default {
         e: null,
         asistencia: false,
         certificadoEnviado: false
+    },
+    audio: {
+        audio: ""
+    },
+    video: {
+        video: ""
+    },
+    imagen: {
+        imagen: ""
+    },
+    contenido: {
+        titulo: "",
+        descripcion: ""
     }
 }
