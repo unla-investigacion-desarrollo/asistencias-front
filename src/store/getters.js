@@ -12,5 +12,7 @@ export default {
     getContenido: state => () => state.contenido,
     getAudios: state => () => state.audios,
     getVideos: state => () => state.videos,
-    getImagenes: state => () => state.imagenes
+    getImagenes: state => () => state.imagenes,
+    getActividad: state => () => state.actividad,
+    getActividades: state => () => state.actividades,
   };

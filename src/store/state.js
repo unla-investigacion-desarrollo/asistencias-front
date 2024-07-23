@@ -11,6 +11,7 @@ export default {
         descripcion: "",
         fechaInicio: "",
         fechaFin: "",
+        edificio: "",
         ubicacion: "",
         estado: "Creado",
         te: {},
@@ -52,5 +53,18 @@ export default {
     },
     audios: [],
     videos: [],
-    imagenes: []
+    imagenes: [],
+    actividad: {
+        nombre: "",
+        descripcion: "",
+        fechaInicio: "",
+        fechaFin: "",
+        edificio: "",
+        ubicacion: "",
+        estado: "Creado",
+        e: {},
+        cupo: "",
+        cupoLimite: ""
+    },
+    actividades: []
 }

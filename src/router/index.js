@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 //import HomeView from '../views/HomeView.vue'
+import ActividadView from '../views/ActividadView.vue'
 import ContenidoView from '../views/ContenidoView.vue'
 import ErroresView from '../views/ErroresView.vue'
 import EscanerView from '../views/EscanerView.vue'
@@ -61,6 +62,11 @@ const routes = [
     path: '/contenido',
     name: 'ContenidoView',
     component: ContenidoView
+  },
+  {
+    path: '/nuevaActividad',
+    name: 'ActividadView',
+    component: ActividadView
   },
   {
     path: '/about',
