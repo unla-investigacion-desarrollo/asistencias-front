@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       model: this.$store.getters.getUsuario(),
-      color: "#D32F2F",
+      color: "#79415A",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',

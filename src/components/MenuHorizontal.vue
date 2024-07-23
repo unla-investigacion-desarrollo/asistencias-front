@@ -22,7 +22,7 @@ export default {
     },
     data() {
         return {
-            color: "#8e2736"
+            color: "#1F313B"
         }
     }
 }

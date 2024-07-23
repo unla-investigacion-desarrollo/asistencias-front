@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="fondo">
     <menu-horizontal></menu-horizontal> 
     <v-main>
       <router-view/>
@@ -9,7 +9,7 @@
     </div>
     <div class="icon_container">
       <div class="icon_position">
-        <v-fab @click="escaner" class="icon_scanner" elevation="4" color="red-darken-4" icon="mdi-qrcode-scan"></v-fab>
+        <v-fab @click="escaner" class="icon_scanner" elevation="4" color="#BA4F57" icon="mdi-qrcode-scan"></v-fab>
       </div>
     </div>
     <footer-component></footer-component>
@@ -59,4 +59,17 @@ export default {
     text-align: center;
     margin: 2% 0px 2% 0px;
 }
+
+.fondo {
+  background-image: url("@/assets/03cf485b3a72e0d52b0bf305611c9650.jpg");
+  background-size: 100% 100%;
+}
+
+@media screen and (max-width: 600px) {
+.fondo {
+  background-image: url("@/assets/03cf485b3a72e0d52b0bf305611c9650.jpg");
+  background-size: 100% 85%;
+}
+}
+
 </style>

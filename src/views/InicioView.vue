@@ -1,13 +1,24 @@
 <template>
-  <div class="carrousel_container">
-      <div class="carrousel_mi"></div>
-      <div class="carrousel"><CarrouselComponent></CarrouselComponent></div>
-      <div class="carrousel_md"></div>
-  </div>
-</template>
+  <v-container>       
+    <v-card
+          class="mx-auto title_section" :elevation="8"
+      >
+        <template v-slot:title>
+          <div class="title_content">
+            <span class="title">Eventos</span>
+          </div>
+        </template>
+
+        <v-card-text class="bg-surface-light pt-4">
+          <CarrouselComponent></CarrouselComponent>
+        </v-card-text>
+        </v-card> 
+        
+    </v-container>
+  </template>
 
 <script>
-import CarrouselComponent from '../components/CarrouselComponent.vue'
+import CarrouselComponent from '../components/CarrouselComponent.vue';
 
 export default {
   name: 'InicioView',
@@ -16,22 +27,13 @@ export default {
 </script>
 
 <style scoped>
-.carrousel_container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  margin: 2% 0px 2% 0px;
-}
+.title_section { background-color: #383854; }
 
-.carrousel_mi {
-  grid-column: 1;
+.title {
+    color: #fff;
 }
-
-.carrousel {
-  grid-column: 2/6;
-}
-
-.carrousel_md {
-  grid-column: 7;
+.title_content{
+  text-align: center;
 }
 
 </style>
