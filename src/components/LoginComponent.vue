@@ -25,6 +25,13 @@
     >
       Iniciar sesión
       </v-btn>
+      <v-btn
+      @click="registro"
+      :color="color"
+      class="registro"
+    >
+      Registrarse
+      </v-btn>
     </div>
     
   </v-form>
@@ -54,7 +61,9 @@ export default {
         console.log("me loguee");
       //this.$store.dispatch(LOGIN, this.model);
     },
-    
+    registro(){
+      this.$router.push('registro')
+    }
   }
 }
 </script>
@@ -62,5 +71,9 @@ export default {
 <style scoped>
 .button_container{
   text-align: center;
+}
+
+.registro{
+  margin-left: 5%;
 }
 </style>

@@ -9,6 +9,7 @@ import InicioView from '../views/InicioView.vue'
 import InscripcionView from '../views/InscripcionView.vue'
 import ListaTiposEventosView from '../views/ListaTiposEventosView.vue'
 import LoginView from '../views/LoginView.vue'
+import RegistroView from '../views/RegistroView.vue'
 import RolView from '../views/RolView.vue'
 import TipoEventoView from '../views/TipoEventoView.vue'
 
@@ -67,6 +68,11 @@ const routes = [
     path: '/nuevaActividad',
     name: 'ActividadView',
     component: ActividadView
+  },
+  {
+    path: '/registro',
+    name: 'RegistroView',
+    component: RegistroView
   },
   {
     path: '/about',

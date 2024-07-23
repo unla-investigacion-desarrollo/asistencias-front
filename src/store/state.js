@@ -1,7 +1,12 @@
 export default {
     usuario: {
         email: "",
-        password: ""
+        password: "",
+        nombre: "",
+        apellido: "",
+        dni: "",
+        usuario: "",
+        tu: {}
     },
     spinner: false,
     tipoEventos: [],
