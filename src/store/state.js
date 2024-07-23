@@ -49,5 +49,8 @@ export default {
     contenido: {
         titulo: "",
         descripcion: ""
-    }
+    },
+    audios: [],
+    videos: [],
+    imagenes: []
 }
