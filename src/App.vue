@@ -61,8 +61,7 @@ export default {
 }
 
 .fondo {
-  background-image: url("@/assets/03cf485b3a72e0d52b0bf305611c9650.jpg");
-  background-size: 100% 100%;
+  background-color: #fff;
 }
 
 @media screen and (max-width: 600px) {

@@ -1,18 +1,8 @@
 <template>
   <v-container>       
-    <v-card
-          class="mx-auto title_section" :elevation="8"
-      >
-        <template v-slot:title>
-          <div class="title_content">
-            <span class="title">Eventos</span>
-          </div>
-        </template>
-
-        <v-card-text class="bg-surface-light pt-4">
+   
           <CarrouselComponent></CarrouselComponent>
-        </v-card-text>
-        </v-card> 
+
         
     </v-container>
   </template>
