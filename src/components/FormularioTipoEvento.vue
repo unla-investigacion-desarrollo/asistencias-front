@@ -1,12 +1,16 @@
 <template>
     <v-form>
     <v-text-field
-      v-model="model.tipoEvento"
+      v-model="model.nombre"
       :counter="45"
       label="Tipo de Evento"
       :rules="validationText"
       required
     ></v-text-field>
+
+    <div class="descripcion">
+          <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
+        </div>
 
     <div class="container_button">
       <v-btn

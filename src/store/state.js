@@ -23,7 +23,8 @@ export default {
         linkCertificado: ""
     },
     tipoEvento: {
-        tipoEvento: "",
+        nombre: "",
+        descripcion: ""
     },
     participante: {
         nombre: "",
