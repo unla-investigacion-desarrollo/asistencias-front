@@ -105,7 +105,7 @@ export default {
         console.log(this.model);
         console.log("me inscribi");
         let inscripcion = {
-          e: this.modelE,
+          evento: this.modelE,
           p: this.model
         }
         console.log(inscripcion);

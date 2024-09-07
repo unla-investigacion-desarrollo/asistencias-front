@@ -6,7 +6,7 @@ export default {
         apellido: "",
         dni: "",
         usuario: "",
-        tu: {}
+        tipoUsuario: {}
     },
     spinner: false,
     tipoEventos: [],
@@ -39,8 +39,8 @@ export default {
     inscripciones: [],
     inscripcion: {
         idInscripcion: "",
-        p: null,
-        e: null,
+        usuario: null,
+        evento: null,
         asistencia: false,
         certificadoEnviado: false
     },
