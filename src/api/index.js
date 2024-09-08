@@ -58,6 +58,43 @@ const api = {
     return axios.post(`${dominio}/api/registrarAsistencia`, body);
   },
 
+  traerActividades() {
+    return axios.get(`${dominio}/api/actividades`);
+  },
+  agregarActividad(payload){
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/actividades`, body);
+  },
+  obtenerActividadPorId(payload){
+    return axios.get(`${dominio}/api/actividades/${payload.idActividad}`, body);
+  },
+  actualizarActividad(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/actividades/${payload.idActividad}`, body);
+  },
+  eliminarActividad(payload) {
+    return axios.delete(`${dominio}/api/actividades/${payload}`);
+  },
+  buscarActividadesPorNombre(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/actividades/nombre/${payload}`, body);
+  },
+  buscarActividadesPorEstado(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/actividades/estado/${payload}`, body);
+  },
+  buscarActividadesPorCupo(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/actividades/cupo/${payload}`, body);
+  },
+  buscarActividadesPorTipoEvento(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/actividades/tipo-evento/${payload}`, body);
+  },
+  buscarActividadesPorEvento(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/actividades/evento/${payload}`, body);
+  },
 };
 
 export default api;
