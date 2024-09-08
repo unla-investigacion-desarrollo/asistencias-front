@@ -57,7 +57,7 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarAsistencia`, body);
   },
-
+  //controller de actividad
   traerActividades() {
     return axios.get(`${dominio}/api/actividades`);
   },
@@ -94,6 +94,25 @@ const api = {
   buscarActividadesPorEvento(payload){
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/actividades/evento/${payload}`, body);
+  },
+  //Controller usuarios
+  guardarUsuario(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/usuarios`, body);
+  },
+  actualizarUsuario(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/usuarios/${payload.idUsuario}`, body);
+  },
+  eliminarUsuario(payload) {
+    return axios.delete(`${dominio}/api/usuarios/${payload}`);
+  },
+  traerUsuarios() { 
+    return axios.get(`${dominio}/api/usuarios`);
+  },
+  traerUsuario(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/usuarios/${payload}`, body);
   },
 };
 
