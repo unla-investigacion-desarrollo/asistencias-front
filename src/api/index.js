@@ -66,7 +66,7 @@ const api = {
     return axios.post(`${dominio}/api/actividades`, body);
   },
   obtenerActividadPorId(payload){
-    return axios.get(`${dominio}/api/actividades/${payload.idActividad}`, body);
+    return axios.get(`${dominio}/api/actividades/${payload.idActividad}`);
   },
   actualizarActividad(payload) { 
     const body = normalizarDatos(payload);
@@ -114,6 +114,12 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/usuarios/${payload}`, body);
   },
+  //Controller Tipo de Evento
+  actualizarTipoEvento(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
+  },
+
 };
 
 export default api;

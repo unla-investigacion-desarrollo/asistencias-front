@@ -12,6 +12,7 @@ import LoginView from '../views/LoginView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import RolView from '../views/RolView.vue'
 import TipoEventoView from '../views/TipoEventoView.vue'
+import EditarTipoEventoView from '../views/EditarTipoEventoView.vue'
 
 const routes = [
   {
@@ -73,6 +74,11 @@ const routes = [
     path: '/registro',
     name: 'RegistroView',
     component: RegistroView
+  },
+  {
+    path: '/editarTipoEvento',
+    name: 'EditarTipoEventoView',
+    component: EditarTipoEventoView
   },
   {
     path: '/about',

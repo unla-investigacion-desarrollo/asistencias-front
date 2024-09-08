@@ -1,3 +1,4 @@
+import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
@@ -98,7 +99,23 @@ export default {
   });
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
+  api.actualizarTipoEvento(payload)
+        .then(response => {
+        console.log(response);
+          if (response.status == "200") {
+            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+            router.push('/listaTipoEvento');
+          } 
+          console.log(context.getters.getTipoEventos());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+},
+
+[ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
+  router.push('/editarTipoEvento');
 },
 [ACTIONS.OBTENER_EVENTOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
