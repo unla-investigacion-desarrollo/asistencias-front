@@ -5,23 +5,23 @@
         >
             <template v-slot:title>
               <div class="title_content">
-                <span class="title">Lista de Tipos de Eventos</span>
+                <span class="title">Lista de Roles</span>
               </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <ListaTipoEvento></ListaTipoEvento>
+                <ListaTipoUsuario></ListaTipoUsuario>
             </v-card-text>
         </v-card>
 
     </v-container>
 </template>
 <script>
-import ListaTipoEvento from '../components/ListaTipoEvento.vue';
+import ListaTipoUsuario from '../components/ListaTipoUsuario.vue';
 
 export default {
-    name: 'TipoEventoView',
-    components: { ListaTipoEvento },
+    name: 'ListaRolesView',
+    components: { ListaTipoUsuario },
 }
 </script>
 

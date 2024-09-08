@@ -3,11 +3,6 @@ import { dominio, normalizarDatos } from '../config/index';
 
 const api = {
 
-  guardarTipoUsuario(payload) {
-    const body = normalizarDatos(payload);
-    return axios.post(`${dominio}/api/tipoUsuario`, body);
-  },
-
   login(payload) {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/usuario/login`, body);
@@ -118,6 +113,25 @@ const api = {
   actualizarTipoEvento(payload) { 
     const body = normalizarDatos(payload);
     return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
+  },
+  //Controller Tipo de Usuario
+  guardarTipoUsuario(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/tipoUsuario`, body);
+  },
+  actualizarTipoUsuario(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/tipoUsuario/${payload.idTipoUsuario}`, body);
+  },
+  eliminarTipoUsuario(payload) {
+    return axios.delete(`${dominio}/api/tipoUsuario/${payload}`);
+  },
+  traerTipoUsuario(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/tipoUsuario/${payload}`, body);
+  },
+  obtenerTiposUsuarios() { 
+    return axios.get(`${dominio}/api/tipoUsuarios`);
   },
 
 };

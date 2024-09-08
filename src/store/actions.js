@@ -112,7 +112,6 @@ export default {
           console.log(error);
         });
 },
-
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
   router.push('/editarTipoEvento');
@@ -145,5 +144,48 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
-
+[ACTIONS.OBTENER_ROLES] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerTiposUsuarios()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_ROLES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.EDITAR_ROL] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, payload);
+  router.push('/editarRol');
+},
+[ACTIONS.ACTUALIZAR_ROL] (context, payload) {
+  api.actualizarTipoUsuario(payload)
+        .then(response => {
+        console.log(response);
+          if (response.status == "200") {
+            context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
+            router.push('/listaRoles');
+          } 
+          console.log(context.getters.getRoles());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+},
+[ACTIONS.ELIMINAR_ROL] (context, payload) {
+  api.eliminarTipoUsuario(payload.idTipoUsuario)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      //mostrar algo
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
 }

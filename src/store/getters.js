@@ -15,4 +15,5 @@ export default {
     getImagenes: state => () => state.imagenes,
     getActividad: state => () => state.actividad,
     getActividades: state => () => state.actividades,
+    getRoles: state => () => state.roles
   };

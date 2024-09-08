@@ -72,5 +72,6 @@ export default {
         cupo: "",
         cupoLimite: ""
     },
-    actividades: []
+    actividades: [],
+    roles: []
 }

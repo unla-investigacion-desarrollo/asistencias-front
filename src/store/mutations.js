@@ -5,7 +5,7 @@ export default {
     [MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER]: (state, payload) => {
         state.spinner = payload;
     },
-    [MUTATIONS.GUARDAR_TIPO_USUARIO]: (state, payload) => {
+    [MUTATIONS.GUARDAR_AGREGAR_ROL]: (state, payload) => {
         state.tipoUsuario = payload;
     },
     [MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO]: (state, payload) => {
@@ -33,5 +33,8 @@ export default {
     },
     [MUTATIONS.REGISTRAR_PARTICIPANTE_AL_EVENTO]: (state, payload) => {
         state.inscripcion = payload;
-    }    
+    },
+    [MUTATIONS.OBTENER_ROLES]: (state, payload) => {
+        state.roles = payload;
+    },
 }

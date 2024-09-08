@@ -6,23 +6,23 @@
             >
                 <template v-slot:title>
                 <div class="title_content">
-                    <span class="title">Agregar Tipo de Evento</span>
+                    <span class="title">Modificar Rol</span>
                 </div>
                 </template>
 
                 <v-card-text class="bg-surface-light pt-4">
-                    <FormularioTipoEvento></FormularioTipoEvento>
+                    <FormularioEditarTipoUsuario></FormularioEditarTipoUsuario>
                 </v-card-text>
             </v-card>
         </div>
     </div>
 </template>
 <script>
-import FormularioTipoEvento from '../components/FormularioTipoEvento.vue';
+import FormularioEditarTipoUsuario from '../components/FormularioEditarTipoUsuario.vue';
 
 export default {
-    name: 'TipoEventoView',
-    components: { FormularioTipoEvento },
+    name: 'EditarRolesView',
+    components: { FormularioEditarTipoUsuario },
 }
 </script>
 
