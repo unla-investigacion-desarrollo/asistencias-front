@@ -16,7 +16,7 @@ import EditarTipoEventoView from '../views/EditarTipoEventoView.vue'
 import ListaRolesView from '../views/ListaRolesView.vue'
 import EditarRolesView from '../views/EditarRolesView.vue'
 import EditarEventoView from '../views/EditarEventoView.vue'
-
+import ListaEventosView from '../views/ListaEventosView.vue'
 
 const routes = [
   {
@@ -99,7 +99,11 @@ const routes = [
     name: 'EditarEventoView',
     component: EditarEventoView
   },
-
+  {
+    path: '/listaEventos',
+    name: 'ListaEventosView',
+    component: ListaEventosView
+  },
   {
     path: '/about',
     name: 'about',

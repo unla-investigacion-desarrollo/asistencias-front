@@ -74,7 +74,7 @@
         <div class="container_button">
           <v-btn
             class="me-4"
-            :color="color"
+            color="primary"
             @click="continuar"
           >
           Guardar
