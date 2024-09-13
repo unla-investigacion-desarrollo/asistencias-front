@@ -74,10 +74,10 @@
         <div class="container_button">
           <v-btn
             class="me-4"
-            :color="color"
+            color="primary"
             @click="continuar"
           >
-          Guardar
+          Modificar
           </v-btn>
       </div>
     
@@ -87,9 +87,9 @@
 <script>
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
-import { AGREGAR_EVENTO, MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
-  name: 'FormularioEvento',
+  name: 'FormularioEditarEvento',
   components: {},
   props: {
     estado: {
@@ -104,7 +104,6 @@ export default {
   data() {
     return {
       model: this.$store.getters.getEvento(),
-      color: "#8e2736",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -152,12 +151,8 @@ export default {
       },
     continuar() {
       console.log(this.model);
-      console.log("agregue el evento");
-      if(this.operacion == "alta"){
-        this.$store.dispatch(AGREGAR_EVENTO, this.model);
-      } else {
+      console.log("modifique el evento");
         this.$store.dispatch(MODIFICAR_EVENTO, this.model);
-      }
     },
     
   }

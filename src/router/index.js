@@ -15,6 +15,8 @@ import TipoEventoView from '../views/TipoEventoView.vue'
 import EditarTipoEventoView from '../views/EditarTipoEventoView.vue'
 import ListaRolesView from '../views/ListaRolesView.vue'
 import EditarRolesView from '../views/EditarRolesView.vue'
+import EditarEventoView from '../views/EditarEventoView.vue'
+
 
 const routes = [
   {
@@ -92,6 +94,12 @@ const routes = [
     name: 'EditarRolesView',
     component: EditarRolesView
   },
+  {
+    path: '/editarEvento',
+    name: 'EditarEventoView',
+    component: EditarEventoView
+  },
+
   {
     path: '/about',
     name: 'about',

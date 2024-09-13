@@ -6,12 +6,12 @@
         >
             <template v-slot:title>
               <div class="title_content">
-                <span class="title">Agregar Actividad</span>
+                <span class="title">Modificar Evento</span>
               </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <FormularioActividad></FormularioActividad>
+                <FormularioEditarEvento></FormularioEditarEvento>
             </v-card-text>
         </v-card>
       </div>
@@ -19,12 +19,12 @@
   </template>
   
   <script>
-import FormularioActividad from '../components/FormularioActividad.vue';
+import FormularioEditarEvento from '../components/FormularioEditarEvento.vue';
 
   
   export default {
-    name: 'ActividadView',
-    components: { FormularioActividad },
+    name: 'EventoView',
+    components: { FormularioEditarEvento },
   }
 </script>
   
