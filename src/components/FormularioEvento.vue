@@ -33,7 +33,7 @@
         </div>
         <div class="edificio">
           <v-autocomplete
-            v-model="model.ubicacion"
+            v-model="model.edificio"
             :items="edificios"
             label="Edificio"
             required
@@ -48,7 +48,7 @@
       </div>
       <div class="tevento">
         <v-select
-          v-model="model.te"
+          v-model="model.tipoEvento"
           :items="eventos"
           :item-props="itemProps"
           label="Tipo de evento"

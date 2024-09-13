@@ -19,7 +19,7 @@ export default {
         edificio: "",
         ubicacion: "",
         estado: "Creado",
-        te: {},
+        tipoEvento: {},
         linkCertificado: ""
     },
     tipoEvento: {

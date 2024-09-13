@@ -15,7 +15,7 @@ const api = {
 
   guardarEvento(payload) { 
     const body = normalizarDatos(payload);
-    return axios.post(`${dominio}/api/guardarEvento`, body);
+    return axios.post(`${dominio}/api/eventos/guardar`, body);
   },
 
   obtenerTiposEventos() { 
