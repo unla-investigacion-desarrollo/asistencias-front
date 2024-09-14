@@ -32,7 +32,7 @@
         </div>
         <div class="edificio">
           <v-autocomplete
-            v-model="model.ubicacion"
+            v-model="model.edificio"
             :items="edificios"
             label="Edificio"
             required
@@ -47,7 +47,7 @@
       </div>
       <div class="tevento">
         <v-select
-          v-model="model.te"
+          v-model="model.evento"
           :items="eventos"
           :item-props="itemProps"
           label="Evento"
@@ -87,7 +87,7 @@
         <div class="container_button">
           <v-btn
             class="me-4"
-            :color="color"
+            color="primary"
             @click="continuar"
           >
           Guardar
@@ -101,13 +101,13 @@
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioActividad',
   components: { VNumberInput },
   data() {
     return {
-      model: this.$store.getters.getEvento(),
+      model: this.$store.getters.getActividad(),
       color: "#8e2736",
       validationText: [
         v => !!v || 'El campo es requerido',
@@ -117,7 +117,7 @@ export default {
   },
   computed: {
     eventos() {
-      return this.$store.getters.getTipoEventos();
+      return this.$store.getters.getEventos();
     },
     edificios(){
         return edificios;
@@ -145,13 +145,13 @@ export default {
     }
   },
   created() {
-      this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
-      console.log(this.$store.getters.getTipoEventos());
+      this.$store.dispatch(OBTENER_EVENTOS);
+      console.log(this.$store.getters.getEventos());
   },
   methods: {
     itemProps (item) {
         return {
-          title: item.tipoEvento,
+          title: item.nombre,
         }
       },
     continuar() {
@@ -217,12 +217,12 @@ export default {
 }
 
 .cupo {
-  grid-column: 1/3;
-  grid-row: 6;
+  grid-column: 3/4;
+  grid-row: 4;
 }
 
 .cupo_limite {
-  grid-column: 3/5;
-  grid-row: 6;
+  grid-column: 4/5;
+  grid-row: 4;
 }
 </style>

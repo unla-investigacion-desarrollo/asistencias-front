@@ -68,7 +68,7 @@ export default {
         edificio: "",
         ubicacion: "",
         estado: "Creado",
-        e: {},
+        evento: {},
         cupo: "",
         cupoLimite: ""
     },

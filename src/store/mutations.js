@@ -37,4 +37,10 @@ export default {
     [MUTATIONS.OBTENER_ROLES]: (state, payload) => {
         state.roles = payload;
     },
+    [MUTATIONS.TRAER_ACTIVIDADES]: (state, payload) => {
+        state.actividades = payload;
+    },
+    [MUTATIONS.TRAER_ACTIVIDAD]: (state, payload) => {
+        state.actividad = payload;
+    }
 }
