@@ -6,7 +6,7 @@
         >
             <template v-slot:title>
               <div class="title_content">
-                <span class="title">Agregar nuevo Rol</span>
+                <span class="title">Agregar Rol</span>
               </div>
             </template>
 

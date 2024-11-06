@@ -21,13 +21,13 @@
     <div class="button_container">
       <v-btn
       @click="continuar"
-      :color="color"
+      color="primary"
     >
       Iniciar sesión
       </v-btn>
       <v-btn
       @click="registro"
-      :color="color"
+      color="primary"
       class="registro"
     >
       Registrarse

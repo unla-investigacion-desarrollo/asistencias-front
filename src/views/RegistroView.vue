@@ -29,7 +29,7 @@
   </script>
     
   <style scoped>
-  .title_section { background-color: #8e2736; }
+  .title_section { background-color: #383854; }
   
   .title {
       color: #fff;
