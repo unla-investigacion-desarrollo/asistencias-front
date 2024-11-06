@@ -42,5 +42,11 @@ export default {
     },
     [MUTATIONS.TRAER_ACTIVIDAD]: (state, payload) => {
         state.actividad = payload;
+    },
+    [MUTATIONS.TRAER_USUARIOS]: (state, payload) => {
+        state.usuarios = payload;
+    },
+    [MUTATIONS.TRAER_INFO_USUARIO]: (state, payload) => {
+        state.usuario = payload;
     }
 }

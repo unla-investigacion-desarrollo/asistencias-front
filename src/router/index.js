@@ -17,6 +17,7 @@ import ListaRolesView from '../views/ListaRolesView.vue'
 import EditarRolesView from '../views/EditarRolesView.vue'
 import EditarEventoView from '../views/EditarEventoView.vue'
 import ListaEventosView from '../views/ListaEventosView.vue'
+import ListaUsuarioView from '../views/ListaUsuarioView.vue'
 
 const routes = [
   {
@@ -103,6 +104,11 @@ const routes = [
     path: '/listaEventos',
     name: 'ListaEventosView',
     component: ListaEventosView
+  },
+  {
+    path: '/listaUsuarios',
+    name: 'ListaUsuarioView',
+    component: ListaUsuarioView
   },
   {
     path: '/about',

@@ -8,6 +8,7 @@ export default {
         usuario: "",
         tipoUsuario: {}
     },
+    usuarios: [],
     spinner: false,
     tipoEventos: [],
     eventos: [],
