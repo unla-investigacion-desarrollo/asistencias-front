@@ -10,7 +10,12 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <ListaUsuarios></ListaUsuarios>
+                <div class="button_title">
+                    <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+                </div>
+                <div>
+                    <ListaUsuarios></ListaUsuarios>
+                </div>
             </v-card-text>
         </v-card>
 
@@ -22,6 +27,11 @@ import ListaUsuarios from '../components/ListaUsuarios.vue';
 export default {
     name: 'ListaUsuarioView',
     components: { ListaUsuarios },
+    methods: {
+        agregar(){
+            this.$router.push('registro')
+        }
+    }
 }
 </script>
 
@@ -31,7 +41,10 @@ export default {
 .title {
     color: #fff;
 }
-.title_content{
+.title_content {
   text-align: center;
+}
+.button_title {
+    text-align: end;
 }
 </style>
