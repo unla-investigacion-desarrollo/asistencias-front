@@ -46,5 +46,6 @@ export default {
 }
 .button_title {
     text-align: end;
+    margin-bottom: 1%;
 }
 </style>
