@@ -42,7 +42,7 @@ export default {
             this.$router.push('login')
         },
         usuarios(){
-            this.$router.push('login')
+            this.$router.push('unlaUsuarios')
         }
     },
     data() {
