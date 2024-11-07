@@ -20,7 +20,7 @@
 import ListaTipoEvento from '../components/ListaTipoEvento.vue';
 
 export default {
-    name: 'TipoEventoView',
+    name: 'ListaTiposEventosView',
     components: { ListaTipoEvento },
 }
 </script>
