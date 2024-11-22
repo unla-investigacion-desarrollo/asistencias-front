@@ -314,5 +314,16 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
-
+[ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
+  api.agregarActividad(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
 }

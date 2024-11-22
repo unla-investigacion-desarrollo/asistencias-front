@@ -69,7 +69,7 @@
             label="Cupo"
             :counter="3"
             :max="999"
-            v-model="model.dni"
+            v-model="model.cupo"
             :rules="validationDNI"
             ></v-number-input>
         </div>
@@ -79,7 +79,7 @@
             label="Cupo Limite"
             :counter="3"
             :max="999"
-            v-model="model.dni"
+            v-model="model.cupoLimite"
             :rules="validationDNI"
             ></v-number-input>
         </div>
@@ -101,7 +101,7 @@
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { OBTENER_EVENTOS } from '../store/actions-types';
+import { OBTENER_EVENTOS, AGREGAR_ACTIVIDAD } from '../store/actions-types';
 export default {
   name: 'FormularioActividad',
   components: { VNumberInput },
@@ -156,7 +156,8 @@ export default {
       },
     continuar() {
       console.log(this.model);
-      console.log("agregue la actividad al evento");
+      console.log("agregue la actividad al evento");     
+      this.$store.dispatch(AGREGAR_ACTIVIDAD, this.model);
     },
     
   }
