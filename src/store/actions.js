@@ -326,4 +326,22 @@ export default {
     console.log(error);
   });
 },
+[ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
+  api.actualizarActividad(payload)
+        .then(response => {
+        console.log(response);
+          if (response.status == "200") {
+            context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, response.data);
+            router.push('/listaActividades');
+          } 
+          console.log(context.getters.getActividades());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+},
+[ACTIONS.EDITAR_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+  router.push('/editarActividad');
+},
 }
