@@ -344,4 +344,16 @@ export default {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/editarActividad');
 },
+[ACTIONS.ELIMINAR_ACTIVIDAD] (context, payload) {
+  api.eliminarActividad(payload.idActividad)
+  .then(response => {
+  console.log(response);
+    if (response.status == "204") {
+      context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, payload);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+}
 }

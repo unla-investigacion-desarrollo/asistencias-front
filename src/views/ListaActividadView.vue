@@ -10,7 +10,12 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <ListaActividad></ListaActividad>
+                <div class="button_title">
+                    <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+                </div>
+                <div>
+                    <ListaActividad></ListaActividad>
+                </div>
             </v-card-text>
         </v-card>
 
@@ -22,6 +27,11 @@ import ListaActividad from '../components/ListaActividad.vue';
 export default {
     name: 'ListaActividadView',
     components: { ListaActividad },
+    methods: {
+        agregar(){
+            this.$router.push('nuevaActividad')
+        }
+    }
 }
 </script>
 
@@ -33,5 +43,9 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+.button_title {
+    text-align: end;
+    margin-bottom: 1%;
 }
 </style>

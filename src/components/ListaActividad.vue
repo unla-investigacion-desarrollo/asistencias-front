@@ -71,7 +71,7 @@
     
     </template>
   <script>
-  import { EDITAR_ACTIVIDAD, ELIMINAR_TIPO_EVENTO, OBTENER_ACTIVIDADES } from '../store/actions-types';
+  import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES } from '../store/actions-types';
     export default {
       name: 'ListaActividad',
       components: {},
@@ -88,7 +88,7 @@
           this.$store.dispatch(EDITAR_ACTIVIDAD, item);
       },
       eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_TIPO_EVENTO, item);
+          this.$store.dispatch(ELIMINAR_ACTIVIDAD, item);
       }
     },
     created() {

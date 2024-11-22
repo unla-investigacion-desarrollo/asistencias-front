@@ -52,4 +52,8 @@ export default {
     [MUTATIONS.GUARDAR_ACTIVIDAD]: (state, payload) => {
         state.actividad = payload;
     },
+    [MUTATIONS.ELIMINAR_UNA_ACTIVIDAD]: (state, payload) => {
+        let lista = state.actividades;
+        state.actividades = lista.filter(e => e != payload);
+    },
 }
