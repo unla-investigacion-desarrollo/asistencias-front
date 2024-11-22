@@ -20,6 +20,7 @@ import ListaEventosView from '../views/ListaEventosView.vue'
 import ListaUsuarioView from '../views/ListaUsuarioView.vue'
 import UsuariosView from '../views/UsuariosView.vue'
 import EventosView from '../views/EventosView.vue'
+import ListaActividadView from '../views/ListaActividadView.vue'
 
 const routes = [
   {
@@ -121,6 +122,11 @@ const routes = [
     path: '/unlaEventos',
     name: 'EventosView',
     component: EventosView
+  },
+  {
+    path: '/listaActividades',
+    name: 'ListaActividadView',
+    component: ListaActividadView
   },
   {
     path: '/about',

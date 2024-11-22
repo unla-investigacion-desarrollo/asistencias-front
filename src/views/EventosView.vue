@@ -16,7 +16,7 @@
         </v-tabs-window-item>
 
         <v-tabs-window-item value="actividades">
-            En construccion
+          <ListaActividadView></ListaActividadView>
         </v-tabs-window-item>
 
         <v-tabs-window-item value="tipo">
@@ -29,11 +29,12 @@
 <script>
 import ListaTiposEventosView from './ListaTiposEventosView.vue';
 import ListaEventosView from './ListaEventosView.vue';
+import ListaActividadView from './ListaActividadView.vue';
 
 
 export default {
     name: 'EventosView',
-    components: { ListaEventosView, ListaTiposEventosView },
+    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView },
     data: () => ({
       tab: null,
     }),
