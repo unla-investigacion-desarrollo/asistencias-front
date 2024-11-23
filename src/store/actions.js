@@ -361,4 +361,8 @@ export default {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/editarEvento');
 },
+[ACTIONS.DETALLE_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+  router.push('/detalleEvento');
+},
 }
