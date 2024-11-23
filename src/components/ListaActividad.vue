@@ -62,6 +62,7 @@
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-magnify"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -71,7 +72,7 @@
     
     </template>
   <script>
-  import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES } from '../store/actions-types';
+  import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
     export default {
       name: 'ListaActividad',
       components: {},
@@ -89,6 +90,9 @@
       },
       eliminarItem(item){
           this.$store.dispatch(ELIMINAR_ACTIVIDAD, item);
+      },
+      detalleItem(item){
+          this.$store.dispatch(DETALLE_ACTIVIDAD, item);
       }
     },
     created() {

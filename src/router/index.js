@@ -23,7 +23,7 @@ import EventosView from '../views/EventosView.vue'
 import ListaActividadView from '../views/ListaActividadView.vue'
 import EditarActividadView from '../views/EditarActividadView.vue'
 import DetalleEventoView from '../views/DetalleEventoView.vue'
-
+import DetalleActividadView from '../views/DetalleActividadView.vue'
 
 const routes = [
   {
@@ -140,6 +140,11 @@ const routes = [
     path: '/detalleEvento',
     name: 'DetalleEventoView',
     component: DetalleEventoView
+  },
+  {
+    path: '/detalleActividad',
+    name: 'DetalleActividadView',
+    component: DetalleActividadView
   },
   {
     path: '/about',
