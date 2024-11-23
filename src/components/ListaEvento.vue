@@ -72,7 +72,7 @@
     
     </template>
   <script>
-  import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_EVENTOS } from '../store/actions-types';
+  import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS } from '../store/actions-types';
     export default {
       name: 'ListaEvento',
       components: {},
@@ -86,10 +86,10 @@
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_TIPO_EVENTO, item);
+          this.$store.dispatch(EDITAR_EVENTO, item);
       },
       eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_TIPO_EVENTO, item);
+          this.$store.dispatch(ELIMINAR_EVENTO, item);
       }
     },
     created() {

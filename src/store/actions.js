@@ -78,8 +78,9 @@ export default {
   api.guardarEvento(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "200") {
+    if (response.status == "201") {
       context.commit(MUTATIONS.MODIFICAR_UN_EVENTO, payload);
+      router.push('unlaEventos')
     } 
   })
   .catch(error => {
@@ -355,5 +356,9 @@ export default {
   .catch(error => {
     console.log(error);
   });
-}
+},
+[ACTIONS.EDITAR_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+  router.push('/editarEvento');
+},
 }
