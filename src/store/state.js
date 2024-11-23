@@ -6,7 +6,9 @@ export default {
         apellido: "",
         dni: "",
         usuario: "",
-        tipoUsuario: {}
+        tipoUsuario: {
+            rol: "Participante"
+        }
     },
     usuarios: [],
     spinner: false,

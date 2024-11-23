@@ -374,7 +374,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.GUARDAR_USUARIO, payload);
+      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push('perfil');
     } 
   })
