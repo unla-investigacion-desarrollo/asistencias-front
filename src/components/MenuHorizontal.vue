@@ -34,7 +34,7 @@ export default {
             this.$router.push('unlaEventos')
         },
         contenido(){
-            this.$router.push('login')
+            this.$router.push('contenido')
         },
         usuarios(){
             this.$router.push('unlaUsuarios')

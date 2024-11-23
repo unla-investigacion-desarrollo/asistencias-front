@@ -10,7 +10,12 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <ListaTipoEvento></ListaTipoEvento>
+                <div class="button_title">
+                    <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+                </div>
+                <div>
+                    <ListaTipoEvento></ListaTipoEvento>
+                </div>
             </v-card-text>
         </v-card>
 
@@ -22,6 +27,11 @@ import ListaTipoEvento from '../components/ListaTipoEvento.vue';
 export default {
     name: 'ListaTiposEventosView',
     components: { ListaTipoEvento },
+    methods: {
+        agregar(){
+            this.$router.push('nuevoTipoEvento')
+        }
+    }
 }
 </script>
 
@@ -33,5 +43,9 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+.button_title {
+    text-align: end;
+    margin-bottom: 1%;
 }
 </style>
