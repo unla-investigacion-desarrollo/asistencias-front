@@ -369,4 +369,17 @@ export default {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/detalleActividad');
 },
+[ACTIONS.REGISTRAR_USUARIO] (context, payload) {
+  api.guardarUsuario(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_USUARIO, payload);
+      router.push('perfil');
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
 }

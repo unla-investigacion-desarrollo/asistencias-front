@@ -34,6 +34,14 @@
       required
     ></v-text-field>
 
+    <v-select
+          v-model="model.tipoUsuario"
+          :items="roles"
+          :item-props="itemProps"
+          label="Rol"
+          required
+        ></v-select>
+
     <v-text-field
       v-model="model.usuario"
       :counter="45"
@@ -44,7 +52,7 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="model.password"
+      v-model="model.clave"
       :counter="45"
       maxlength="45"
       label="Contraseña"
@@ -66,7 +74,7 @@
   
 <script>
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { REGISTRAR_USUARIO } from '../store/actions-types';
+import { REGISTRAR_USUARIO, OBTENER_ROLES } from '../store/actions-types';
 export default {
   name: 'FormularioRegistro',
   components: { VNumberInput },
@@ -87,6 +95,9 @@ export default {
     };
   },
   computed: {
+    roles() {
+      return this.$store.getters.getRoles();
+    },
     valiteText(value){
         let respuesta;
         if (!(/[^0-9]/.test(value)))
@@ -107,11 +118,20 @@ export default {
     }
   },
   methods: {
+    itemProps (item) {
+        return {
+          title: item.rol,
+        }
+      },
     continuar() {
         console.log(this.model);
         console.log("me registre");
       this.$store.dispatch(REGISTRAR_USUARIO, this.model);
     },
+  },
+  created() {
+      this.$store.dispatch(OBTENER_ROLES);
+      console.log(this.$store.getters.getRoles());
   },
 }
 </script>

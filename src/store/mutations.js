@@ -56,4 +56,8 @@ export default {
         let lista = state.actividades;
         state.actividades = lista.filter(e => e != payload);
     },
+    [MUTATIONS.GUARDAR_USUARIO]: (state, payload) => {
+        state.usuario = payload;
+        localStorage.setItem("usuario", JSON.stringify(payload));
+    }, 
 }

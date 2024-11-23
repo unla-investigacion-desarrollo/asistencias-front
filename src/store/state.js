@@ -1,7 +1,7 @@
 export default {
     usuario: {
         email: "",
-        password: "",
+        clave: "",
         nombre: "",
         apellido: "",
         dni: "",
