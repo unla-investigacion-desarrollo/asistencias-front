@@ -12,12 +12,23 @@
       :items="seleccionActividades"
       label="Selección de Actividades"
     ></v-select>
-    <v-data-table v-if="model.evento.idEvento !== undefined"
-      v-model="model.actividades"
-      :items="actividades"
-      item-value="nombre"
-      show-select
-    ></v-data-table>
+      <v-table v-if="model.seleccion !== 'Todas'"
+      height="auto"
+      fixed-header
+    >
+      <thead>
+        <tr>
+          <th class="text-center">
+            Actividades
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="i in actividades" :key="i.id">
+          <td><v-checkbox v-model="listaActividad" :label="i.nombre" :value="i"></v-checkbox></td>
+        </tr>
+      </tbody>
+    </v-table> 
     <div class="container_button">
       <v-btn
         class="me-4"
@@ -39,17 +50,6 @@ export default {
   data() {
     return {
       model: this.$store.getters.getInscripcion(),
-      validationText: [
-        v => !!v || 'El campo es requerido',
-        v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
-        ],
-      validationEmail: [
-        v => !!v || 'El campo es requerido',
-        v => (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v)) || 'El email no es valido',
-        ],
-      validationDNI: [
-        v => !!v || 'El campo es requerido'
-        ],
       listaActividad: []
     };
   },
@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     continuar() {
+      console.log(this.listaActividad)
       console.log(this.model);
       console.log("me inscribi");
       this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, this.model);
@@ -91,6 +92,7 @@ export default {
 
 <style scoped>
 .container_button{
+  margin-top: 5%;
   text-align: center;
 }
 </style>
