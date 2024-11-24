@@ -1,47 +1,23 @@
 <template>
     <v-form>
-    <v-text-field
-      v-model="model.nombre"
-      :counter="45"
-      maxlength="45"
-      label="Nombre"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="model.apellido"
-      :counter="45"
-      label="Apellido"
-      maxlength="45"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <v-number-input
-      controlVariant="default"
-      label="DNI"
-      :counter="8"
-      :max="99999999"
-      v-model="model.dni"
-      :rules="validationDNI"
-    ></v-number-input>
-
-    <v-text-field
-      v-model="model.email"
-      label="Email"
-      :rules="validationEmail"
-      required
-    ></v-text-field>
-
     <v-select
-      v-model="modelE"
+      v-model="model.evento"
       :items="eventos"
       :item-props="itemProps"
       label="Evento"
       required
     ></v-select>
-
+    <v-select
+      v-model="model.seleccion"
+      :items="seleccionActividades"
+      label="Selección de Actividades"
+    ></v-select>
+    <v-data-table v-if="model.evento.idEvento !== undefined"
+      v-model="model.actividades"
+      :items="actividades"
+      item-value="nombre"
+      show-select
+    ></v-data-table>
     <div class="container_button">
       <v-btn
         class="me-4"
@@ -55,15 +31,14 @@
 </template>
   
 <script>
-import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO } from '../store/actions-types';
+import { seleccionActividades } from "@/config/index";
+import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
-  components: { VNumberInput },
+  components: {},
   data() {
     return {
-      model: this.$store.getters.getParticipante(),
-      modelE: this.$store.getters.getEvento(),
+      model: this.$store.getters.getInscripcion(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -75,26 +50,20 @@ export default {
       validationDNI: [
         v => !!v || 'El campo es requerido'
         ],
+      listaActividad: []
     };
   },
   computed: {
     eventos() {
       return this.$store.getters.getEventos();
     },
-    valiteText(value){
-        let respuesta;
-        if (!(/[^0-9]/.test(value)))
-        respuesta = 'El campo no debe contener numeros';
-
-        if(value.trim() !== "")
-        respuesta = 'El campo es requerido';
-
-        if(value.lenght < 2)
-        respuesta = 'El campo debe contener al menos 2 digitos';
-        return respuesta;
+    actividades() {
+      return this.$store.getters.getActividades();
     },
-    validarEmail(){
-        return /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(this.model.email);
+    seleccionActividades(){
+      console.log("Este es el evento:" + this.model.evento.idEvento);
+      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
+      return seleccionActividades;
     },
     validarCampo(valor){
         return valor.trim() != "";
@@ -102,20 +71,16 @@ export default {
   },
   methods: {
     continuar() {
-        console.log(this.model);
-        console.log("me inscribi");
-        let inscripcion = {
-          evento: this.modelE,
-          p: this.model
-        }
-        console.log(inscripcion);
-      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, inscripcion);
+      console.log(this.model);
+      console.log("me inscribi");
+      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, this.model);
     },
     itemProps (item) {
         return {
           title: item.nombre,
         }
-      }
+      },
+
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);

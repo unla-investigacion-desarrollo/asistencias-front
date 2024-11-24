@@ -18,11 +18,14 @@ const normalizarDatos = payload => {
 
 const estados = [ 'Creado', 'Iniciado', 'Terminado', 'Suspendido', 'Aplazado' ];
 
+const seleccionActividades = [ 'Todas', 'Elijo actividades' ];
+
 const dominio = "http://localhost:8080/eventos"; 
 
 export {
   dominio, estados, eventos,
   normalizarCaracteres,
-  normalizarDatos
+  normalizarDatos,
+  seleccionActividades
 };
 

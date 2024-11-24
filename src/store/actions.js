@@ -223,7 +223,15 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
+      let lista = response.data;
+      let listaAux = [];
+      let aux = {};
+      for(let i = 0; i < lista.length; i++){
+        aux.nombre = lista[i].nombre;
+        listaAux.push(aux);
+      }
+      console.log(listaAux);
+      context.commit(MUTATIONS.TRAER_ACTIVIDADES, listaAux);
     } 
   })
   .catch(error => {

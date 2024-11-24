@@ -41,9 +41,12 @@ export default {
     },
     inscripciones: [],
     inscripcion: {
+        seleccion: "Todas",
+        actividades: [],
         idInscripcion: "",
-        usuario: null,
-        evento: null,
+        usuario: {},
+        evento: {},
+        actividad: {},
         asistencia: false,
         certificadoEnviado: false
     },

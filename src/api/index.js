@@ -88,7 +88,7 @@ const api = {
   },
   buscarActividadesPorEvento(payload){
     const body = normalizarDatos(payload);
-    return axios.get(`${dominio}/api/actividades/evento/${payload}`, body);
+    return axios.get(`${dominio}/api/actividades/evento/${payload.idEvento}`, body);
   },
   //Controller usuarios
   guardarUsuario(payload) {

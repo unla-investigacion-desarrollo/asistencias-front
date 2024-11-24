@@ -17,4 +17,5 @@ export default {
     getActividades: state => () => state.actividades,
     getRoles: state => () => state.roles,
     getUsuarios: state => () => state.usuarios,
+    getInscripcion: state => () => state.inscripcion,
   };
