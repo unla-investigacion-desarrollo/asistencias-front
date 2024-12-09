@@ -60,4 +60,7 @@ export default {
         state.usuario = payload;
         localStorage.setItem("usuario", JSON.stringify(payload));
     }, 
+    [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state, payload) => {
+        state.inscripcion.evento = payload;
+    }, 
 }

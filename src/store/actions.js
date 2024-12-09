@@ -390,4 +390,8 @@ export default {
     console.log(error);
   });
 },
+[ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
+  router.push('/inscripcion');
+},
 }

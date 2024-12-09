@@ -64,6 +64,7 @@
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-magnify"></v-btn>
+              <v-btn class="remove_item" color="secondary" @click="inscripcionItem(item)" icon="mdi-play"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -73,7 +74,7 @@
     
     </template>
   <script>
-  import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO } from '../store/actions-types';
+  import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
     export default {
       name: 'ListaEvento',
       components: {},
@@ -94,6 +95,9 @@
       },
       detalleItem(item){
           this.$store.dispatch(DETALLE_EVENTO, item);
+      },
+      inscripcionItem(item){
+        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
       }
     },
     created() {
