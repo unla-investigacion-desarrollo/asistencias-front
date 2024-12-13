@@ -14,6 +14,9 @@
             <span>Usuarios</span>
         </v-btn>
         <v-btn icon>
+          <v-icon @click="escaner">mdi-qrcode-scan</v-icon>
+        </v-btn>
+        <v-btn icon>
           <v-icon @click="login">mdi-account</v-icon>
         </v-btn>
     </v-toolbar>
@@ -37,7 +40,10 @@ export default {
             this.$router.push('contenido')
         },
         usuarios(){
-            this.$router.push('unlaUsuarios')
+          this.$router.push('unlaUsuarios')
+        },
+        escaner(){
+          this.$router.push('escaner')
         }
     },
     data() {

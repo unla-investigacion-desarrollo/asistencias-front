@@ -7,11 +7,6 @@
     <div class="spinner">
       <v-progress-circular class="spinner_content" :size="100" v-if="cargando" color="error" indeterminate></v-progress-circular>
     </div>
-    <div class="icon_container">
-      <div class="icon_position">
-        <v-fab @click="escaner" class="icon_scanner" elevation="4" color="#BA4F57" icon="mdi-qrcode-scan"></v-fab>
-      </div>
-    </div>
     <footer-component></footer-component>
   </v-app>
 </template>
@@ -27,9 +22,6 @@ export default {
     //
   }),
   methods: {
-    escaner(){
-      this.$router.push('escaner')
-    }
   },
   computed:{
     cargando(){
