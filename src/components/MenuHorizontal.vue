@@ -5,13 +5,13 @@
             <span>Inscribirse</span>
         </v-btn>
         <v-btn @click="eventos">
-            <span>Eventos</span>
+            <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
         <v-btn @click="contenido">
-            <span>Contenido</span>
+            <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text">Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios">
-            <span>Usuarios</span>
+        <v-btn @click="usuarios" >
+            <v-icon class="icon_button">mdi-table-account</v-icon><span class="text">Usuarios</span>
         </v-btn>
         <v-btn icon>
           <v-icon @click="escaner">mdi-qrcode-scan</v-icon>
@@ -55,5 +55,20 @@ export default {
 </script>
 
 <style scoped>
+.text {
+    display: block;
+}
+.icon_button {
+    display: none;
+}
 
+@media (max-width: 650px) {
+.text {
+    display: none;
+}
+.icon_button {
+    display: block;
+}
+
+}
 </style>
