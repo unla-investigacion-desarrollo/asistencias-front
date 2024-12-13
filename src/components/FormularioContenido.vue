@@ -35,7 +35,7 @@
               ></v-text-field>
         </v-col>
         <v-col>
-          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+          <v-btn class="remove_item" color="error" @click="eliminarAudio(index)" icon="mdi-delete"></v-btn>
         </v-col>    
       </v-row>
       <v-row v-for="(item, index) in imagenes.slice(0,5)" :key="index">
@@ -48,7 +48,7 @@
               ></v-text-field>
             </v-col>
         <v-col>
-          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+          <v-btn class="remove_item" color="error" @click="eliminarImagen(index)" icon="mdi-delete"></v-btn>
         </v-col>
       </v-row>
       <v-row v-for="(item, index) in videos.slice(0,5)" :key="index">
@@ -61,7 +61,7 @@
           ></v-text-field>
         </v-col> 
         <v-col>
-          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+          <v-btn class="remove_item" color="error" @click="eliminarVideo(index)" icon="mdi-delete"></v-btn>
         </v-col> 
       </v-row>
     
@@ -126,7 +126,16 @@ export default {
     },
     agregarVideo(){
       this.videos.push({ video: '' });
-    }
+    },
+    eliminarAudio(index){
+      this.audios.splice(index, 1);
+    },
+    eliminarImagen(index){
+      this.imagenes.splice(index, 1);
+    },
+    eliminarVideo(index){
+      this.videos.splice(index, 1);
+    },
   }
 }
 </script>
