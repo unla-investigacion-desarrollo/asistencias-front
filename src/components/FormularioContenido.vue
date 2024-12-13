@@ -4,13 +4,9 @@
       <v-container>
         <v-row>
           <v-col>
-              <v-btn rounded="xl" size="large" @click="agregarAudio" block>Agregar Audio</v-btn>
-          </v-col>
-          <v-col>
-              <v-btn rounded="xl" size="large" @click="agregarImagen" block>Agregar Imagen</v-btn>
-          </v-col>
-          <v-col>
-              <v-btn rounded="xl" size="large" @click="agregarVideo" block>Agregar Video</v-btn>
+            <v-btn class="button" color="secondary" @click="agregarAudio" prepend-icon="mdi-spotify">Agregar Audio</v-btn>
+            <v-btn class="button" color="#f09433" @click="agregarImagen" prepend-icon="mdi-instagram">Agregar Imagen</v-btn>
+            <v-btn class="button" color="error" @click="agregarVideo" prepend-icon="mdi-youtube">Agregar Video</v-btn>
           </v-col>
       </v-row>
       <v-row>
@@ -29,35 +25,44 @@
             <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
           </v-col>
       </v-row>
-      <v-row>
-          <v-col v-for="(item, index) in audios.slice(0,5)" :key="index">
-            <v-text-field
+      <v-row v-for="(item, index) in audios.slice(0,5)" :key="index">
+        <v-col>
+          <v-text-field
                   v-model="item.audio"
                   :counter="45"
                   label="Link del Audio"
                   :rules="validationText"
               ></v-text-field>
-          </v-col>
+        </v-col>
+        <v-col>
+          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+        </v-col>    
       </v-row>
-      <v-row>
-          <v-col v-for="(item, index) in imagenes.slice(0,5)" :key="index">
-            <v-text-field
+      <v-row v-for="(item, index) in imagenes.slice(0,5)" :key="index">
+        <v-col>
+          <v-text-field
                   v-model="item.imagen"
                   :counter="45"
                   label="Link de la imagen"
                   :rules="validationText"
               ></v-text-field>
-          </v-col>
+            </v-col>
+        <v-col>
+          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+        </v-col>
       </v-row>
-      <v-row>
-          <v-col v-for="(item, index) in videos.slice(0,5)" :key="index">
-            <v-text-field
-                  v-model="item.video"
-                  :counter="45"
-                  label="Link del video"
-                  :rules="validationText"
-              ></v-text-field>
-          </v-col>
+      <v-row v-for="(item, index) in videos.slice(0,5)" :key="index">
+        <v-col>
+          <v-text-field
+              v-model="item.video"
+              :counter="45"
+              label="Link del video"
+              :rules="validationText"
+          ></v-text-field>
+        </v-col> 
+        <v-col>
+          <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+        </v-col> 
       </v-row>
     
         <div class="container_button">
@@ -129,5 +134,8 @@ export default {
 <style scoped>
 .container_button{
   text-align: center;
+}
+.button {
+  margin-right: 2%;
 }
 </style>
