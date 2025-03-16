@@ -1,16 +1,23 @@
 import axios from "axios";
 import { dominio, normalizarDatos } from '../config/index';
 
+const token = "";
+
+const headers = {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${token}`
+};
+
 const api = {
 
   login(payload) {
     const body = normalizarDatos(payload);
-    return axios.post(`${dominio}/usuario/login`, body);
+    return axios.post(`${dominio}/auth/login`, body);
   },
 
   guardarTipoEvento(payload) {
     const body = normalizarDatos(payload);
-    return axios.post(`${dominio}/api/tipoEvento`, body);
+    return axios.post(`${dominio}/api/tipoEvento`, body, headers);
   },
 
   guardarEvento(payload) { 

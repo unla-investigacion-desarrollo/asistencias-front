@@ -8,7 +8,8 @@ export default {
         usuario: "",
         tipoUsuario: {
             rol: "Participante"
-        }
+        },
+        hash: ""
     },
     usuarios: [],
     spinner: false,

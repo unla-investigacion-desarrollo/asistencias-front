@@ -394,4 +394,17 @@ export default {
   context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
   router.push('/inscripcion');
 },
+[ACTIONS.LOGIN] (context, payload) {
+  api.login(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
+      router.push('/');
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
 }

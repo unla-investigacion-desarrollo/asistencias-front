@@ -63,4 +63,7 @@ export default {
     [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state, payload) => {
         state.inscripcion.evento = payload;
     }, 
+    [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
+        state.usuario = payload;
+    }, 
 }

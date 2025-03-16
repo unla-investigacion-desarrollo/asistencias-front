@@ -10,7 +10,7 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="model.password"
+      v-model="model.clave"
       :counter="45"
       label="Contraseña"
       :rules="validationText"
@@ -38,6 +38,7 @@
 </template>
   
 <script>
+import { LOGIN } from '../store/actions-types';
 export default {
   name: 'LoginComponent',
   components: {},
@@ -59,7 +60,7 @@ export default {
     continuar() {
         console.log(this.model);
         console.log("me loguee");
-      //this.$store.dispatch(LOGIN, this.model);
+      this.$store.dispatch(LOGIN, this.model);
     },
     registro(){
       this.$router.push('registro')
