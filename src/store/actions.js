@@ -399,7 +399,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
+      context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       router.push('/');
     } 
   })

@@ -1,12 +1,7 @@
 import axios from "axios";
 import { dominio, normalizarDatos } from '../config/index';
 
-const token = "";
-
-const headers = {
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token}`
-};
+axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("keyuser")}` 
 
 const api = {
 
@@ -17,7 +12,7 @@ const api = {
 
   guardarTipoEvento(payload) {
     const body = normalizarDatos(payload);
-    return axios.post(`${dominio}/api/tipoEvento`, body, headers);
+    return axios.post(`${dominio}/api/tipoEvento`, body);
   },
 
   guardarEvento(payload) { 

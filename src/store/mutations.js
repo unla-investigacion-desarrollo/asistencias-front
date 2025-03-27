@@ -64,6 +64,7 @@ export default {
         state.inscripcion.evento = payload;
     }, 
     [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
-        state.usuario = payload;
+        state.usuario.hash = payload;
+        sessionStorage.setItem("keyuser", payload);
     }, 
 }
