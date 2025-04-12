@@ -50,6 +50,20 @@ const api = {
     return axios.get(`${dominio}/api/inscripciones`);
   },
 
+  guardarInscripcion(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/inscripciones`, body);
+  },
+
+  actualizarInscripcion(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/inscripcion/${payload.idInscripcion}`, body);
+  },
+
+  eliminarInscripcion(payload) {
+    return axios.delete(`${dominio}/api/inscripciones/${payload}`);
+  },
+
   registrarAsistencia(payload) { 
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarAsistencia`, body);
