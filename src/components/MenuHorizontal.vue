@@ -23,7 +23,7 @@
 </template>
   
 <script>
-
+import { key } from "@/config/index";
 export default {
     name: 'MenuHorizontal',
     methods: {
@@ -31,7 +31,11 @@ export default {
             this.$router.push('inscripcion')
         },
         login(){
-            this.$router.push('login')
+            if(key === null || key === undefined ){
+                this.$router.push('login')
+            } else {
+                this.$router.push('perfil')
+            }
         },
         eventos(){
             this.$router.push('unlaEventos')
