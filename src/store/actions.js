@@ -421,4 +421,17 @@ export default {
     console.log(error);
   });
 },
+[ACTIONS.MARCAR_ASISTENCIA] (payload) {
+  api.marcarAsistencia(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      router.push('/');
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
+
 }

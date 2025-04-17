@@ -10,6 +10,7 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import { MARCAR_ASISTENCIA } from '../store/actions-types';
 
 export default {
     name: 'EscanerComponent',
@@ -41,7 +42,7 @@ export default {
         onDecode (result) {
             this.result = result
             window.location=result;
-            sessionStorage.setItem(result.split(/\.[a-z]{0,}/,''),"registrado");
+            this.$store.dispatch(MARCAR_ASISTENCIA, result);
             this.paused = true
         },
 

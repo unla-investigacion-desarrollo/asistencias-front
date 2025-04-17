@@ -68,6 +68,10 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarAsistencia`, body);
   },
+
+  marcarAsistencia(payload){
+    return axios.post(`${dominio}/qr/decode`, payload);
+  },
   //controller de actividad
   traerActividades() {
     return axios.get(`${dominio}/api/actividades`);
