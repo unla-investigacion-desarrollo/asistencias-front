@@ -38,6 +38,7 @@
    
 </template>
 <script>
+import { OBTENER_INFO_USUARIO_EMAIL } from '../store/actions-types';
 export default {
   name: 'DetalleUsuario',
   components: {},
@@ -46,6 +47,10 @@ export default {
       model: this.$store.getters.getUsuario()
     };
   },
+    created() {
+        this.$store.dispatch(OBTENER_INFO_USUARIO_EMAIL, this.model.email);
+        console.log(this.$store.getters.getEventos());
+    }
 }
 </script>
 <style scoped>

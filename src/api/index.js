@@ -125,6 +125,11 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/usuarios/${payload}`, body);
   },
+  traerUsuarioEmail(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/usuarios/email/${payload}`, body);
+  },
+
   //Controller Tipo de Evento
   actualizarTipoEvento(payload) { 
     const body = normalizarDatos(payload);

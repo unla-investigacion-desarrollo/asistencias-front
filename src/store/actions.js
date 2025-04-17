@@ -323,6 +323,20 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.OBTENER_INFO_USUARIO_EMAIL] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerUsuarioEmail(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_INFO_USUARIO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 [ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
   api.agregarActividad(payload)
   .then(response => {
