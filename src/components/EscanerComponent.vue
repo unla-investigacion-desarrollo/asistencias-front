@@ -42,7 +42,10 @@ export default {
         onDecode (result) {
             this.result = result
             window.location=result;
-            this.$store.dispatch(MARCAR_ASISTENCIA, result);
+            let qr = {
+                qrCode: result
+            };
+            this.$store.dispatch(MARCAR_ASISTENCIA, qr);
             this.paused = true
         },
 
