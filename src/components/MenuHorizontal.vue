@@ -7,11 +7,11 @@
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
-        <v-btn @click="contenido">
-            <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text">Contenido</span>
+        <v-btn @click="contenido" v-if="validarPermisos">
+            <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios" >
-            <v-icon class="icon_button">mdi-table-account</v-icon><span class="text">Usuarios</span>
+        <v-btn @click="usuarios" v-if="validarPermisos">
+            <v-icon class="icon_button">mdi-table-account</v-icon><span class="text" >Usuarios</span>
         </v-btn>
         <v-btn icon>
           <v-icon @click="escaner">mdi-qrcode-scan</v-icon>
@@ -24,35 +24,49 @@
   
 <script>
 import { key } from "@/config/index";
+//import { validarUsuarioPermisos } from "@/config/validaciones";
+
 export default {
     name: 'MenuHorizontal',
     methods: {
         inscripcion(){
-            this.$router.push('inscripcion')
+            this.$router.push('inscripcion');
         },
         login(){
             if(key === null || key === undefined ){
-                this.$router.push('login')
+                this.$router.push('login');
             } else {
-                this.$router.push('perfil')
+                this.$router.push('perfil');
             }
         },
         eventos(){
-            this.$router.push('unlaEventos')
+            this.$router.push('unlaEventos');
         },
         contenido(){
-            this.$router.push('contenido')
+            this.$router.push('contenido');
         },
         usuarios(){
-          this.$router.push('unlaUsuarios')
+            this.$router.push('unlaUsuarios');
         },
         escaner(){
-          this.$router.push('escaner')
+          this.$router.push('escaner');
         }
     },
     data() {
         return {
             color: "#1F313B"
+        }
+    },
+    computed: {
+        validarPermisos(){
+            let usuario = JSON.parse(localStorage.getItem("usuario"));
+            console.log("este usuario :" + usuario);
+            let perfil = usuario !== null ? usuario.tipoUsuario.rol : null;
+            let accede = false;
+            if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
+                accede = true;
+            }
+            return accede;
         }
     }
 }
