@@ -1,6 +1,6 @@
 export default {
     usuario: {
-        email: "",
+        email: "nehuen.db@gmail.com",
         clave: "",
         nombre: "",
         apellido: "",
