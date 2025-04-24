@@ -1,0 +1,46 @@
+<template>
+
+    <v-tabs
+      v-model="tab"
+      align-tabs="center"
+      color="deep-purple-accent-4"
+    >
+        <v-tab value="eventos">Mi Perfil</v-tab>
+        <v-tab value="actividades">Mis Inscripciones</v-tab>
+    </v-tabs>
+
+    <v-tabs-window v-model="tab">
+        <v-tabs-window-item value="eventos">
+            <DetalleUsuarioView></DetalleUsuarioView>
+        </v-tabs-window-item>
+
+        <v-tabs-window-item value="actividades">
+          En construccion
+        </v-tabs-window-item>
+
+      </v-tabs-window>
+
+</template>
+<script>
+import DetalleUsuarioView from './DetalleUsuarioView.vue';
+
+
+export default {
+    name: 'MiPerfilView',
+    components: { DetalleUsuarioView },
+    data: () => ({
+      tab: null,
+    }),
+}
+</script>
+
+<style scoped>
+.title_section { background-color: #383854; }
+
+.title {
+    color: #fff;
+}
+.title_content{
+  text-align: center;
+}
+</style>

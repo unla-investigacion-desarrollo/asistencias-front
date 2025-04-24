@@ -330,7 +330,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.TRAER_INFO_USUARIO, response.data);
-      router.push("/perfil");
+      router.push("/miPerfil");
     } 
   })
   .catch(error => {
@@ -398,7 +398,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-      router.push('perfil');
+      router.push('miPerfil');
     } 
   })
   .catch(error => {

@@ -26,6 +26,7 @@ import DetalleEventoView from '../views/DetalleEventoView.vue'
 import DetalleActividadView from '../views/DetalleActividadView.vue'
 import DetalleUsuarioView from '../views/DetalleUsuarioView.vue'
 import MensajesView from '../views/MensajesView.vue'
+import MiPerfilView from '../views/MiPerfilView.vue'
 
 const routes = [
   {
@@ -157,6 +158,11 @@ const routes = [
     path: '/gracias/:mensaje',
     name: 'MensajesView',
     component: MensajesView
+  },
+  {
+    path: '/miPerfil',
+    name: 'MiPerfilView',
+    component: MiPerfilView
   },
   {
     path: '/about',

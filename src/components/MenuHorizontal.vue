@@ -36,7 +36,7 @@ export default {
             if(key === null || key === undefined ){
                 this.$router.push('login');
             } else {
-                this.$router.push('perfil');
+                this.$router.push('miPerfil');
             }
         },
         eventos(){
