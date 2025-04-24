@@ -1,7 +1,7 @@
 import axios from "axios";
 import { dominio, normalizarDatos } from '../config/index';
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("keyuser")}` 
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("keyuser")}` 
 
 const api = {
 

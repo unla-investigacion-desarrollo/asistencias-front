@@ -65,6 +65,6 @@ export default {
     }, 
     [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
         state.usuario.hash = payload;
-        sessionStorage.setItem("keyuser", payload);
+        localStorage.setItem("keyuser", payload);
     }, 
 }
