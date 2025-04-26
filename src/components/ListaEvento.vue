@@ -52,9 +52,9 @@
           <td>{{ item.idEvento }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.descripcion }}</td>
-          <td>{{ item.fechaInicio }}</td>
-          <td>{{ item.fechaFin }}</td>
-          <td>{{ item.fechaCierre }}</td>
+          <td>{{ formatearFecha(item.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.fechaFin) }}</td>
+          <td>{{ formatearFecha(item.fechaCierre) }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
@@ -75,6 +75,7 @@
     </template>
   <script>
   import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
+
     export default {
       name: 'ListaEvento',
       components: {},
@@ -98,12 +99,25 @@
       },
       inscripcionItem(item){
         this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+      },
+      formatearFecha(f){
+        let formato = "";
+        if(f != null){
+          let anio = f.substring(0, 4);
+          let mes = f.substring(5, 7);
+          let dia = f.substring(8, 10);
+          let hora = f.substring(11, 13);
+          let min = f.substring(14, 16);
+          let seg = f.substring(17, 19);
+          formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
+        }
+        return formato;
       }
     },
     created() {
       this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getEventos());
-  },
+  }
   }
   </script>
   <style scoped>
