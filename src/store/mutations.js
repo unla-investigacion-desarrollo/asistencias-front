@@ -67,4 +67,10 @@ export default {
         state.usuario.hash = payload;
         localStorage.setItem("keyuser", payload);
     }, 
+    [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
+        state.inscripciones = payload;
+    }, 
+    [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state) => {
+        state.usuario = JSON.parse(localStorage.getItem("usuario"));
+    },  
 }

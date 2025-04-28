@@ -434,5 +434,21 @@ export default {
     console.log(error);
   });
 },
+[ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.RECUPERAR_USUARIO);
+  let payload = context.getters.getUsuario();
+  api.obtenerInscripcionesPorUsuario(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 
 }

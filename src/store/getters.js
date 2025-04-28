@@ -18,4 +18,5 @@ export default {
     getRoles: state => () => state.roles,
     getUsuarios: state => () => state.usuarios,
     getInscripcion: state => () => state.inscripcion,
+    getInscripciones: state => () => state.inscripciones,
   };

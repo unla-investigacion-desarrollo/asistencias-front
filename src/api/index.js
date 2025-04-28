@@ -72,6 +72,11 @@ const api = {
   marcarAsistencia(payload){
     return axios.post(`${dominio}/qr/decode`, payload);
   },
+
+  obtenerInscripcionesPorUsuario(payload){
+    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.idUsuario}`);
+  },
+
   //controller de actividad
   traerActividades() {
     return axios.get(`${dominio}/api/actividades`);
