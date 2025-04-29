@@ -450,5 +450,10 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+}
+
 
 }

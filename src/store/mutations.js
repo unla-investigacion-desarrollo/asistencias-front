@@ -72,5 +72,8 @@ export default {
     }, 
     [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state) => {
         state.usuario = JSON.parse(localStorage.getItem("usuario"));
+    }, 
+    [MUTATIONS.GUARDAR_CONTENIDO]: (state, payload) => {
+        state.contenido = payload;
     },  
 }

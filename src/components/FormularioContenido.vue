@@ -114,9 +114,16 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
+      let contenido = {
+        ... this.model,
+        videos: this.videos,
+        audios: this.audios,
+        imagenes: this.imagenes
+      };
+      console.log(contenido);
+
       console.log("agregue el contenido");
-      this.$store.dispatch(AGREGAR_CONTENIDO, this.model);
+      this.$store.dispatch(AGREGAR_CONTENIDO, contenido);
     },
     agregarAudio(){
       this.audios.push({ audio: '' });
