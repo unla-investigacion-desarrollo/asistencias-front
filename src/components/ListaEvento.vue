@@ -1,4 +1,5 @@
 <template>
+  <div v-if="eventos.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -70,9 +71,12 @@
         </tr>
       </tbody>
     </v-table>
+  </div>
+  <div class="text_menssage" v-if="eventos.length == 0">
+      <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+  </div>
     
-    
-    </template>
+  </template>
   <script>
   import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
 
@@ -123,5 +127,9 @@
   <style scoped>
   .remove_item{
       margin-left: 2%;
+  }
+  .text_menssage{
+    text-align: center;
+    margin: 2%;
   }
   </style>

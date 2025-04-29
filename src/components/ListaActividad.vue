@@ -1,4 +1,5 @@
 <template>
+  <div v-if="actividades.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -68,9 +69,12 @@
         </tr>
       </tbody>
     </v-table>
-    
-    
-    </template>
+  </div>
+  <div class="text_menssage" v-if="actividades.length == 0">
+      <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+  </div>
+  
+  </template>
   <script>
   import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
     export default {
@@ -104,5 +108,9 @@
   <style scoped>
   .remove_item{
       margin-left: 2%;
+  }
+  .text_menssage{
+    text-align: center;
+    margin: 2%;
   }
   </style>

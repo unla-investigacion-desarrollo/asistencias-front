@@ -15,7 +15,7 @@
         </v-tabs-window-item>
 
         <v-tabs-window-item value="actividades">
-          En construccion
+            <ListaInscripcionUsuarioView></ListaInscripcionUsuarioView>
         </v-tabs-window-item>
 
       </v-tabs-window>
@@ -23,11 +23,11 @@
 </template>
 <script>
 import DetalleUsuarioView from './DetalleUsuarioView.vue';
-
+import ListaInscripcionUsuarioView from './ListaInscripcionUsuarioView.vue';
 
 export default {
     name: 'MiPerfilView',
-    components: { DetalleUsuarioView },
+    components: { DetalleUsuarioView, ListaInscripcionUsuarioView },
     data: () => ({
       tab: null,
     }),

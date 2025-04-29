@@ -1,4 +1,5 @@
 <template>
+  <div v-if="inscripciones.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -64,7 +65,10 @@
         </tr>
       </tbody>
     </v-table>
-    
+  </div>
+  <div class="text_menssage" v-if="inscripciones.length == 0">
+      <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+  </div>  
     
     </template>
   <script>
@@ -100,5 +104,9 @@
   <style scoped>
   .remove_item{
       margin-left: 2%;
+  }
+  .text_menssage{
+    text-align: center;
+    margin: 2%;
   }
   </style>

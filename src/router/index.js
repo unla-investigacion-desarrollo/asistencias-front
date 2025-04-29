@@ -28,6 +28,7 @@ import DetalleUsuarioView from '../views/DetalleUsuarioView.vue'
 import MensajesView from '../views/MensajesView.vue'
 import MiPerfilView from '../views/MiPerfilView.vue'
 import DetalleInscripcionView from '../views/DetalleInscripcionView.vue'
+import ListaInscripcionUsuarioView from '../views/ListaInscripcionUsuarioView.vue'
 
 const routes = [
   {
@@ -169,6 +170,11 @@ const routes = [
     path: '/miInscripcion',
     name: 'DetalleInscripcionView',
     component: DetalleInscripcionView
+  },
+  {
+    path: '/misInscripciones',
+    name: 'ListaInscripcionUsuarioView',
+    component: ListaInscripcionUsuarioView
   },
   {
     path: '/about',
