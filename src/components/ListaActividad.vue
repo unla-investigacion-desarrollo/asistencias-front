@@ -71,15 +71,16 @@
     </v-table>
   </div>
   <div class="text_menssage" v-if="actividades.length == 0">
-      <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+      <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>
   
   </template>
   <script>
-  import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
+import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaActividad',
-      components: {},
+      components: { MensajeComponent },
       data(){
         this.dialog = false;
       },
