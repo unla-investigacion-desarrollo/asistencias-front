@@ -54,15 +54,16 @@
         </v-table>
     </div>
     <div class="text_menssage" v-if="usuarios.length == 0">
-        <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+        <Mensaje-component valor="sin-registros"></Mensaje-component>
     </div>
     
     </template>
   <script>
   import { EDITAR_ROL, ELIMINAR_ROL, OBTENER_USUARIOS } from '../store/actions-types';
+  import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaTipoUsuario',
-      components: {},
+      components: { MensajeComponent },
       data(){
         this.dialog = false;
       },

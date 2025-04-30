@@ -1,4 +1,5 @@
 <template>
+  <div v-if="roles.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -31,14 +32,18 @@
         </tr>
       </tbody>
     </v-table>
+  </div>
+  <div class="text_menssage" v-if="roles.length == 0">
+      <Mensaje-component valor="sin-registros"></Mensaje-component>
+  </div>
     
-    
-    </template>
+</template>
   <script>
   import { EDITAR_ROL, ELIMINAR_ROL, OBTENER_ROLES } from '../store/actions-types';
+  import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaTipoUsuario',
-      components: {},
+      components: { MensajeComponent },
       data(){
         this.dialog = false;
       },
