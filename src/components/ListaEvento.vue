@@ -63,7 +63,7 @@
           <td>{{ item.linkCertificado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
               <v-btn class="remove_item" color="secondary" @click="inscripcionItem(item)" icon="mdi-note-plus-outline"></v-btn>
           </td>
@@ -75,61 +75,94 @@
   <div class="text_menssage" v-if="eventos.length == 0">
     <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar este evento?"
+        title="Eliminar Evento"
+      >
+        <template v-slot:actions>
+          <v-btn
+            class="ms-auto"
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            class="ms-auto"
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
     
   </template>
-  <script>
-  import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
-  import MensajeComponent from './MensajeComponent.vue';
-    export default {
-      name: 'ListaEvento',
-      components: { MensajeComponent },
-      data(){
-        this.dialog = false;
-      },
-      computed: {
-          eventos() {
-              return this.$store.getters.getEventos();
-      }
+<script setup>
+  import { ref } from 'vue'
+
+  const dialog = ref(false)
+</script>
+<script>
+import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
+export default {
+  name: 'ListaEvento',
+  components: { MensajeComponent },
+  data(){
+    return {};
+  },
+  computed: {
+      eventos() {
+          return this.$store.getters.getEventos();
+  }
+},
+  methods: {
+    editarItem(item){   
+        this.$store.dispatch(EDITAR_EVENTO, item);
     },
-    methods: {
-      editarItem(item){
-          this.$store.dispatch(EDITAR_EVENTO, item);
-      },
-      eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_EVENTO, item);
-      },
-      detalleItem(item){
-          this.$store.dispatch(DETALLE_EVENTO, item);
-      },
-      inscripcionItem(item){
-        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
-      },
-      formatearFecha(f){
-        let formato = "";
-        if(f != null){
-          let anio = f.substring(0, 4);
-          let mes = f.substring(5, 7);
-          let dia = f.substring(8, 10);
-          let hora = f.substring(11, 13);
-          let min = f.substring(14, 16);
-          let seg = f.substring(17, 19);
-          formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
-        }
-        return formato;
-      }
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_EVENTO, item);
     },
-    created() {
-      this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventos());
-  }
-  }
-  </script>
-  <style scoped>
-  .remove_item{
-      margin-left: 2%;
-  }
-  .text_menssage{
-    text-align: center;
-    margin: 2%;
-  }
-  </style>
+    eliminarItem(){
+        this.$store.dispatch(ELIMINAR_EVENTO);
+    },
+    detalleItem(item){
+        this.$store.dispatch(DETALLE_EVENTO, item);
+    },
+    inscripcionItem(item){
+      this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+    },
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        let seg = f.substring(17, 19);
+        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
+      }
+      return formato;
+    }
+  },
+  created() {
+    this.$store.dispatch(OBTENER_EVENTOS);
+    console.log(this.$store.getters.getEventos());
+}
+}
+</script>
+<style scoped>
+.remove_item{
+    margin-left: 2%;
+}
+.text_menssage{
+  text-align: center;
+  margin: 2%;
+}
+</style>

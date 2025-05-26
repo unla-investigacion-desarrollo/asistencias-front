@@ -24,6 +24,7 @@ export default {
     [MUTATIONS.ELIMINAR_UN_EVENTO]: (state, payload) => {
         let lista = state.eventos;
         state.eventos = lista.filter(e => e != payload);
+        state.evento = {};
     },
     [MUTATIONS.MODIFICAR_UN_EVENTO]: (state, payload) => {
         state.evento = payload;

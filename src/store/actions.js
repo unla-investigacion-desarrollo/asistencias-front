@@ -87,7 +87,8 @@ export default {
     console.log(error);
   });
 },
-[ACTIONS.ELIMINAR_EVENTO] (context, payload) {
+[ACTIONS.ELIMINAR_EVENTO] (context) {
+  /*
   api.eliminarEvento(payload.idEvento)
   .then(response => {
   console.log(response);
@@ -97,7 +98,10 @@ export default {
   })
   .catch(error => {
     console.log(error);
-  });
+  });*/
+  console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
+  context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, context.getters.getEvento());
+ 
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
   api.actualizarTipoEvento(payload)
@@ -453,6 +457,10 @@ export default {
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
 }
 
 
