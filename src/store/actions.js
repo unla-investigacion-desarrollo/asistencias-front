@@ -88,20 +88,17 @@ export default {
   });
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
-  /*
-  api.eliminarEvento(payload.idEvento)
+  api.eliminarEvento(context.getters.getEvento().idEvento)
   .then(response => {
   console.log(response);
-    if (response.status == "200") {
-      context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, payload);
+  console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
+    if (response.status == "204") {
+      context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, context.getters.getEvento());
     } 
   })
   .catch(error => {
     console.log(error);
-  });*/
-  console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
-  context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, context.getters.getEvento());
- 
+  });
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
   api.actualizarTipoEvento(payload)

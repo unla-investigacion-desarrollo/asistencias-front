@@ -34,7 +34,7 @@ const api = {
   },
 
   eliminarEvento(payload) {
-    return axios.delete(`${dominio}/api/eliminarEvento/${payload}`);
+    return axios.delete(`${dominio}/api/eventos/eliminar/${payload}`);
   },
 
   obtenerEventos() { 
