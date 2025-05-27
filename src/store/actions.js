@@ -62,14 +62,15 @@ export default {
       });
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
-  [ACTIONS.ELIMINAR_TIPO_EVENTO] (context, payload) {
-    api.eliminarTipoEvento(payload.idTipoEvento)
+  [ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
+    api.eliminarTipoEvento(context.getters.getTipoEvento().idTipoEvento)
     .then(response => {
-    console.log(response);
+      console.log(response);
+      console.log("Elimino este tipo de evento: " + JSON.stringify(context.getters.getTipoEvento()));
       if (response.status == "200") {
-        context.commit(MUTATIONS.ELIMINAR_TIPO_DE_EVENTO, payload);
+        context.commit(MUTATIONS.ELIMINAR_TIPO_DE_EVENTO, context.getters.getTipoEvento());
       } 
-    })
+      })
     .catch(error => {
       console.log(error);
     });
@@ -458,6 +459,10 @@ export default {
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_TIPO_EVENTO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
 }
 
 

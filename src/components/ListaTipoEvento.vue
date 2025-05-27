@@ -30,7 +30,7 @@
           <td>{{ item.descripcion }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -40,16 +40,43 @@
   <div class="text_menssage" v-if="eventos.length == 0">
     <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar este tipo de evento?"
+        title="Eliminar Tipo de Evento"
+      >
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
   
 </template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>
 <script>
-import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS, ACEPTA_ELIMINAR_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
   export default {
     name: 'ListaTipoEvento',
     components: { MensajeComponent },
     data(){
-      this.dialog = false;
+      return{};
     },
     computed: {
         eventos() {
@@ -60,8 +87,11 @@ import MensajeComponent from './MensajeComponent.vue';
     editarItem(item){
         this.$store.dispatch(EDITAR_TIPO_EVENTO, item);
     },
-    eliminarItem(item){
-        this.$store.dispatch(ELIMINAR_TIPO_EVENTO, item);
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_TIPO_EVENTO, item);
+    },
+    eliminarItem(){
+        this.$store.dispatch(ELIMINAR_TIPO_EVENTO);
     }
   },
   created() {
