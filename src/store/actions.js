@@ -484,5 +484,22 @@ export default {
     console.log(error);
   });
 },
-
+[ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
+  api.actualizarUsuario(payload)
+        .then(response => {
+        console.log(response);
+          if (response.status == "200") {
+            context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+            router.push('/unlaUsuarios');
+          } 
+          console.log(context.getters.getUsuario());
+        })
+        .catch(error => {
+          console.log(error);
+        });
+},
+[ACTIONS.EDITAR_USUARIO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+  router.push('/editarUsuario');
+},
 }

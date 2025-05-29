@@ -86,7 +86,7 @@
   const dialog = ref(false)
 </script>    
   <script>
-  import { EDITAR_ROL, ELIMINAR_USUARIO, OBTENER_USUARIOS, ACEPTA_ELIMINAR_USUARIO } from '../store/actions-types';
+  import { EDITAR_USUARIO, ELIMINAR_USUARIO, OBTENER_USUARIOS, ACEPTA_ELIMINAR_USUARIO } from '../store/actions-types';
   import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaTipoUsuario',
@@ -101,7 +101,7 @@
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_ROL, item);
+          this.$store.dispatch(EDITAR_USUARIO, item);
       },
       modalEliminar(item){
         this.$store.dispatch(ACEPTA_ELIMINAR_USUARIO, item);
