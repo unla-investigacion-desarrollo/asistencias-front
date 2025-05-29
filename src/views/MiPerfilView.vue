@@ -5,16 +5,16 @@
       align-tabs="center"
       color="deep-purple-accent-4"
     >
-        <v-tab value="eventos">Mi Perfil</v-tab>
-        <v-tab value="actividades">Mis Inscripciones</v-tab>
+        <v-tab value="info">Mi Perfil</v-tab>
+        <v-tab value="inscripciones">Mis Inscripciones</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
-        <v-tabs-window-item value="eventos">
+        <v-tabs-window-item value="info">
             <DetalleUsuarioView></DetalleUsuarioView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="actividades">
+        <v-tabs-window-item value="inscripciones">
             <ListaInscripcionUsuarioView></ListaInscripcionUsuarioView>
         </v-tabs-window-item>
 

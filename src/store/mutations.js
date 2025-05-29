@@ -39,6 +39,9 @@ export default {
     [MUTATIONS.OBTENER_ROLES]: (state, payload) => {
         state.roles = payload;
     },
+    [MUTATIONS.GUARDAR_TIPO_USUARIO]: (state, payload) => {
+        state.tipoUsuario = payload;
+    },
     [MUTATIONS.TRAER_ACTIVIDADES]: (state, payload) => {
         state.actividades = payload;
     },
@@ -78,4 +81,9 @@ export default {
     [MUTATIONS.GUARDAR_CONTENIDO]: (state, payload) => {
         state.contenido = payload;
     },  
+    [MUTATIONS.ELIMINAR_TIPO_DE_USUARIO]: (state, payload) => {
+        let lista = state.roles;
+        state.roles = lista.filter(e => e != payload);
+        state.tipoUsuario = {};
+    },
 }

@@ -179,12 +179,12 @@ export default {
           console.log(error);
         });
 },
-[ACTIONS.ELIMINAR_ROL] (context, payload) {
-  api.eliminarTipoUsuario(payload.idTipoUsuario)
+[ACTIONS.ELIMINAR_ROL] (context) {
+  api.eliminarTipoUsuario(context.getters.getTipoUsuario().idTipoUsuario)
   .then(response => {
-  console.log(response);
+   console.log("Elimino este rol: " + JSON.stringify(context.getters.getTipoUsuario()));
     if (response.status == "200") {
-      //mostrar algo
+      context.commit(MUTATIONS.ELIMINAR_TIPO_DE_USUARIO, context.getters.getTipoUsuario());
     } 
   })
   .catch(error => {
@@ -464,6 +464,9 @@ export default {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
 }
-
-
+,
+[ACTIONS.ACEPTA_ELIMINAR_TIPO_USUARIO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
+}
 }

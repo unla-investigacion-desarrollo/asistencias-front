@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div class="container">
       <div class="content">
         <v-card
@@ -17,7 +17,6 @@
       </div>
     </div>
   </template>
-  
   <script>
 import DetalleInscripcion from '../components/DetalleInscripcion.vue';
 
@@ -27,8 +26,7 @@ import DetalleInscripcion from '../components/DetalleInscripcion.vue';
     components: { DetalleInscripcion },
   }
 </script>
-  
-<style scoped>
+  <style scoped>
 .title_section { background-color: #383854; }
 
 .title {
