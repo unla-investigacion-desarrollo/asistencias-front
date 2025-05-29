@@ -463,10 +463,26 @@ export default {
 [ACTIONS.ACEPTA_ELIMINAR_TIPO_EVENTO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
-}
-,
+},
 [ACTIONS.ACEPTA_ELIMINAR_TIPO_USUARIO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
-}
+},
+[ACTIONS.ACEPTA_ELIMINAR_USUARIO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+},
+[ACTIONS.ELIMINAR_USUARIO] (context) {
+  api.eliminarUsuario(context.getters.getUsuario().idUsuario)
+  .then(response => {
+   console.log("Elimino este usuario: " + JSON.stringify(context.getters.getUsuario()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINAR_USUARIO, context.getters.getUsuario());
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+},
+
 }

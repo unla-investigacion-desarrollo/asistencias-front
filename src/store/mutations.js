@@ -65,6 +65,9 @@ export default {
         state.usuario = payload;
         localStorage.setItem("usuario", JSON.stringify(payload));
     }, 
+    [MUTATIONS.GUARDAR_AGREGAR_USUARIO]: (state, payload) => {
+        state.usuario = payload;
+    }, 
     [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state, payload) => {
         state.inscripcion.evento = payload;
     }, 
@@ -85,5 +88,10 @@ export default {
         let lista = state.roles;
         state.roles = lista.filter(e => e != payload);
         state.tipoUsuario = {};
+    },  
+    [MUTATIONS.ELIMINAR_USUARIO]: (state, payload) => {
+        let lista = state.usuarios;
+        state.usuarios = lista.filter(e => e != payload);
+        state.usuario = {};
     },
 }
