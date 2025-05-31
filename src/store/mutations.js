@@ -94,4 +94,59 @@ export default {
         state.usuarios = lista.filter(e => e != payload);
         state.usuario = {};
     },
+    [MUTATIONS.EDITO_ACTIVIDAD]: (state, payload) => {
+        state.editoActividad = payload;
+    }, 
+    [MUTATIONS.ELIMINO_ACTIVIDAD]: (state, payload) => {
+        state.eliminoActividad = payload;
+    }, 
+    [MUTATIONS.AGREGO_ACTIVIDAD]: (state, payload) => {
+        state.agregoActividad = payload;
+    }, 
+    [MUTATIONS.EDITO_ROL]: (state, payload) => {
+        state.editoRol = payload;
+    }, 
+    [MUTATIONS.ELIMINO_ROL]: (state, payload) => {
+        state.eliminoRol = payload;
+    }, 
+     [MUTATIONS.AGREGO_ROL]: (state, payload) => {
+        state.agregoRol = payload;
+    }, 
+    [MUTATIONS.EDITO_USUARIO]: (state, payload) => {
+        state.editoUsuario = payload;
+    }, 
+    [MUTATIONS.ELIMINO_USUARIO]: (state, payload) => {
+        state.eliminoUsuario = payload;
+    }, 
+    [MUTATIONS.AGREGO_USUARIO]: (state, payload) => {
+        state.agregoUsuario = payload;
+    }, 
+    [MUTATIONS.EDITO_EVENTO]: (state, payload) => {
+        state.editoEvento = payload;
+    }, 
+    [MUTATIONS.ELIMINO_EVENTO]: (state, payload) => {
+        state.eliminoEvento = payload;
+    }, 
+    [MUTATIONS.AGREGO_EVENTO]: (state, payload) => {
+        state.agregoEvento = payload;
+    }, 
+    [MUTATIONS.EDITO_TIPO_EVENTO]: (state, payload) => {
+        state.editoTipoEvento = payload;
+    }, 
+     [MUTATIONS.ELIMINO_TIPO_EVENTO]: (state, payload) => {
+        state.eliminoTipoEvento = payload;
+    }, 
+    [MUTATIONS.AGREGO_TIPO_EVENTO]: (state, payload) => {
+        state.agregoTipoEvento = payload;
+    }, 
+    [MUTATIONS.EDITO_INSCRIPCION]: (state, payload) => {
+        state.editoInscripcion = payload;
+    }, 
+    [MUTATIONS.ELIMINO_INSCRIPCION]: (state, payload) => {
+        state.eliminoInscripcion = payload;
+    }, 
+    [MUTATIONS.AGREGO_INSCRIPCION]: (state, payload) => {
+        state.registroInscripcion = payload;
+    }, 
+
 }

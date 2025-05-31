@@ -1,4 +1,37 @@
 <template>
+  <div v-if="agrego">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue agregado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="edito">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue modificado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+   <div v-if="elimino">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue eliminado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
   <div v-if="eventos.length != 0">
     <v-table
       height="auto"
@@ -116,7 +149,17 @@ export default {
   computed: {
       eventos() {
           return this.$store.getters.getEventos();
-  }
+      },
+      elimino(){
+        return this.$store.getters.getEliminoEvento();
+      },
+      agrego(){
+        return this.$store.getters.getAgregoEvento();
+      },
+      edito(){
+        return this.$store.getters.getEditoEvento();
+      }
+
 },
   methods: {
     editarItem(item){   

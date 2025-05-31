@@ -399,6 +399,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_USUARIO, true);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push('miPerfil');
     } 
@@ -477,6 +478,7 @@ export default {
   .then(response => {
    console.log("Elimino este usuario: " + JSON.stringify(context.getters.getUsuario()));
     if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_USUARIO, true);
       context.commit(MUTATIONS.ELIMINAR_USUARIO, context.getters.getUsuario());
     } 
   })
@@ -487,12 +489,11 @@ export default {
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
   api.actualizarUsuario(payload)
         .then(response => {
-        console.log(response);
           if (response.status == "200") {
+            context.commit(MUTATIONS.EDITO_USUARIO, true);
             context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
             router.push('/unlaUsuarios');
           } 
-          console.log(context.getters.getUsuario());
         })
         .catch(error => {
           console.log(error);
