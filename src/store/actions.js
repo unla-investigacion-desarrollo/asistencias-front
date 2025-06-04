@@ -400,6 +400,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_USUARIO, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_USUARIO, false); }, 1000);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push('miPerfil');
     } 
