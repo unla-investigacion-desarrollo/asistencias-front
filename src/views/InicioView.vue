@@ -1,18 +1,18 @@
 <template>
   <v-container>       
    
-          <CarrouselComponent></CarrouselComponent>
+          <CategoriaEventosComponent></CategoriaEventosComponent>
 
         
     </v-container>
   </template>
 
 <script>
-import CarrouselComponent from '../components/CarrouselComponent.vue';
+import CategoriaEventosComponent from '../components/CategoriaEventosComponent.vue';
 
 export default {
   name: 'InicioView',
-  components: { CarrouselComponent },
+  components: { CategoriaEventosComponent },
 }
 </script>
 

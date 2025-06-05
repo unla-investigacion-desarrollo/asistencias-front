@@ -38,14 +38,22 @@
    
 </template>
 <script>
+import { OBTENER_INFO_USUARIO_EMAIL } from '../store/actions-types';
 export default {
   name: 'DetalleUsuario',
   components: {},
-  data() {
-    return {
-      model: this.$store.getters.getUsuario()
-    };
+  computed:{
+    model(){
+        return this.$store.getters.getUsuario();
+    }
   },
+    created() {
+        if(this.$store.getters.getUsuario().dni === ""){
+            this.$store.dispatch(OBTENER_INFO_USUARIO_EMAIL, this.model.email);
+            console.log(this.$store.getters.getEventos());
+        }
+        
+    }
 }
 </script>
 <style scoped>

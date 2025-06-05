@@ -1,4 +1,38 @@
 <template>
+  <div v-if="agrego">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue agregado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="edito">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue modificado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+   <div v-if="elimino">
+    <v-alert
+      closable
+      icon="$success"
+      title="El evento fue eliminado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="eventos.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -52,9 +86,9 @@
           <td>{{ item.idEvento }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.descripcion }}</td>
-          <td>{{ item.fechaInicio }}</td>
-          <td>{{ item.fechaFin }}</td>
-          <td>{{ item.fechaCierre }}</td>
+          <td>{{ formatearFecha(item.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.fechaFin) }}</td>
+          <td>{{ formatearFecha(item.fechaCierre) }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
@@ -62,7 +96,7 @@
           <td>{{ item.linkCertificado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
               <v-btn class="remove_item" color="secondary" @click="inscripcionItem(item)" icon="mdi-note-plus-outline"></v-btn>
           </td>
@@ -70,44 +104,105 @@
         </tr>
       </tbody>
     </v-table>
+  </div>
+  <div class="text_menssage" v-if="eventos.length == 0">
+    <Mensaje-component valor="sin-registros"></Mensaje-component>
+  </div>
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar este evento?"
+        title="Eliminar Evento"
+      >
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
     
-    
-    </template>
-  <script>
-  import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
-    export default {
-      name: 'ListaEvento',
-      components: {},
-      data(){
-        this.dialog = false;
-      },
-      computed: {
-          eventos() {
-              return this.$store.getters.getEventos();
-      }
-    },
-    methods: {
-      editarItem(item){
-          this.$store.dispatch(EDITAR_EVENTO, item);
-      },
-      eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_EVENTO, item);
-      },
-      detalleItem(item){
-          this.$store.dispatch(DETALLE_EVENTO, item);
-      },
-      inscripcionItem(item){
-        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
-      }
-    },
-    created() {
-      this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventos());
+  </template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>
+<script>
+import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
+export default {
+  name: 'ListaEvento',
+  components: { MensajeComponent },
+  data(){
+    return {};
   },
-  }
-  </script>
-  <style scoped>
-  .remove_item{
-      margin-left: 2%;
-  }
-  </style>
+  computed: {
+      eventos() {
+          return this.$store.getters.getEventos();
+      },
+      elimino(){
+        return this.$store.getters.getEliminoEvento();
+      },
+      agrego(){
+        return this.$store.getters.getAgregoEvento();
+      },
+      edito(){
+        return this.$store.getters.getEditoEvento();
+      }
+
+},
+  methods: {
+    editarItem(item){   
+        this.$store.dispatch(EDITAR_EVENTO, item);
+    },
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_EVENTO, item);
+    },
+    eliminarItem(){
+        this.$store.dispatch(ELIMINAR_EVENTO);
+    },
+    detalleItem(item){
+        this.$store.dispatch(DETALLE_EVENTO, item);
+    },
+    inscripcionItem(item){
+      this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+    },
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        let seg = f.substring(17, 19);
+        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
+      }
+      return formato;
+    }
+  },
+  created() {
+    this.$store.dispatch(OBTENER_EVENTOS);
+    console.log(this.$store.getters.getEventos());
+}
+}
+</script>
+<style scoped>
+.remove_item{
+    margin-left: 2%;
+}
+.text_menssage{
+  text-align: center;
+  margin: 2%;
+}
+</style>

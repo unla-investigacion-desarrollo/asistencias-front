@@ -1,5 +1,5 @@
 <template>
-  <div v-if="actividades.length != 0">
+  <div v-if="inscripciones.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -7,13 +7,19 @@
       <thead>
         <tr>
           <th class="text-left">
-            ID
-          </th>
-          <th class="text-left">
             Nombre
           </th>
           <th class="text-left">
-            Descripción
+            Apellido
+          </th>
+          <th class="text-left">
+            DNI
+          </th>
+          <th class="text-left">
+            Evento
+          </th>
+          <th class="text-left">
+            Actividad
           </th>
           <th class="text-left">
             Fecha Inicio
@@ -31,35 +37,25 @@
             Estado
           </th>
           <th class="text-left">
-            Evento
-          </th>
-          <th class="text-left">
-            Cupo
-          </th>
-          <th class="text-left">
-            Cupo Limite
-          </th>
-          <th class="text-left">
             Acciones
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="item in actividades"
-          :key="item.idActividad"
+          v-for="item in inscripciones"
+          :key="item.idInscripcion"
         >
-          <td>{{ item.idActividad }}</td>
-          <td>{{ item.nombre }}</td>
-          <td>{{ item.descripcion }}</td>
-          <td>{{ item.fechaInicio }}</td>
-          <td>{{ item.fechaFin }}</td>
-          <td>{{ item.edificio }}</td>
-          <td>{{ item.ubicacion }}</td>
-          <td>{{ item.estado }}</td>
+          <td>{{ item.usuario.nombre }}</td>
+          <td>{{ item.usuario.apellido }}</td>
+          <td>{{ item.usuario.dni }}</td>
           <td>{{ item.evento.nombre }}</td>
-          <td>{{ item.cupo }}</td>
-          <td>{{ item.cupoLimite }}</td>
+          <td>{{ item.actividad.nombre }}</td>
+          <td>{{ item.actividad.fechaInicio }}</td>
+          <td>{{ item.actividad.fechaFin }}</td>
+          <td>{{ item.actividad.edificio }}</td>
+          <td>{{ item.actividad.ubicacion }}</td>
+          <td>{{ item.actividad.estado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
@@ -70,39 +66,39 @@
       </tbody>
     </v-table>
   </div>
-  <div class="text_menssage" v-if="actividades.length == 0">
-      <Mensaje-component valor="sin-registros"></Mensaje-component>
-  </div>
-  
-  </template>
+  <div class="text_menssage" v-if="inscripciones.length == 0">
+    <Mensaje-component valor="sin-registros"></Mensaje-component>
+  </div>  
+    
+    </template>
   <script>
-import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
-import MensajeComponent from './MensajeComponent.vue';
+  import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO } from '../store/actions-types';
+  import MensajeComponent from './MensajeComponent.vue';
     export default {
-      name: 'ListaActividad',
+      name: 'ListaInscripcion',
       components: { MensajeComponent },
       data(){
         this.dialog = false;
       },
       computed: {
-        actividades() {
-              return this.$store.getters.getActividades();
+        inscripciones() {
+          return this.$store.getters.getInscripciones();
       }
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_ACTIVIDAD, item);
+          this.$store.dispatch(EDITAR_INSCRIPCION, item);
       },
       eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_ACTIVIDAD, item);
+          this.$store.dispatch(ELIMINAR_INSCRIPCION, item);
       },
       detalleItem(item){
-          this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+          this.$store.dispatch(DETALLE_INSCRIPCION, item);
       }
     },
     created() {
-      this.$store.dispatch(OBTENER_ACTIVIDADES);
-      console.log(this.$store.getters.getActividades());
+      this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO);
+      console.log(this.$store.getters.getInscripciones());
   },
   }
   </script>

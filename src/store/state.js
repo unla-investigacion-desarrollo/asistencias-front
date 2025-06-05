@@ -1,6 +1,6 @@
 export default {
     usuario: {
-        email: "",
+        email: "nehuen.db@gmail.com",
         clave: "",
         nombre: "",
         apellido: "",
@@ -62,7 +62,10 @@ export default {
     },
     contenido: {
         titulo: "",
-        descripcion: ""
+        descripcion: "",
+        audios: [],
+        videos: [],
+        imagenes: [],
     },
     audios: [],
     videos: [],
@@ -80,5 +83,23 @@ export default {
         cupoLimite: ""
     },
     actividades: [],
-    roles: []
+    roles: [],
+    editoActividad: false,
+    editoUsuario: false,
+    editoRol: false,
+    editoEvento: false,
+    editoTipoEvento: false,
+    editoInscripcion: false,
+    eliminoActividad: false,
+    eliminoUsuario: false,
+    eliminoRol: false,
+    eliminoEvento: false,
+    eliminoTipoEvento: false,
+    eliminoInscripcion: false,
+    agregoActividad: false,
+    agregoUsuario: false,
+    agregoRol: false,
+    agregoEvento: false,
+    agregoTipoEvento: false,
+    registroInscripcion: false,
 }

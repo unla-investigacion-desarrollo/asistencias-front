@@ -46,7 +46,7 @@
             <td>{{ item.tipoUsuario.rol }}</td>
             <td>
                 <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-                <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+                <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
             </td>
             <td></td>
             </tr>
@@ -54,17 +54,45 @@
         </v-table>
     </div>
     <div class="text_menssage" v-if="usuarios.length == 0">
-        <h3>No encontramos registros disponibles, por favor agregue uno nuevo.</h3>
+        <Mensaje-component valor="sin-registros"></Mensaje-component>
     </div>
+    <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar este usuario?"
+        title="Eliminar Usuario"
+      >
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
     
     </template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>    
   <script>
-  import { EDITAR_ROL, ELIMINAR_ROL, OBTENER_USUARIOS } from '../store/actions-types';
+  import { EDITAR_USUARIO, ELIMINAR_USUARIO, OBTENER_USUARIOS, ACEPTA_ELIMINAR_USUARIO } from '../store/actions-types';
+  import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaTipoUsuario',
-      components: {},
+      components: { MensajeComponent },
       data(){
-        this.dialog = false;
+        return {};
       },
       computed: {
           usuarios() {
@@ -73,10 +101,13 @@
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_ROL, item);
+          this.$store.dispatch(EDITAR_USUARIO, item);
       },
-      eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_ROL, item);
+      modalEliminar(item){
+        this.$store.dispatch(ACEPTA_ELIMINAR_USUARIO, item);
+      },
+      eliminarItem(){
+          this.$store.dispatch(ELIMINAR_USUARIO);
       }
     },
     created() {

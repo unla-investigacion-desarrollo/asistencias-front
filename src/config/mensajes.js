@@ -13,6 +13,9 @@ const mensajes = {
         '<p>El tipo de evento fue guardado exitosamente en la base de datos</p>',
     "guardar-contenido":
         '<p>El contenido fue guardado exitosamente en la base de datos</p>',
+    "sin-registros":
+        '<p>No encontramos registros disponibles, por favor agregue uno nuevo.</p>',
+        
     };
 
 export default mensajes;

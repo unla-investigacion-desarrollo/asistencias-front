@@ -1,7 +1,7 @@
 import axios from "axios";
 import { dominio, normalizarDatos } from '../config/index';
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem("keyuser")}` 
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("keyuser")}` 
 
 const api = {
 
@@ -34,7 +34,7 @@ const api = {
   },
 
   eliminarEvento(payload) {
-    return axios.delete(`${dominio}/api/eliminarEvento/${payload}`);
+    return axios.delete(`${dominio}/api/eventos/eliminar/${payload}`);
   },
 
   obtenerEventos() { 
@@ -68,6 +68,15 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarAsistencia`, body);
   },
+
+  marcarAsistencia(payload){
+    return axios.post(`${dominio}/qr/decode`, payload);
+  },
+
+  obtenerInscripcionesPorUsuario(payload){
+    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.idUsuario}`);
+  },
+
   //controller de actividad
   traerActividades() {
     return axios.get(`${dominio}/api/actividades`);
@@ -125,6 +134,14 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/usuarios/${payload}`, body);
   },
+  traerUsuarioEmail(payload, hash){
+    const body = normalizarDatos(payload);
+    if(hash !== ""){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${hash}` 
+    }
+    return axios.get(`${dominio}/api/usuarios/email/${payload}`, body);
+  },
+
   //Controller Tipo de Evento
   actualizarTipoEvento(payload) { 
     const body = normalizarDatos(payload);

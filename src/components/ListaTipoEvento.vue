@@ -1,50 +1,82 @@
 <template>
-  <v-table
-    height="auto"
-    fixed-header
-  >
-    <thead>
-      <tr>
-        <th class="text-left">
-          ID
-        </th>
-        <th class="text-left">
-          Nombre
-        </th>
-        <th class="text-left">
-          Descripción
-        </th>
-        <th class="text-left">
-          Acciones
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="item in eventos"
-        :key="item.idTipoEvento"
+  <div v-if="eventos.length != 0">
+    <v-table
+      height="auto"
+      fixed-header
+    >
+      <thead>
+        <tr>
+          <th class="text-left">
+            ID
+          </th>
+          <th class="text-left">
+            Nombre
+          </th>
+          <th class="text-left">
+            Descripción
+          </th>
+          <th class="text-left">
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in eventos"
+          :key="item.idTipoEvento"
+        >
+          <td>{{ item.idTipoEvento }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.descripcion }}</td>
+          <td>
+              <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </v-table>
+  </div>
+  <div class="text_menssage" v-if="eventos.length == 0">
+    <Mensaje-component valor="sin-registros"></Mensaje-component>
+  </div>
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar este tipo de evento?"
+        title="Eliminar Tipo de Evento"
       >
-        <td>{{ item.idTipoEvento }}</td>
-        <td>{{ item.nombre }}</td>
-        <td>{{ item.descripcion }}</td>
-        <td>
-            <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-            <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
-        </td>
-        <td></td>
-      </tr>
-    </tbody>
-  </v-table>
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
   
-  
-  </template>
+</template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>
 <script>
-import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS, ACEPTA_ELIMINAR_TIPO_EVENTO } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
   export default {
     name: 'ListaTipoEvento',
-    components: {},
+    components: { MensajeComponent },
     data(){
-      this.dialog = false;
+      return{};
     },
     computed: {
         eventos() {
@@ -55,8 +87,11 @@ import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS } from 
     editarItem(item){
         this.$store.dispatch(EDITAR_TIPO_EVENTO, item);
     },
-    eliminarItem(item){
-        this.$store.dispatch(ELIMINAR_TIPO_EVENTO, item);
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_TIPO_EVENTO, item);
+    },
+    eliminarItem(){
+        this.$store.dispatch(ELIMINAR_TIPO_EVENTO);
     }
   },
   created() {
