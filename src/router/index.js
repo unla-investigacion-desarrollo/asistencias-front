@@ -30,6 +30,7 @@ import MiPerfilView from '../views/MiPerfilView.vue'
 import DetalleInscripcionView from '../views/DetalleInscripcionView.vue'
 import ListaInscripcionUsuarioView from '../views/ListaInscripcionUsuarioView.vue'
 import EditarUsuariosView from '../views/EditarUsuariosView.vue'
+import ListaEventosGeneralView  from '../views/ListaEventosGeneralView.vue'
 
 const routes = [
   {
@@ -181,6 +182,11 @@ const routes = [
     path: '/editarUsuario',
     name: 'EditarUsuariosView',
     component: EditarUsuariosView
+  },
+  {
+    path: '/eventosUnla',
+    name: 'ListaEventosGeneralView',
+    component: ListaEventosGeneralView
   },
   {
     path: '/about',
