@@ -331,7 +331,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.TRAER_INFO_USUARIO, response.data);
+      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push("/miPerfil");
     } 
   })

@@ -148,5 +148,7 @@ export default {
     [MUTATIONS.AGREGO_INSCRIPCION]: (state, payload) => {
         state.registroInscripcion = payload;
     }, 
-
+    [MUTATIONS.RECUPERAR_USUARIO]: (state) => {
+        state.usuario = JSON.parse(localStorage.getItem("usuario"));
+    }, 
 }
