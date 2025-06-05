@@ -37,5 +37,5 @@ export default {
     getAgregoEvento: state => () => state.agregoEvento,
     getAgregoTipoEvento: state => () => state.agregoTipoEvento,
     getRegistroInscripcion: state => () => state.registroInscripcion,
-
+    getHash: state => () =>  state.usuario.hash
   };

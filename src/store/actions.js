@@ -327,7 +327,7 @@ export default {
 },
 [ACTIONS.OBTENER_INFO_USUARIO_EMAIL] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerUsuarioEmail(payload)
+  api.traerUsuarioEmail(payload, context.getters.getHash())
   .then(response => {
   console.log(response);
     if (response.status == "200") {

@@ -134,8 +134,11 @@ const api = {
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/usuarios/${payload}`, body);
   },
-  traerUsuarioEmail(payload){
+  traerUsuarioEmail(payload, hash){
     const body = normalizarDatos(payload);
+    if(hash !== ""){
+      axios.defaults.headers.common['Authorization'] = `Bearer ${hash}` 
+    }
     return axios.get(`${dominio}/api/usuarios/email/${payload}`, body);
   },
 
