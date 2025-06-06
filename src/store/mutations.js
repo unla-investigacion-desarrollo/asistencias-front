@@ -60,6 +60,7 @@ export default {
     [MUTATIONS.ELIMINAR_UNA_ACTIVIDAD]: (state, payload) => {
         let lista = state.actividades;
         state.actividades = lista.filter(e => e != payload);
+        state.actividad = {};
     },
     [MUTATIONS.GUARDAR_USUARIO]: (state, payload) => {
         state.usuario = payload;

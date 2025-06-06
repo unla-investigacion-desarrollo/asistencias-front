@@ -94,7 +94,7 @@
           <td>{{ item.cupoLimite }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-magnify"></v-btn>
           </td>
           <td></td>
@@ -105,16 +105,43 @@
   <div class="text_menssage" v-if="actividades.length == 0">
       <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar esta actividad?"
+        title="Eliminar Actividad"
+      >
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
   
-  </template>
-  <script>
-import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD } from '../store/actions-types';
+</template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>
+<script>
+import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaActividad',
       components: { MensajeComponent },
       data(){
-        this.dialog = false;
+        return {};
       },
       computed: {
         actividades() {
@@ -132,13 +159,16 @@ import MensajeComponent from './MensajeComponent.vue';
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_ACTIVIDAD, item);
+        this.$store.dispatch(EDITAR_ACTIVIDAD, item);
       },
-      eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_ACTIVIDAD, item);
+      modalEliminar(item){
+        this.$store.dispatch(ACEPTA_ELIMINAR_ACTIVIDAD, item);
+      },
+      eliminarItem(){
+        this.$store.dispatch(ELIMINAR_ACTIVIDAD);
       },
       detalleItem(item){
-          this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+        this.$store.dispatch(DETALLE_ACTIVIDAD, item);
       }
     },
     created() {

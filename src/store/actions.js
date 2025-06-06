@@ -384,12 +384,14 @@ export default {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/editarActividad');
 },
-[ACTIONS.ELIMINAR_ACTIVIDAD] (context, payload) {
-  api.eliminarActividad(payload.idActividad)
+[ACTIONS.ELIMINAR_ACTIVIDAD] (context) {
+  api.eliminarActividad(context.getters.getActividad().idActividad)
   .then(response => {
-  console.log(response);
+  console.log("Elimino esta actividad: " + JSON.stringify(context.getters.getActividad()));
     if (response.status == "204") {
-      context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, payload);
+      context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, true);
+      context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, context.getters.getActividad());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, false); }, 120000);
     } 
   })
   .catch(error => {
@@ -487,6 +489,10 @@ export default {
 [ACTIONS.ACEPTA_ELIMINAR_USUARIO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_ACTIVIDAD] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
 },
 [ACTIONS.ELIMINAR_USUARIO] (context) {
   api.eliminarUsuario(context.getters.getUsuario().idUsuario)
