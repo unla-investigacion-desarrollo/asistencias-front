@@ -1,5 +1,5 @@
 <template>
-  <div v-if="agrego">
+  <div v-if="agrego" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -10,7 +10,7 @@
     ></v-alert>
   </div>
 
-  <div v-if="edito">
+  <div v-if="edito" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -21,7 +21,7 @@
     ></v-alert>
   </div>
 
-   <div v-if="elimino">
+   <div v-if="elimino" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -204,5 +204,9 @@ export default {
 .text_menssage{
   text-align: center;
   margin: 2%;
+}
+
+.alerta {
+  margin: 2% 0px 2% 0px;
 }
 </style>

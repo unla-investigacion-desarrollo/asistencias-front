@@ -1,4 +1,36 @@
 <template>
+  <div v-if="agrego" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="La actividad fue agregada exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="edito" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="La actividad fue modificada exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+   <div v-if="elimino" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="La actividad fue eliminada exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
   <div v-if="actividades.length != 0">
     <v-table
       height="auto"
@@ -86,8 +118,17 @@ import MensajeComponent from './MensajeComponent.vue';
       },
       computed: {
         actividades() {
-              return this.$store.getters.getActividades();
-      }
+          return this.$store.getters.getActividades();
+        },
+        elimino(){
+          return this.$store.getters.getEliminoActividad();
+        },
+        agrego(){
+          return this.$store.getters.getAgregoActividad();
+        },
+        edito(){
+          return this.$store.getters.getEditoActividad();
+        }
     },
     methods: {
       editarItem(item){
@@ -114,4 +155,7 @@ import MensajeComponent from './MensajeComponent.vue';
     text-align: center;
     margin: 2%;
   }
+  .alerta {
+  margin: 2% 0px 2% 0px;
+}
   </style>
