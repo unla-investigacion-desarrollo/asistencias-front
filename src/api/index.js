@@ -41,6 +41,10 @@ const api = {
     return axios.get(`${dominio}/api/eventos`);
   },
 
+  obtenerEventosXTipoEvento(payload) { 
+    return axios.get(`${dominio}/api/eventos/${payload}`);
+  },
+
   registrarParticipanteAlEvento(payload) { 
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarParticipanteAlEvento`, body);

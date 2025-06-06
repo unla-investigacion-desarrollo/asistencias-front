@@ -3,29 +3,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El evento fue agregado exitosamente."
-      text=""
-      type="success"
-      variant="outlined"
-    ></v-alert>
-  </div>
-
-  <div v-if="edito">
-    <v-alert
-      closable
-      icon="$success"
-      title="El evento fue modificado exitosamente."
-      text=""
-      type="success"
-      variant="outlined"
-    ></v-alert>
-  </div>
-
-   <div v-if="elimino">
-    <v-alert
-      closable
-      icon="$success"
-      title="El evento fue eliminado exitosamente."
+      title="La inscripción al evento fue exitosa."
       text=""
       type="success"
       variant="outlined"
@@ -96,13 +74,19 @@
   </div>
   </template>
 <script>
-import { OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaEventoGeneral',
   components: { MensajeComponent },
   data(){
     return {};
+  },
+  props: {
+    filtro: {
+      type: String,
+      default: ""
+    }
   },
   computed: {
       eventos() {
@@ -132,7 +116,11 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch(OBTENER_EVENTOS);
+    if(this.filtro === ""){
+      this.$store.dispatch(OBTENER_EVENTOS);
+    } else{
+      this.$store.dispatch(OBTENER_EVENTO_X_TIPO_EVENTO, this.filtro);
+    }
     console.log(this.$store.getters.getEventos());
 }
 }
