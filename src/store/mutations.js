@@ -157,6 +157,9 @@ export default {
     },  
     [MUTATIONS.CERRAR_SESION]: (state) => {
         state.usuario = {};
+        state.usuario = { tipoUsuario: {
+            rol: "Participante"
+        }};
         state.hash = "";
         localStorage.removeItem("usuario");
         localStorage.removeItem("keyuser");

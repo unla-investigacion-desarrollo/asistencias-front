@@ -23,7 +23,6 @@
 </template>
   
 <script>
-import { key } from "@/config/index";
 //import { validarUsuarioPermisos } from "@/config/validaciones";
 
 export default {
@@ -33,6 +32,7 @@ export default {
             this.$router.push('inscripcion');
         },
         login(){
+            let key = this.$store.getters.getHash();
             if(key === null || key === undefined ){
                 this.$router.push('login');
             } else {
@@ -59,17 +59,18 @@ export default {
     },
     computed: {
         validarPermisos(){
-            let usuario = JSON.parse(localStorage.getItem("usuario"));
-            console.log("este usuario :" + usuario);
+            let usuario = this.$store.getters.getUsuario();
+            console.log("este usuario :" + JSON.stringify(usuario));
             let accede = false;
-            if(usuario == null || usuario == undefined){
-                return accede;
-            }else{
+            if(usuario !== null){
                 console.log("ingrese a validar perfil");
                 let perfil = usuario.tipoUsuario.rol;
                 if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
                     accede = true;
                 }
+                return accede;
+               
+            }else{
                 return accede;
             }    
         }
