@@ -347,10 +347,12 @@ export default {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push("/miPerfil");
+    } else {
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
   })
   .catch(error => {
-    console.log(error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES, error.response);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -436,6 +438,8 @@ export default {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       context.dispatch(ACTIONS.OBTENER_INFO_USUARIO_EMAIL, payload.email);
+    } else{
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
   })
   .catch(error => {
@@ -523,5 +527,37 @@ export default {
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
   router.push('/editarUsuario');
+},
+[ACTIONS.IDENTIFICO_ERRORES] (payload) {
+  let status = payload.status;
+  if(status === "500"){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-servidor",
+      },
+    });
+  } else if (status === "404"){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-404",
+      },
+    });
+  } else if (status === "401"){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-invalido",
+      },
+    });
+  } else {
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "mensaje-2",
+      },
+    });
+  }
 },
 }
