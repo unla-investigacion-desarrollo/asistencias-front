@@ -152,4 +152,7 @@ export default {
     [MUTATIONS.RECUPERAR_USUARIO]: (state) => {
         state.usuario = JSON.parse(localStorage.getItem("usuario"));
     }, 
+    [MUTATIONS.GUARDO_ERROR]: (state, payload) => {
+        state.error = payload;
+    },    
 }

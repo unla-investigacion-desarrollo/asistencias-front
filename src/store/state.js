@@ -102,4 +102,5 @@ export default {
     agregoEvento: false,
     agregoTipoEvento: false,
     registroInscripcion: false,
+    error: ""
 }

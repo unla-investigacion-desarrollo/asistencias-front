@@ -352,7 +352,9 @@ export default {
     } 
   })
   .catch(error => {
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES, error.response);
+    console.log("Este es el error" + error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -528,23 +530,25 @@ export default {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
   router.push('/editarUsuario');
 },
-[ACTIONS.IDENTIFICO_ERRORES] (payload) {
-  let status = payload.status;
-  if(status === "500"){
+[ACTIONS.IDENTIFICO_ERRORES] (context) {
+  let error = JSON.stringify(context.getters.getError());
+  let status = error.status;
+  let codigoError = JSON.stringify(error);
+  if(status === "500" || codigoError.includes("500")){
     router.push({
       name: "ErroresView",
       params: {
         mensaje: "error-servidor",
       },
     });
-  } else if (status === "404"){
+  } else if (status === "404"  || codigoError.includes("404")){
     router.push({
       name: "ErroresView",
       params: {
         mensaje: "error-404",
       },
     });
-  } else if (status === "401"){
+  } else if (status === "401" || codigoError.includes("401")){
     router.push({
       name: "ErroresView",
       params: {
