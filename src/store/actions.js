@@ -549,6 +549,7 @@ export default {
       },
     });
   } else if (status === "401" || codigoError.includes("401")){
+    context.commit(MUTATIONS.CERRAR_SESION);
     router.push({
       name: "ErroresView",
       params: {
@@ -563,5 +564,9 @@ export default {
       },
     });
   }
+},
+[ACTIONS.LOGOUT] (context) {
+  context.commit(MUTATIONS.CERRAR_SESION);
+  router.push('/');
 },
 }

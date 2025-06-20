@@ -154,5 +154,11 @@ export default {
     }, 
     [MUTATIONS.GUARDO_ERROR]: (state, payload) => {
         state.error = payload;
-    },    
+    },  
+    [MUTATIONS.CERRAR_SESION]: (state) => {
+        state.usuario = {};
+        state.hash = "";
+        localStorage.removeItem("usuario");
+        localStorage.removeItem("keyuser");
+    }, 
 }

@@ -31,6 +31,11 @@
             <h3>Tipo de Usuario: {{ model.tipoUsuario.rol }} </h3> 
             </v-col>
         </v-row>
+        <v-row>
+            <v-col class="boton">
+                <v-btn color="primary" @click="salir()">Cerrar Sesión</v-btn>
+            </v-col>
+        </v-row>
     </v-container>
     <div class="text_menssage" v-if="model.dni === ''">
         <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente.</h3>
@@ -38,7 +43,7 @@
    
 </template>
 <script>
-import { OBTENER_INFO_USUARIO_EMAIL } from '../store/actions-types';
+import { LOGOUT, OBTENER_INFO_USUARIO_EMAIL } from '../store/actions-types';
 export default {
   name: 'DetalleUsuario',
   components: {},
@@ -47,6 +52,11 @@ export default {
         return this.$store.getters.getUsuario();
     }
   },
+  methods: {
+    salir() {  
+      this.$store.dispatch(LOGOUT);
+    },
+    },
     created() {
         if(this.$store.getters.getUsuario().dni === ""){
             this.$store.dispatch(OBTENER_INFO_USUARIO_EMAIL, this.model.email);
@@ -60,5 +70,10 @@ export default {
 .text_menssage{
     text-align: center;
     margin: 2%;
+}
+
+.boton {
+    text-align: center;
+    margin: 3% 0px 2% 0px;
 }
 </style>

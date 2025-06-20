@@ -61,12 +61,17 @@ export default {
         validarPermisos(){
             let usuario = JSON.parse(localStorage.getItem("usuario"));
             console.log("este usuario :" + usuario);
-            let perfil = usuario !== null ? usuario.tipoUsuario.rol : null;
             let accede = false;
-            if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
-                accede = true;
-            }
-            return accede;
+            if(usuario == null || usuario == undefined){
+                return accede;
+            }else{
+                console.log("ingrese a validar perfil");
+                let perfil = usuario.tipoUsuario.rol;
+                if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
+                    accede = true;
+                }
+                return accede;
+            }    
         }
     }
 }

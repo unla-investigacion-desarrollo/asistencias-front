@@ -9,13 +9,14 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
-                <span class="titulo" v-html="error"></span>
+            <v-col class="titulo">
+                <span  v-html="error"></span>
             </v-col>
         </v-row>
         <v-row>
             <v-col class="boton">
-                <v-btn color="primary"  @click="$router.go(-1)">Volver</v-btn>
+                <v-btn color="primary" @click="$router.go(-1)" v-if="$route.params.mensaje !== 'error-invalido'">Volver</v-btn>
+                <v-btn color="primary" @click="$router.push('/login')" v-if="$route.params.mensaje == 'error-invalido'">Ir al login</v-btn>
             </v-col>
         </v-row>
     </v-container>
