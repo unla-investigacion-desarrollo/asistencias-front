@@ -160,8 +160,19 @@ export default {
         state.usuario = { tipoUsuario: {
             rol: "Participante"
         }};
-        state.hash = "";
+        state.usuario.hash = "";
         localStorage.removeItem("usuario");
         localStorage.removeItem("keyuser");
     }, 
+    [MUTATIONS.ACTUALIZO_DATOS]: (state) => {
+        let dni = state.usuario.dni; 
+        let key = state.usuario.hash;
+        if(dni == undefined || dni == null || dni == ""){
+            state.usuario = JSON.parse(localStorage.getItem("usuario"));
+        } 
+        if(key == undefined || key == null || key == ""){
+            state.usuario.hash = localStorage.getItem("keyuser");
+        } 
+    },  
+    
 }
