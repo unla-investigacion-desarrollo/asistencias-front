@@ -179,5 +179,7 @@ export default {
             state.usuario.hash = localStorage.getItem("keyuser");
         } 
     },  
-    
+    [MUTATIONS.OBTENER_CONTENIDO]: (state, payload) => {
+        state.contenido = payload;
+    },    
 }

@@ -2,6 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
+import { contenido } from "@/config/mock"
 
 export default {
 
@@ -574,6 +575,15 @@ export default {
 [ACTIONS.LOGOUT] (context) {
   context.commit(MUTATIONS.CERRAR_SESION);
   router.push('/');
+},
+[ACTIONS.TRAER_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.OBTENER_CONTENIDO, contenido);
+  router.push({
+      name: "PaginaContenidoView",
+      params: {
+        id: payload,
+      },
+    });
 },
 [ACTIONS.ACTUALIZO_DATOS] (context) {
   context.commit(MUTATIONS.ACTUALIZO_DATOS);

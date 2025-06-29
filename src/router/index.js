@@ -31,6 +31,7 @@ import DetalleInscripcionView from '../views/DetalleInscripcionView.vue'
 import ListaInscripcionUsuarioView from '../views/ListaInscripcionUsuarioView.vue'
 import EditarUsuariosView from '../views/EditarUsuariosView.vue'
 import ListaEventosGeneralView  from '../views/ListaEventosGeneralView.vue'
+import PaginaContenidoView from '../views/PaginaContenidoView.vue'
 
 const routes = [
   {
@@ -187,6 +188,11 @@ const routes = [
     path: '/eventosUnla',
     name: 'ListaEventosGeneralView',
     component: ListaEventosGeneralView
+  },
+  {
+    path: '/contenido/:id',
+    name: 'PaginaContenidoView',
+    component: PaginaContenidoView
   },
   {
     path: '/about',
