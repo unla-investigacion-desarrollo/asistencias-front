@@ -79,9 +79,9 @@ export default {
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
         state.inscripciones = payload;
     }, 
-    [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state) => {
-        state.usuario = JSON.parse(localStorage.getItem("usuario"));
-    }, 
+    [MUTATIONS.GUARDAR_INSCRIPCION_EVENTO]: (state, payload) => {
+        state.inscripcion = payload;
+    },
     [MUTATIONS.GUARDAR_CONTENIDO]: (state, payload) => {
         state.contenido = payload;
     },  
@@ -94,6 +94,11 @@ export default {
         let lista = state.usuarios;
         state.usuarios = lista.filter(e => e != payload);
         state.usuario = {};
+    },
+    [MUTATIONS.ELIMINAR_UNA_INSCRIPCION]: (state, payload) => {
+        let lista = state.inscripciones;
+        state.inscripciones = lista.filter(e => e != payload);
+        state.inscripcion = {};
     },
     [MUTATIONS.EDITO_ACTIVIDAD]: (state, payload) => {
         state.editoActividad = payload;

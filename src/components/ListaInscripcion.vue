@@ -58,7 +58,7 @@
           <td>{{ item.actividad.estado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="eliminarItem(item)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-magnify"></v-btn>
           </td>
           <td></td>
@@ -69,16 +69,44 @@
   <div class="text_menssage" v-if="inscripciones.length == 0">
     <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>  
+
+  <div>
+    <v-dialog
+      v-model="dialog"
+      width="auto"
+    >
+      <v-card
+        max-width="400"
+        text="Estas seguro de eliminar la inscripcion a este evento?"
+        title="Eliminar Tipo de Evento"
+      >
+        <template v-slot:actions>
+          <v-btn
+            text="SI"
+            @click="eliminarItem() & (dialog = false)"
+          ></v-btn>
+          <v-btn
+            text="NO"
+            @click="dialog = false"
+          ></v-btn>
+        </template>
+      </v-card>
+    </v-dialog>
+  </div>
     
-    </template>
+</template>
+<script setup>
+  import { ref } from 'vue'
+  const dialog = ref(false)
+</script>
   <script>
-  import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO } from '../store/actions-types';
+  import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
   import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaInscripcion',
       components: { MensajeComponent },
       data(){
-        this.dialog = false;
+        return {};
       },
       computed: {
         inscripciones() {
@@ -87,13 +115,16 @@
     },
     methods: {
       editarItem(item){
-          this.$store.dispatch(EDITAR_INSCRIPCION, item);
+        this.$store.dispatch(EDITAR_INSCRIPCION, item);
       },
-      eliminarItem(item){
-          this.$store.dispatch(ELIMINAR_INSCRIPCION, item);
+      modalEliminar(item){
+        this.$store.dispatch(ACEPTA_ELIMINAR_INSCRIPCION, item);
+      },
+      eliminarItem(){
+        this.$store.dispatch(ELIMINAR_INSCRIPCION);
       },
       detalleItem(item){
-          this.$store.dispatch(DETALLE_INSCRIPCION, item);
+        this.$store.dispatch(DETALLE_INSCRIPCION, item);
       }
     },
     created() {

@@ -490,6 +490,10 @@ export default {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
 },
+[ACTIONS.ACEPTA_ELIMINAR_INSCRIPCION] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+},
 [ACTIONS.ACEPTA_ELIMINAR_TIPO_USUARIO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
@@ -573,6 +577,19 @@ export default {
 },
 [ACTIONS.ACTUALIZO_DATOS] (context) {
   context.commit(MUTATIONS.ACTUALIZO_DATOS);
+},
+[ACTIONS.ELIMINAR_INSCRIPCION] (context) {
+  api.eliminarInscripcion(context.getters.getInscripcion().idInscripcion)
+  .then(response => {
+   console.log("Elimino inscripcion: " + JSON.stringify(context.getters.getInscripcion()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_INSCRIPCION, true);
+      context.commit(MUTATIONS.ELIMINAR_UNA_INSCRIPCION, context.getters.getInscripcion());
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
 },
 
 }
