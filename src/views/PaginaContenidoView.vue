@@ -21,7 +21,7 @@
             </v-card>
             </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="contenido.imagenes.length > 0">
             <v-col class="card">
                 <v-card
                 class="mx-auto title_section" :elevation="8"
@@ -44,7 +44,7 @@
             </v-col>
         </v-row>
 
-        <v-row>
+        <v-row v-if="contenido.videos.length > 0">
             <v-col class="card">
                 <v-card
                 class="mx-auto title_section" :elevation="8"
@@ -67,7 +67,7 @@
             </v-col>
         </v-row>
 
-        <v-row>
+        <v-row v-if="contenido.audios.length > 0">
             <v-col class="card">
                 <v-card
                 class="mx-auto title_section" :elevation="8"

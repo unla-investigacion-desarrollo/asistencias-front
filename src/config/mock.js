@@ -27,6 +27,28 @@ const contenido = {
     ]
 };
 
+const contenido2 = {
+    "titulo": "jornada",
+    "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
+    "videos": [
+        {
+            "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
+        },
+        {
+            "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
+        }
+    ],
+    "audios": [
+        {
+            "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        },
+        {
+            "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        }
+    ],
+    "imagenes": []
+};
+
 export {
-  contenido
+  contenido, contenido2
 };

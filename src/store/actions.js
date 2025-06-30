@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido } from "@/config/mock"
+import { contenido2 } from "@/config/mock"
 
 export default {
 
@@ -577,7 +577,7 @@ export default {
   router.push('/');
 },
 [ACTIONS.TRAER_CONTENIDO] (context, payload) {
-  context.commit(MUTATIONS.OBTENER_CONTENIDO, contenido);
+  context.commit(MUTATIONS.OBTENER_CONTENIDO, contenido2);
   router.push({
       name: "PaginaContenidoView",
       params: {
