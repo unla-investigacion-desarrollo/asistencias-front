@@ -137,7 +137,7 @@ export default {
 
 .card {
     text-align: center;
-    margin: 2% 10% 2% 10%;
+    margin: 2% 10% 0px 10%;
 }
 
 .boton {

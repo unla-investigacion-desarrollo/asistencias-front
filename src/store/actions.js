@@ -51,7 +51,7 @@ export default {
     },
     [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
       console.log("recupero datos");
-      context.dispatch(ACTIONS.ACTUALIZO_DATOS);
+      //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
       api.obtenerTiposEventos()
       .then(response => {
