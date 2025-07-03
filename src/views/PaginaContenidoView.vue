@@ -113,9 +113,11 @@ export default {
         },
 
     mounted() {
-        const id = this.$route.params.id;
-        console.log(id);
-        this.$store.dispatch(TRAER_CONTENIDO, id);
+        if(this.$store.getters.getContenido().titulo != ""){
+            const id = this.$route.params.id;
+            console.log(id);
+            this.$store.dispatch(TRAER_CONTENIDO, id);
+        }
     }
 }
 </script>
