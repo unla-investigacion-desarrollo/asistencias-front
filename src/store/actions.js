@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2 } from "@/config/mock"
+import { contenido2, lista } from "@/config/mock"
 
 export default {
 
@@ -601,5 +601,36 @@ export default {
     console.log(error);
   });
 },
+[ACTIONS.TRAER_CONTENIDOS] (context) {
+  /*
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerContenidos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  */
+ context.commit(MUTATIONS.OBTENER_CONTENIDOS, lista);
+},
+[ACTIONS.DETALLE_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.OBTENER_CONTENIDO, payload);
+  router.push({
+      name: "PaginaContenidoView",
+      params: {
+        id: payload.idContenido,
+      },
+    });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+
 
 }

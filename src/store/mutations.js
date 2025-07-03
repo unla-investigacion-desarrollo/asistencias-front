@@ -181,5 +181,8 @@ export default {
     },  
     [MUTATIONS.OBTENER_CONTENIDO]: (state, payload) => {
         state.contenido = payload;
-    },    
+    },   
+    [MUTATIONS.OBTENER_CONTENIDOS]: (state, payload) => {
+        state.contenidos = payload;
+    },     
 }

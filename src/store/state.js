@@ -84,6 +84,7 @@ export default {
     },
     actividades: [],
     roles: [],
+    contenidos: [],
     editoActividad: false,
     editoUsuario: false,
     editoRol: false,
