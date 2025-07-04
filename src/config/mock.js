@@ -95,7 +95,7 @@ const lista =  [
 },
 {
         "idContenido": 2,
-    "titulo": "jornada",
+    "titulo": "jornada2",
     "evento": {
         "idEvento": 1,
         "nombre": "Jornada Profesional"
@@ -121,7 +121,7 @@ const lista =  [
 },
 {
         "idContenido": 3,
-    "titulo": "jornada",
+    "titulo": "jornada3",
     "evento": {
         "idEvento": 1,
         "nombre": "Jornada Profesional"
@@ -147,7 +147,7 @@ const lista =  [
 },
 {
         "idContenido": 4,
-    "titulo": "jornada",
+    "titulo": "jornada4",
     "evento": {
         "idEvento": 1,
         "nombre": "Jornada Profesional"
@@ -173,7 +173,7 @@ const lista =  [
 },
 {
         "idContenido": 5,
-    "titulo": "jornada",
+    "titulo": "jornada5",
     "evento": {
         "idEvento": 1,
         "nombre": "Jornada Profesional"

@@ -631,6 +631,23 @@ export default {
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.TRAER_FORMATO_EVENTOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      let data = response.data;
+      const eventos = data.map(e => e.nombre);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, [...new Set(eventos)]);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+
 
 
 }

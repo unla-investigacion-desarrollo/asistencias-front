@@ -39,5 +39,6 @@ export default {
     getRegistroInscripcion: state => () => state.registroInscripcion,
     getHash: state => () =>  state.usuario.hash,
     getError: state => () =>  state.error,
-    getContenidos: state => () =>  state.contenidos
+    getContenidos: state => () =>  state.contenidos,
+    getTitulosContenido: state => () =>  state.titulosContenido
   };
