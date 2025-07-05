@@ -36,7 +36,7 @@ export default {
     name: 'EventosView',
     components: { ListaEventosView, ListaTiposEventosView, ListaActividadView },
     data: () => ({
-      tab: null,
+      tab: this.$store.getters.getTe(),
     }),
 }
 </script>
