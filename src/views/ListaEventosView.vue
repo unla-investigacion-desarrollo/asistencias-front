@@ -29,7 +29,7 @@ export default {
     components: { ListaEvento },
     methods: {
         agregar(){
-            this.$router.push('nuevoEvento')
+            this.$router.push('/nuevoEvento')
         }
     }
 }

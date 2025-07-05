@@ -36,8 +36,13 @@ export default {
     name: 'EventosView',
     components: { ListaEventosView, ListaTiposEventosView, ListaActividadView },
     data: () => ({
-      tab: this.$store.getters.getTe(),
+      tab: null,
     }),
+    mounted() {
+      const solapa = this.$route.params.solapa;
+      console.log(solapa);
+      this.tab = solapa;
+    }
 }
 </script>
 

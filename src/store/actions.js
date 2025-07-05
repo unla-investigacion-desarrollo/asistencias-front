@@ -25,29 +25,45 @@ export default {
         });
     },
     [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
         api.guardarTipoEvento(payload)
         .then(response => {
         console.log(response);
           if (response.status == "200") {
             context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+            router.push({
+            name: "EventosView",
+            params: {
+              solapa: "tipo",
+            },
+          });
           } 
           console.log(context.getters.getTipoEventos());
         })
         .catch(error => {
           console.log(error);
         });
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
     [ACTIONS.AGREGAR_EVENTO] (context, payload) {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
       api.guardarEvento(payload)
       .then(response => {
       console.log(response);
-        if (response.status == "200") {
+        if (response.status == "201") {
           context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+          router.push({
+            name: "EventosView",
+            params: {
+              solapa: "eventos",
+            },
+          });
         } 
       })
       .catch(error => {
         console.log(error);
       });
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
     [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
       console.log("recupero datos");
@@ -362,16 +378,24 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.agregarActividad(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "200") {
+    if (response.status == "201") {
       context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "actividades",
+        },
+      });
     } 
   })
   .catch(error => {
     console.log(error);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
   api.actualizarActividad(payload)

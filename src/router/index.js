@@ -136,6 +136,11 @@ const routes = [
     component: EventosView
   },
   {
+    path: '/unlaEventos/:solapa',
+    name: 'EventosView',
+    component: EventosView
+  },
+  {
     path: '/listaActividades',
     name: 'ListaActividadView',
     component: ListaActividadView

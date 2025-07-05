@@ -31,7 +31,7 @@ export default {
     name: 'UsuariosView',
     components: { ListaUsuarioView, ListaRolesView },
     data: () => ({
-      tab: this.$store.getters.getTu(),
+      tab: null,
     }),
 }
 </script>
