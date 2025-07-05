@@ -29,27 +29,32 @@ export default {
     name: 'MenuHorizontal',
     methods: {
         inscripcion(){
-            this.$router.push('inscripcion');
+            this.$router.push('/inscripcion');
         },
         login(){
             let key = this.$store.getters.getHash();
             if(key === null || key === undefined ){
-                this.$router.push('login');
+                this.$router.push('/login');
             } else {
-                this.$router.push('miPerfil');
+                this.$router.push('/miPerfil');
             }
         },
         eventos(){
-            this.$router.push('unlaEventos');
+            this.$router.push({
+            name: "EventosView",
+            params: {
+              solapa: "eventos",
+            },
+          });
         },
         contenido(){
-            this.$router.push('contenido');
+            this.$router.push('/contenidos');
         },
         usuarios(){
             this.$router.push('unlaUsuarios');
         },
         escaner(){
-          this.$router.push('escaner');
+          this.$router.push('/escaner');
         }
     },
     data() {
