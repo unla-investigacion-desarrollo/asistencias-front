@@ -41,4 +41,5 @@ export default {
     getError: state => () =>  state.error,
     getContenidos: state => () =>  state.contenidos,
     getTitulosContenido: state => () =>  state.titulosContenido,
+    getEventosFormateados: state => () =>  state.eventosFormateados,
   };

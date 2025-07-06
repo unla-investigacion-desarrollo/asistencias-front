@@ -66,7 +66,9 @@ export default {
         audios: [],
         videos: [],
         imagenes: [],
+        evento: {}
     },
+    eventosFormateados: [],
     audios: [],
     videos: [],
     imagenes: [],

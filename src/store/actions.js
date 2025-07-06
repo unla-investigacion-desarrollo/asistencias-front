@@ -578,6 +578,14 @@ export default {
 },
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   console.log(payload);
+  let lista = context.getters.getEventos();
+  let evento = {};
+  for(let i = 0; i < lista.length; i++){
+    if(payload.evento == lista[i].nombre){
+      evento = lista[i];
+    }
+  }
+    console.log("Evento elegido " + JSON.stringify(evento));
   context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
 },
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
@@ -747,7 +755,7 @@ export default {
     if (response.status == "200") {
       let data = response.data;
       const eventos = data.map(e => e.nombre);
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, [...new Set(eventos)]);
+      context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
     } 
   })
   .catch(error => {

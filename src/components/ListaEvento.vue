@@ -159,7 +159,6 @@ export default {
       edito(){
         return this.$store.getters.getEditoEvento();
       }
-
 },
   methods: {
     editarItem(item){   
