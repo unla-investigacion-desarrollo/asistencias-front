@@ -17,11 +17,21 @@ export default {
         .then(response => {
         console.log(response);
           if (response.status == "200") {
+            context.commit(MUTATIONS.AGREGO_ROL, true);
             context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
+            setTimeout(() => { context.commit(MUTATIONS.AGREGO_ROL, false); }, 120000);
+            router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
           } 
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
     },
     [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
@@ -42,6 +52,8 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
@@ -62,6 +74,8 @@ export default {
       })
       .catch(error => {
         console.log(error);
+        context.commit(MUTATIONS.GUARDO_ERROR, error);
+        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
       });
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
@@ -78,6 +92,8 @@ export default {
       })
       .catch(error => {
         console.log(error);
+        context.commit(MUTATIONS.GUARDO_ERROR, error);
+        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
       });
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
@@ -92,6 +108,8 @@ export default {
       })
     .catch(error => {
       console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
 },
 [ACTIONS.MODIFICAR_EVENTO] (context, payload) {
@@ -105,6 +123,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
@@ -118,6 +138,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
@@ -132,6 +154,8 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
@@ -149,6 +173,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -163,6 +189,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -177,6 +205,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -191,6 +221,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -199,18 +231,27 @@ export default {
   router.push('/editarRol');
 },
 [ACTIONS.ACTUALIZAR_ROL] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarTipoUsuario(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
-            router.push('/listaRoles');
-          } 
-          console.log(context.getters.getRoles());
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
+        router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
+      } 
+      console.log(context.getters.getRoles());
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ELIMINAR_ROL] (context) {
   api.eliminarTipoUsuario(context.getters.getTipoUsuario().idTipoUsuario)
@@ -222,6 +263,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
@@ -235,6 +278,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -249,6 +294,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -271,6 +318,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -285,6 +334,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -299,6 +350,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -313,6 +366,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -327,6 +382,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -341,6 +398,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -355,6 +414,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -394,6 +455,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -427,6 +490,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
@@ -454,6 +519,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
@@ -473,9 +540,11 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
-[ACTIONS.MARCAR_ASISTENCIA] (payload) {
+[ACTIONS.MARCAR_ASISTENCIA] (context, payload) {
   api.marcarAsistencia(payload)
   .then(response => {
   console.log(response);
@@ -485,6 +554,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
@@ -500,6 +571,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -542,20 +615,29 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
   api.actualizarUsuario(payload)
-        .then(response => {
-          if (response.status == "200") {
-            context.commit(MUTATIONS.EDITO_USUARIO, true);
-            context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-            router.push('/unlaUsuarios');
-          } 
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_USUARIO, true);
+        context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+        router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
@@ -623,6 +705,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.TRAER_CONTENIDOS] (context) {
@@ -668,6 +752,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },

@@ -41,7 +41,4 @@ export default {
     getError: state => () =>  state.error,
     getContenidos: state => () =>  state.contenidos,
     getTitulosContenido: state => () =>  state.titulosContenido,
-    getTu: state => () =>  state.tu,
-    getTe: state => () =>  state.te,
-    getTc: state => () =>  state.tc,
   };

@@ -186,14 +186,5 @@ export default {
         state.contenidos = payload;
         const contenidos = payload.map(c => c.titulo);
         state.titulosContenido = [...new Set(contenidos)];
-    },     
-    [MUTATIONS.SOLAPA_TU]: (state, payload) => {
-        state.tu = payload;
-    },  
-    [MUTATIONS.SOLAPA_TE]: (state, payload) => {
-        state.te = payload;
-    },  
-    [MUTATIONS.SOLAPA_TC]: (state, payload) => {
-        state.tc = payload;
-    },  
+    },
 }

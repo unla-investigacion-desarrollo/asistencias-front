@@ -29,7 +29,7 @@ export default {
     components: { ListaTipoUsuario },
     methods: {
         agregar(){
-            this.$router.push('nuevoRol')
+            this.$router.push('/nuevoRol')
         }
     }
 }

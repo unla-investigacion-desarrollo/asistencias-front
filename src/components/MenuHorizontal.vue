@@ -51,7 +51,12 @@ export default {
             this.$router.push('/contenidos');
         },
         usuarios(){
-            this.$router.push('unlaUsuarios');
+            this.$router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "usuarios",
+            },
+          });      
         },
         escaner(){
           this.$router.push('/escaner');

@@ -29,7 +29,7 @@ export default {
     components: { ListaUsuarios },
     methods: {
         agregar(){
-            this.$router.push('registro')
+            this.$router.push('/registro')
         }
     }
 }

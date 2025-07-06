@@ -131,6 +131,11 @@ const routes = [
     component: UsuariosView
   },
   {
+    path: '/unlaUsuarios/:solapa',
+    name: 'UsuariosView',
+    component: UsuariosView
+  },
+  {
     path: '/unlaEventos',
     name: 'EventosView',
     component: EventosView
