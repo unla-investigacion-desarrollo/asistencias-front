@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-      <div class="content">
+  <v-container>
+    <v-row class="contenedor">
+      <v-col>
         <v-card
             class="mx-auto title_section" :elevation="8"
         >
@@ -14,9 +15,10 @@
                 <ListaInscripcion></ListaInscripcion>
             </v-card-text>
         </v-card>
-      </div>
-    </div>
-  </template>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   
   <script>
 import ListaInscripcion from '../components/ListaInscripcion.vue';
@@ -38,28 +40,15 @@ import ListaInscripcion from '../components/ListaInscripcion.vue';
   text-align: center;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-
-.content {
-  grid-column: 2/6;
-  grid-row: 1;
+.contenedor {
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 @media screen and (max-width: 600px) {
-.container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
+.contenedor {
+  margin-left: 3%;
+  margin-right: 3%;
 }
 }
 </style>
