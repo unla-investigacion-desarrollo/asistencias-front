@@ -34,6 +34,7 @@
         class="me-4"
         color="primary"
         @click="continuar"
+        :disabled="validoBoton"
       >
       Enviar
       </v-btn>
@@ -67,12 +68,29 @@ export default {
     },
     validarCampo(valor){
         return valor.trim() != "";
+    },
+    validoBoton(){
+      let valido = false;
+      if(this.model.seleccion != 'Todas' && this.listaActividad.length == 0){
+        valido = true;
+      }
+      return valido;
     }
   },
   methods: {
     continuar() {
-      console.log(this.listaActividad)
-      console.log(this.model);
+      console.log("La lista esta compuesta por: " + JSON.stringify(this.listaActividad));
+      if(this.model.seleccion == 'Todas'){
+        console.log("Estas son todas las actividades: " + JSON.stringify(this.actividades));
+        console.log("Estas son las actividades del modelo: " + JSON.stringify(this.model.actividades) );
+        this.model.actividades = this.actividades;
+      } else{
+        if(this.listaActividad.length > 0){
+          this.model.actividades = this.listaActividad;
+        }
+      }
+      
+      console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
       this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, this.model);
     },
