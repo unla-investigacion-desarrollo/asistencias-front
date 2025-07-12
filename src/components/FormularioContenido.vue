@@ -30,6 +30,7 @@
             v-model="evento"
             :items="eventos"
             label="Evento"
+            :rules="validationText"
             required
         ></v-autocomplete>
         </v-col>
@@ -91,7 +92,7 @@
 </template>
   
 <script>
-import { AGREGAR_CONTENIDO, TRAER_FORMATO_EVENTOS, OBTENER_EVENTOS } from '../store/actions-types';
+import { AGREGAR_CONTENIDO, OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioContenido',
   components: { },
@@ -116,7 +117,6 @@ export default {
     }
   },
   created() {
-      this.$store.dispatch(TRAER_FORMATO_EVENTOS);
       this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getEventosFormateados());
   },

@@ -74,7 +74,7 @@
 </template>
 <script>
 import { filtroContenido } from "@/config/index";
-import { TRAER_CONTENIDOS, DETALLE_CONTENIDO, TRAER_FORMATO_EVENTOS, TRAER_CONTENIDOS_X_EVENTO, TRAER_CONTENIDOS_X_TITULO } from '../store/actions-types';
+import { TRAER_CONTENIDOS, DETALLE_CONTENIDO, OBTENER_EVENTOS, TRAER_CONTENIDOS_X_EVENTO, TRAER_CONTENIDOS_X_TITULO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaContenidoGeneral',
@@ -91,7 +91,7 @@ import MensajeComponent from './MensajeComponent.vue';
           return this.$store.getters.getContenidos();
         },
         eventos() {
-          return this.$store.getters.getEventos();
+          return this.$store.getters.getEventosFormateados();
         },
         opciones(){
           return filtroContenido;
@@ -118,7 +118,7 @@ import MensajeComponent from './MensajeComponent.vue';
     },
     created() {
       this.$store.dispatch(TRAER_CONTENIDOS);
-      this.$store.dispatch(TRAER_FORMATO_EVENTOS);
+      this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getContenidos());
       console.log(this.$store.getters.getEventos());
   },

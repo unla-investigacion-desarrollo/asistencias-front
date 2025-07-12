@@ -169,6 +169,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
     } 
   })
   .catch(error => {
@@ -747,23 +748,9 @@ export default {
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
-[ACTIONS.TRAER_FORMATO_EVENTOS] (context) {
-  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerEventos()
-  .then(response => {
-  console.log(response);
-    if (response.status == "200") {
-      let data = response.data;
-      const eventos = data.map(e => e.nombre);
-      context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
-    } 
-  })
-  .catch(error => {
-    console.log(error);
-    context.commit(MUTATIONS.GUARDO_ERROR, error);
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-  });
-  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+[ACTIONS.TRAER_FORMATO_EVENTOS] (context, payload) {
+  const eventos = payload.map(e => e.nombre);
+  context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
 },
 
 
