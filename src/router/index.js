@@ -33,6 +33,7 @@ import EditarUsuariosView from '../views/EditarUsuariosView.vue'
 import ListaEventosGeneralView  from '../views/ListaEventosGeneralView.vue'
 import PaginaContenidoView from '../views/PaginaContenidoView.vue'
 import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
+import RegistroGeneralView from '../views/RegistroGeneralView.vue'
 
 const routes = [
   {
@@ -91,7 +92,7 @@ const routes = [
     component: ActividadView
   },
   {
-    path: '/registro',
+    path: '/unlaRegistro',
     name: 'RegistroView',
     component: RegistroView
   },
@@ -210,6 +211,12 @@ const routes = [
     name: 'ListaContenidosGeneralView',
     component: ListaContenidosGeneralView
   },
+  {
+    path: '/registro',
+    name: 'RegistroGeneralView',
+    component: RegistroGeneralView
+  },
+  
   {
     path: '/about',
     name: 'about',

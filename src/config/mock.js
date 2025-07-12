@@ -186,6 +186,11 @@ const lista =  [
     
 ]
 
+const participante = {
+    "idTipoUsuario": 4,
+    "rol": "Participante"
+}
+
 export {
-  contenido, contenido2, lista
+  contenido, contenido2, lista, participante
 };
