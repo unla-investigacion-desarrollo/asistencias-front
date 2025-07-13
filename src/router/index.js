@@ -34,6 +34,7 @@ import ListaEventosGeneralView  from '../views/ListaEventosGeneralView.vue'
 import PaginaContenidoView from '../views/PaginaContenidoView.vue'
 import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
 import RegistroGeneralView from '../views/RegistroGeneralView.vue'
+import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
 
 const routes = [
   {
@@ -192,7 +193,7 @@ const routes = [
     component: ListaInscripcionUsuarioView
   },
   {
-    path: '/editarUsuario',
+    path: '/editarUnlaUsuario',
     name: 'EditarUsuariosView',
     component: EditarUsuariosView
   },
@@ -216,7 +217,11 @@ const routes = [
     name: 'RegistroGeneralView',
     component: RegistroGeneralView
   },
-  
+  {
+    path: '/editarUsuario',
+    name: 'EditarUsuarioLogueadoView',
+    component: EditarUsuarioLogueadoView
+  },
   {
     path: '/about',
     name: 'about',

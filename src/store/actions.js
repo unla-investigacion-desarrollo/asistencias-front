@@ -515,7 +515,7 @@ export default {
       context.commit(MUTATIONS.AGREGO_USUARIO, true);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_USUARIO, false); }, 1000);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-      router.push('miPerfil');
+      router.push('/miPerfil');
     } 
   })
   .catch(error => {
@@ -650,7 +650,7 @@ export default {
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
-  router.push('/editarUsuario');
+  router.push('/editarUnlaUsuario');
 },
 [ACTIONS.IDENTIFICO_ERRORES] (context) {
   let error = JSON.stringify(context.getters.getError());
@@ -753,6 +753,24 @@ export default {
   context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
 },
 
+[ACTIONS.EDITAR_USUARIO_LOGUEADO] () {
+  router.push("/editarUsuario");
+},
 
-
+[ACTIONS.ACTUALIZAR_USUARIO_LOGUEADO] (context, payload) {
+  api.actualizarUsuario(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_USUARIO, true);
+        context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+        router.push("/miPerfil");
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_USUARIO, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+},
 }
