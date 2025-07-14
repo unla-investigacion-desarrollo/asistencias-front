@@ -1,6 +1,6 @@
 <template>
 
-    <v-form>
+    <v-form v-model="formValid">
       <div class="container">
         <div class="nombre">
           <v-text-field
@@ -76,6 +76,7 @@
             class="me-4"
             color="primary"
             @click="continuar"
+            :disabled="!formValid"
           >
           Modificar
           </v-btn>
@@ -108,6 +109,7 @@ export default {
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
+      formValid: false
     };
   },
   computed: {
