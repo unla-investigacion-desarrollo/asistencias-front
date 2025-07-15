@@ -39,6 +39,7 @@
         color="primary"
         @click="continuar"
         :disabled="validoBoton"
+        v-if="actividades.length != 0"
       >
       Enviar
       </v-btn>
