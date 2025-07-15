@@ -15,6 +15,8 @@ const mensajes = {
         '<p>El contenido fue guardado exitosamente en la base de datos</p>',
     "sin-registros":
         '<p>No encontramos registros disponibles, por favor agregue uno nuevo.</p>',
+    "sin-actividades":
+        '<p>El evento aún no cuenta con actividades. <br> Intente inscribirse más tarde.</p>',
         
     };
 

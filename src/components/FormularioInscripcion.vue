@@ -12,7 +12,7 @@
       :items="seleccionActividades"
       label="Selección de Actividades"
     ></v-select>
-      <v-table v-if="model.seleccion !== 'Todas'"
+      <v-table v-if="model.seleccion !== 'Todas' && actividades.length > 0"
       height="auto"
       fixed-header
     >
@@ -29,6 +29,10 @@
         </tr>
       </tbody>
     </v-table> 
+    <div class="text_menssage" v-if="actividades.length == 0">
+      <Mensaje-component valor="sin-actividades"></Mensaje-component>
+    </div>
+
     <div class="container_button">
       <v-btn
         class="me-4"
@@ -44,10 +48,11 @@
   
 <script>
 import { seleccionActividades } from "@/config/index";
+import MensajeComponent from './MensajeComponent.vue';
 import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
-  components: {},
+  components: { MensajeComponent },
   data() {
     return {
       model: this.$store.getters.getInscripcion(),
@@ -90,9 +95,24 @@ export default {
         }
       }
       
+      if(this.model.actividades == 0){
+        this.$router.push({
+          name: "ErroresView",
+          params: {
+            mensaje: "error-servidor",
+          },
+        });
+      } else if (this.model.actividades > 0) {
+
+      let payload = {
+        ...this.model,
+        usuario: this.$store.getters.getUsuario()
+      }
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
-      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, this.model);
+
+      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, payload);
+    }
     },
     itemProps (item) {
         return {
