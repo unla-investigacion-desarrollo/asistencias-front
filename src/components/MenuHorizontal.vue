@@ -23,33 +23,43 @@
 </template>
   
 <script>
-import { key } from "@/config/index";
 //import { validarUsuarioPermisos } from "@/config/validaciones";
 
 export default {
     name: 'MenuHorizontal',
     methods: {
         inscripcion(){
-            this.$router.push('inscripcion');
+            this.$router.push('/inscripcion');
         },
         login(){
+            let key = this.$store.getters.getHash();
             if(key === null || key === undefined ){
-                this.$router.push('login');
+                this.$router.push('/login');
             } else {
-                this.$router.push('miPerfil');
+                this.$router.push('/miPerfil');
             }
         },
         eventos(){
-            this.$router.push('unlaEventos');
+            this.$router.push({
+            name: "EventosView",
+            params: {
+              solapa: "eventos",
+            },
+          });
         },
         contenido(){
-            this.$router.push('contenido');
+            this.$router.push('/contenidos');
         },
         usuarios(){
-            this.$router.push('unlaUsuarios');
+            this.$router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "usuarios",
+            },
+          });      
         },
         escaner(){
-          this.$router.push('escaner');
+          this.$router.push('/escaner');
         }
     },
     data() {
@@ -59,14 +69,20 @@ export default {
     },
     computed: {
         validarPermisos(){
-            let usuario = JSON.parse(localStorage.getItem("usuario"));
-            console.log("este usuario :" + usuario);
-            let perfil = usuario !== null ? usuario.tipoUsuario.rol : null;
+            let usuario = this.$store.getters.getUsuario();
+            console.log("este usuario :" + JSON.stringify(usuario));
             let accede = false;
-            if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
-                accede = true;
-            }
-            return accede;
+            if(usuario !== null){
+                console.log("ingrese a validar perfil");
+                let perfil = usuario.tipoUsuario.rol;
+                if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
+                    accede = true;
+                }
+                return accede;
+               
+            }else{
+                return accede;
+            }    
         }
     }
 }

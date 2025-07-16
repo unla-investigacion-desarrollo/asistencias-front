@@ -1,5 +1,5 @@
 <template>
-  <div v-if="agrego">
+  <div v-if="agrego" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -10,7 +10,7 @@
     ></v-alert>
   </div>
 
-  <div v-if="edito">
+  <div v-if="edito" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -21,7 +21,7 @@
     ></v-alert>
   </div>
 
-   <div v-if="elimino">
+   <div v-if="elimino" class="alerta">
     <v-alert
       closable
       icon="$success"
@@ -159,7 +159,6 @@ export default {
       edito(){
         return this.$store.getters.getEditoEvento();
       }
-
 },
   methods: {
     editarItem(item){   
@@ -185,8 +184,7 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        let seg = f.substring(17, 19);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
+        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
       }
       return formato;
     }
@@ -204,5 +202,9 @@ export default {
 .text_menssage{
   text-align: center;
   margin: 2%;
+}
+
+.alerta {
+  margin: 2% 0px 2% 0px;
 }
 </style>

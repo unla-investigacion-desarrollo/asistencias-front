@@ -1,5 +1,5 @@
 <template>
-    <v-form>
+  <v-form v-model="formValid">
     <v-text-field
       v-model="model.nombre"
       :counter="45"
@@ -65,6 +65,7 @@
         class="me-4"
         color="primary"
         @click="continuar"
+        :disabled="!formValid"
       >
       Modificar
       </v-btn>
@@ -92,6 +93,7 @@ export default {
       validationDNI: [
         v => !!v || 'El campo es requerido'
         ],
+      formValid: false
     };
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-    <v-form>
+  <v-form v-model="formValid">
     <v-text-field
       v-model="model.nombre"
       :counter="45"
@@ -65,6 +65,7 @@
         class="me-4"
         color="primary"
         @click="continuar"
+        :disabled="!formValid"
       >
       Enviar
       </v-btn>
@@ -92,6 +93,7 @@ export default {
       validationDNI: [
         v => !!v || 'El campo es requerido'
         ],
+      formValid: false
     };
   },
   computed: {
@@ -124,8 +126,8 @@ export default {
         }
       },
     continuar() {
-        console.log(this.model);
-        console.log("me registre");
+      console.log(this.model);
+      console.log("me registre");
       this.$store.dispatch(REGISTRAR_USUARIO, this.model);
     },
   },

@@ -41,6 +41,10 @@ const api = {
     return axios.get(`${dominio}/api/eventos`);
   },
 
+  obtenerEventosXTipoEvento(payload) { 
+    return axios.get(`${dominio}/api/eventos/${payload}`);
+  },
+
   registrarParticipanteAlEvento(payload) { 
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/registrarParticipanteAlEvento`, body);
@@ -165,6 +169,41 @@ const api = {
   },
   obtenerTiposUsuarios() { 
     return axios.get(`${dominio}/api/tipoUsuarios`);
+  },
+
+  //Controller contenido
+
+  guardarContenido(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/contenidos`, body);
+  },
+
+  actualizarContenido(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/contenidos/${payload.idContenido}`, body);
+  },
+
+  eliminarContenido(payload) {
+    return axios.delete(`${dominio}/api/contenidos/${payload}`);
+  },
+
+  traerContenido(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/contenidos/${payload}`, body);
+  },
+
+  obtenerContenidos() { 
+    return axios.get(`${dominio}/api/contenidos`);
+  },
+
+  traerContenidoXEvento(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/contenidos/buscarPorEvento`, body);
+  },
+
+  traerContenidoXTitulo(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/contenidos/buscarPorTitulo`, body);
   },
 
 };

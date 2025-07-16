@@ -1,6 +1,5 @@
 <template>
-
-    <v-form>
+    <v-form v-model="formValid">
       <v-container>
         <v-row>
           <v-col>
@@ -24,6 +23,17 @@
           <v-col>
             <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
           </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-autocomplete
+            v-model="evento"
+            :items="eventos"
+            label="Evento"
+            :rules="validationText"
+            required
+        ></v-autocomplete>
+        </v-col>
       </v-row>
       <v-row v-for="(item, index) in audios.slice(0,5)" :key="index">
         <v-col>
@@ -71,6 +81,7 @@
             class="me-4"
             color="primary"
             @click="continuar"
+            :disabled="!formValid"
           >
           Guardar
           </v-btn>
@@ -81,7 +92,7 @@
 </template>
   
 <script>
-import { AGREGAR_CONTENIDO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { AGREGAR_CONTENIDO, OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioContenido',
   components: { },
@@ -92,20 +103,22 @@ export default {
       audios: [],
       videos: [],
       imagenes: [],
+      evento: "",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
+      formValid: false
     };
   },
   computed: {
     eventos() {
-      return this.$store.getters.getTipoEventos();
+      return this.$store.getters.getEventosFormateados();
     }
   },
   created() {
-      this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
-      console.log(this.$store.getters.getTipoEventos());
+      this.$store.dispatch(OBTENER_EVENTOS);
+      console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
     itemProps (item) {
@@ -118,7 +131,8 @@ export default {
         ... this.model,
         videos: this.videos,
         audios: this.audios,
-        imagenes: this.imagenes
+        imagenes: this.imagenes,
+        evento: this.evento
       };
       console.log(contenido);
 

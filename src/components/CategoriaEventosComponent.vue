@@ -1,16 +1,16 @@
 <template>
 
-           <div v-for="(item, index) in items" :key="index">   
-            <v-container>
-                <v-row>
-                    <v-col>
+  <div v-for="(item, index) in items" :key="index">   
+  <v-container>
+      <v-row>
+          <v-col>
             <v-hover v-slot="{ isHovering, props }">
             <v-card
                 class="mx-auto"
                 max-width="344"
                 v-bind="props"
             >
-                <v-img :src="item.src"></v-img>
+                <v-img class="imagen" :src="item.src"></v-img>
 
                 <v-card-text>
                 <h2 class="text-h6 text-primary">
@@ -30,7 +30,7 @@
             </v-hover>
         </v-col>
       <v-responsive width="100%"></v-responsive>
-     </v-row>
+    </v-row>
   </v-container>
         </div>
   
@@ -67,5 +67,7 @@ data () {
 </script>
 
 <style scoped>
-
+.imagen {
+  height: 270px;
+}
 </style>

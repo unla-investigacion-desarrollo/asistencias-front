@@ -1,51 +1,56 @@
 <template>
-    <div class="error_container">
-        <div class="error_mi"></div>
-        <div class="error">
-            <span class="titulo" v-html="error"></span>
-        </div>
-        <div class="error_md"></div>
-    </div>
+    <v-container>
+        <v-row>
+            <v-col class="icono">
+                 <v-icon color="error" icon="mdi-alert" v-if="$route.params.mensaje !== 'error-404' && $route.params.mensaje !== 'error-servidor'"></v-icon>
+                 <img src="" alt="" srcset="" v-if="$route.params.mensaje == 'error-404'">
+                 <v-icon color="error" icon="mdi-wrench" v-if="$route.params.mensaje === 'error-servidor'"></v-icon>
+
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col class="titulo">
+                <span  v-html="error"></span>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col class="boton">
+                <v-btn color="primary" @click="$router.go(-1)" v-if="$route.params.mensaje !== 'error-invalido'">Volver</v-btn>
+                <v-btn color="primary" @click="$router.push('/login')" v-if="$route.params.mensaje == 'error-invalido'">Ir al login</v-btn>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
 import errores from "../config/errores";
 export default {
-name: 'ErroresView',
-components: {},
-computed: {
-    error() {
-        return errores[this.$route.params.mensaje];
+    name: 'ErroresView',
+    components: {},
+    computed: {
+        error() {
+            return errores[this.$route.params.mensaje];
+        }
     }
-}
 }
 </script>
 
 <style scoped>
-.error_container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    margin: 2% 0px 2% 0px;
-    grid-auto-rows: minmax(100px, auto);
-}
-
-.error_mi {
-    grid-column: 1;
-}
-
-.error {
-    grid-column: 2/6;
-    grid-row: 2;
-}
-
-.error_md {
-    grid-column: 7;
-}
-
 .titulo {
     font-size: 30px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     line-height: normal;
+}
+
+.icono {
+    font-size: 100px;
+    text-align: center;
+    margin: 5% 0px 2% 0px;
+}
+
+.boton {
+    text-align: center;
+    margin: 3% 0px 2% 0px;
 }
 </style>

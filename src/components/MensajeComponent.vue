@@ -4,8 +4,14 @@
             <v-icon 
                 class="mb-6"
                 icon="mdi-file-search-outline"
-                size="60"
-        ></v-icon>
+                size="60" v-if="sinRegistros"
+            ></v-icon>
+            <v-icon 
+                class="mb-6"
+                icon="$warning"
+                color="info"
+                size="60" v-if="!sinRegistros"
+            ></v-icon>
         </div>
     </div>
     <div class="mensaje_container"> 
@@ -21,11 +27,17 @@ export default {
 name: 'MensajeComponent',
 components: {},
 props: {
-      valor: String,
+      valor: {
+        type: String,
+        default: ""
+      }
     },
 computed: {
     texto() {
         return mensajes[this.valor];
+    },
+    sinRegistros(){
+        return this.valor == 'sin-registros';
     }
 }
 }

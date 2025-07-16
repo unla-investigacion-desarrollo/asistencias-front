@@ -30,6 +30,11 @@ import MiPerfilView from '../views/MiPerfilView.vue'
 import DetalleInscripcionView from '../views/DetalleInscripcionView.vue'
 import ListaInscripcionUsuarioView from '../views/ListaInscripcionUsuarioView.vue'
 import EditarUsuariosView from '../views/EditarUsuariosView.vue'
+import ListaEventosGeneralView  from '../views/ListaEventosGeneralView.vue'
+import PaginaContenidoView from '../views/PaginaContenidoView.vue'
+import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
+import RegistroGeneralView from '../views/RegistroGeneralView.vue'
+import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
 
 const routes = [
   {
@@ -88,7 +93,7 @@ const routes = [
     component: ActividadView
   },
   {
-    path: '/registro',
+    path: '/unlaRegistro',
     name: 'RegistroView',
     component: RegistroView
   },
@@ -128,7 +133,17 @@ const routes = [
     component: UsuariosView
   },
   {
+    path: '/unlaUsuarios/:solapa',
+    name: 'UsuariosView',
+    component: UsuariosView
+  },
+  {
     path: '/unlaEventos',
+    name: 'EventosView',
+    component: EventosView
+  },
+  {
+    path: '/unlaEventos/:solapa',
     name: 'EventosView',
     component: EventosView
   },
@@ -178,9 +193,34 @@ const routes = [
     component: ListaInscripcionUsuarioView
   },
   {
-    path: '/editarUsuario',
+    path: '/editarUnlaUsuario',
     name: 'EditarUsuariosView',
     component: EditarUsuariosView
+  },
+  {
+    path: '/eventosUnla',
+    name: 'ListaEventosGeneralView',
+    component: ListaEventosGeneralView
+  },
+  {
+    path: '/contenido/:id',
+    name: 'PaginaContenidoView',
+    component: PaginaContenidoView
+  },
+  {
+    path: '/contenidos',
+    name: 'ListaContenidosGeneralView',
+    component: ListaContenidosGeneralView
+  },
+  {
+    path: '/registro',
+    name: 'RegistroGeneralView',
+    component: RegistroGeneralView
+  },
+  {
+    path: '/editarUsuario',
+    name: 'EditarUsuarioLogueadoView',
+    component: EditarUsuarioLogueadoView
   },
   {
     path: '/about',

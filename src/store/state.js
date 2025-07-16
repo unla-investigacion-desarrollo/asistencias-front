@@ -66,7 +66,9 @@ export default {
         audios: [],
         videos: [],
         imagenes: [],
+        evento: {}
     },
+    eventosFormateados: [],
     audios: [],
     videos: [],
     imagenes: [],
@@ -82,8 +84,10 @@ export default {
         cupo: "",
         cupoLimite: ""
     },
+    titulosContenido: null,
     actividades: [],
     roles: [],
+    contenidos: [],
     editoActividad: false,
     editoUsuario: false,
     editoRol: false,
@@ -102,4 +106,5 @@ export default {
     agregoEvento: false,
     agregoTipoEvento: false,
     registroInscripcion: false,
+    error: ""
 }

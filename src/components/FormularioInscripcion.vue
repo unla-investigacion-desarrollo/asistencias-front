@@ -12,7 +12,7 @@
       :items="seleccionActividades"
       label="Selección de Actividades"
     ></v-select>
-      <v-table v-if="model.seleccion !== 'Todas'"
+      <v-table v-if="model.seleccion !== 'Todas' && actividades.length > 0"
       height="auto"
       fixed-header
     >
@@ -29,11 +29,17 @@
         </tr>
       </tbody>
     </v-table> 
+    <div class="text_menssage" v-if="actividades.length == 0">
+      <Mensaje-component valor="sin-actividades"></Mensaje-component>
+    </div>
+
     <div class="container_button">
       <v-btn
         class="me-4"
         color="primary"
         @click="continuar"
+        :disabled="validoBoton"
+        v-if="actividades.length != 0"
       >
       Enviar
       </v-btn>
@@ -43,10 +49,11 @@
   
 <script>
 import { seleccionActividades } from "@/config/index";
+import MensajeComponent from './MensajeComponent.vue';
 import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
-  components: {},
+  components: { MensajeComponent },
   data() {
     return {
       model: this.$store.getters.getInscripcion(),
@@ -67,14 +74,46 @@ export default {
     },
     validarCampo(valor){
         return valor.trim() != "";
+    },
+    validoBoton(){
+      let valido = false;
+      if(this.model.seleccion != 'Todas' && this.listaActividad.length == 0){
+        valido = true;
+      }
+      return valido;
     }
   },
   methods: {
     continuar() {
-      console.log(this.listaActividad)
-      console.log(this.model);
+      console.log("La lista esta compuesta por: " + JSON.stringify(this.listaActividad));
+      if(this.model.seleccion == 'Todas'){
+        console.log("Estas son todas las actividades: " + JSON.stringify(this.actividades));
+        console.log("Estas son las actividades del modelo: " + JSON.stringify(this.model.actividades) );
+        this.model.actividades = this.actividades;
+      } else{
+        if(this.listaActividad.length > 0){
+          this.model.actividades = this.listaActividad;
+        }
+      }
+      
+      if(this.model.actividades == 0){
+        this.$router.push({
+          name: "ErroresView",
+          params: {
+            mensaje: "error-servidor",
+          },
+        });
+      } else if (this.model.actividades > 0) {
+
+      let payload = {
+        ...this.model,
+        usuario: this.$store.getters.getUsuario()
+      }
+      console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
-      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, this.model);
+
+      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, payload);
+    }
     },
     itemProps (item) {
         return {

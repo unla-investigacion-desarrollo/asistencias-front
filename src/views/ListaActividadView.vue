@@ -29,7 +29,7 @@ export default {
     components: { ListaActividad },
     methods: {
         agregar(){
-            this.$router.push('nuevaActividad')
+            this.$router.push('/nuevaActividad')
         }
     }
 }

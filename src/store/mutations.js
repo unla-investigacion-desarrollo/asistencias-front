@@ -33,6 +33,9 @@ export default {
     [MUTATIONS.OBTENER_LISTA_EVENTOS]: (state, payload) => {
         state.eventos = payload;
     },
+    [MUTATIONS.EVENTOS_FORMATEADOS]: (state, payload) => {
+        state.eventosFormateados = payload;
+    },
     [MUTATIONS.REGISTRAR_PARTICIPANTE_AL_EVENTO]: (state, payload) => {
         state.inscripcion = payload;
     },
@@ -60,6 +63,7 @@ export default {
     [MUTATIONS.ELIMINAR_UNA_ACTIVIDAD]: (state, payload) => {
         let lista = state.actividades;
         state.actividades = lista.filter(e => e != payload);
+        state.actividad = {};
     },
     [MUTATIONS.GUARDAR_USUARIO]: (state, payload) => {
         state.usuario = payload;
@@ -78,9 +82,9 @@ export default {
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
         state.inscripciones = payload;
     }, 
-    [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state) => {
-        state.usuario = JSON.parse(localStorage.getItem("usuario"));
-    }, 
+    [MUTATIONS.GUARDAR_INSCRIPCION_EVENTO]: (state, payload) => {
+        state.inscripcion = payload;
+    },
     [MUTATIONS.GUARDAR_CONTENIDO]: (state, payload) => {
         state.contenido = payload;
     },  
@@ -93,6 +97,11 @@ export default {
         let lista = state.usuarios;
         state.usuarios = lista.filter(e => e != payload);
         state.usuario = {};
+    },
+    [MUTATIONS.ELIMINAR_UNA_INSCRIPCION]: (state, payload) => {
+        let lista = state.inscripciones;
+        state.inscripciones = lista.filter(e => e != payload);
+        state.inscripcion = {};
     },
     [MUTATIONS.EDITO_ACTIVIDAD]: (state, payload) => {
         state.editoActividad = payload;
@@ -151,4 +160,34 @@ export default {
     [MUTATIONS.RECUPERAR_USUARIO]: (state) => {
         state.usuario = JSON.parse(localStorage.getItem("usuario"));
     }, 
+    [MUTATIONS.GUARDO_ERROR]: (state, payload) => {
+        state.error = payload;
+    },  
+    [MUTATIONS.CERRAR_SESION]: (state) => {
+        state.usuario = {};
+        state.usuario = { tipoUsuario: {
+            rol: "Participante"
+        }};
+        state.usuario.hash = "";
+        localStorage.removeItem("usuario");
+        localStorage.removeItem("keyuser");
+    }, 
+    [MUTATIONS.ACTUALIZO_DATOS]: (state) => {
+        let dni = state.usuario.dni; 
+        let key = state.usuario.hash;
+        if(dni == undefined || dni == null || dni == ""){
+            state.usuario = JSON.parse(localStorage.getItem("usuario"));
+        } 
+        if(key == undefined || key == null || key == ""){
+            state.usuario.hash = localStorage.getItem("keyuser");
+        } 
+    },  
+    [MUTATIONS.OBTENER_CONTENIDO]: (state, payload) => {
+        state.contenido = payload;
+    },   
+    [MUTATIONS.OBTENER_CONTENIDOS]: (state, payload) => {
+        state.contenidos = payload;
+        const contenidos = payload.map(c => c.titulo);
+        state.titulosContenido = [...new Set(contenidos)];
+    },
 }

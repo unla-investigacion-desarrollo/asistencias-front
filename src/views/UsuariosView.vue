@@ -33,6 +33,11 @@ export default {
     data: () => ({
       tab: null,
     }),
+    mounted() {
+      const solapa = this.$route.params.solapa;
+      console.log(solapa);
+      this.tab = solapa;
+    }
 }
 </script>
 

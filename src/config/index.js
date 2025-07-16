@@ -20,6 +20,8 @@ const estados = [ 'Creado', 'Iniciado', 'Terminado', 'Suspendido', 'Aplazado' ];
 
 const seleccionActividades = [ 'Todas', 'Elijo actividades' ];
 
+const filtroContenido = [ 'Evento', 'Titulo' ];
+
 const key = localStorage.getItem("keyuser");
 
 const dominio = "http://localhost:8080/eventos"; 
@@ -28,6 +30,6 @@ export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key
+  seleccionActividades, key, filtroContenido
 };
 

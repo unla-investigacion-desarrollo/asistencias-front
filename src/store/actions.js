@@ -2,6 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
+import { contenido2, lista } from "@/config/mock"
 
 export default {
 
@@ -16,39 +17,71 @@ export default {
         .then(response => {
         console.log(response);
           if (response.status == "200") {
+            context.commit(MUTATIONS.AGREGO_ROL, true);
             context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
+            setTimeout(() => { context.commit(MUTATIONS.AGREGO_ROL, false); }, 120000);
+            router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
           } 
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
     },
     [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
         api.guardarTipoEvento(payload)
         .then(response => {
         console.log(response);
           if (response.status == "200") {
             context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+            router.push({
+            name: "EventosView",
+            params: {
+              solapa: "tipo",
+            },
+          });
           } 
           console.log(context.getters.getTipoEventos());
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
     [ACTIONS.AGREGAR_EVENTO] (context, payload) {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
       api.guardarEvento(payload)
       .then(response => {
       console.log(response);
-        if (response.status == "200") {
+        if (response.status == "201") {
           context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+          router.push({
+            name: "EventosView",
+            params: {
+              solapa: "eventos",
+            },
+          });
         } 
       })
       .catch(error => {
         console.log(error);
+        context.commit(MUTATIONS.GUARDO_ERROR, error);
+        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
       });
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
     },
     [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
+      console.log("recupero datos");
+      //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
       api.obtenerTiposEventos()
       .then(response => {
@@ -59,6 +92,8 @@ export default {
       })
       .catch(error => {
         console.log(error);
+        context.commit(MUTATIONS.GUARDO_ERROR, error);
+        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
       });
       context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
@@ -73,6 +108,8 @@ export default {
       })
     .catch(error => {
       console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
 },
 [ACTIONS.MODIFICAR_EVENTO] (context, payload) {
@@ -81,11 +118,18 @@ export default {
   console.log(response);
     if (response.status == "201") {
       context.commit(MUTATIONS.MODIFICAR_UN_EVENTO, payload);
-      router.push('unlaEventos')
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "eventos",
+        },
+      });
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
@@ -99,6 +143,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
@@ -113,6 +159,8 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          context.commit(MUTATIONS.GUARDO_ERROR, error);
+          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
         });
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
@@ -126,10 +174,29 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventosXTipoEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -144,6 +211,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -158,6 +227,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -166,18 +237,27 @@ export default {
   router.push('/editarRol');
 },
 [ACTIONS.ACTUALIZAR_ROL] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarTipoUsuario(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
-            router.push('/listaRoles');
-          } 
-          console.log(context.getters.getRoles());
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
+        router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
+      } 
+      console.log(context.getters.getRoles());
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ELIMINAR_ROL] (context) {
   api.eliminarTipoUsuario(context.getters.getTipoUsuario().idTipoUsuario)
@@ -189,6 +269,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
@@ -202,6 +284,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -216,6 +300,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -238,6 +324,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -252,6 +340,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -266,6 +356,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -280,6 +372,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -294,6 +388,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -308,6 +404,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -322,6 +420,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
@@ -333,24 +433,38 @@ export default {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push("/miPerfil");
+    } else {
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
   })
   .catch(error => {
-    console.log(error);
+    console.log("Este es el error" + error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.agregarActividad(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "200") {
+    if (response.status == "201") {
       context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "actividades",
+        },
+      });
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
   api.actualizarActividad(payload)
@@ -370,16 +484,20 @@ export default {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/editarActividad');
 },
-[ACTIONS.ELIMINAR_ACTIVIDAD] (context, payload) {
-  api.eliminarActividad(payload.idActividad)
+[ACTIONS.ELIMINAR_ACTIVIDAD] (context) {
+  api.eliminarActividad(context.getters.getActividad().idActividad)
   .then(response => {
-  console.log(response);
+  console.log("Elimino esta actividad: " + JSON.stringify(context.getters.getActividad()));
     if (response.status == "204") {
-      context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, payload);
+      context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, true);
+      context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, context.getters.getActividad());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, false); }, 120000);
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
@@ -402,11 +520,13 @@ export default {
       context.commit(MUTATIONS.AGREGO_USUARIO, true);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_USUARIO, false); }, 1000);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-      router.push('miPerfil');
+      router.push('/miPerfil');
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
@@ -420,13 +540,17 @@ export default {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       context.dispatch(ACTIONS.OBTENER_INFO_USUARIO_EMAIL, payload.email);
+    } else{
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
-[ACTIONS.MARCAR_ASISTENCIA] (payload) {
+[ACTIONS.MARCAR_ASISTENCIA] (context, payload) {
   api.marcarAsistencia(payload)
   .then(response => {
   console.log(response);
@@ -436,6 +560,8 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
@@ -451,11 +577,21 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   console.log(payload);
+  let lista = context.getters.getEventos();
+  let evento = {};
+  for(let i = 0; i < lista.length; i++){
+    if(payload.evento == lista[i].nombre){
+      evento = lista[i];
+    }
+  }
+    console.log("Evento elegido " + JSON.stringify(evento));
   context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
 },
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
@@ -466,6 +602,10 @@ export default {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
 },
+[ACTIONS.ACEPTA_ELIMINAR_INSCRIPCION] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+},
 [ACTIONS.ACEPTA_ELIMINAR_TIPO_USUARIO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
@@ -473,6 +613,10 @@ export default {
 [ACTIONS.ACEPTA_ELIMINAR_USUARIO] (context, payload) {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_ACTIVIDAD] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
 },
 [ACTIONS.ELIMINAR_USUARIO] (context) {
   api.eliminarUsuario(context.getters.getUsuario().idUsuario)
@@ -485,23 +629,153 @@ export default {
   })
   .catch(error => {
     console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
 },
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
   api.actualizarUsuario(payload)
-        .then(response => {
-          if (response.status == "200") {
-            context.commit(MUTATIONS.EDITO_USUARIO, true);
-            context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-            router.push('/unlaUsuarios');
-          } 
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_USUARIO, true);
+        context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+        router.push({
+            name: "UsuariosView",
+            params: {
+              solapa: "roles",
+            },
+          });
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
-  router.push('/editarUsuario');
+  router.push('/editarUnlaUsuario');
+},
+[ACTIONS.IDENTIFICO_ERRORES] (context) {
+  let error = JSON.stringify(context.getters.getError());
+  let status = error.status;
+  let codigoError = JSON.stringify(error);
+  if(status === "500" || codigoError.includes("500")){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-servidor",
+      },
+    });
+  } else if (status === "404"  || codigoError.includes("404")){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-404",
+      },
+    });
+  } else if (status === "401" || codigoError.includes("401")){
+    context.commit(MUTATIONS.CERRAR_SESION);
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "error-invalido",
+      },
+    });
+  } else {
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "mensaje-2",
+      },
+    });
+  }
+},
+[ACTIONS.LOGOUT] (context) {
+  context.commit(MUTATIONS.CERRAR_SESION);
+  router.push('/');
+},
+[ACTIONS.TRAER_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.OBTENER_CONTENIDO, contenido2);
+  router.push({
+      name: "PaginaContenidoView",
+      params: {
+        id: payload,
+      },
+    });
+},
+[ACTIONS.ACTUALIZO_DATOS] (context) {
+  context.commit(MUTATIONS.ACTUALIZO_DATOS);
+},
+[ACTIONS.ELIMINAR_INSCRIPCION] (context) {
+  api.eliminarInscripcion(context.getters.getInscripcion().idInscripcion)
+  .then(response => {
+   console.log("Elimino inscripcion: " + JSON.stringify(context.getters.getInscripcion()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_INSCRIPCION, true);
+      context.commit(MUTATIONS.ELIMINAR_UNA_INSCRIPCION, context.getters.getInscripcion());
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+},
+[ACTIONS.TRAER_CONTENIDOS] (context) {
+  /*
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerContenidos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  */
+ context.commit(MUTATIONS.OBTENER_CONTENIDOS, lista);
+},
+[ACTIONS.DETALLE_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.OBTENER_CONTENIDO, payload);
+  router.push({
+      name: "PaginaContenidoView",
+      params: {
+        id: payload.idContenido,
+      },
+    });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.TRAER_FORMATO_EVENTOS] (context, payload) {
+  const eventos = payload.map(e => e.nombre);
+  context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
+},
+
+[ACTIONS.EDITAR_USUARIO_LOGUEADO] () {
+  router.push("/editarUsuario");
+},
+
+[ACTIONS.ACTUALIZAR_USUARIO_LOGUEADO] (context, payload) {
+  api.actualizarUsuario(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_USUARIO, true);
+        context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+        router.push("/miPerfil");
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_USUARIO, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
 },
 }
