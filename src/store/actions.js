@@ -118,7 +118,12 @@ export default {
   console.log(response);
     if (response.status == "201") {
       context.commit(MUTATIONS.MODIFICAR_UN_EVENTO, payload);
-      router.push('unlaEventos')
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "eventos",
+        },
+      });
     } 
   })
   .catch(error => {
