@@ -35,6 +35,7 @@ import PaginaContenidoView from '../views/PaginaContenidoView.vue'
 import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
 import RegistroGeneralView from '../views/RegistroGeneralView.vue'
 import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
+import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
 
 const routes = [
   {
@@ -221,6 +222,11 @@ const routes = [
     path: '/editarUsuario',
     name: 'EditarUsuarioLogueadoView',
     component: EditarUsuarioLogueadoView
+  },
+  {
+    path: '/proximosEventos',
+    name: 'ListaProximosEventosView',
+    component: ListaProximosEventosView
   },
   {
     path: '/about',

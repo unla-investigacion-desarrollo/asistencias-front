@@ -26,10 +26,21 @@ const key = localStorage.getItem("keyuser");
 
 const dominio = "http://localhost:8080/eventos"; 
 
+const hoy = new Date();
+const anio = hoy.getFullYear();
+const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+const dia = String(hoy.getDate()).padStart(2, '0');
+const hora = String(hoy.getHours()).padStart(2, '0');
+const minuto = String(hoy.getMinutes()).padStart(2, '0');
+const segundo = String(hoy.getSeconds()).padStart(2, '0');
+
+// Formateo la fecha en el formato "YYYY-MM-DDTHH:mm:ss"
+const hoyFormateado = `${anio}-${mes}-${dia}T${hora}:${minuto}:${segundo}`;
+
 export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key, filtroContenido
+  seleccionActividades, key, filtroContenido, hoyFormateado
 };
 

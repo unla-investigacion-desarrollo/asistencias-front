@@ -3,6 +3,7 @@ import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
 import { contenido2, lista } from "@/config/mock"
+import { hoyFormateado } from "@/config/index"
 
 export default {
 
@@ -777,5 +778,34 @@ export default {
       context.commit(MUTATIONS.GUARDO_ERROR, error);
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
+},
+[ACTIONS.OBTENER_PROXIMOS_EVENTOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+
+      let lista = response.data;
+      let listaAux = [];
+      let aux = {};
+
+      for(let i = 0; i < lista.length; i++){
+        if(lista[i].fechaInicio > hoyFormateado){
+          aux = lista[i];
+          listaAux.push(aux);
+        }   
+      }
+      console.log(listaAux);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 }

@@ -17,7 +17,8 @@ const mensajes = {
         '<p>No encontramos registros disponibles, por favor agregue uno nuevo.</p>',
     "sin-actividades":
         '<p>El evento aún no cuenta con actividades. <br> Intente inscribirse más tarde.</p>',
-        
+    "sin-eventos":
+        '<p>Aún estamos definiendo la oferta de eventos. <br> Estate atento, próximamente tendremos novedades.</p>',
     };
 
 export default mensajes;
