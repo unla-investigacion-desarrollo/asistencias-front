@@ -1,9 +1,7 @@
-<template>
-
-  <div v-for="(item, index) in items" :key="index">   
+<template> 
   <v-container>
       <v-row>
-          <v-col>
+          <v-col v-for="(item, index) in items" :key="index" :cols="12" :md="3">
             <v-hover v-slot="{ isHovering, props }">
             <v-card
                 class="mx-auto"
@@ -32,10 +30,6 @@
       <v-responsive width="100%"></v-responsive>
     </v-row>
   </v-container>
-        </div>
-  
-      
- 
 </template>
 
 <script>
