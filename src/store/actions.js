@@ -509,6 +509,10 @@ export default {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/detalleEvento');
 },
+[ACTIONS.DETALLE_EVENTO_GENERAL] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+  router.push('/infoEvento');
+},
 [ACTIONS.DETALLE_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/detalleActividad');

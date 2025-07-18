@@ -51,7 +51,7 @@
     
   </template>
 <script>
-import { OBTENER_PROXIMOS_EVENTOS, DETALLE_EVENTO } from '../store/actions-types';
+import { OBTENER_PROXIMOS_EVENTOS, DETALLE_EVENTO_GENERAL } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaProximosEventos',
@@ -66,7 +66,7 @@ export default {
 },
   methods: {
     detalleItem(item){
-        this.$store.dispatch(DETALLE_EVENTO, item);
+        this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     formatearFecha(f){
       let formato = "";

@@ -74,7 +74,7 @@
   </div>
   </template>
 <script>
-import { OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 import { usuario } from '@/config';
 export default {
@@ -97,7 +97,7 @@ export default {
 },
   methods: {
     detalleItem(item){
-        this.$store.dispatch(DETALLE_EVENTO, item);
+        this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     inscripcionItem(item){
       if(usuario != null){

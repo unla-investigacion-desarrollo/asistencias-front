@@ -36,6 +36,7 @@ import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
 import RegistroGeneralView from '../views/RegistroGeneralView.vue'
 import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
 import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
+import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
 
 const routes = [
   {
@@ -227,6 +228,11 @@ const routes = [
     path: '/proximosEventos',
     name: 'ListaProximosEventosView',
     component: ListaProximosEventosView
+  },
+  {
+    path: '/infoEvento',
+    name: 'DetalleEventoGeneralView',
+    component: DetalleEventoGeneralView
   },
   {
     path: '/about',
