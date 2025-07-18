@@ -95,7 +95,7 @@ export default {
           this.model.actividades = this.listaActividad;
         }
       }
-      
+      console.log("Estado de las actividades antes de llamar " + JSON.stringify(this.model.actividades));
       if(this.model.actividades == 0){
         this.$router.push({
           name: "ErroresView",
@@ -103,12 +103,11 @@ export default {
             mensaje: "error-servidor",
           },
         });
-      } else if (this.model.actividades > 0) {
-
+      } else {
       let payload = {
         ...this.model,
         usuario: this.$store.getters.getUsuario()
-      }
+      };
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
 

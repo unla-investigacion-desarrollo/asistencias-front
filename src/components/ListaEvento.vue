@@ -140,7 +140,7 @@
 <script>
 import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { usuario } from '@/config';
+import { usuario, formatearFecha } from '@/config';
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },
@@ -186,18 +186,6 @@ export default {
         });
       }
     },
-    formatearFecha(f){
-      let formato = "";
-      if(f != null){
-        let anio = f.substring(0, 4);
-        let mes = f.substring(5, 7);
-        let dia = f.substring(8, 10);
-        let hora = f.substring(11, 13);
-        let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
-      }
-      return formato;
-    }
   },
   created() {
     this.$store.dispatch(OBTENER_EVENTOS);

@@ -51,8 +51,8 @@
           <td>{{ item.usuario.dni }}</td>
           <td>{{ item.evento.nombre }}</td>
           <td>{{ item.actividad.nombre }}</td>
-          <td>{{ item.actividad.fechaInicio }}</td>
-          <td>{{ item.actividad.fechaFin }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
           <td>{{ item.actividad.edificio }}</td>
           <td>{{ item.actividad.ubicacion }}</td>
           <td>{{ item.actividad.estado }}</td>
@@ -99,46 +99,51 @@
   import { ref } from 'vue'
   const dialog = ref(false)
 </script>
-  <script>
-  import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
-  import MensajeComponent from './MensajeComponent.vue';
-    export default {
-      name: 'ListaInscripcion',
-      components: { MensajeComponent },
-      data(){
-        return {};
-      },
-      computed: {
-        inscripciones() {
-          return this.$store.getters.getInscripciones();
-      }
+<script>
+import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
+import { inscripcion1, inscripcion2 } from '@/config/mock';
+import { formatearFecha } from '@/config';
+  export default {
+    name: 'ListaInscripcion',
+    components: { MensajeComponent },
+    data(){
+      return {};
     },
-    methods: {
-      editarItem(item){
-        this.$store.dispatch(EDITAR_INSCRIPCION, item);
-      },
-      modalEliminar(item){
-        this.$store.dispatch(ACEPTA_ELIMINAR_INSCRIPCION, item);
-      },
-      eliminarItem(){
-        this.$store.dispatch(ELIMINAR_INSCRIPCION);
-      },
-      detalleItem(item){
-        this.$store.dispatch(DETALLE_INSCRIPCION, item);
-      }
-    },
-    created() {
-      this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO);
-      console.log(this.$store.getters.getInscripciones());
+    computed: {
+      inscripciones() {
+        return this.$store.getters.getInscripciones();
+    }
   },
-  }
-  </script>
-  <style scoped>
-  .remove_item{
-      margin-left: 2%;
-  }
-  .text_menssage{
-    text-align: center;
-    margin: 2%;
-  }
-  </style>
+  methods: {
+    editarItem(item){
+      this.$store.dispatch(EDITAR_INSCRIPCION, item);
+    },
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_INSCRIPCION, item);
+    },
+    eliminarItem(){
+      this.$store.dispatch(ELIMINAR_INSCRIPCION);
+    },
+    detalleItem(item){
+      this.$store.dispatch(DETALLE_INSCRIPCION, item);
+    }
+  },
+  created() {
+    //this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO);
+    let lista = this.$store.getters.getInscripciones();
+    lista.push(inscripcion1);
+    lista.push(inscripcion2);
+    console.log(this.$store.getters.getInscripciones());
+},
+}
+</script>
+<style scoped>
+.remove_item{
+    margin-left: 2%;
+}
+.text_menssage{
+  text-align: center;
+  margin: 2%;
+}
+</style>

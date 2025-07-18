@@ -191,6 +191,232 @@ const participante = {
     "rol": "Participante"
 }
 
+const inscripcion = {
+    "actividades": [
+        {
+            "idActividad": 102,
+            "nombre": "act",
+            "descripcion": "asdasda",
+            "fechaInicio": "2025-08-02T00:09",
+            "fechaFin": "2025-08-02T00:09",
+            "estado": "Creado",
+            "edificio": "Edificio Manuel Ugarte",
+            "ubicacion": "aula 2",
+            "cupo": 1,
+            "cupoMax": null,
+            "evento": {
+                "idEvento": 7,
+                "nombre": "fest",
+                "descripcion": "fest",
+                "fechaInicio": "2025-07-17T00:06:00",
+                "fechaFin": "2025-07-22T00:06:00",
+                "fechaCierre": null,
+                "edificio": "Edificio Jose Hernandez",
+                "ubicacion": "aula 1",
+                "estado": "Creado",
+                "linkCertificado": "",
+                "tipoEvento": {
+                    "idTipoEvento": 102,
+                    "nombre": "Festival",
+                    "descripcion": "festival"
+                }
+            }
+        },
+        {
+            "idActividad": 103,
+            "nombre": "act 3",
+            "descripcion": "sadads",
+            "fechaInicio": "2025-08-03T00:10",
+            "fechaFin": "2025-08-03T00:10",
+            "estado": "Creado",
+            "edificio": "Edificio Arturo Jauretche",
+            "ubicacion": "aula 3",
+            "cupo": 1,
+            "cupoMax": null,
+            "evento": {
+                "idEvento": 7,
+                "nombre": "fest",
+                "descripcion": "fest",
+                "fechaInicio": "2025-07-17T00:06:00",
+                "fechaFin": "2025-07-22T00:06:00",
+                "fechaCierre": null,
+                "edificio": "Edificio Jose Hernandez",
+                "ubicacion": "aula 1",
+                "estado": "Creado",
+                "linkCertificado": "",
+                "tipoEvento": {
+                    "idTipoEvento": 102,
+                    "nombre": "Festival",
+                    "descripcion": "festival"
+                }
+            }
+        }
+    ],
+    "usuario": {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+        }
+    },
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    },
+    "actividad": {},
+    "asistencia": false,
+    "certificadoEnviado": false
+};
+
+const inscripcion1 = {
+    "actividad":
+        {
+            "idActividad": 102,
+            "nombre": "act",
+            "descripcion": "asdasda",
+            "fechaInicio": "2025-08-02T00:09",
+            "fechaFin": "2025-08-02T00:09",
+            "estado": "Creado",
+            "edificio": "Edificio Manuel Ugarte",
+            "ubicacion": "aula 2",
+            "cupo": 1,
+            "cupoMax": null,
+            "evento": {
+                "idEvento": 7,
+                "nombre": "fest",
+                "descripcion": "fest",
+                "fechaInicio": "2025-07-17T00:06:00",
+                "fechaFin": "2025-07-22T00:06:00",
+                "fechaCierre": null,
+                "edificio": "Edificio Jose Hernandez",
+                "ubicacion": "aula 1",
+                "estado": "Creado",
+                "linkCertificado": "",
+                "tipoEvento": {
+                    "idTipoEvento": 102,
+                    "nombre": "Festival",
+                    "descripcion": "festival"
+                }
+            }
+        },
+    "usuario": {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+        }
+    },
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    },
+    "asistencia": false,
+    "certificadoEnviado": false
+};
+
+const inscripcion2 = {
+    "actividad": 
+        {
+            "idActividad": 103,
+            "nombre": "act 3",
+            "descripcion": "sadads",
+            "fechaInicio": "2025-08-03T00:10",
+            "fechaFin": "2025-08-03T00:10",
+            "estado": "Creado",
+            "edificio": "Edificio Arturo Jauretche",
+            "ubicacion": "aula 3",
+            "cupo": 1,
+            "cupoMax": null,
+            "evento": {
+                "idEvento": 7,
+                "nombre": "fest",
+                "descripcion": "fest",
+                "fechaInicio": "2025-07-17T00:06:00",
+                "fechaFin": "2025-07-22T00:06:00",
+                "fechaCierre": null,
+                "edificio": "Edificio Jose Hernandez",
+                "ubicacion": "aula 1",
+                "estado": "Creado",
+                "linkCertificado": "",
+                "tipoEvento": {
+                    "idTipoEvento": 102,
+                    "nombre": "Festival",
+                    "descripcion": "festival"
+                }
+            }
+        },
+    "usuario": {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+        }
+    },
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    },
+    "asistencia": false,
+    "certificadoEnviado": false
+};
+
 export {
-  contenido, contenido2, lista, participante
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2
 };
