@@ -15,6 +15,8 @@ const errores = {
         '<p>En este momento no es posible continuar por una falla del sistema. <br/> Te pedimos que intentes nuevamente para completar el proceso.</p>',
     "mensaje-2":
         '<p>Algo salio mal. <br/> Te pedimos que intentes nuevamente.</p>',
+    "usuario-requerido":
+        '<p>Para poder inscribirse al evento es necesario estar registrado. <br> Regístrate o Inicia sesión en caso de tener una cuenta.</p>',
     };
 
 export default errores;

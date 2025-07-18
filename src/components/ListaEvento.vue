@@ -140,6 +140,7 @@
 <script>
 import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
+import { usuario } from '@/config';
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },
@@ -174,7 +175,16 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO, item);
     },
     inscripcionItem(item){
-      this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+      if(usuario != null){
+        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+      } else {
+        this.$router.push({
+          name: "ErroresView",
+          params: {
+            mensaje: "usuario-requerido",
+          },
+        });
+      }
     },
     formatearFecha(f){
       let formato = "";

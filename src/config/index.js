@@ -37,10 +37,12 @@ const segundo = String(hoy.getSeconds()).padStart(2, '0');
 // Formateo la fecha en el formato "YYYY-MM-DDTHH:mm:ss"
 const hoyFormateado = `${anio}-${mes}-${dia}T${hora}:${minuto}:${segundo}`;
 
+const usuario = localStorage.getItem("usuario");
+
 export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key, filtroContenido, hoyFormateado
+  seleccionActividades, key, filtroContenido, hoyFormateado, usuario
 };
 
