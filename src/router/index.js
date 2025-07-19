@@ -37,6 +37,7 @@ import RegistroGeneralView from '../views/RegistroGeneralView.vue'
 import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
 import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
 import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
+import Pagina404View from '../views/Pagina404View.vue'
 
 const routes = [
   {
@@ -233,6 +234,11 @@ const routes = [
     path: '/infoEvento',
     name: 'DetalleEventoGeneralView',
     component: DetalleEventoGeneralView
+  },
+   {
+    path: '/404',
+    name: 'Pagina404View',
+    component: Pagina404View
   },
   {
     path: '/about',

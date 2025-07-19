@@ -1,5 +1,5 @@
 <template>
-  <v-app class="fondo">
+  <v-app :class="fondo">
     <menu-horizontal></menu-horizontal> 
     <v-main>
       <router-view/>
@@ -26,6 +26,14 @@ export default {
   computed:{
     cargando(){
       return this.$store.state.spinner;
+    },
+    fondo(){
+      const routeName = this.$route.name;
+      console.log(routeName);
+      if (routeName === 'Pagina404View') {
+        return 'error404';
+      }
+      return 'pantallas';
     }
   }
 }
@@ -52,9 +60,20 @@ export default {
     margin: 2% 0px 2% 0px;
 }
 
-.fondo {
-  background-color: #fff;
+.error404{
+  background-image: url('./assets/404Escritorio.png');
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+.pantallas{
+  background: white;
+}
 
+@media screen and (max-width: 600px) {
+.error404{
+  background-image: url('./assets/404Celular.PNG');
+  background-position: center;
+}
+}
 </style>

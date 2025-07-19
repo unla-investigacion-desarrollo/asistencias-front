@@ -20,12 +20,11 @@
   
   <script>
 import FormularioActividad from '../components/FormularioActividad.vue';
-
   
-  export default {
-    name: 'ActividadView',
-    components: { FormularioActividad },
-  }
+export default {
+  name: 'ActividadView',
+  components: { FormularioActividad },
+}
 </script>
   
 <style scoped>
