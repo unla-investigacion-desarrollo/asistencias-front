@@ -38,6 +38,7 @@ import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
 import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
 import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
 import Pagina404View from '../views/Pagina404View.vue'
+import ListaActividadGeneralView from '../views/ListaActividadGeneralView.vue'
 
 const routes = [
   {
@@ -239,6 +240,11 @@ const routes = [
     path: '/404',
     name: 'Pagina404View',
     component: Pagina404View
+  },
+  {
+    path: '/actividadesUnla',
+    name: 'ListaActividadGeneralView',
+    component: ListaActividadGeneralView
   },
   {
     path: '/about',
