@@ -2,8 +2,7 @@
     <v-container>
         <v-row>
             <v-col class="icono">
-                 <v-icon color="error" icon="mdi-alert" v-if="$route.params.mensaje !== 'error-404' && $route.params.mensaje !== 'error-servidor'"></v-icon>
-                 <img src="" alt="" srcset="" v-if="$route.params.mensaje == 'error-404'">
+                 <v-icon color="error" icon="mdi-alert" v-if="$route.params.mensaje !== 'error-servidor'"></v-icon>
                  <v-icon color="error" icon="mdi-wrench" v-if="$route.params.mensaje === 'error-servidor'"></v-icon>
 
             </v-col>

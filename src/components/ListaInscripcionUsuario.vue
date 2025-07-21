@@ -7,15 +7,6 @@
       <thead>
         <tr>
           <th class="text-left">
-            Nombre
-          </th>
-          <th class="text-left">
-            Apellido
-          </th>
-          <th class="text-left">
-            DNI
-          </th>
-          <th class="text-left">
             Evento
           </th>
           <th class="text-left">
@@ -34,9 +25,6 @@
             Ubicacion
           </th>
           <th class="text-left">
-            Estado
-          </th>
-          <th class="text-left">
             Acciones
           </th>
         </tr>
@@ -46,16 +34,12 @@
           v-for="item in inscripciones"
           :key="item.idInscripcion"
         >
-          <td>{{ item.usuario.nombre }}</td>
-          <td>{{ item.usuario.apellido }}</td>
-          <td>{{ item.usuario.dni }}</td>
           <td>{{ item.evento.nombre }}</td>
           <td>{{ item.actividad.nombre }}</td>
           <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
           <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
           <td>{{ item.actividad.edificio }}</td>
           <td>{{ item.actividad.ubicacion }}</td>
-          <td>{{ item.actividad.estado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
@@ -105,7 +89,7 @@ import MensajeComponent from './MensajeComponent.vue';
 import { inscripcion1, inscripcion2 } from '@/config/mock';
 import { formatearFecha } from '@/config';
   export default {
-    name: 'ListaInscripcion',
+    name: 'ListaInscripcionUsuario',
     components: { MensajeComponent },
     data(){
       return {};
