@@ -12,7 +12,7 @@
           </template>
 
           <v-card-text class="bg-surface-light pt-4">
-              <DetalleActividad></DetalleActividad>
+              <DetalleActividadGeneral></DetalleActividadGeneral>
           </v-card-text>
       </v-card>
       </v-col>
@@ -38,12 +38,12 @@
 </template>
   
 <script>
-import DetalleActividad from '../components/DetalleActividad.vue';
+import DetalleActividadGeneral from '@/components/DetalleActividadGeneral.vue';
 import MapaComponent from '@/components/MapaComponent.vue';
 
 export default {
-  name: 'DetalleActividadView',
-  components: { DetalleActividad, MapaComponent },
+  name: 'DetalleActividadGeneralView',
+  components: { DetalleActividadGeneral, MapaComponent },
   data() {
     return {
       model: this.$store.getters.getActividad()

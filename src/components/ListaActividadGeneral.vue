@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import { DETALLE_ACTIVIDAD, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
+import { DETALLE_ACTIVIDAD_GENERAL, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaActividadGeneral',
@@ -72,7 +72,7 @@ export default {
 },
 methods: {
   detalleItem(item){
-    this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+    this.$store.dispatch(DETALLE_ACTIVIDAD_GENERAL, item);
   },
   formatearFecha(f){
       let formato = "";

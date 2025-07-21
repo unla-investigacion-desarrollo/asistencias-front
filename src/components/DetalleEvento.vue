@@ -1,66 +1,89 @@
 <template>
     <v-container v-if="model.nombre !== ''">
-        <v-row>
-            <v-col>
-            <h3>Evento: {{ model.nombre }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Descripción: {{ model.descripcion }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Fecha de Inicio: {{ formatearFecha(model.fechaInicio) }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Fecha de Fin: {{ formatearFecha(model.fechaFin) }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Cierre de Inscripción: {{ formatearFecha(model.fechaCierre) }} </h3> 
-            </v-col>
-        </v-row>
-        
-        <v-row>
-            <v-col>
-            <h3>Edificio: {{ model.edificio }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Ubicación: {{ model.ubicacion }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Estado: {{ model.estado }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Tipo de Evento: {{ model.tipoEvento.nombre }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Certificado: {{ model.linkCertificado }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col class="titulo">
-                <h2>Mapa de la Unla y Edificio del evento</h2> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col class="titulo">
-                <img :src="imagen" alt="" srcset="" width="100%">
-            </v-col>
-        </v-row>   
+        <v-list dense>
+          <v-list-item>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Evento</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.nombre }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Descripción</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.descripcion }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Fecha de Inicio</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ formatearFecha(model.fechaInicio) }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Fecha de Fin</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ formatearFecha(model.fechaFin) }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Cierre de Inscripción</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ formatearFecha(model.fechaCierre) }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Edificio</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.edificio }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Ubicación</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.ubicacion }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Estado</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.estado }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Tipo de Evento</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.tipoEvento.nombre }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Certificado</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.linkCertificado }}
+              </v-col>
+            </v-row>
+          </v-list-item>
+        </v-list>
     </v-container>
     <div class="text_menssage" v-if="model.nombre === ''">
         <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente desde el listado.</h3>
@@ -76,11 +99,6 @@ export default {
     return {
       model: this.$store.getters.getEvento()
     };
-  },
-  computed: {
-    imagen(){
-        return `/${this.model.edificio}.png`;
-    }
   },
   methods: {
     formatearFecha(f){

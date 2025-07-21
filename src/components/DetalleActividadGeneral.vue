@@ -74,14 +74,6 @@
                     {{ model.cupo }}
                 </v-col>
                 </v-row>
-                <v-row>
-                <v-col cols="12" sm="4" md="3">
-                    <strong class="font-weight-bold">Cupo Limite</strong>
-                </v-col>
-                <v-col cols="12" sm="8" md="9">
-                    {{ model.cupoLimite }}
-                </v-col>
-                </v-row>
             </v-list-item>
         </v-list>
     </v-container>
@@ -92,7 +84,7 @@
 </template>
 <script>
 export default {
-  name: 'DetalleActividad',
+  name: 'DetalleActividadGeneral',
   components: {},
   data() {
     return {
@@ -108,7 +100,7 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
+        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
       }
       return formato;
     }

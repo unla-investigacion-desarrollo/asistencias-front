@@ -39,6 +39,7 @@ import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
 import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
 import Pagina404View from '../views/Pagina404View.vue'
 import ListaActividadGeneralView from '../views/ListaActividadGeneralView.vue'
+import DetalleActividadGeneralView from '../views/DetalleActividadGeneralView.vue'
 
 const routes = [
   {
@@ -245,6 +246,11 @@ const routes = [
     path: '/actividadesUnla',
     name: 'ListaActividadGeneralView',
     component: ListaActividadGeneralView
+  },
+  {
+    path: '/infoActividad',
+    name: 'DetalleActividadGeneralView',
+    component: DetalleActividadGeneralView
   },
   {
     path: '/about',
