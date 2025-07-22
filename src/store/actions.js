@@ -521,6 +521,10 @@ export default {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/infoActividad');
 },
+[ACTIONS.DETALLE_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+  router.push('/miInscripcion');
+},
 [ACTIONS.REGISTRAR_USUARIO] (context, payload) {
   api.guardarUsuario(payload)
   .then(response => {
