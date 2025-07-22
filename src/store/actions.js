@@ -525,6 +525,36 @@ export default {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
   router.push('/miInscripcion');
 },
+[ACTIONS.OBTENER_EVENTOS_X_CATEGORIA] (context, payload) {
+  context.commit(MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO, payload);
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      let lista = response.data;
+      let listaAux = [];
+      let aux = {};
+
+      for(let i = 0; i < lista.length; i++){
+        if(lista[i].tipoEvento.nombre == payload){
+          aux = lista[i];
+          listaAux.push(aux);
+        }
+      }
+      console.log(listaAux);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+      router.push('/eventosUnla');
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+},
 [ACTIONS.REGISTRAR_USUARIO] (context, payload) {
   api.guardarUsuario(payload)
   .then(response => {

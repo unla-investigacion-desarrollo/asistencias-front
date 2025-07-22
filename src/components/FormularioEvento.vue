@@ -87,7 +87,7 @@
 <script>
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
-import { AGREGAR_EVENTO, MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { AGREGAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEvento',
   components: {},
@@ -154,11 +154,7 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("agregue el evento");
-      if(this.operacion == "alta"){
-        this.$store.dispatch(AGREGAR_EVENTO, this.model);
-      } else {
-        this.$store.dispatch(MODIFICAR_EVENTO, this.model);
-      }
+      this.$store.dispatch(AGREGAR_EVENTO, this.model);
     },
     
   }

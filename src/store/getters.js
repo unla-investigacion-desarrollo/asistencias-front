@@ -42,4 +42,5 @@ export default {
     getContenidos: state => () =>  state.contenidos,
     getTitulosContenido: state => () =>  state.titulosContenido,
     getEventosFormateados: state => () =>  state.eventosFormateados,
+    getFiltroCategoriaEvento: state => () =>  state.filtroCategoriaEvento
   };

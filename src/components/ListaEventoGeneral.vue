@@ -84,15 +84,12 @@ export default {
   data(){
     return {};
   },
-  props: {
-    filtro: {
-      type: String,
-      default: ""
-    }
-  },
   computed: {
       eventos() {
-          return this.$store.getters.getEventos();
+        return this.$store.getters.getEventos();
+      },
+      filtro(){
+        return this.$store.getters.getFiltroCategoriaEvento();
       }
 
 },
@@ -127,10 +124,12 @@ export default {
     }
   },
   created() {
-    if(this.filtro === ""){
+    if(this.$store.getters.getEventos().length == 0){
+      if(this.filtro === ""){
       this.$store.dispatch(OBTENER_EVENTOS);
     } else{
       this.$store.dispatch(OBTENER_EVENTO_X_TIPO_EVENTO, this.filtro);
+    }
     }
     console.log(this.$store.getters.getEventos());
 }
