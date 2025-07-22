@@ -2,7 +2,7 @@
     <div>
         <v-row>
             <v-col class="titulo">
-                <img :src="imagen" alt="" srcset="" width="100%">
+                <img :src="imagen" alt="" srcset="" width="100%" class="rounded-lg mx-auto">
             </v-col>
         </v-row> 
     </div>

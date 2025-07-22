@@ -1,6 +1,6 @@
 <template>
     <v-container v-if="model.nombre !== ''">
-        <v-list dense>
+        <v-list dense class="rounded-lg mx-auto">
           <v-list-item>
             <v-row>
               <v-col cols="12" sm="4" md="3">
