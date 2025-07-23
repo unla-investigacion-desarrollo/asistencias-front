@@ -193,4 +193,19 @@ export default {
     [MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO]: (state, payload) => {
         state.filtroCategoriaEvento = payload;
     }, 
+    [MUTATIONS.AGREGO_CONTENIDO]: (state, payload) => {
+        state.agregoContenido = payload;
+    }, 
+    [MUTATIONS.EDITO_CONTENIDO]: (state, payload) => {
+        state.editoContenido = payload;
+    }, 
+     [MUTATIONS.ELIMINO_CONTENIDO]: (state, payload) => {
+        state.eliminoContenido = payload;
+    }, 
+    [MUTATIONS.ELIMINAR_CONTENIDO]: (state, payload) => {
+        let lista = state.contenidos;
+        state.contenidos = lista.filter(e => e != payload);
+        state.contenido = {};
+    },
+    
 }

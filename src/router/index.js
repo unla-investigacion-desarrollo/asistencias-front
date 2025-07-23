@@ -40,6 +40,7 @@ import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
 import Pagina404View from '../views/Pagina404View.vue'
 import ListaActividadGeneralView from '../views/ListaActividadGeneralView.vue'
 import DetalleActividadGeneralView from '../views/DetalleActividadGeneralView.vue'
+import ListaContenidosView from '../views/ListaContenidosView.vue'
 
 const routes = [
   {
@@ -251,6 +252,11 @@ const routes = [
     path: '/infoActividad',
     name: 'DetalleActividadGeneralView',
     component: DetalleActividadGeneralView
+  },
+  {
+    path: '/unlaContenidos',
+    name: 'ListaContenidosView',
+    component: ListaContenidosView
   },
   {
     path: '/about',

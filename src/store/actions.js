@@ -661,6 +661,26 @@ export default {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
 },
+[ACTIONS.ACEPTA_ELIMINAR_CONTENIDO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+},
+[ACTIONS.ELIMINAR_CONTENIDO] (context) {
+  api.eliminarContenido(context.getters.getContenido().idContenido)
+  .then(response => {
+   console.log("Elimino este contenido: " + JSON.stringify(context.getters.getContenido()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_CONTENIDO, true);
+      context.commit(MUTATIONS.ELIMINAR_CONTENIDO, context.getters.getContenido());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_CONTENIDO, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+},
 [ACTIONS.ELIMINAR_USUARIO] (context) {
   api.eliminarUsuario(context.getters.getUsuario().idUsuario)
   .then(response => {
