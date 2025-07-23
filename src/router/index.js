@@ -41,6 +41,9 @@ import Pagina404View from '../views/Pagina404View.vue'
 import ListaActividadGeneralView from '../views/ListaActividadGeneralView.vue'
 import DetalleActividadGeneralView from '../views/DetalleActividadGeneralView.vue'
 import ListaContenidosView from '../views/ListaContenidosView.vue'
+import ListaImagenesView from '../views/ListaImagenesView.vue'
+import ListaAudiosView from '../views/ListaAudiosView.vue'
+import ListaVideosView from '../views/ListaVideosView.vue'
 
 const routes = [
   {
@@ -257,6 +260,21 @@ const routes = [
     path: '/unlaContenidos',
     name: 'ListaContenidosView',
     component: ListaContenidosView
+  },
+  {
+    path: '/unlaImagenes',
+    name: 'ListaImagenesView',
+    component: ListaImagenesView
+  },
+  {
+    path: '/unlaAudios',
+    name: 'ListaAudiosView',
+    component: ListaAudiosView
+  },
+  {
+    path: '/unlaVideos',
+    name: 'ListaVideosView',
+    component: ListaVideosView
   },
   {
     path: '/about',

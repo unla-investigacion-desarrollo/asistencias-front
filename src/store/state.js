@@ -110,5 +110,14 @@ export default {
     agregoTipoEvento: false,
     registroInscripcion: false,
     error: "",
-    filtroCategoriaEvento: ""
+    filtroCategoriaEvento: "",
+    agregoAudio: false,
+    eliminoAudio: false,
+    editoAudio: false,
+    agregoImagen: false,
+    eliminoImagen: false,
+    editoImagen: false,
+    agregoVideo: false,
+    eliminoVideo: false,
+    editoVideo: false,
 }
