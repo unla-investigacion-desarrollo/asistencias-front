@@ -44,6 +44,8 @@ import ListaContenidosView from '../views/ListaContenidosView.vue'
 import ListaImagenesView from '../views/ListaImagenesView.vue'
 import ListaAudiosView from '../views/ListaAudiosView.vue'
 import ListaVideosView from '../views/ListaVideosView.vue'
+import ContenidoAudioVisualView from '../views/ContenidoAudioVisualView.vue'
+import EditarContenidoView from '../views/EditarContenidoView.vue'
 
 const routes = [
   {
@@ -275,6 +277,16 @@ const routes = [
     path: '/unlaVideos',
     name: 'ListaVideosView',
     component: ListaVideosView
+  },
+  {
+    path: '/unlaContenidoAudiovisual/:solapa',
+    name: 'ContenidoAudioVisualView',
+    component: ContenidoAudioVisualView
+  },
+  {
+    path: '/editarContenido',
+    name: 'EditarContenidoView',
+    component: EditarContenidoView
   },
   {
     path: '/about',

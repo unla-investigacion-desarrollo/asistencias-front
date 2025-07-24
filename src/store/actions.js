@@ -865,4 +865,8 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.EDITAR_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+  router.push('/editarContenido');
+},
 }
