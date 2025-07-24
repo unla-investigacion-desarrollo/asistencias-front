@@ -207,5 +207,46 @@ export default {
         state.contenidos = lista.filter(e => e != payload);
         state.contenido = {};
     },
-    
+    [MUTATIONS.AGREGO_AUDIO]: (state, payload) => {
+        state.agregoAudio = payload;
+    }, 
+    [MUTATIONS.EDITO_AUDIO]: (state, payload) => {
+        state.editoAudio = payload;
+    }, 
+     [MUTATIONS.ELIMINO_AUDIO]: (state, payload) => {
+        state.eliminoAudio = payload;
+    }, 
+    [MUTATIONS.ELIMINAR_AUDIO]: (state, payload) => {
+        let lista = state.audios;
+        state.audios = lista.filter(e => e != payload);
+        state.audio = {};
+    },
+    [MUTATIONS.AGREGO_IMAGEN]: (state, payload) => {
+        state.agregoImagen = payload;
+    }, 
+    [MUTATIONS.EDITO_IMAGEN]: (state, payload) => {
+        state.editoImagen = payload;
+    }, 
+     [MUTATIONS.ELIMINO_IMAGEN]: (state, payload) => {
+        state.eliminoImagen = payload;
+    }, 
+    [MUTATIONS.ELIMINAR_IMAGEN]: (state, payload) => {
+        let lista = state.imagenes;
+        state.imagenes = lista.filter(e => e != payload);
+        state.imagen = {};
+    },
+    [MUTATIONS.AGREGO_VIDEO]: (state, payload) => {
+        state.agregoVideo = payload;
+    }, 
+    [MUTATIONS.EDITO_VIDEO]: (state, payload) => {
+        state.editoVideo = payload;
+    }, 
+     [MUTATIONS.ELIMINO_VIDEO]: (state, payload) => {
+        state.eliminoVideo = payload;
+    }, 
+    [MUTATIONS.ELIMINAR_VIDEO]: (state, payload) => {
+        let lista = state.videos;
+        state.videos = lista.filter(e => e != payload);
+        state.video = {};
+    }
 }

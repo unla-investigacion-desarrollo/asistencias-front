@@ -206,6 +206,81 @@ const api = {
     return axios.get(`${dominio}/api/contenidos/buscarPorTitulo`, body);
   },
 
+  //Controller Imagen
+
+  guardarImagen(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/imagen`, body);
+  },
+
+  actualizarImagen(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/imagen/${payload.idImagen}`, body);
+  },
+
+  eliminarImagen(payload) {
+    return axios.delete(`${dominio}/api/imagen/${payload}`);
+  },
+
+  traerImagen(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/imagen/${payload}`, body);
+  },
+
+  obtenerImagenes() { 
+    return axios.get(`${dominio}/api/imagenes`);
+  },
+
+  //Controller Audio
+
+  guardarAudio(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/audio`, body);
+  },
+
+  actualizarAudio(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/audio/${payload.idAudio}`, body);
+  },
+
+  eliminarAudio(payload) {
+    return axios.delete(`${dominio}/api/audio/${payload}`);
+  },
+
+  traerAudio(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/audio/${payload}`, body);
+  },
+
+  obtenerAudios() { 
+    return axios.get(`${dominio}/api/audios`);
+  },
+
+  //Controller Video
+
+  guardarVideo(payload) {
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/video`, body);
+  },
+
+  actualizarVideo(payload) { 
+    const body = normalizarDatos(payload);
+    return axios.put(`${dominio}/api/video/${payload.idVideo}`, body);
+  },
+
+  eliminarVideo(payload) {
+    return axios.delete(`${dominio}/api/video/${payload}`);
+  },
+
+  traerVideo(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/video/${payload}`, body);
+  },
+
+  obtenerVideos() { 
+    return axios.get(`${dominio}/api/videos`);
+  },
+
 };
 
 export default api;
