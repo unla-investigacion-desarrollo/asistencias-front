@@ -869,4 +869,8 @@ export default {
   context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
   router.push('/editarContenido');
 },
+[ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+  router.push('/actualizoInscripcion');
+},
 }
