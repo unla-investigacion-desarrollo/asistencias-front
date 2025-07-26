@@ -39,12 +39,16 @@ export default {
   text-align: center;
 }
 .container {
-  margin: 2% 5% 0px 5%;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 @media screen and (max-width: 600px) {
 .container{
-  margin: 5% 5% 5% 5%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 }
 </style>
