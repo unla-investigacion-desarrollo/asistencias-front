@@ -8,25 +8,31 @@ const contenido = {
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
     "videos": [
         {
+            "idVideo": 1,
             "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
         },
         {
+            "idVideo": 2,
             "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
         }
     ],
     "audios": [
         {
+            "idAudio": 1,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         },
         {
+            "idAudio": 2,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         }
     ],
     "imagenes": [
         {
+            "idImagen": 1,
             "imagen": "https://dus6dayednven.cloudfront.net/app/uploads/2021/05/3.Nico-Ferreyra.jpg"
         },
         {
+            "idImagen": 2,
             "imagen": "https://images.squarespace-cdn.com/content/v1/6558c5132bbf71492be66904/1705963086482-L74QWIZ8LNWR2M83UJDZ/image-asset.jpeg?format=2500w"
         }
     ]
@@ -42,17 +48,21 @@ const contenido2 = {
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
     "videos": [
         {
+            "idVideo": 1,
             "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
         },
         {
+            "idVideo": 2,
             "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
         }
     ],
     "audios": [
         {
+            "idAudio": 1,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         },
         {
+            "idAudio": 2,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         }
     ],
@@ -70,31 +80,37 @@ const lista =  [
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
     "videos": [
         {
+            "idVideo": 1,
             "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
         },
         {
+            "idVideo": 2,
             "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
         }
     ],
     "audios": [
         {
+            "idAudio": 1,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         },
         {
+            "idAudio": 2,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         }
     ],
     "imagenes": [
         {
+            "idImagen": 1,
             "imagen": "https://dus6dayednven.cloudfront.net/app/uploads/2021/05/3.Nico-Ferreyra.jpg"
         },
         {
+            "idImagen": 2,
             "imagen": "https://images.squarespace-cdn.com/content/v1/6558c5132bbf71492be66904/1705963086482-L74QWIZ8LNWR2M83UJDZ/image-asset.jpeg?format=2500w"
         }
     ]
 },
 {
-        "idContenido": 2,
+    "idContenido": 2,
     "titulo": "jornada2",
     "evento": {
         "idEvento": 1,
@@ -104,23 +120,27 @@ const lista =  [
     "videos": [],
     "audios": [
         {
+            "idAudio": 1,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         },
         {
+            "idAudio": 2,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         }
     ],
     "imagenes": [
         {
+            "idImagen": 1,
             "imagen": "https://dus6dayednven.cloudfront.net/app/uploads/2021/05/3.Nico-Ferreyra.jpg"
         },
         {
+            "idImagen": 2,
             "imagen": "https://images.squarespace-cdn.com/content/v1/6558c5132bbf71492be66904/1705963086482-L74QWIZ8LNWR2M83UJDZ/image-asset.jpeg?format=2500w"
         }
     ]
 },
 {
-        "idContenido": 3,
+    "idContenido": 3,
     "titulo": "jornada3",
     "evento": {
         "idEvento": 1,
@@ -129,24 +149,28 @@ const lista =  [
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
     "videos": [
         {
+            "idVideo": 1,
             "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
         },
         {
+            "idVideo": 2,
             "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
         }
     ],
     "audios": [],
     "imagenes": [
         {
+            "idImagen": 1,
             "imagen": "https://dus6dayednven.cloudfront.net/app/uploads/2021/05/3.Nico-Ferreyra.jpg"
         },
         {
+            "idImagen": 2,
             "imagen": "https://images.squarespace-cdn.com/content/v1/6558c5132bbf71492be66904/1705963086482-L74QWIZ8LNWR2M83UJDZ/image-asset.jpeg?format=2500w"
         }
     ]
 },
 {
-        "idContenido": 4,
+    "idContenido": 4,
     "titulo": "jornada4",
     "evento": {
         "idEvento": 1,
@@ -155,24 +179,28 @@ const lista =  [
     "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, placeat repellendus! Placeat inventore est quibusdam sunt voluptatibus, laboriosam explicabo dolorum, enim a culpa impedit dolores similique sint voluptas! Fuga, molestiae.",
     "videos": [
         {
+            "idVideo": 1,
             "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
         },
         {
+            "idVideo": 2,
             "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
         }
     ],
     "audios": [
         {
+            "idAudio": 1,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         },
         {
+            "idAudio": 2,
             "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         }
     ],
     "imagenes": []
 },
 {
-        "idContenido": 5,
+    "idContenido": 5,
     "titulo": "jornada5",
     "evento": {
         "idEvento": 1,

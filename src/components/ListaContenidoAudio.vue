@@ -3,7 +3,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El video fue agregado exitosamente."
+      title="El audio fue agregado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -14,7 +14,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El video fue modificado exitosamente."
+      title="El audio fue modificado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -25,14 +25,14 @@
     <v-alert
       closable
       icon="$success"
-      title="El video fue eliminado exitosamente."
+      title="El audio fue eliminado exitosamente."
       text=""
       type="success"
       variant="outlined"
     ></v-alert>
   </div>
 
-  <div v-if="videos.length != 0">
+  <div v-if="audios.length != 0">
     <v-table
       height="auto"
       fixed-header
@@ -44,8 +44,8 @@
             ID
           </th>
           <th class="text-left">
-            Video
-          </th>    
+            Audio
+          </th>
           <th class="text-left">
             Acciones
           </th>
@@ -53,11 +53,11 @@
       </thead>
       <tbody>
         <tr
-          v-for="item in videos"
-          :key="item.idVideo"
+          v-for="item in audios"
+          :key="item.idAudio"
         >
-          <td>{{ item.idVideo }}</td>
-          <td>{{ item.video }}</td>
+          <td>{{ item.idAudio }}</td>
+          <td>{{ item.audio }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
@@ -67,7 +67,7 @@
       </tbody>
     </v-table>
   </div>
-  <div class="text_menssage" v-if="videos.length == 0">
+  <div class="text_menssage" v-if="audios.length == 0">
     <Mensaje-component valor="sin-registros"></Mensaje-component>
   </div>
   <div>
@@ -77,8 +77,8 @@
     >
       <v-card
         max-width="400"
-        text="Estas seguro de eliminar este video?"
-        title="Eliminar Video"
+        text="Estas seguro de eliminar este audio?"
+        title="Eliminar Audio"
       >
         <template v-slot:actions>
           <v-btn
@@ -100,43 +100,39 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_VIDEO, ELIMINAR_VIDEO, OBTENER_VIDEOS, ACEPTA_ELIMINAR_VIDEO } from '../store/actions-types';
+import { EDITAR_AUDIO, ELIMINAR_AUDIO, ACEPTA_ELIMINAR_AUDIO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
-  name: 'ListaVideo',
+  name: 'ListaContenidoAudio',
   components: { MensajeComponent },
   data(){
     return {};
   },
   computed: {
-    videos() {
-        return this.$store.getters.getVideos();
+    audios() {
+      return this.$store.getters.getContenido().audios;
     },
     elimino(){
-      return this.$store.getters.getEliminoVideo();
+      return this.$store.getters.getEliminoAudio();
     },
     agrego(){
-      return this.$store.getters.getAgregoVideo();
+      return this.$store.getters.getAgregoAudio();
     },
     edito(){
-      return this.$store.getters.getEditoVideo();
+      return this.$store.getters.getEditoAudio();
     }
 },
   methods: {
     editarItem(item){   
-        this.$store.dispatch(EDITAR_VIDEO, item);
+        this.$store.dispatch(EDITAR_AUDIO, item);
     },
     modalEliminar(item){
-      this.$store.dispatch(ACEPTA_ELIMINAR_VIDEO, item);
+      this.$store.dispatch(ACEPTA_ELIMINAR_AUDIO, item);
     },
     eliminarItem(){
-        this.$store.dispatch(ELIMINAR_VIDEO);
+        this.$store.dispatch(ELIMINAR_AUDIO);
     },
   },
-  created() {
-    this.$store.dispatch(OBTENER_VIDEOS);
-    console.log(this.$store.getters.getVideos());
-}
 }
 </script>
 <style scoped>

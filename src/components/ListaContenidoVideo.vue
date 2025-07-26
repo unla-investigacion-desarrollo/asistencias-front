@@ -100,27 +100,27 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_VIDEO, ELIMINAR_VIDEO, OBTENER_VIDEOS, ACEPTA_ELIMINAR_VIDEO } from '../store/actions-types';
+import { EDITAR_VIDEO, ELIMINAR_VIDEO, ACEPTA_ELIMINAR_VIDEO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
-  name: 'ListaVideo',
+  name: 'ListaContenidoVideo',
   components: { MensajeComponent },
   data(){
     return {};
   },
   computed: {
-    videos() {
-        return this.$store.getters.getVideos();
-    },
-    elimino(){
-      return this.$store.getters.getEliminoVideo();
-    },
-    agrego(){
-      return this.$store.getters.getAgregoVideo();
-    },
-    edito(){
-      return this.$store.getters.getEditoVideo();
-    }
+      videos() {
+          return this.$store.getters.getContenido().videos;
+      },
+      elimino(){
+        return this.$store.getters.getEliminoVideo();
+      },
+      agrego(){
+        return this.$store.getters.getAgregoVideo();
+      },
+      edito(){
+        return this.$store.getters.getEditoVideo();
+      }
 },
   methods: {
     editarItem(item){   
@@ -133,10 +133,6 @@ export default {
         this.$store.dispatch(ELIMINAR_VIDEO);
     },
   },
-  created() {
-    this.$store.dispatch(OBTENER_VIDEOS);
-    console.log(this.$store.getters.getVideos());
-}
 }
 </script>
 <style scoped>

@@ -61,7 +61,6 @@
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
-              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -101,7 +100,7 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_IMAGEN, ELIMINAR_IMAGEN, OBTENER_IMAGENES, DETALLE_IMAGEN, ACEPTA_ELIMINAR_IMAGEN } from '../store/actions-types';
+import { EDITAR_IMAGEN, ELIMINAR_IMAGEN, OBTENER_IMAGENES, ACEPTA_ELIMINAR_IMAGEN } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaImagen',
@@ -132,9 +131,6 @@ export default {
     },
     eliminarItem(){
         this.$store.dispatch(ELIMINAR_IMAGEN);
-    },
-    detalleItem(item){
-        this.$store.dispatch(DETALLE_IMAGEN, item);
     },
   },
   created() {

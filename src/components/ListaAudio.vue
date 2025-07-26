@@ -61,7 +61,6 @@
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
-              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -101,7 +100,7 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_AUDIO, ELIMINAR_AUDIO, DETALLE_AUDIO, OBTENER_AUDIOS, ACEPTA_ELIMINAR_AUDIO } from '../store/actions-types';
+import { EDITAR_AUDIO, ELIMINAR_AUDIO, OBTENER_AUDIOS, ACEPTA_ELIMINAR_AUDIO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaAudio',
@@ -132,9 +131,6 @@ export default {
     },
     eliminarItem(){
         this.$store.dispatch(ELIMINAR_AUDIO);
-    },
-    detalleItem(item){
-        this.$store.dispatch(DETALLE_AUDIO, item);
     },
   },
   created() {
