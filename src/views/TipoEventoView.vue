@@ -1,21 +1,23 @@
 <template>
-    <div class="container">
-        <div class="content">
-            <v-card
-                class="mx-auto title_section" :elevation="8"
-            >
-                <template v-slot:title>
-                <div class="title_content">
-                    <span class="title">Agregar Tipo de Evento</span>
-                </div>
-                </template>
+  <v-container>
+    <v-row class="container">
+      <v-col>
+        <v-card
+            class="mx-auto title_section" :elevation="8"
+        >
+            <template v-slot:title>
+            <div class="title_content">
+                <span class="title">Agregar Tipo de Evento</span>
+            </div>
+            </template>
 
-                <v-card-text class="bg-surface-light pt-4">
-                    <FormularioTipoEvento></FormularioTipoEvento>
-                </v-card-text>
-            </v-card>
-        </div>
-    </div>
+            <v-card-text class="bg-surface-light pt-4">
+                <FormularioTipoEvento></FormularioTipoEvento>
+            </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 import FormularioTipoEvento from '../components/FormularioTipoEvento.vue';
@@ -37,27 +39,16 @@ export default {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
+  margin-top: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
-.content {
-  grid-column: 3/5;
-  grid-row: 1;
-}
-
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 600px) {
 .container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 }
 </style>

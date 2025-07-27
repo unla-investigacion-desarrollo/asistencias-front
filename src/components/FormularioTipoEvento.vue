@@ -1,28 +1,41 @@
 <template>
-  <v-form v-model="formValid">
-    <v-text-field
-      v-model="model.nombre"
-      :counter="45"
-      label="Tipo de Evento"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <div class="descripcion">
+  <v-container>
+    <v-form v-model="formValid">
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.nombre"
+            :counter="45"
+            label="Tipo de Evento"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
-        </div>
-
-    <div class="container_button">
-      <v-btn
-        class="me-4"
-        color="primary"
-        @click="continuar"
-        :disabled="!formValid"
-      >
-      Enviar
-      </v-btn>
-    </div>
-  </v-form>
+        </v-col>
+      </v-row>
+      <div class="container_button">
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="continuar"
+          :disabled="!formValid"
+        >
+        Enviar
+        </v-btn>
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
+      </div>
+    </v-form>
+  </v-container>
 </template>
   
 <script>
@@ -46,7 +59,9 @@ export default {
         console.log("agregue el tipo de evento");
       this.$store.dispatch(AGREGAR_TIPO_EVENTO, this.model);
     },
-    
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>
