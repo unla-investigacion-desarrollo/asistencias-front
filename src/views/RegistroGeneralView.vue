@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-      <div class="content">
+  <v-container class="registro">
+    <v-row class="d-flex align-center justify-center" no-gutters>
+      <v-col :cols="12" :md="4">
           <v-card
               class="mx-auto title_section" :elevation="8"
           >
@@ -14,53 +15,31 @@
                   <FormularioRegistroGeneral></FormularioRegistroGeneral>
               </v-card-text>
           </v-card>
-        </div>
-      </div>
-    </template>
+        </v-col>
+    </v-row>
+  </v-container>
+</template>
     
-    <script>
-  import FormularioRegistroGeneral from '../components/FormularioRegistroGeneral.vue';
+<script>
+import FormularioRegistroGeneral from '../components/FormularioRegistroGeneral.vue';
   
+export default {
+  name: 'RegistroGeneralView',
+  components: { FormularioRegistroGeneral },
+}
+</script>
     
-    export default {
-      name: 'RegistroGeneralView',
-      components: { FormularioRegistroGeneral },
-    }
-  </script>
-    
-  <style scoped>
-  .title_section { background-color: #383854; }
-  
-  .title {
-      color: #fff;
-  }
-  .title_content{
-    text-align: center;
-  }
-  
-  
-  .container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(50px, auto);
-    margin: 5% 0px 0px 0px;
-  }
-  
-  .content {
-    grid-column: 3/5;
-    grid-row: 1;
-  }
-  
-  @media screen and (max-width: 600px) {
-  .container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(50px, auto);
-    margin: 5% 5% 0px 5%;
-  }
-  .content{
-    grid-column: 1/5;
-    grid-row: 1;
-  }
-  }
-  </style>
+<style scoped>
+.title_section { background-color: #383854; }
+
+.title {
+    color: #fff;
+}
+.title_content{
+  text-align: center;
+}
+
+.registro{
+  margin-top: 2%;
+}
+</style>

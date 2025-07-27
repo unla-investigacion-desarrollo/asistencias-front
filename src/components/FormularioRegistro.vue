@@ -160,6 +160,9 @@ export default {
       console.log("me registre");
       this.$store.dispatch(REGISTRAR_USUARIO, this.model);
     },
+    volver(){
+      this.$router.go(-1);
+    }
   },
   created() {
       this.$store.dispatch(OBTENER_ROLES);
