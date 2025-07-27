@@ -505,6 +505,10 @@ export default {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/editarEvento');
 },
+[ACTIONS.EDITAR_AUDIO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+  router.push('/editarAudio');
+},
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/detalleEvento');

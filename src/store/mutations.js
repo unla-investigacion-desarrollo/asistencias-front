@@ -241,12 +241,21 @@ export default {
     [MUTATIONS.EDITO_VIDEO]: (state, payload) => {
         state.editoVideo = payload;
     }, 
-     [MUTATIONS.ELIMINO_VIDEO]: (state, payload) => {
+    [MUTATIONS.ELIMINO_VIDEO]: (state, payload) => {
         state.eliminoVideo = payload;
     }, 
     [MUTATIONS.ELIMINAR_VIDEO]: (state, payload) => {
         let lista = state.videos;
         state.videos = lista.filter(e => e != payload);
         state.video = {};
-    }
+    },
+    [MUTATIONS.GUARDAR_AUDIO]: (state, payload) => {
+        state.audio = payload;
+    }, 
+    [MUTATIONS.GUARDAR_VIDEO]: (state, payload) => {
+        state.video = payload;
+    }, 
+    [MUTATIONS.GUARDAR_IMAGEN]: (state, payload) => {
+        state.imagen = payload;
+    }, 
 }
