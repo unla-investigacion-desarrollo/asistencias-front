@@ -48,6 +48,7 @@ import ContenidoAudioVisualView from '../views/ContenidoAudioVisualView.vue'
 import EditarContenidoView from '../views/EditarContenidoView.vue'
 import EditarInscripcionView from '../views/EditarInscripcionView.vue'
 import EditarAudioView from '../views/EditarAudioView.vue'
+import EditarImagenView from '../views/EditarImagenView.vue'
 
 const routes = [
   {
@@ -299,6 +300,11 @@ const routes = [
     path: '/editarAudio',
     name: 'EditarAudioView',
     component: EditarAudioView
+  },
+  {
+    path: '/editarImagen',
+    name: 'EditarImagenView',
+    component: EditarImagenView
   },
   {
     path: '/about',
