@@ -513,6 +513,10 @@ export default {
   context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
   router.push('/editarImagen');
 },
+[ACTIONS.EDITAR_VIDEO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+  router.push('/editarVideo');
+},
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/detalleEvento');
