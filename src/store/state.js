@@ -120,4 +120,5 @@ export default {
     agregoVideo: false,
     eliminoVideo: false,
     editoVideo: false,
+    demo: true
 }

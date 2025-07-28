@@ -98,6 +98,7 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     inscripcionItem(item){
+      console.log(usuario);
       if(usuario != null){
         this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
       } else {

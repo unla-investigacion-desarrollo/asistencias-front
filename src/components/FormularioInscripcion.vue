@@ -70,7 +70,7 @@
 <script>
 import { seleccionActividades } from "@/config/index";
 import MensajeComponent from './MensajeComponent.vue';
-import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS, AGREGAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
   components: { MensajeComponent },
@@ -131,7 +131,7 @@ export default {
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
 
-      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, payload);
+      this.$store.dispatch(AGREGAR_INSCRIPCION, payload);
     }
     },
     itemProps (item) {
