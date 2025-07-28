@@ -84,11 +84,20 @@
             </v-row>
           </v-list-item>
         </v-list>
+        
     </v-container>
     <div class="text_menssage" v-if="model.nombre === ''">
         <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente desde el listado.</h3>
     </div>
-   
+   <div class="container_button">
+      <v-btn
+        class="me-4"
+        color="primary"
+        @click="volver"
+      >
+      Volver
+      </v-btn>
+  </div>
 </template>
 <script>
 
@@ -112,6 +121,9 @@ export default {
         formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
       }
       return formato;
+    },
+    volver(){
+      this.$router.go(-1);
     }
 }
 }
@@ -124,5 +136,8 @@ export default {
 .titulo {
     text-align: center;
     margin: 2%;
+}
+.container_button{
+  text-align: center;
 }
 </style>

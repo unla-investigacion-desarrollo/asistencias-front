@@ -108,16 +108,6 @@ import { MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types'
 export default {
   name: 'FormularioEditarEvento',
   components: {},
-  props: {
-    estado: {
-      type: Boolean,
-      default: true
-    },
-    operacion: {
-      type: String,
-      default: "alta"
-    }
-  },
   data() {
     return {
       model: this.$store.getters.getEvento(),
@@ -182,58 +172,5 @@ export default {
 <style scoped>
 .container_button{
   text-align: center;
-}
-.container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-  grid-gap: 2%;
-}
-.nombre{
-  grid-column: 1/3;
-  grid-row: 1;
-}
-
-.descripcion{
-  grid-column: 1/5;
-  grid-row: 2;
-}
-
-.inicio {
-  grid-column: 1/3;
-  grid-row: 3;
-  margin-top: 12.5%;
-}
-
-.fin {
-  grid-column: 3/5;
-  grid-row: 3;
-  margin-top: 12.5%;
-}
-
-.estado {
-  grid-column: 3/5;
-  grid-row: 4;
-}
-
-.edificio {
-  grid-column: 1/3;
-  grid-row: 4;
-}
-
-.tevento{
-  grid-column: 3/5;
-  grid-row: 1;
-}
-
-.ubicacion {
-  grid-column: 1/5;
-  grid-row: 5;
-}
-
-.certificado {
-  grid-column: 1/5;
-  grid-row: 6;
 }
 </style>
