@@ -104,7 +104,7 @@
 <script>
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
-import { MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { ACTUALIZAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEditarEvento',
   components: {},
@@ -160,7 +160,7 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("modifique el evento");
-        this.$store.dispatch(MODIFICAR_EVENTO, this.model);
+        this.$store.dispatch(ACTUALIZAR_EVENTO, this.model);
     },
     volver(){
       this.$router.go(-1);

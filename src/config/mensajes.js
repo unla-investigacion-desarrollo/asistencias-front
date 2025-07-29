@@ -2,7 +2,7 @@ const mensajes = {
     "registro-usuario":
         '<p>El registro del usuario fue existoso.</p>',
     "registro-evento":
-        '<p>La inscripcion al evento fue exitosa.</p>',
+        '<p>La inscripción al evento fue exitosa.</p>',
     "guardar-evento":
         '<p>El evento fue guardado exitosamente en la base de datos.</p>',
     "guardar-actividad":
@@ -21,6 +21,8 @@ const mensajes = {
         '<p>Aún estamos definiendo la oferta de eventos. <br> Estate atento, próximamente tendremos novedades.</p>',
     "sin-registro-actividades":
         '<p>No encontramos actividades disponibles para el evento solicitado.</p>',
+    "actualizo-registro-evento":
+        '<p>La actualización de la inscripción al evento fue exitosa.</p>',
     };
 
 export default mensajes;
