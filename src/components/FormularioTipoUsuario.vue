@@ -17,6 +17,13 @@
       >
       Enviar
       </v-btn>
+      <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
     </div>
   </v-form>
 </template>
@@ -42,7 +49,9 @@ export default {
         console.log("agregue el rol para un usuario");
       this.$store.dispatch(AGREGAR_TIPO_USUARIO, this.model);
     },
-    
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>

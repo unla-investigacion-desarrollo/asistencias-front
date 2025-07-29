@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-form>
+    <v-form v-model="formValid">
       <v-row>
         <v-col>
           <v-text-field
@@ -29,6 +29,7 @@
           <v-btn
             @click="continuar"
             color="primary"
+            :disabled="!formValid"
           >
             Iniciar sesión
           </v-btn>
@@ -63,6 +64,7 @@ export default {
         v => !!v || 'El campo es requerido',
         v => (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v)) || 'El email no es valido',
         ],
+      formValid: false
     };
   },
   methods: {

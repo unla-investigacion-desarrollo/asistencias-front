@@ -20,6 +20,11 @@
         <p class="texto">Es posible que el evento que buscas finalizo, fue cancelado o la dirección URL sea incorrecta.</p>
       </v-col>
     </v-row>
+    <v-row class="error">
+      <v-col>
+        <v-btn color="primary" @click="$router.push('/')">Ir a Inicio</v-btn> 
+      </v-col>
+    </v-row>
 </template>
 <script>
 

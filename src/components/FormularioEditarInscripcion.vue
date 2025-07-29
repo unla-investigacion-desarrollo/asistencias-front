@@ -43,6 +43,13 @@
       >
       Enviar
       </v-btn>
+      <v-btn
+        class="me-4"
+        color="primary"
+        @click="volver"
+      >
+      Volver
+      </v-btn>
     </div>
   </v-form>
 </template>
@@ -115,10 +122,13 @@ export default {
     }
     },
     itemProps (item) {
-        return {
-          title: item.nombre,
-        }
-      },
+      return {
+        title: item.nombre,
+      }
+    },
+    volver(){
+      this.$router.go(-1);
+    }
 
   },
   created() {
