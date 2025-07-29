@@ -35,6 +35,21 @@ import PaginaContenidoView from '../views/PaginaContenidoView.vue'
 import ListaContenidosGeneralView from '../views/ListaContenidosGeneralView.vue'
 import RegistroGeneralView from '../views/RegistroGeneralView.vue'
 import EditarUsuarioLogueadoView from '../views/EditarUsuarioLogueadoView.vue'
+import ListaProximosEventosView from '../views/ListaProximosEventosView.vue'
+import DetalleEventoGeneralView from '../views/DetalleEventoGeneralView.vue'
+import Pagina404View from '../views/Pagina404View.vue'
+import ListaActividadGeneralView from '../views/ListaActividadGeneralView.vue'
+import DetalleActividadGeneralView from '../views/DetalleActividadGeneralView.vue'
+import ListaContenidosView from '../views/ListaContenidosView.vue'
+import ListaImagenesView from '../views/ListaImagenesView.vue'
+import ListaAudiosView from '../views/ListaAudiosView.vue'
+import ListaVideosView from '../views/ListaVideosView.vue'
+import ContenidoAudioVisualView from '../views/ContenidoAudioVisualView.vue'
+import EditarContenidoView from '../views/EditarContenidoView.vue'
+import EditarInscripcionView from '../views/EditarInscripcionView.vue'
+import EditarAudioView from '../views/EditarAudioView.vue'
+import EditarImagenView from '../views/EditarImagenView.vue'
+import EditarVideoView from '../views/EditarVideoView.vue'
 
 const routes = [
   {
@@ -221,6 +236,81 @@ const routes = [
     path: '/editarUsuario',
     name: 'EditarUsuarioLogueadoView',
     component: EditarUsuarioLogueadoView
+  },
+  {
+    path: '/proximosEventos',
+    name: 'ListaProximosEventosView',
+    component: ListaProximosEventosView
+  },
+  {
+    path: '/infoEvento',
+    name: 'DetalleEventoGeneralView',
+    component: DetalleEventoGeneralView
+  },
+   {
+    path: '/404',
+    name: 'Pagina404View',
+    component: Pagina404View
+  },
+  {
+    path: '/actividadesUnla',
+    name: 'ListaActividadGeneralView',
+    component: ListaActividadGeneralView
+  },
+  {
+    path: '/infoActividad',
+    name: 'DetalleActividadGeneralView',
+    component: DetalleActividadGeneralView
+  },
+  {
+    path: '/unlaContenidos',
+    name: 'ListaContenidosView',
+    component: ListaContenidosView
+  },
+  {
+    path: '/unlaImagenes',
+    name: 'ListaImagenesView',
+    component: ListaImagenesView
+  },
+  {
+    path: '/unlaAudios',
+    name: 'ListaAudiosView',
+    component: ListaAudiosView
+  },
+  {
+    path: '/unlaVideos',
+    name: 'ListaVideosView',
+    component: ListaVideosView
+  },
+  {
+    path: '/unlaContenidoAudiovisual/:solapa',
+    name: 'ContenidoAudioVisualView',
+    component: ContenidoAudioVisualView
+  },
+  {
+    path: '/editarContenido',
+    name: 'EditarContenidoView',
+    component: EditarContenidoView
+  },
+  {
+    path: '/actualizoInscripcion',
+    name: 'EditarInscripcionView',
+    component: EditarInscripcionView
+  },
+  {
+    path: '/editarAudio',
+    name: 'EditarAudioView',
+    component: EditarAudioView
+  },
+  {
+    path: '/editarImagen',
+    name: 'EditarImagenView',
+    component: EditarImagenView
+  },
+  {
+    path: '/editarVideo',
+    name: 'EditarVideoView',
+    component: EditarVideoView
   },
   {
     path: '/about',

@@ -1,30 +1,58 @@
   <template>
-    <div class="container">
-      <div class="content">
-        <v-card
+    <v-container>
+      <v-row>
+        <v-col>
+          <v-card
+              class="mx-auto title_section" :elevation="8"
+          >
+              <template v-slot:title>
+                <div class="title_content">
+                  <span class="title">Detalle de la Inscripción</span>
+                </div>
+              </template>
+
+              <v-card-text class="bg-surface-light pt-4">
+                  <DetalleInscripcion></DetalleInscripcion>
+              </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-card
             class="mx-auto title_section" :elevation="8"
         >
             <template v-slot:title>
               <div class="title_content">
-                <span class="title">Detalle de la Inscripción</span>
+                <span class="title">Invitación</span>
               </div>
             </template>
 
-            <v-card-text class="bg-surface-light pt-4">
-                <DetalleInscripcion></DetalleInscripcion>
+            <v-card-text class="bg-surface-light pt-4 title_content">
+                <qr-code :valueUrl="valueUrl" :size="size" :level="level"></qr-code>
             </v-card-text>
-        </v-card>
-      </div>
-    </div>
+          </v-card>
+        </v-col>
+      </v-row>
+  </v-container>
   </template>
   <script>
 import DetalleInscripcion from '../components/DetalleInscripcion.vue';
-
+import QrCode from "@/components/QrCode";
   
-  export default {
-    name: 'DetalleInscripcionView',
-    components: { DetalleInscripcion },
-  }
+export default {
+  name: 'DetalleInscripcionView',
+  components: { DetalleInscripcion, QrCode },
+  data() {
+    return {
+      model: this.$store.getters.getInscripcion(),
+      valueUrl:
+        "https://www.unla.edu.ar/",
+      size: 250,
+      level: "H",
+    };
+  },
+}
 </script>
   <style scoped>
 .title_section { background-color: #383854; }
@@ -36,28 +64,4 @@ import DetalleInscripcion from '../components/DetalleInscripcion.vue';
   text-align: center;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-
-.content {
-  grid-column: 2/6;
-  grid-row: 1;
-}
-
-@media screen and (max-width: 600px) {
-.container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
-}
-}
 </style>

@@ -1,23 +1,36 @@
 <template>
-  <v-form v-model="formValid">
-    <v-text-field
-      v-model="model.rol"
-      :counter="45"
-      label="Rol"
-      :rules="validationText"
-      required
-    ></v-text-field>
-    <div class="container_button">
-      <v-btn
-        class="me-4"
-        color="primary"
-        @click="continuar"
-        :disabled="!formValid"
-      >
-      Modificar
-      </v-btn>
-    </div>
-  </v-form>
+  <v-container>
+    <v-form v-model="formValid">
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.rol"
+            :counter="45"
+            label="Rol"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <div class="container_button">
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="continuar"
+          :disabled="!formValid"
+        >
+        Modificar
+        </v-btn>
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
+      </div>
+    </v-form>
+  </v-container>
 </template>
   
 <script>
@@ -37,11 +50,13 @@ export default {
   },
   methods: {
     continuar() {
-        console.log(this.model);
-        console.log("modifique el tipo de usuario");
+      console.log(this.model);
+      console.log("modifique el tipo de usuario");
       this.$store.dispatch(ACTUALIZAR_ROL, this.model);
     },
-    
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>

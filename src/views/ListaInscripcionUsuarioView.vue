@@ -12,7 +12,7 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <ListaInscripcion></ListaInscripcion>
+                <ListaInscripcionUsuario></ListaInscripcionUsuario>
             </v-card-text>
         </v-card>
       </v-col>
@@ -21,12 +21,12 @@
 </template>
   
   <script>
-import ListaInscripcion from '../components/ListaInscripcion.vue';
+import ListaInscripcionUsuario from '../components/ListaInscripcionUsuario.vue';
 
   
   export default {
     name: 'ListaInscripcionUsuarioView',
-    components: { ListaInscripcion },
+    components: { ListaInscripcionUsuario },
   }
 </script>
   

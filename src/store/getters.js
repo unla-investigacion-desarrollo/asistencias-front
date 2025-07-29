@@ -42,4 +42,18 @@ export default {
     getContenidos: state => () =>  state.contenidos,
     getTitulosContenido: state => () =>  state.titulosContenido,
     getEventosFormateados: state => () =>  state.eventosFormateados,
+    getFiltroCategoriaEvento: state => () =>  state.filtroCategoriaEvento,
+    getAgregoContenido: state => () =>  state.agregoContenido,
+    getEliminoContenido: state => () =>  state.eliminoContenido,
+    getEditoContenido: state => () =>  state.editoContenido,
+    getAgregoAudio: state => () =>  state.agregoAudio,
+    getEliminoAudio: state => () =>  state.eliminoAudio,
+    getEditoAudio: state => () =>  state.editoAudio,
+    getAgregoImagen: state => () =>  state.agregoImagen,
+    getEliminoImagen: state => () =>  state.eliminoImagen,
+    getEditoImagen: state => () =>  state.editoImagen,
+    getAgregoVideo: state => () =>  state.agregoVideo,
+    getEliminoVideo: state => () =>  state.eliminoVideo,
+    getEditoVideo: state => () =>  state.editoVideo,
+    getDemo: state => () => state.demo
   };

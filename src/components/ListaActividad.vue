@@ -35,6 +35,7 @@
     <v-table
       height="auto"
       fixed-header
+      class="rounded-lg mx-auto"
     >
       <thead>
         <tr>
@@ -136,68 +137,57 @@
 </script>
 <script>
 import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD } from '../store/actions-types';
+import { formatearFecha } from '@/config';
 import MensajeComponent from './MensajeComponent.vue';
-    export default {
-      name: 'ListaActividad',
-      components: { MensajeComponent },
-      data(){
-        return {};
-      },
-      computed: {
-        actividades() {
-          return this.$store.getters.getActividades();
-        },
-        elimino(){
-          return this.$store.getters.getEliminoActividad();
-        },
-        agrego(){
-          return this.$store.getters.getAgregoActividad();
-        },
-        edito(){
-          return this.$store.getters.getEditoActividad();
-        }
-    },
-    methods: {
-      editarItem(item){
-        this.$store.dispatch(EDITAR_ACTIVIDAD, item);
-      },
-      modalEliminar(item){
-        this.$store.dispatch(ACEPTA_ELIMINAR_ACTIVIDAD, item);
-      },
-      eliminarItem(){
-        this.$store.dispatch(ELIMINAR_ACTIVIDAD);
-      },
-      detalleItem(item){
-        this.$store.dispatch(DETALLE_ACTIVIDAD, item);
-      },
-       formatearFecha(f){
-      let formato = "";
-      if(f != null){
-        let anio = f.substring(0, 4);
-        let mes = f.substring(5, 7);
-        let dia = f.substring(8, 10);
-        let hora = f.substring(11, 13);
-        let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
-      }
-      return formato;
-    }
-    },
-    created() {
-      this.$store.dispatch(OBTENER_ACTIVIDADES);
-      console.log(this.$store.getters.getActividades());
+export default {
+  name: 'ListaActividad',
+  components: { MensajeComponent },
+  data(){
+    return {};
   },
-  }
-  </script>
-  <style scoped>
-  .remove_item{
-      margin-left: 2%;
-  }
-  .text_menssage{
-    text-align: center;
-    margin: 2%;
-  }
-  .alerta {
-  margin: 2% 0px 2% 0px;
+  computed: {
+    actividades() {
+      return this.$store.getters.getActividades();
+    },
+    elimino(){
+      return this.$store.getters.getEliminoActividad();
+    },
+    agrego(){
+      return this.$store.getters.getAgregoActividad();
+    },
+    edito(){
+      return this.$store.getters.getEditoActividad();
+    }
+},
+methods: {
+  editarItem(item){
+    this.$store.dispatch(EDITAR_ACTIVIDAD, item);
+  },
+  modalEliminar(item){
+    this.$store.dispatch(ACEPTA_ELIMINAR_ACTIVIDAD, item);
+  },
+  eliminarItem(){
+    this.$store.dispatch(ELIMINAR_ACTIVIDAD);
+  },
+  detalleItem(item){
+    this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+  },
+},
+created() {
+  this.$store.dispatch(OBTENER_ACTIVIDADES);
+  console.log(this.$store.getters.getActividades());
+},
 }
-  </style>
+</script>
+<style scoped>
+.remove_item{
+  margin-left: 2%;
+}
+.text_menssage{
+text-align: center;
+margin: 2%;
+}
+.alerta {
+margin: 2% 0px 2% 0px;
+}
+</style>

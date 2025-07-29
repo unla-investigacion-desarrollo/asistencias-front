@@ -1,29 +1,31 @@
 <template>
-    <div class="login_container">
-      <div class="login_content">
+  <v-container class="login">
+    <v-row class="d-flex align-center justify-center" no-gutters>
+      <v-col :cols="12" :md="3" >
         <v-card
-            class="mx-auto title_section" :elevation="8"
-        >
-            <template v-slot:title>
-            <span class="title">Iniciar Sesión</span>
-            </template>
+          class="mx-auto title_section" :elevation="8"
+      >
+          <template v-slot:title>
+          <span class="title">Iniciar Sesión</span>
+          </template>
 
-            <v-card-text class="bg-surface-light pt-4">
-                <LoginComponent></LoginComponent>
-            </v-card-text>
-        </v-card>
-      </div>
-    </div>
-  </template>
+          <v-card-text class="bg-surface-light pt-4">
+              <LoginComponent></LoginComponent>
+          </v-card-text>
+      </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   
-  <script>
+<script>
 import LoginComponent from '../components/LoginComponent.vue';
 
   
-  export default {
-    name: 'LoginView',
-    components: { LoginComponent },
-  }
+export default {
+  name: 'LoginView',
+  components: { LoginComponent },
+}
 </script>
   
 <style scoped>
@@ -33,27 +35,7 @@ import LoginComponent from '../components/LoginComponent.vue';
     color: #fff;
 }
 
-.login_container{
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-.login_content{
-  grid-column: 3/5;
-  grid-row: 1;
-}
-
-@media screen and (max-width: 600px) {
-.login_container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-.login_content{
-  grid-column: 2/4;
-  grid-row: 1;
-}
+.login{
+  margin-top: 5%;
 }
 </style>

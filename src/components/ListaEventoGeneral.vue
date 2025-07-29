@@ -14,6 +14,7 @@
     <v-table
       height="auto"
       fixed-header
+      class="rounded-lg mx-auto"
     >
       <thead>
         <tr>
@@ -74,32 +75,40 @@
   </div>
   </template>
 <script>
-import { OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
+import { usuario } from '@/config';
 export default {
   name: 'ListaEventoGeneral',
   components: { MensajeComponent },
   data(){
     return {};
   },
-  props: {
-    filtro: {
-      type: String,
-      default: ""
-    }
-  },
   computed: {
       eventos() {
-          return this.$store.getters.getEventos();
+        return this.$store.getters.getEventos();
+      },
+      filtro(){
+        return this.$store.getters.getFiltroCategoriaEvento();
       }
 
 },
   methods: {
     detalleItem(item){
-        this.$store.dispatch(DETALLE_EVENTO, item);
+        this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     inscripcionItem(item){
-      this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+      console.log(usuario);
+      if(usuario != null){
+        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
+      } else {
+        this.$router.push({
+          name: "ErroresView",
+          params: {
+            mensaje: "usuario-requerido",
+          },
+        });
+      }
     },
     formatearFecha(f){
       let formato = "";
@@ -116,10 +125,12 @@ export default {
     }
   },
   created() {
-    if(this.filtro === ""){
+    if(this.$store.getters.getEventos().length == 0){
+      if(this.filtro === ""){
       this.$store.dispatch(OBTENER_EVENTOS);
     } else{
       this.$store.dispatch(OBTENER_EVENTO_X_TIPO_EVENTO, this.filtro);
+    }
     }
     console.log(this.$store.getters.getEventos());
 }

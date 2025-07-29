@@ -10,37 +10,50 @@
     ></v-alert>
   </div>
     <v-container v-if="model.dni !== ''">
-        <v-row>
-            <v-col>
-            <h3>Nombre: {{ model.nombre }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Apellido: {{ model.apellido }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>DNI: {{ model.dni }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Email: {{ model.email }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Usuario: {{ model.usuario }} </h3> 
-            </v-col>
-        </v-row>
-        
-        <v-row>
-            <v-col>
-            <h3>Tipo de Usuario: {{ model.tipoUsuario.rol }} </h3> 
-            </v-col>
-        </v-row>
+        <v-list dense class="rounded-lg mx-auto">
+          <v-list-item>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Nombre</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.nombre }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Apellido</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.apellido }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">DNI</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.dni }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Email</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.email }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Usuario</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.usuario }}
+              </v-col>
+            </v-row>
+          </v-list-item>
+        </v-list>
         <v-row>
             <v-col class="boton">
                 <v-btn color="primary" @click="editarUsuario()">Editar Perfil</v-btn>

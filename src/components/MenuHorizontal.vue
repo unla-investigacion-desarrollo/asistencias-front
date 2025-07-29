@@ -1,9 +1,6 @@
 <template>
     <v-toolbar :elevation="8" :color="color" title="Eventos UNLa">
         
-        <v-btn v-if="false" @click="inscripcion">
-            <span>Inscribirse</span>
-        </v-btn>
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>

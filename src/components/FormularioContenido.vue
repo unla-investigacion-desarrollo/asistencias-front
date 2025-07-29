@@ -75,20 +75,25 @@
         </v-col> 
       </v-row>
     
-        <div class="container_button">
-        <div class="content_button">
-          <v-btn
-            class="me-4"
-            color="primary"
-            @click="continuar"
-            :disabled="!formValid"
-          >
-          Guardar
-          </v-btn>
-        </div>
+      <div class="container_button">
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="continuar"
+          :disabled="!formValid"
+        >
+        Guardar
+        </v-btn>
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
       </div>
     </v-container>
-    </v-form>
+  </v-form>
 </template>
   
 <script>
@@ -157,6 +162,9 @@ export default {
     eliminarVideo(index){
       this.videos.splice(index, 1);
     },
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>

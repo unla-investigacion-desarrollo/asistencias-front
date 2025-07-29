@@ -1,7 +1,15 @@
 <template>
   <v-container>       
-   
-          <CategoriaEventosComponent></CategoriaEventosComponent>
+    <v-row class="categoria">
+      <v-col>
+        <CategoriaEventosComponent></CategoriaEventosComponent>
+      </v-col>
+    </v-row>
+    <v-row class="lista">
+      <v-col>
+        <ListaProximosEventosView></ListaProximosEventosView>
+      </v-col>
+    </v-row>      
 
         
     </v-container>
@@ -9,10 +17,11 @@
 
 <script>
 import CategoriaEventosComponent from '../components/CategoriaEventosComponent.vue';
+import ListaProximosEventosView from './ListaProximosEventosView.vue'
 
 export default {
   name: 'InicioView',
-  components: { CategoriaEventosComponent },
+  components: { CategoriaEventosComponent, ListaProximosEventosView },
 }
 </script>
 
@@ -24,6 +33,16 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+
+.categoria{
+  margin: 5% 0% 5% 0%;
+}
+
+@media (max-width: 500px) {
+.lista{
+  margin: 2% 0% 2% 0%;
+}
 }
 
 </style>

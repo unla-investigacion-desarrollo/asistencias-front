@@ -3,117 +3,122 @@ import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
 import { contenido2, lista } from "@/config/mock"
+import { hoyFormateado } from "@/config/index"
 
 export default {
 
-    [ACTIONS.AGREGAR_EVENTO] (context, payload) {
-        context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-    },
-    [ACTIONS.INSCRIPCION_EVENTO] (context, payload) {
-        context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-    },
-    [ACTIONS.AGREGAR_TIPO_USUARIO] (context, payload) {
-        api.guardarTipoUsuario(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.AGREGO_ROL, true);
-            context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
-            setTimeout(() => { context.commit(MUTATIONS.AGREGO_ROL, false); }, 120000);
-            router.push({
-            name: "UsuariosView",
-            params: {
-              solapa: "roles",
-            },
-          });
-          } 
-        })
-        .catch(error => {
-          console.log(error);
-          context.commit(MUTATIONS.GUARDO_ERROR, error);
-          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-        });
-    },
-    [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-        api.guardarTipoEvento(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
-            router.push({
-            name: "EventosView",
-            params: {
-              solapa: "tipo",
-            },
-          });
-          } 
-          console.log(context.getters.getTipoEventos());
-        })
-        .catch(error => {
-          console.log(error);
-          context.commit(MUTATIONS.GUARDO_ERROR, error);
-          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-        });
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-    },
-    [ACTIONS.AGREGAR_EVENTO] (context, payload) {
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-      api.guardarEvento(payload)
-      .then(response => {
-      console.log(response);
-        if (response.status == "201") {
-          context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-          router.push({
-            name: "EventosView",
-            params: {
-              solapa: "eventos",
-            },
-          });
-        } 
-      })
-      .catch(error => {
-        console.log(error);
-        context.commit(MUTATIONS.GUARDO_ERROR, error);
-        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-      });
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-    },
-    [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
-      console.log("recupero datos");
-      //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-      api.obtenerTiposEventos()
-      .then(response => {
-      console.log(response);
-        if (response.status == "200") {
-          context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, response.data);
-        } 
-      })
-      .catch(error => {
-        console.log(error);
-        context.commit(MUTATIONS.GUARDO_ERROR, error);
-        context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-      });
-      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  },
-  [ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
-    api.eliminarTipoEvento(context.getters.getTipoEvento().idTipoEvento)
-    .then(response => {
-      console.log(response);
-      console.log("Elimino este tipo de evento: " + JSON.stringify(context.getters.getTipoEvento()));
-      if (response.status == "200") {
-        context.commit(MUTATIONS.ELIMINAR_TIPO_DE_EVENTO, context.getters.getTipoEvento());
-      } 
-      })
-    .catch(error => {
-      console.log(error);
-      context.commit(MUTATIONS.GUARDO_ERROR, error);
-      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-    });
+[ACTIONS.INSCRIPCION_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
 },
-[ACTIONS.MODIFICAR_EVENTO] (context, payload) {
+[ACTIONS.AGREGAR_TIPO_USUARIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.guardarTipoUsuario(payload)
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_ROL, true);
+      context.commit(MUTATIONS.GUARDAR_TIPO_USUARIO, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_ROL, false); }, 120000);
+      router.push({
+      name: "UsuariosView",
+      params: {
+        solapa: "roles",
+      },
+    });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.guardarTipoEvento(payload)
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+      router.push({
+      name: "EventosView",
+      params: {
+        solapa: "tipo",
+      },
+    });
+    } 
+    console.log(context.getters.getTipoEventos());
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.AGREGAR_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.guardarEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "201") {
+      context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "eventos",
+        },
+      });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
+  console.log("recupero datos");
+  //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerTiposEventos()
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarTipoEvento(context.getters.getTipoEvento().idTipoEvento)
+  .then(response => {
+    console.log(response);
+    console.log("Elimino este tipo de evento: " + JSON.stringify(context.getters.getTipoEvento()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_TIPO_EVENTO, true);
+      context.commit(MUTATIONS.ELIMINAR_TIPO_DE_EVENTO, context.getters.getTipoEvento());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_TIPO_EVENTO, false); }, 10000);
+    } 
+    })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.actualizarEvento(payload)
   .then(response => {
   console.log(response);
     if (response.status == "201") {
@@ -131,14 +136,18 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.eliminarEvento(context.getters.getEvento().idEvento)
   .then(response => {
-  console.log(response);
-  console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
+    console.log(response);
+    console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
     if (response.status == "204") {
+      context.commit(MUTATIONS.ELIMINO_EVENTO, true);
       context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, context.getters.getEvento());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_EVENTO, false); }, 10000);
     } 
   })
   .catch(error => {
@@ -146,22 +155,30 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarTipoEvento(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
-            router.push('/listaTipoEvento');
-          } 
-          console.log(context.getters.getTipoEventos());
-        })
-        .catch(error => {
-          console.log(error);
-          context.commit(MUTATIONS.GUARDO_ERROR, error);
-          context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-        });
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+      router.push({
+        name: "EventosView",
+        params: {
+          solapa: "tipo",
+        },
+      });
+    } 
+    console.log(context.getters.getTipoEventos());
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
@@ -240,7 +257,7 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarTipoUsuario(payload)
     .then(response => {
-    console.log(response);
+      console.log(response);
       if (response.status == "200") {
         context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
         router.push({
@@ -260,11 +277,14 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ELIMINAR_ROL] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.eliminarTipoUsuario(context.getters.getTipoUsuario().idTipoUsuario)
   .then(response => {
    console.log("Elimino este rol: " + JSON.stringify(context.getters.getTipoUsuario()));
     if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_ROL, true);
       context.commit(MUTATIONS.ELIMINAR_TIPO_DE_USUARIO, context.getters.getTipoUsuario());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_ROL, false); }, 10000);
     } 
   })
   .catch(error => {
@@ -272,6 +292,7 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -467,24 +488,32 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarActividad(payload)
-        .then(response => {
-        console.log(response);
-          if (response.status == "200") {
-            context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, response.data);
-            router.push('/listaActividades');
-          } 
-          console.log(context.getters.getActividades());
-        })
-        .catch(error => {
-          console.log(error);
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, response.data);
+        router.push({
+          name: "EventosView",
+          params: {
+            solapa: "actividades",
+          },
         });
+      } 
+      console.log(context.getters.getActividades());
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
 },
 [ACTIONS.EDITAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/editarActividad');
 },
 [ACTIONS.ELIMINAR_ACTIVIDAD] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.eliminarActividad(context.getters.getActividad().idActividad)
   .then(response => {
   console.log("Elimino esta actividad: " + JSON.stringify(context.getters.getActividad()));
@@ -499,20 +528,76 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/editarEvento');
 },
+[ACTIONS.EDITAR_AUDIO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+  router.push('/editarAudio');
+},
+[ACTIONS.EDITAR_IMAGEN] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
+  router.push('/editarImagen');
+},
+[ACTIONS.EDITAR_VIDEO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+  router.push('/editarVideo');
+},
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
   router.push('/detalleEvento');
+},
+[ACTIONS.DETALLE_EVENTO_GENERAL] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+  router.push('/infoEvento');
 },
 [ACTIONS.DETALLE_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
   router.push('/detalleActividad');
 },
+[ACTIONS.DETALLE_ACTIVIDAD_GENERAL] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+  router.push('/infoActividad');
+},
+[ACTIONS.DETALLE_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+  router.push('/miInscripcion');
+},
+[ACTIONS.OBTENER_EVENTOS_X_CATEGORIA] (context, payload) {
+  context.commit(MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO, payload);
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      let lista = response.data;
+      let listaAux = [];
+      let aux = {};
+
+      for(let i = 0; i < lista.length; i++){
+        if(lista[i].tipoEvento.nombre == payload){
+          aux = lista[i];
+          listaAux.push(aux);
+        }
+      }
+      console.log(listaAux);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+      router.push('/eventosUnla');
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+},
 [ACTIONS.REGISTRAR_USUARIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true); 
   api.guardarUsuario(payload)
   .then(response => {
   console.log(response);
@@ -528,6 +613,7 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
@@ -583,6 +669,7 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   console.log(payload);
   let lista = context.getters.getEventos();
   let evento = {};
@@ -591,8 +678,30 @@ export default {
       evento = lista[i];
     }
   }
-    console.log("Evento elegido " + JSON.stringify(evento));
-  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+  console.log("Evento elegido " + JSON.stringify(evento));
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+  } else {
+    api.guardarContenido(payload)
+    .then(response => {
+      console.log(response);
+      if (response.status == "201") {
+        context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+        router.push({
+          name: "ContenidoAudioVisualView",
+          params: {
+            solapa: "contenidos",
+          },
+        });
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
   console.log(payload);
@@ -618,13 +727,31 @@ export default {
   console.log(payload);
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
 },
-[ACTIONS.ELIMINAR_USUARIO] (context) {
-  api.eliminarUsuario(context.getters.getUsuario().idUsuario)
+[ACTIONS.ACEPTA_ELIMINAR_CONTENIDO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_AUDIO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_IMAGEN] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
+},
+[ACTIONS.ACEPTA_ELIMINAR_VIDEO] (context, payload) {
+  console.log(payload);
+  context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+},
+[ACTIONS.ELIMINAR_CONTENIDO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarContenido(context.getters.getContenido().idContenido)
   .then(response => {
-   console.log("Elimino este usuario: " + JSON.stringify(context.getters.getUsuario()));
+   console.log("Elimino este contenido: " + JSON.stringify(context.getters.getContenido()));
     if (response.status == "200") {
-      context.commit(MUTATIONS.ELIMINO_USUARIO, true);
-      context.commit(MUTATIONS.ELIMINAR_USUARIO, context.getters.getUsuario());
+      context.commit(MUTATIONS.ELIMINO_CONTENIDO, true);
+      context.commit(MUTATIONS.ELIMINAR_CONTENIDO, context.getters.getContenido());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_CONTENIDO, false); }, 10000);
     } 
   })
   .catch(error => {
@@ -632,26 +759,47 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ELIMINAR_USUARIO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarUsuario(context.getters.getUsuario().idUsuario)
+  .then(response => {
+   console.log("Elimino este usuario: " + JSON.stringify(context.getters.getUsuario()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_USUARIO, true);
+      context.commit(MUTATIONS.ELIMINAR_USUARIO, context.getters.getUsuario());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_USUARIO, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarUsuario(payload)
-    .then(response => {
-      if (response.status == "200") {
-        context.commit(MUTATIONS.EDITO_USUARIO, true);
-        context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-        router.push({
-            name: "UsuariosView",
-            params: {
-              solapa: "roles",
-            },
-          });
-      } 
-    })
-    .catch(error => {
-      console.log(error);
-      context.commit(MUTATIONS.GUARDO_ERROR, error);
-      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-    });
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.EDITO_USUARIO, true);
+      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+      router.push({
+          name: "UsuariosView",
+          params: {
+            solapa: "usuarios",
+          },
+        });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
@@ -669,12 +817,7 @@ export default {
       },
     });
   } else if (status === "404"  || codigoError.includes("404")){
-    router.push({
-      name: "ErroresView",
-      params: {
-        mensaje: "error-404",
-      },
-    });
+    router.push("/404");
   } else if (status === "401" || codigoError.includes("401")){
     context.commit(MUTATIONS.CERRAR_SESION);
     router.push({
@@ -709,12 +852,20 @@ export default {
   context.commit(MUTATIONS.ACTUALIZO_DATOS);
 },
 [ACTIONS.ELIMINAR_INSCRIPCION] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.eliminarInscripcion(context.getters.getInscripcion().idInscripcion)
   .then(response => {
    console.log("Elimino inscripcion: " + JSON.stringify(context.getters.getInscripcion()));
     if (response.status == "200") {
       context.commit(MUTATIONS.ELIMINO_INSCRIPCION, true);
       context.commit(MUTATIONS.ELIMINAR_UNA_INSCRIPCION, context.getters.getInscripcion());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_INSCRIPCION, false); }, 10000);
+      router.push({
+        name: "MensajesView",
+        params: {
+          mensaje: "elimino_inscripcion",
+        },
+      });
     } 
   })
   .catch(error => {
@@ -722,6 +873,7 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.TRAER_CONTENIDOS] (context) {
   /*
@@ -763,6 +915,7 @@ export default {
 },
 
 [ACTIONS.ACTUALIZAR_USUARIO_LOGUEADO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.actualizarUsuario(payload)
     .then(response => {
       if (response.status == "200") {
@@ -777,5 +930,367 @@ export default {
       context.commit(MUTATIONS.GUARDO_ERROR, error);
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_PROXIMOS_EVENTOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEventos()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+
+      let lista = response.data;
+      let listaAux = [];
+      let aux = {};
+
+      for(let i = 0; i < lista.length; i++){
+        if(lista[i].fechaInicio > hoyFormateado){
+          aux = lista[i];
+          listaAux.push(aux);
+        }   
+      }
+      console.log(listaAux);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.EDITAR_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+  router.push('/editarContenido');
+},
+[ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+  router.push('/actualizoInscripcion');
+},
+[ACTIONS.AGREGAR_AUDIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.guardarAudio(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "201") {
+      context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+      router.push({
+        name: "ContenidoAudioVisualView",
+        params: {
+          solapa: "audios",
+        },
+      });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.AGREGAR_IMAGEN] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.guardarImagen(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "201") {
+      context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
+      router.push({
+        name: "ContenidoAudioVisualView",
+        params: {
+          solapa: "imagenes",
+        },
+      });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.AGREGAR_VIDEO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.guardarVideo(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "201") {
+      context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+      router.push({
+        name: "ContenidoAudioVisualView",
+        params: {
+          solapa: "videos",
+        },
+      });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.AGREGAR_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+    router.push({
+      name: "MensajesView",
+      params: {
+        mensaje: "registro-evento",
+      },
+    });
+  } else {
+    api.guardarInscripcion(payload)
+    .then(response => {
+    console.log(response);
+      if (response.status == "201") {
+        context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+        router.push({
+          name: "MensajesView",
+          params: {
+            mensaje: "registro-evento",
+          },
+        });
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }  
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.EDITO_CONTENIDO, true);
+    context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+    router.push({
+      name: "ContenidoAudioVisualView",
+      params: {
+        solapa: "contenidos",
+      },
+    });
+    setTimeout(() => { context.commit(MUTATIONS.EDITO_CONTENIDO, false); }, 10000);
+  } else {
+    api.actualizarContenido(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_CONTENIDO, true);
+        context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
+        router.push({
+          name: "ContenidoAudioVisualView",
+          params: {
+            solapa: "contenidos",
+          },
+        });
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_CONTENIDO, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_AUDIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.EDITO_AUDIO, true);
+    context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+    router.push({
+      name: "ContenidoAudioVisualView",
+      params: {
+        solapa: "audios",
+      },
+    });
+    setTimeout(() => { context.commit(MUTATIONS.EDITO_AUDIO, false); }, 10000);
+  } else {
+    api.actualizarAudio(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_AUDIO, true);
+        context.commit(MUTATIONS.GUARDAR_AUDIO, response.data);
+        router.push({
+          name: "ContenidoAudioVisualView",
+          params: {
+            solapa: "audios",
+          },
+        });
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_AUDIO, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_IMAGEN] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.EDITO_IMAGEN, true);
+    context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
+    router.push({
+      name: "ContenidoAudioVisualView",
+      params: {
+        solapa: "imagenes",
+      },
+    });
+    setTimeout(() => { context.commit(MUTATIONS.EDITO_IMAGEN, false); }, 10000);
+  } else {
+    api.actualizarImagen(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_IMAGEN, true);
+        context.commit(MUTATIONS.GUARDAR_IMAGEN, response.data);
+        router.push({
+          name: "ContenidoAudioVisualView",
+          params: {
+            solapa: "imagenes",
+          },
+        });
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_IMAGEN, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_VIDEO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.EDITO_VIDEO, true);
+    context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+    router.push({
+      name: "ContenidoAudioVisualView",
+      params: {
+        solapa: "videos",
+      },
+    });
+    setTimeout(() => { context.commit(MUTATIONS.EDITO_VIDEO, false); }, 10000);
+  } else {
+    api.actualizarVideo(payload)
+    .then(response => {
+      if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_VIDEO, true);
+        context.commit(MUTATIONS.GUARDAR_VIDEO, response.data);
+        router.push({
+          name: "ContenidoAudioVisualView",
+          params: {
+            solapa: "videos",
+          },
+        });
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_VIDEO, false); }, 10000);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ACTUALIZAR_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+    router.push({
+      name: "MensajesView",
+      params: {
+        mensaje: "actualizo-registro-evento",
+      },
+    });
+  } else {
+    api.actualizarInscripcion(payload)
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+        router.push({
+          name: "MensajesView",
+          params: {
+            mensaje: "actualizo-registro-evento",
+          },
+        });
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }  
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ELIMINAR_AUDIO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarAudio(context.getters.getAudio().idAudio)
+  .then(response => {
+   console.log("Elimino Audio: " + JSON.stringify(context.getters.getAudio()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_AUDIO, true);
+      context.commit(MUTATIONS.ELIMINAR_AUDIO, context.getters.getAudio());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_AUDIO, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ELIMINAR_IMAGEN] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarImagen(context.getters.getImagen().idImagen)
+  .then(response => {
+   console.log("Elimino Imagen: " + JSON.stringify(context.getters.getImagen()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_IMAGEN, true);
+      context.commit(MUTATIONS.ELIMINAR_IMAGEN, context.getters.getImagen());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_IMAGEN, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.ELIMINAR_VIDEO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.eliminarVideo(context.getters.getVideo().idVideo)
+  .then(response => {
+   console.log("Elimino Video: " + JSON.stringify(context.getters.getVideo()));
+    if (response.status == "200") {
+      context.commit(MUTATIONS.ELIMINO_VIDEO, true);
+      context.commit(MUTATIONS.ELIMINAR_VIDEO, context.getters.getVideo());
+      setTimeout(() => { context.commit(MUTATIONS.ELIMINO_VIDEO, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 }

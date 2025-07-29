@@ -3,6 +3,7 @@
     <v-table
       height="auto"
       fixed-header
+      class="rounded-lg mx-auto"
     >
       <thead>
         <tr>

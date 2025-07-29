@@ -1,51 +1,65 @@
 <template>
     <v-container v-if="model.evento.nombre !== ''">
-        <v-row>
-            <v-col>
-            <h3>Evento: {{ model.evento.nombre }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Descripción: {{ model.evento.descripcion }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Fecha de Inicio: {{ model.evento.fechaInicio }}</h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Fecha de Fin: {{ model.evento.fechaFin }}</h3> 
-            </v-col>
-        </v-row>  
-        <v-row>
-            <v-col>
-            <h3>Edificio: {{ model.evento.edificio }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Ubicación: {{ model.evento.ubicacion }} </h3> 
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-            <h3>Estado: {{ model.evento.estado }} </h3> 
-            </v-col>
-        </v-row>
-
-        <v-row>
-            <v-col>
-
-                <qr-code :valueUrl="valueUrl" :size="size" :level="level"></qr-code>
-
-            
-            </v-col>
-            
-        </v-row>
-      
+        <v-list dense class="rounded-lg mx-auto">
+          <v-list-item>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Evento</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.evento.nombre }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Descripción</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.evento.descripcion }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Fecha de Inicio</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ formatearFecha(model.evento.fechaInicio) }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Fecha de Fin</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ formatearFecha(model.evento.fechaFin) }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Edificio</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.evento.edificio }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Ubicación</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.evento.ubicacion }}
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="4" md="3">
+                <strong class="font-weight-bold">Estado</strong>
+              </v-col>
+              <v-col cols="12" sm="8" md="9">
+                {{ model.evento.estado}}
+              </v-col>
+            </v-row>
+          </v-list-item>
+        </v-list>
     </v-container>
     <div class="text_menssage" v-if="model.evento.nombre === ''">
         <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente desde el listado.</h3>
@@ -53,19 +67,28 @@
    
 </template>
 <script>
-import QrCode from "@/components/QrCode";
 export default {
   name: 'DetalleEvento',
-  components: { QrCode },
+  components: {},
   data() {
     return {
       model: this.$store.getters.getInscripcion(),
-      valueUrl:
-        "https://www.unla.edu.ar/",
-      size: 250,
-      level: "H",
     };
   },
+  methods: {
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
+      }
+      return formato;
+    }
+}
 }
 </script>
 <style scoped>

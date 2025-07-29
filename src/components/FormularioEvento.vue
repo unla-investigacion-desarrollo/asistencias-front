@@ -1,7 +1,8 @@
 <template>
+  <v-container>
     <v-form v-model="formValid">
-      <div class="container">
-        <div class="nombre">
+      <v-row>
+        <v-col>
           <v-text-field
             v-model="model.nombre"
             :counter="45"
@@ -9,12 +10,15 @@
             :rules="validationText"
             required
           ></v-text-field>
-        </div>
-        <div class="descripcion">
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <v-textarea label="Descripción" v-model="model.descripcion"></v-textarea>
-        </div>
-
-        <div class="inicio">
+        </v-col>
+      </v-row>
+      <v-row :cols="12" :md="6">
+        <v-col>
           <v-text-field
             v-model="model.fechaInicio"
             label="Fecha de inicio"
@@ -22,54 +26,60 @@
             type="datetime-local" 
             required
           ></v-text-field>
-        </div>
-        <div class="fin">
+        </v-col>
+        <v-col :cols="12" :md="6">
           <v-text-field
             v-model="model.fechaFin"
             label="Fecha de fin"
             type="datetime-local" 
           ></v-text-field>
-        </div>
-        <div class="edificio">
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col :cols="12" :md="6">
           <v-autocomplete
             v-model="model.edificio"
             :items="edificios"
             label="Edificio"
             required
         ></v-autocomplete>
-      </div>
-      <div class="estado">
-        <v-select v-if="estado"
-          v-model="model.estado"
-          :items="estados"
-          label="Estado"
-        ></v-select>
-      </div>
-      <div class="tevento">
-        <v-select
-          v-model="model.tipoEvento"
-          :items="eventos"
-          :item-props="itemProps"
-          label="Tipo de evento"
-          required
-        ></v-select>
-      </div>
-      <div class="ubicacion">
+        </v-col>
+        <v-col :cols="12" :md="6">
           <v-text-field
-            v-model="model.ubicacion"
-            :counter="45"
-            label="Ubicacion"
-            :rules="validationText"
+              v-model="model.ubicacion"
+              :counter="45"
+              label="Ubicacion"
+              :rules="validationText"
+              required
+            ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col :cols="12" :md="6">
+          <v-select
+            v-model="model.tipoEvento"
+            :items="eventos"
+            :item-props="itemProps"
+            label="Tipo de evento"
             required
+          ></v-select>
+        </v-col>
+        <v-col :cols="12" :md="6">
+          <v-select
+            v-model="model.estado"
+            :items="estados"
+            label="Estado"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.linkCertificado"
+            label="Link del certificado"
           ></v-text-field>
-        </div>
-      <div class="certificado">
-        <v-text-field
-          v-model="model.linkCertificado"
-          label="Link del certificado"
-        ></v-text-field>
-      </div>
-      </div>
+        </v-col>
+      </v-row>
         <div class="container_button">
           <v-btn
             class="me-4"
@@ -79,28 +89,25 @@
           >
           Guardar
           </v-btn>
+          <v-btn
+              class="me-4"
+              color="primary"
+              @click="volver"
+            >
+            Volver
+          </v-btn>
       </div>
-    
     </v-form>
+  </v-container>
 </template>
   
 <script>
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
-import { AGREGAR_EVENTO, MODIFICAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { AGREGAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEvento',
   components: {},
-  props: {
-    estado: {
-      type: Boolean,
-      default: true
-    },
-    operacion: {
-      type: String,
-      default: "alta"
-    }
-  },
   data() {
     return {
       model: this.$store.getters.getEvento(),
@@ -154,13 +161,11 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("agregue el evento");
-      if(this.operacion == "alta"){
-        this.$store.dispatch(AGREGAR_EVENTO, this.model);
-      } else {
-        this.$store.dispatch(MODIFICAR_EVENTO, this.model);
-      }
+      this.$store.dispatch(AGREGAR_EVENTO, this.model);
     },
-    
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>

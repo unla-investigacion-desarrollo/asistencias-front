@@ -1,31 +1,32 @@
 <template>
-    <div class="container">
-      <div class="content">
+  <v-container>
+    <v-row class="container">
+      <v-col>
         <v-card
-            class="mx-auto title_section" :elevation="8"
-        >
-            <template v-slot:title>
-              <div class="title_content">
-                <span class="title">Agregar Actividad</span>
-              </div>
-            </template>
+          class="mx-auto title_section" :elevation="8"
+      >
+          <template v-slot:title>
+            <div class="title_content">
+              <span class="title">Agregar Actividad</span>
+            </div>
+          </template>
 
-            <v-card-text class="bg-surface-light pt-4">
-                <FormularioActividad></FormularioActividad>
-            </v-card-text>
-        </v-card>
-      </div>
-    </div>
-  </template>
+          <v-card-text class="bg-surface-light pt-4">
+              <FormularioActividad></FormularioActividad>
+          </v-card-text>
+      </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   
-  <script>
+<script>
 import FormularioActividad from '../components/FormularioActividad.vue';
-
   
-  export default {
-    name: 'ActividadView',
-    components: { FormularioActividad },
-  }
+export default {
+  name: 'ActividadView',
+  components: { FormularioActividad },
+}
 </script>
   
 <style scoped>
@@ -39,27 +40,16 @@ import FormularioActividad from '../components/FormularioActividad.vue';
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-
-.content {
-  grid-column: 2/6;
-  grid-row: 1;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 @media screen and (max-width: 600px) {
 .container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 }
 </style>

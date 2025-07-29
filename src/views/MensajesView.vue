@@ -14,10 +14,15 @@
             <span class="titulo" v-html="mensaje"></span>
         </div>
     </div>
+    <div class="boton" v-if="$route.params.mensaje == 'registro-evento' || $route.params.mensaje == 'actualizo-registro-evento' || $route.params.mensaje == 'elimino_inscripcion'"> 
+        <div>
+            <v-btn color="primary" @click="$router.push('/')">Ir a Inicio</v-btn> 
+        </div>
+    </div>
 </template>
 
 <script>
-import mensajes from "../config/mensajes";
+import mensajes from "@/config/mensajes";
 export default {
 name: 'MensajesView',
 components: {},
@@ -52,5 +57,9 @@ computed: {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     line-height: normal;
+}
+
+.boton {
+    text-align: center;
 }
 </style>

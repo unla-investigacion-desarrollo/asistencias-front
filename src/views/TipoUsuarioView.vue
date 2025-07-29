@@ -1,24 +1,26 @@
 <template>
-    <div class="container">
-        <div class="content">
-            <v-card
-                class="mx-auto title_section" :elevation="8"
-            >
-                <template v-slot:title>
-                <div class="title_content">
-                    <span class="title">Agregar Tipo de Usuario</span>
-                </div>
-                </template>
+  <v-container class="rol">
+    <v-row class="d-flex align-center justify-center" no-gutters>
+      <v-col :cols="12" :md="4">
+        <v-card
+            class="mx-auto title_section" :elevation="8"
+        >
+            <template v-slot:title>
+            <div class="title_content">
+                <span class="title">Agregar Tipo de Usuario</span>
+            </div>
+            </template>
 
-                <v-card-text class="bg-surface-light pt-4">
-                    <FormularioTipoUsuario></FormularioTipoUsuario>
-                </v-card-text>
-            </v-card>
-        </div>
-    </div>
+            <v-card-text class="bg-surface-light pt-4">
+                <FormularioTipoUsuario></FormularioTipoUsuario>
+            </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
-import FormularioTipoUsuario from '../components/FormularioTipoUsuario.vue';
+import FormularioTipoUsuario from '@/components/FormularioTipoUsuario.vue';
 
 export default {
     name: 'TipoUsuarioView',
@@ -35,29 +37,7 @@ export default {
 .title_content{
   text-align: center;
 }
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-
-.content {
-  grid-column: 3/5;
-  grid-row: 1;
-}
-
-@media screen and (max-width: 750px) {
-.container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
-}
+.rol{
+  margin-top: 2%;
 }
 </style>

@@ -1,76 +1,106 @@
 <template>
-  <v-form v-model="formValid">
-    <v-text-field
-      v-model="model.nombre"
-      :counter="45"
-      maxlength="45"
-      label="Nombre"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="model.apellido"
-      :counter="45"
-      label="Apellido"
-      maxlength="45"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <v-number-input
-      controlVariant="default"
-      label="DNI"
-      :counter="8"
-      :max="99999999"
-      v-model="model.dni"
-      :rules="validationDNI"
-    ></v-number-input>
-
-    <v-text-field
-      v-model="model.email"
-      label="Email"
-      :rules="validationEmail"
-      required
-    ></v-text-field>
-
-    <v-select
-          v-model="model.tipoUsuario"
-          :items="roles"
-          :item-props="itemProps"
-          label="Rol"
-          required
-        ></v-select>
-
-    <v-text-field
-      v-model="model.usuario"
-      :counter="45"
-      maxlength="45"
-      label="Usuario"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <v-text-field
-      v-model="model.clave"
-      :counter="45"
-      maxlength="45"
-      label="Contraseña"
-      :rules="validationText"
-      required
-    ></v-text-field>
-
-    <div class="container_button">
-      <v-btn
-        class="me-4"
-        color="primary"
-        @click="continuar"
-        :disabled="!formValid"
-      >
-      Enviar
-      </v-btn>
-    </div>
-  </v-form>
+  <v-container>
+    <v-form v-model="formValid">
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.nombre"
+            :counter="45"
+            maxlength="45"
+            label="Nombre"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.apellido"
+            :counter="45"
+            label="Apellido"
+            maxlength="45"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-number-input
+            controlVariant="default"
+            label="DNI"
+            :counter="8"
+            :max="99999999"
+            v-model="model.dni"
+            :rules="validationDNI"
+          ></v-number-input>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.email"
+            label="Email"
+            :rules="validationEmail"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-select
+            v-model="model.tipoUsuario"
+            :items="roles"
+            :item-props="itemProps"
+            label="Rol"
+            required
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.usuario"
+            :counter="45"
+            maxlength="45"
+            label="Usuario"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="model.clave"
+            :counter="45"
+            maxlength="45"
+            label="Contraseña"
+            :rules="validationText"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <div class="container_button">
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="continuar"
+          :disabled="!formValid"
+        >
+        Registrar
+        </v-btn>
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
+      </div>
+    </v-form>
+  </v-container>
 </template>
   
 <script>
@@ -130,6 +160,9 @@ export default {
       console.log("me registre");
       this.$store.dispatch(REGISTRAR_USUARIO, this.model);
     },
+    volver(){
+      this.$router.go(-1);
+    }
   },
   created() {
       this.$store.dispatch(OBTENER_ROLES);

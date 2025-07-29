@@ -1,6 +1,7 @@
 <template>
-    <div class="container">
-      <div class="content">
+  <v-container>
+    <v-row class="container">
+      <v-col>
         <v-card
             class="mx-auto title_section" :elevation="8"
         >
@@ -14,18 +15,18 @@
                 <FormularioEditarActividad></FormularioEditarActividad>
             </v-card-text>
         </v-card>
-      </div>
-    </div>
-  </template>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
   
-  <script>
+<script>
 import FormularioEditarActividad from '../components/FormularioEditarActividad.vue';
 
-  
-  export default {
-    name: 'EditarActividadView',
-    components: { FormularioEditarActividad },
-  }
+export default {
+  name: 'EditarActividadView',
+  components: { FormularioEditarActividad },
+}
 </script>
   
 <style scoped>
@@ -37,29 +38,17 @@ import FormularioEditarActividad from '../components/FormularioEditarActividad.v
 .title_content{
   text-align: center;
 }
-
 .container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 0px 0px 0px;
-}
-
-.content {
-  grid-column: 2/6;
-  grid-row: 1;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 @media screen and (max-width: 600px) {
 .container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(50px, auto);
-  margin: 5% 5% 0px 5%;
-}
-.content{
-  grid-column: 1/5;
-  grid-row: 1;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 }
 </style>

@@ -38,6 +38,9 @@ computed: {
     },
     sinRegistros(){
         return this.valor == 'sin-registros';
+    },
+    sinEventos(){
+        return this.valor == 'sin-eventos';
     }
 }
 }

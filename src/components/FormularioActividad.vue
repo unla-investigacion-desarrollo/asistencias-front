@@ -18,7 +18,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col :cols="12" :md="6">
           <v-text-field
               v-model="model.fechaInicio"
               label="Fecha de inicio"
@@ -27,7 +27,7 @@
               required
             ></v-text-field>
         </v-col>
-        <v-col>
+        <v-col :cols="12" :md="6">
           <v-text-field
               v-model="model.fechaFin"
               label="Fecha de fin"
@@ -47,7 +47,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col :cols="12" :md="6">
           <v-autocomplete
               v-model="model.edificio"
               :items="edificios"
@@ -55,7 +55,7 @@
               required
           ></v-autocomplete>
         </v-col>
-        <v-col>
+        <v-col :cols="12" :md="6">
           <v-text-field
               v-model="model.ubicacion"
               :counter="45"
@@ -66,31 +66,33 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-            <v-select
+        <v-col :cols="12" :md="4">
+          <v-select
             v-model="model.estado"
             :items="estados"
             label="Estado"
           ></v-select>
         </v-col>
-        <v-col>
+        <v-col :cols="12" :md="4">
           <v-number-input
-              controlVariant="default"
+              control-variant="default"
               label="Cupo"
               :counter="3"
               :max="999"
               v-model="model.cupo"
-              :rules="validationDNI"
+              :rules="validationNumber"
+              required
               ></v-number-input>
         </v-col>
-        <v-col>
+        <v-col :cols="12" :md="4">
           <v-number-input
-              controlVariant="default"
+              control-variant="default"
               label="Cupo Limite"
               :counter="3"
               :max="999"
               v-model="model.cupoLimite"
-              :rules="validationDNI"
+              :rules="validationNumber"
+              required
               ></v-number-input>
         </v-col>
       </v-row>
@@ -103,6 +105,13 @@
               :disabled="!formValid"
             >
             Guardar
+            </v-btn>
+            <v-btn
+              class="me-4"
+              color="primary"
+              @click="volver"
+            >
+            Volver
             </v-btn>
         </v-col>
       </v-row>  
@@ -126,7 +135,10 @@ export default {
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
-      formValid: false
+      formValid: false,
+      validationNumber: [
+        v => !!v || 'El campo es requerido'
+        ],
     };
   },
   computed: {
@@ -173,6 +185,9 @@ export default {
       console.log("agregue la actividad al evento");     
       this.$store.dispatch(AGREGAR_ACTIVIDAD, this.model);
     },
+    volver(){
+      this.$router.go(-1);
+    }
     
   }
 }

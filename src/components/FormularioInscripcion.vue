@@ -1,56 +1,76 @@
 <template>
-    <v-form>
-    <v-select
-      v-model="model.evento"
-      :items="eventos"
-      :item-props="itemProps"
-      label="Evento"
-      required
-    ></v-select>
-    <v-select
-      v-model="model.seleccion"
-      :items="seleccionActividades"
-      label="Selección de Actividades"
-    ></v-select>
-      <v-table v-if="model.seleccion !== 'Todas' && actividades.length > 0"
-      height="auto"
-      fixed-header
-    >
-      <thead>
-        <tr>
-          <th class="text-center">
-            Actividades
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="i in actividades" :key="i.id">
-          <td><v-checkbox v-model="listaActividad" :label="i.nombre" :value="i"></v-checkbox></td>
-        </tr>
-      </tbody>
-    </v-table> 
-    <div class="text_menssage" v-if="actividades.length == 0">
-      <Mensaje-component valor="sin-actividades"></Mensaje-component>
-    </div>
-
-    <div class="container_button">
-      <v-btn
-        class="me-4"
-        color="primary"
-        @click="continuar"
-        :disabled="validoBoton"
-        v-if="actividades.length != 0"
-      >
-      Enviar
-      </v-btn>
-    </div>
-  </v-form>
+  <v-container>
+    <v-form v-model="formValid">
+      <v-row>
+        <v-col>
+          <v-select
+            v-model="model.evento"
+            :items="eventos"
+            :item-props="itemProps"
+            label="Evento"
+            required
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-select
+            v-model="model.seleccion"
+            :items="seleccionActividades"
+            label="Selección de Actividades"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-table v-if="model.seleccion !== 'Todas' && actividades.length > 0"
+            height="auto"
+            fixed-header
+            >
+            <thead>
+              <tr>
+                <th class="text-center">
+                  Actividades
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="i in actividades" :key="i.id">
+                <td><v-checkbox v-model="listaActividad" :label="i.nombre" :value="i"></v-checkbox></td>
+              </tr>
+            </tbody>
+          </v-table>
+        </v-col>
+      </v-row>
+      <div class="text_menssage" v-if="actividades.length == 0">
+        <Mensaje-component valor="sin-actividades"></Mensaje-component>
+      </div>
+      <div class="container_button">
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="continuar"
+          :disabled="validoBoton"
+          v-if="actividades.length != 0"
+        >
+        Enviar
+        </v-btn>
+        <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+        >
+        Volver
+        </v-btn>
+      </div>
+    </v-form>
+  </v-container>
 </template>
   
 <script>
 import { seleccionActividades } from "@/config/index";
 import MensajeComponent from './MensajeComponent.vue';
-import { OBTENER_EVENTOS, REGISTRAR_PARTICIPANTE_EVENTO, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS, AGREGAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioInscripcion',
   components: { MensajeComponent },
@@ -95,7 +115,7 @@ export default {
           this.model.actividades = this.listaActividad;
         }
       }
-      
+      console.log("Estado de las actividades antes de llamar " + JSON.stringify(this.model.actividades));
       if(this.model.actividades == 0){
         this.$router.push({
           name: "ErroresView",
@@ -103,16 +123,15 @@ export default {
             mensaje: "error-servidor",
           },
         });
-      } else if (this.model.actividades > 0) {
-
+      } else {
       let payload = {
         ...this.model,
         usuario: this.$store.getters.getUsuario()
-      }
+      };
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");
 
-      this.$store.dispatch(REGISTRAR_PARTICIPANTE_EVENTO, payload);
+      this.$store.dispatch(AGREGAR_INSCRIPCION, payload);
     }
     },
     itemProps (item) {
@@ -120,7 +139,9 @@ export default {
           title: item.nombre,
         }
       },
-
+    volver(){
+      this.$router.go(-1);
+    }
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
