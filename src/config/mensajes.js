@@ -23,6 +23,8 @@ const mensajes = {
         '<p>No encontramos actividades disponibles para el evento solicitado.</p>',
     "actualizo-registro-evento":
         '<p>La actualización de la inscripción al evento fue exitosa.</p>',
+    "elimino_inscripcion":
+        '<p>Se elimino la inscripción al evento exitosamente.</p>',
     };
 
 export default mensajes;

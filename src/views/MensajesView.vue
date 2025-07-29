@@ -14,7 +14,7 @@
             <span class="titulo" v-html="mensaje"></span>
         </div>
     </div>
-    <div class="boton" v-if="$route.params.mensaje == 'registro-evento' || $route.params.mensaje == 'actualizo-registro-evento'"> 
+    <div class="boton" v-if="$route.params.mensaje == 'registro-evento' || $route.params.mensaje == 'actualizo-registro-evento' || $route.params.mensaje == 'elimino_inscripcion'"> 
         <div>
             <v-btn color="primary" @click="$router.push('/')">Ir a Inicio</v-btn> 
         </div>
