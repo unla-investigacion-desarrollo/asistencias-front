@@ -18,7 +18,7 @@
   </template>
   
   <script>
-import EscanerComponent from '../components/EscanerComponent.vue';
+import EscanerComponent from '@/components/EscanerComponent.vue';
 
   
 export default {

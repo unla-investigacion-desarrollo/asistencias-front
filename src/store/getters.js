@@ -55,5 +55,6 @@ export default {
     getAgregoVideo: state => () =>  state.agregoVideo,
     getEliminoVideo: state => () =>  state.eliminoVideo,
     getEditoVideo: state => () =>  state.editoVideo,
-    getDemo: state => () => state.demo
+    getDemo: state => () => state.demo,
+    getAsistencia: state => () => state.asistencia,
   };
