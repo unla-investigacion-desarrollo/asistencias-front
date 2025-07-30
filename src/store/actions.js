@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -83,8 +83,11 @@ export default {
   console.log("recupero datos");
   //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerTiposEventos()
-  .then(response => {
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, tipoeventos);
+  } else {
+    api.obtenerTiposEventos()
+    .then(response => {
     console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, response.data);
@@ -95,6 +98,7 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
@@ -186,19 +190,24 @@ export default {
 },
 [ACTIONS.OBTENER_EVENTOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerEventos()
-  .then(response => {
-  console.log(response);
-    if (response.status == "200") {
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
-    } 
-  })
-  .catch(error => {
-    console.log(error);
-    context.commit(MUTATIONS.GUARDO_ERROR, error);
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-  });
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, eventos);
+    context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, eventos);
+  } else {
+    api.obtenerEventos()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
@@ -235,18 +244,23 @@ export default {
 },
 [ACTIONS.OBTENER_ROLES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerTiposUsuarios()
-  .then(response => {
-  console.log(response);
-    if (response.status == "200") {
-      context.commit(MUTATIONS.OBTENER_ROLES, response.data);
-    } 
-  })
-  .catch(error => {
-    console.log(error);
-    context.commit(MUTATIONS.GUARDO_ERROR, error);
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-  });
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_ROLES, roles);
+  } else {
+    api.obtenerTiposUsuarios()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.OBTENER_ROLES, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.EDITAR_ROL] (context, payload) {
@@ -296,18 +310,23 @@ export default {
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerActividades()
-  .then(response => {
-  console.log(response);
-    if (response.status == "200") {
-      context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
-    } 
-  })
-  .catch(error => {
-    console.log(error);
-    context.commit(MUTATIONS.GUARDO_ERROR, error);
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-  });
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_ACTIVIDADES, actividades);
+  } else {
+    api.traerActividades()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_NOMBRE] (context, payload) {
@@ -416,18 +435,22 @@ export default {
 },
 [ACTIONS.OBTENER_USUARIOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerUsuarios()
-  .then(response => {
-  console.log(response);
-    if (response.status == "200") {
-      context.commit(MUTATIONS.TRAER_USUARIOS, response.data);
-    } 
-  })
-  .catch(error => {
-    console.log(error);
-    context.commit(MUTATIONS.GUARDO_ERROR, error);
-    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
-  });
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_USUARIOS, usuarios);
+  } else {
+    api.traerUsuarios()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_USUARIOS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.OBTENER_INFO_USUARIO] (context, payload) {

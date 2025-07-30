@@ -27,7 +27,11 @@ import { MARCAR_ASISTENCIA } from '../store/actions-types';
 export default {
     name: 'RegistrarAsistencia',
     components: { QrcodeStream },
-
+    computed: {
+    actividad() {
+      return this.$store.getters.getAsistencia().actividad;
+    },
+  },
     data () {
         return {
         camera: 'rear',
@@ -54,7 +58,8 @@ export default {
         onDecode (result) {
             this.result = result;
             let qr = {
-                qrCode: result
+                qrCode: result,
+                actividad: this.actividad
             };
             
             console.log("El resultado es: " + result);

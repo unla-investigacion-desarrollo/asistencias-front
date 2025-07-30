@@ -18,6 +18,7 @@
             :items="actividades"
             :item-props="itemProps"
             label="Actividad"
+            v-if="this.eventoSeleccionado"
             required
           ></v-select>
         </v-col>
@@ -26,7 +27,7 @@
 </template>
   
 <script>
-import { OBTENER_EVENTOS } from '../store/actions-types';
+import { OBTENER_ACTIVIDADES_X_EVENTO, OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'ComboComponent',
   components: { },
@@ -39,6 +40,9 @@ export default {
   },
   computed: {
     eventos() {
+      if(this.eventoSeleccionado){
+        this.obtenerActividades();
+      }
       return this.$store.getters.getEventos();
     },
     actividades() {
@@ -53,7 +57,10 @@ export default {
         return {
           title: item.nombre,
         }
-      }
+      },
+    obtenerActividades() {
+      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.eventoSeleccionado);
+    },
 
     }
   }
