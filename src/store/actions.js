@@ -856,6 +856,13 @@ export default {
         mensaje: "error-invalido",
       },
     });
+  } else if (codigoError.includes("El usuario ya existe")){
+    router.push({
+      name: "ErroresView",
+      params: {
+        mensaje: "usuario-duplicado",
+      },
+    });
   } else {
     router.push({
       name: "ErroresView",

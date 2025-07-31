@@ -15,6 +15,8 @@ const errores = {
         '<p>Algo salio mal. <br/> Te pedimos que intentes nuevamente.</p>',
     "usuario-requerido":
         '<p>Para poder inscribirse al evento es necesario estar registrado. <br> Regístrate o Inicia sesión en caso de tener una cuenta.</p>',
+    "usuario-duplicado":
+        '<p>No se pudo completar el registro del usuario debido a que ya hay uno con el mismo DNI y email. <br> Intente con otros datos y vuelva a registrarse.</p>',
     };
 
 export default errores;
