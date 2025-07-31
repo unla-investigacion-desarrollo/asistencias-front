@@ -281,6 +281,39 @@ const api = {
     return axios.get(`${dominio}/api/videos`);
   },
 
+  //Controller publico
+
+  traerEventoPublico(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/public/eventos/${payload}`, body);
+  },
+
+  obtenerEventosPublicos() { 
+    return axios.get(`${dominio}/api/public/eventos`);
+  },
+
+  traerParticipante(){
+    return axios.get(`${dominio}/api/public/tipoUsuario/participante`);
+  },
+
+  traerActividadPublica(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/public/actividad/${payload}`, body);
+  },
+
+  obtenerActividadesPublicas() { 
+    return axios.get(`${dominio}/api/public/actividades`);
+  },
+
+  traerTipoEventoPublico(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/api/public/tipoEvento${payload}`, body);
+  },
+
+  obtenerTiposEventosPublicos() { 
+    return axios.get(`${dominio}/api/public/tiposEventos`);
+  },
+
 };
 
 export default api;
