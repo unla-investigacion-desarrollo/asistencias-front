@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, inscripcion1, inscripcion2, participante } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, inscripcion1, inscripcion2, participante, audios, imagenes, videos } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -1461,4 +1461,65 @@ export default {
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.OBTENER_AUDIOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_AUDIOS, audios);
+  } else {
+    api.obtenerAudios()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_AUDIOS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_IMAGENES] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_IMAGENES, imagenes);
+  } else {
+    api.obtenerImagenes()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_IMAGENES, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_VIDEOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_VIDEOS, videos);
+  } else {
+    api.obtenerVideos()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_VIDEOS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 }
+

@@ -810,6 +810,39 @@ const usuario = {
     }
 };
 
+const audios = [
+    {
+        "idAudio": 1,
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    },
+    {
+        "idAudio": 2,
+        "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    }
+];
+
+const imagenes = [
+    {
+        "idImagen": 1,
+        "imagen": "https://dus6dayednven.cloudfront.net/app/uploads/2021/05/3.Nico-Ferreyra.jpg"
+    },
+    {
+        "idImagen": 2,
+        "imagen": "https://images.squarespace-cdn.com/content/v1/6558c5132bbf71492be66904/1705963086482-L74QWIZ8LNWR2M83UJDZ/image-asset.jpeg?format=2500w"
+    }
+];
+
+const videos = [
+    {
+        "idVideo": 1,
+        "video": "https://www.youtube.com/embed/KU4aYLlR8ZA"
+    },
+    {
+        "idVideo": 2,
+        "video": "https://www.youtube.com/embed/uzA8Y6xcuAs"
+    }
+];
+
 export {
-  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos
 };

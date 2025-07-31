@@ -258,4 +258,13 @@ export default {
     [MUTATIONS.GUARDAR_IMAGEN]: (state, payload) => {
         state.imagen = payload;
     }, 
+    [MUTATIONS.TRAER_AUDIOS]: (state, payload) => {
+        state.audios = payload;
+    },
+    [MUTATIONS.TRAER_IMAGENES]: (state, payload) => {
+        state.imagenes = payload;
+    },
+    [MUTATIONS.TRAER_VIDEOS]: (state, payload) => {
+        state.videos = payload;
+    },
 }
