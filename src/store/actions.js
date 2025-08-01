@@ -916,12 +916,14 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.OBTENER_CONTENIDOS, lista);
+    context.dispatch(ACTIONS.TRAER_FORMATO_CONTENIDOS, lista);
   } else {
     api.obtenerContenidos()
     .then(response => {
     console.log(response);
       if (response.status == "200") {
         context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+        context.dispatch(ACTIONS.TRAER_FORMATO_CONTENIDOS, response.data);
       } 
     })
     .catch(error => {
@@ -947,7 +949,10 @@ export default {
   const eventos = payload.map(e => e.nombre);
   context.commit(MUTATIONS.EVENTOS_FORMATEADOS, [...new Set(eventos)]);
 },
-
+[ACTIONS.TRAER_FORMATO_CONTENIDOS] (context, payload) {
+  const contenidos = payload.map(e => e.titulo);
+  context.commit(MUTATIONS.CONTENIDOS_FORMATEADOS, [...new Set(contenidos)]);
+},
 [ACTIONS.EDITAR_USUARIO_LOGUEADO] () {
   router.push("/editarUsuario");
 },

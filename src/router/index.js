@@ -51,6 +51,7 @@ import EditarAudioView from '../views/EditarAudioView.vue'
 import EditarImagenView from '../views/EditarImagenView.vue'
 import EditarVideoView from '../views/EditarVideoView.vue'
 import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
+import ImagenView from '../views/ImagenView.vue'
 
 const routes = [
   {
@@ -318,6 +319,12 @@ const routes = [
     name: 'RegistrarAsistenciaView',
     component: RegistrarAsistenciaView
   },
+  {
+    path: '/nuevaImagen',
+    name: 'ImagenView',
+    component: ImagenView
+  },
+  
   {
     path: '/about',
     name: 'about',

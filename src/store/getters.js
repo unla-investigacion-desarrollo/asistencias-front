@@ -57,4 +57,5 @@ export default {
     getEditoVideo: state => () =>  state.editoVideo,
     getDemo: state => () => state.demo,
     getAsistencia: state => () => state.asistencia,
+    getContenidosFormateados: state => () =>  state.contenidosFormateados,
   };

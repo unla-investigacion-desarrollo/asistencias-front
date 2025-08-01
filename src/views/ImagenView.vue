@@ -7,12 +7,12 @@
         >
             <template v-slot:title>
             <div class="title_content">
-                <span class="title">Modificar Imagen</span>
+                <span class="title">Agregar Imagen</span>
             </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <FormularioEditarImagen></FormularioEditarImagen>
+                <FormularioImagen></FormularioImagen>
             </v-card-text>
         </v-card>
       </v-col>
@@ -20,11 +20,11 @@
   </v-container>
 </template>
 <script>
-import FormularioEditarImagen from '@/components/FormularioEditarImagen.vue';
+import FormularioImagen from '@/components/FormularioImagen.vue';
 
 export default {
-    name: 'EditarImagenView',
-    components: { FormularioEditarImagen },
+    name: 'ImagenView',
+    components: { FormularioImagen },
 }
 </script>
 

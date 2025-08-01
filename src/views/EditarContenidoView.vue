@@ -27,8 +27,10 @@
                 <span class="title">Lista de Audios</span>
               </div>
             </template>
-
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
+              <div class="button_title">
+                <v-btn color="primary" rounded="lg" @click="agregarAudio">Agregar</v-btn>
+              </div>
               <ListaContenidoAudio></ListaContenidoAudio>
             </v-card-text>
         </v-card>
@@ -44,8 +46,10 @@
                 <span class="title">Lista de Imagenes</span>
               </div>
             </template>
-
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
+              <div class="button_title">
+                <v-btn color="primary" rounded="lg" @click="agregarImagen">Agregar</v-btn>
+              </div>
               <ListaContenidoImagen></ListaContenidoImagen>
             </v-card-text>
         </v-card>
@@ -61,8 +65,10 @@
                 <span class="title">Lista de Videos</span>
               </div>
             </template>
-
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
+              <div class="button_title">
+                <v-btn color="primary" rounded="lg" @click="agregarVideo">Agregar</v-btn>
+              </div>
               <ListaContenidoVideo></ListaContenidoVideo>
             </v-card-text>
         </v-card>
@@ -80,6 +86,17 @@ import ListaContenidoVideo from '@/components/ListaContenidoVideo.vue';
 export default {
   name: 'EditarContenidoView',
   components: { FormularioEditarContenido, ListaContenidoAudio, ListaContenidoImagen, ListaContenidoVideo },
+  methods: {
+    agregarAudio(){
+        this.$router.push('/nuevoAudio')
+    },
+    agregarImagen(){
+        this.$router.push('/nuevaImagen')
+    },
+    agregarVideo(){
+        this.$router.push('/nuevoVideo')
+    }
+  }
 }
 </script>
   
@@ -91,5 +108,9 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+.button_title {
+    text-align: end;
+    margin-bottom: 1%;
 }
 </style>
