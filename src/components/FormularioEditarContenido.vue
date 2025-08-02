@@ -84,9 +84,16 @@ export default {
         }
       },
     continuar() {
+      let lista = this.$store.getters.getEventos();
+      let e = {};
+      for(let i = 0; i < lista.length; i++){
+        if(this.evento == lista[i].nombre){
+          e = lista[i];
+        }  
+      }
       let contenido = {
         ... this.model,
-        evento: this.evento
+        evento: e
       };
       console.log(contenido);
 
