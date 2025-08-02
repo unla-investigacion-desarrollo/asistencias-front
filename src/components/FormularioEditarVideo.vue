@@ -30,7 +30,7 @@
           @click="continuar"
           :disabled="!formValid"
         >
-        Guardar
+        Modificar
         </v-btn>
         <v-btn
           class="me-4"
@@ -45,10 +45,10 @@
 </template>
   
 <script>
-import { AGREGAR_VIDEO, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_VIDEO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
-  name: 'FormularioVideo',
+  name: 'FormularioEditarVideo',
   components: { },
   data() {
     return {
@@ -80,8 +80,8 @@ export default {
         ...this.model,
         contenido: c
       }
-      console.log("Agrego el video: " + JSON.stringify(video)); 
-      this.$store.dispatch(AGREGAR_VIDEO, video);
+      console.log("Edito el video: " + JSON.stringify(video));     
+      this.$store.dispatch(ACTUALIZAR_VIDEO, video);
     },
     volver(){
       this.$router.go(-1);
