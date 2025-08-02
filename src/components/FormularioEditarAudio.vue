@@ -30,7 +30,7 @@
           @click="continuar"
           :disabled="!formValid"
         >
-        Guardar
+        Modificar
         </v-btn>
         <v-btn
           class="me-4"
@@ -45,10 +45,10 @@
 </template>
   
 <script>
-import { AGREGAR_AUDIO, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_AUDIO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
-  name: 'FormularioAudio',
+  name: 'FormularioEditarAudio',
   components: { },
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
+      console.log(this.model);   
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
@@ -75,8 +75,8 @@ export default {
         ...this.model,
         contenido: c
       }
-      console.log("Agrego el audio: " + JSON.stringify(audio));     
-      this.$store.dispatch(AGREGAR_AUDIO, audio);
+      console.log("Edito el audio: " + JSON.stringify(audio));     
+      this.$store.dispatch(ACTUALIZAR_AUDIO, audio);
     },
     volver(){
       this.$router.go(-1);
