@@ -1,4 +1,5 @@
 export default {
+    hash: "",
     usuario: {
         email: "nehuen.db@gmail.com",
         clave: "",
@@ -8,8 +9,7 @@ export default {
         usuario: "",
         tipoUsuario: {
             rol: "Participante"
-        },
-        hash: ""
+        }
     },
     usuarios: [],
     spinner: false,
@@ -126,5 +126,10 @@ export default {
         evento: {},
         actividad: {},
         qr: ""
-    }
+    },
+    pa: false,
+    psa: false,
+    pae: false,
+    pp: true,
+    pas: false
 }

@@ -37,7 +37,7 @@ export default {
     getAgregoEvento: state => () => state.agregoEvento,
     getAgregoTipoEvento: state => () => state.agregoTipoEvento,
     getRegistroInscripcion: state => () => state.registroInscripcion,
-    getHash: state => () =>  state.usuario.hash,
+    getHash: state => () =>  state.hash,
     getError: state => () =>  state.error,
     getContenidos: state => () =>  state.contenidos,
     getTitulosContenido: state => () =>  state.titulosContenido,
@@ -58,4 +58,9 @@ export default {
     getDemo: state => () => state.demo,
     getAsistencia: state => () => state.asistencia,
     getContenidosFormateados: state => () =>  state.contenidosFormateados,
+    getPa: state => () =>  state.pa,
+    getPsa: state => () =>  state.psa,
+    getPae: state => () => state.pae,
+    getPp: state => () => state.pp,
+    getPas: state => () =>  state.pas,
   };

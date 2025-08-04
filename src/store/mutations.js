@@ -1,7 +1,6 @@
 import * as MUTATIONS from './mutations-types';
 
 export default {
-
     [MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER]: (state, payload) => {
         state.spinner = payload;
     },
@@ -79,7 +78,7 @@ export default {
         state.inscripcion.evento = payload;
     }, 
     [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
-        state.usuario.hash = payload;
+        state.hash = payload;
         localStorage.setItem("keyuser", payload);
     }, 
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
@@ -171,18 +170,18 @@ export default {
         state.usuario = { tipoUsuario: {
             rol: "Participante"
         }};
-        state.usuario.hash = "";
+        state.hash = "";
         localStorage.removeItem("usuario");
         localStorage.removeItem("keyuser");
     }, 
     [MUTATIONS.ACTUALIZO_DATOS]: (state) => {
         let dni = state.usuario.dni; 
-        let key = state.usuario.hash;
+        let key = state.hash;
         if(dni == undefined || dni == null || dni == ""){
             state.usuario = JSON.parse(localStorage.getItem("usuario"));
         } 
         if(key == undefined || key == null || key == ""){
-            state.usuario.hash = localStorage.getItem("keyuser");
+            state.hash = localStorage.getItem("keyuser");
         } 
     },  
     [MUTATIONS.OBTENER_CONTENIDO]: (state, payload) => {
@@ -269,5 +268,41 @@ export default {
     },
     [MUTATIONS.TRAER_VIDEOS]: (state, payload) => {
         state.videos = payload;
+    },
+    [MUTATIONS.ACTUALIZO_PAGINA]: (state) => {
+        let dato = JSON.parse(localStorage.getItem("usuario"));
+        if((dato != "") || (dato != undefined) || (dato != null)){
+            if(dato.tipoUsuario.rol == "Participante"){
+                state.pp = true;
+                state.psa = false;
+                state.pae = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato.tipoUsuario.rol == "SemiAdministrador") {
+                state.psa = true;
+                state.pp = false;
+                state.pae = false,
+                state.pas = false;
+                state.pa = false;
+            } else if(dato.tipoUsuario.rol == "Autor"){
+                state.pae = true;
+                state.psa = false;
+                state.pp = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato.tipoUsuario.rol == "Asistente"){
+                state.pas = true;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+                state.pa = false;
+            } else {
+                state.pa = true;
+                state.pas = false;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+            }
+        }
     },
 }
