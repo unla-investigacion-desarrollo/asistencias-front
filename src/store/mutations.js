@@ -173,6 +173,11 @@ export default {
         state.hash = "";
         localStorage.removeItem("usuario");
         localStorage.removeItem("keyuser");
+        state.pp = true;
+        state.psa = false;
+        state.pae = false;
+        state.pas = false;
+        state.pa = false;
     }, 
     [MUTATIONS.ACTUALIZO_DATOS]: (state) => {
         let dni = state.usuario.dni; 

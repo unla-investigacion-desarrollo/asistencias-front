@@ -33,6 +33,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -56,6 +57,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -78,6 +80,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
   console.log("recupero datos");
@@ -100,6 +103,7 @@ export default {
   });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -119,6 +123,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -141,6 +146,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -160,6 +166,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -183,6 +190,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
@@ -209,6 +217,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -225,6 +234,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.REGISTRAR_PARTICIPANTE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -262,6 +272,7 @@ export default {
   }
   
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.EDITAR_ROL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, payload);
@@ -289,6 +300,7 @@ export default {
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_ROL] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -307,6 +319,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -328,6 +341,7 @@ export default {
   }
   
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_NOMBRE] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -344,6 +358,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -368,6 +383,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_ESTADO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -384,6 +400,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -400,6 +417,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_CUPO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -416,6 +434,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -432,6 +451,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_USUARIOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -452,6 +472,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_INFO_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -468,6 +489,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_INFO_USUARIO_EMAIL] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -476,7 +498,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-      router.push("/miPerfil");
+      router.push("/");
     } else {
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
@@ -487,6 +509,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -509,6 +532,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -530,6 +554,7 @@ export default {
       console.log(error);
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.EDITAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
@@ -552,6 +577,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
@@ -618,6 +644,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.REGISTRAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true); 
@@ -637,6 +664,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
@@ -672,6 +700,7 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -697,6 +726,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -732,6 +762,7 @@ export default {
   });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
   console.log(payload);
@@ -790,6 +821,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -808,6 +840,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -830,6 +863,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
@@ -884,6 +918,7 @@ export default {
         id: payload,
       },
     });
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZO_DATOS] (context) {
   context.commit(MUTATIONS.ACTUALIZO_DATOS);
@@ -911,6 +946,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.TRAER_CONTENIDOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -933,6 +969,7 @@ export default {
     });
   }
  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+ context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.DETALLE_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -944,6 +981,7 @@ export default {
       },
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.TRAER_FORMATO_EVENTOS] (context, payload) {
   const eventos = payload.map(e => e.nombre);
@@ -974,6 +1012,7 @@ export default {
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
     context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_PROXIMOS_EVENTOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1033,6 +1072,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_IMAGEN] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1055,6 +1095,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_VIDEO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1077,6 +1118,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.AGREGAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1109,6 +1151,7 @@ export default {
     });
   }  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1144,6 +1187,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1179,6 +1223,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_IMAGEN] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1214,6 +1259,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_VIDEO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1249,6 +1295,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ACTUALIZAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1281,6 +1328,7 @@ export default {
     });
   }  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_AUDIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1299,6 +1347,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_IMAGEN] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1317,6 +1366,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.ELIMINAR_VIDEO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1335,6 +1385,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_TIPOS_EVENTOS_PUBLICOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1485,6 +1536,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_IMAGENES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1505,6 +1557,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_VIDEOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1525,6 +1578,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 }
 

@@ -4,10 +4,10 @@
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
-        <v-btn @click="contenido" v-if="validarPermisos">
+        <v-btn @click="contenido" v-if="!this.validoPp">
             <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios" v-if="validarPermisos">
+        <v-btn @click="usuarios" v-if="!this.validoPp">
             <v-icon class="icon_button">mdi-table-account</v-icon><span class="text" >Usuarios</span>
         </v-btn>
         <v-btn icon>
@@ -30,22 +30,35 @@ export default {
         },
         login(){
             let key = this.$store.getters.getHash();
-            if(key === null || key === undefined ){
+            if(key === null || key === undefined || key === ''){
                 this.$router.push('/login');
             } else {
                 this.$router.push('/miPerfil');
             }
         },
         eventos(){
-            this.$router.push({
-            name: "EventosView",
-            params: {
-              solapa: "eventos",
-            },
-          });
+            if(this.validoPp){
+                this.$router.push('/eventosUnla');
+            } else {
+                this.$router.push({
+                    name: "EventosView",
+                    params: {
+                        solapa: "eventos",
+                    },
+                });
+            }
         },
         contenido(){
-            this.$router.push('/contenidos');
+            if(this.validoPp){
+                this.$router.push('/contenidos');
+            } else {
+                this.$router.push({
+                    name: "ContenidoAudioVisualView",
+                    params: {
+                        solapa: "contenidos",
+                    },
+                });
+            }
         },
         usuarios(){
             this.$router.push({
@@ -80,7 +93,10 @@ export default {
             }else{
                 return accede;
             }    
-        }
+        },
+        validoPp(){
+            return this.$store.getters.getPp();
+        },
     }
 }
 </script>
