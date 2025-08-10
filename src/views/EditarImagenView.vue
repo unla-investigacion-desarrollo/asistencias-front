@@ -12,7 +12,7 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <FormularioImagen></FormularioImagen>
+                <FormularioEditarImagen></FormularioEditarImagen>
             </v-card-text>
         </v-card>
       </v-col>
@@ -20,11 +20,11 @@
   </v-container>
 </template>
 <script>
-import FormularioImagen from '@/components/FormularioImagen.vue';
+import FormularioEditarImagen from '@/components/FormularioEditarImagen.vue';
 
 export default {
     name: 'EditarImagenView',
-    components: { FormularioImagen },
+    components: { FormularioEditarImagen },
 }
 </script>
 

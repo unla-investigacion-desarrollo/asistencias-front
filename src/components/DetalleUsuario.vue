@@ -92,8 +92,7 @@ export default {
     },
     created() {
         if(this.$store.getters.getUsuario().dni === ""){
-            this.$store.dispatch(OBTENER_INFO_USUARIO_EMAIL, this.model.email);
-            console.log(this.$store.getters.getEventos());
+          this.$store.dispatch(OBTENER_INFO_USUARIO_EMAIL, this.model.email);
         }
         
     }

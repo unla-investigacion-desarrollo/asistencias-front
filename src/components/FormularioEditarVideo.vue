@@ -15,9 +15,9 @@
       <v-row>
         <v-col>
           <v-text-field
-            v-model="model.imagen"
+            v-model="model.video"
             :counter="45"
-            label="Link de la Imagen"
+            label="Link del Video"
             :rules="validationText"
             required
           ></v-text-field>
@@ -30,7 +30,7 @@
           @click="continuar"
           :disabled="!formValid"
         >
-        Guardar
+        Modificar
         </v-btn>
         <v-btn
           class="me-4"
@@ -45,14 +45,14 @@
 </template>
   
 <script>
-import { AGREGAR_IMAGEN, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_VIDEO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
-  name: 'FormularioImagen',
+  name: 'FormularioEditarVideo',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getImagen(),
+      model: this.$store.getters.getVideo(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -76,16 +76,16 @@ export default {
           c = lista[i];
         }  
       }
-      let imagen = {
+      let video = {
         ...this.model,
         contenido: c
       }
-      console.log("Agregue la imagen: " + JSON.stringify(imagen)); 
-      this.$store.dispatch(AGREGAR_IMAGEN, imagen);
+      console.log("Edito el video: " + JSON.stringify(video));     
+      this.$store.dispatch(ACTUALIZAR_VIDEO, video);
     },
     volver(){
       this.$router.go(-1);
-    },
+    }
   },
   created() {
     this.$store.dispatch(TRAER_CONTENIDOS);
@@ -96,6 +96,5 @@ export default {
 <style scoped>
 .container_button{
   text-align: center;
-  margin-top: 2%;
 }
 </style>

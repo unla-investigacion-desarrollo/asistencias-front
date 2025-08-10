@@ -44,7 +44,7 @@
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
-              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-magnify"></v-btn>
+              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -85,9 +85,8 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_INSCRIPCION, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
+import { EDITAR_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { inscripcion1, inscripcion2 } from '@/config/mock';
 import { formatearFecha } from '@/config';
   export default {
     name: 'ListaInscripcionUsuario',
@@ -115,10 +114,7 @@ import { formatearFecha } from '@/config';
     }
   },
   created() {
-    //this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO);
-    let lista = this.$store.getters.getInscripciones();
-    lista.push(inscripcion1);
-    lista.push(inscripcion2);
+    this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO); 
     console.log(this.$store.getters.getInscripciones());
 },
 }

@@ -7,12 +7,12 @@
         >
             <template v-slot:title>
             <div class="title_content">
-                <span class="title">Modificar Video</span>
+                <span class="title">Agregar Audio</span>
             </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4">
-                <FormularioEditarVideo></FormularioEditarVideo>
+                <FormularioAudio></FormularioAudio>
             </v-card-text>
         </v-card>
       </v-col>
@@ -20,11 +20,11 @@
   </v-container>
 </template>
 <script>
-import FormularioEditarVideo from '@/components/FormularioEditarVideo.vue';
+import FormularioAudio from '@/components/FormularioAudio.vue';
 
 export default {
-  name: 'EditarVideoView',
-  components: { FormularioEditarVideo },
+    name: 'AudioView',
+    components: { FormularioAudio },
 }
 </script>
 

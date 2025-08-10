@@ -15,9 +15,9 @@
       <v-row>
         <v-col>
           <v-text-field
-            v-model="model.imagen"
+            v-model="model.audio"
             :counter="45"
-            label="Link de la Imagen"
+            label="Link del Audio"
             :rules="validationText"
             required
           ></v-text-field>
@@ -30,7 +30,7 @@
           @click="continuar"
           :disabled="!formValid"
         >
-        Guardar
+        Modificar
         </v-btn>
         <v-btn
           class="me-4"
@@ -45,14 +45,14 @@
 </template>
   
 <script>
-import { AGREGAR_IMAGEN, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_AUDIO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
-  name: 'FormularioImagen',
+  name: 'FormularioEditarAudio',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getImagen(),
+      model: this.$store.getters.getAudio(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -61,14 +61,9 @@ export default {
       contenido: this.$store.getters.getContenido().titulo
     };
   },
-  computed: {
-    contenidos() {
-      return this.$store.getters.getContenidosFormateados();
-    }
-  },
   methods: {
     continuar() {
-      console.log(this.model);
+      console.log(this.model);   
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
@@ -76,16 +71,21 @@ export default {
           c = lista[i];
         }  
       }
-      let imagen = {
+      let audio = {
         ...this.model,
         contenido: c
       }
-      console.log("Agregue la imagen: " + JSON.stringify(imagen)); 
-      this.$store.dispatch(AGREGAR_IMAGEN, imagen);
+      console.log("Edito el audio: " + JSON.stringify(audio));     
+      this.$store.dispatch(ACTUALIZAR_AUDIO, audio);
     },
     volver(){
       this.$router.go(-1);
-    },
+    }
+  },
+  computed: {
+    contenidos() {
+      return this.$store.getters.getContenidosFormateados();
+    }
   },
   created() {
     this.$store.dispatch(TRAER_CONTENIDOS);
@@ -96,6 +96,5 @@ export default {
 <style scoped>
 .container_button{
   text-align: center;
-  margin-top: 2%;
 }
 </style>

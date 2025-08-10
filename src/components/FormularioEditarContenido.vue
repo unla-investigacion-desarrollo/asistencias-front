@@ -38,6 +38,13 @@
           >
           Guardar
           </v-btn>
+          <v-btn
+          class="me-4"
+          color="primary"
+          @click="volver"
+          >
+          Volver
+          </v-btn>
         </div>
       </div>
     </v-container>
@@ -77,15 +84,25 @@ export default {
         }
       },
     continuar() {
+      let lista = this.$store.getters.getEventos();
+      let e = {};
+      for(let i = 0; i < lista.length; i++){
+        if(this.evento == lista[i].nombre){
+          e = lista[i];
+        }  
+      }
       let contenido = {
         ... this.model,
-        evento: this.evento
+        evento: e
       };
       console.log(contenido);
 
       console.log("edite el contenido");
       this.$store.dispatch(EDITAR_CONTENIDO, contenido);
     },
+    volver(){
+      this.$router.go(-1);
+    }
   }
 }
 </script>
