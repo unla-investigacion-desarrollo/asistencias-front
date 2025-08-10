@@ -1580,5 +1580,14 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
+[ACTIONS.GENERAR_QR] (context, payload) {
+  router.push({
+    name: "ContenidoQRView",
+    params: {
+      id: payload.idContenido,
+    },
+  });
+  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+},
 }
 

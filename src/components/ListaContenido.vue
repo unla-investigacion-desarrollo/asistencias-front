@@ -96,6 +96,7 @@
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
+              <v-btn class="remove_item" color="success" @click="generarQR(item)" icon="mdi-qrcode"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -136,7 +137,8 @@
 <script>
 import { filtroContenido } from "@/config/index";
 import { TRAER_CONTENIDOS, DETALLE_CONTENIDO, OBTENER_EVENTOS, TRAER_CONTENIDOS_X_EVENTO, 
-  TRAER_CONTENIDOS_X_TITULO, ACEPTA_ELIMINAR_CONTENIDO, EDITAR_CONTENIDO, ELIMINAR_CONTENIDO } from '../store/actions-types';
+  TRAER_CONTENIDOS_X_TITULO, ACEPTA_ELIMINAR_CONTENIDO, EDITAR_CONTENIDO, ELIMINAR_CONTENIDO, 
+  GENERAR_QR} from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
     export default {
       name: 'ListaContenidoGeneral',
@@ -184,6 +186,9 @@ import MensajeComponent from './MensajeComponent.vue';
       detalleItem(item){
         console.log("Este es el item" + JSON.stringify(item));
         this.$store.dispatch(DETALLE_CONTENIDO, item);
+      },
+      generarQR(item){
+        this.$store.dispatch(GENERAR_QR, item);
       },
       mostrar(){
         this.buscar = !this.buscar;
