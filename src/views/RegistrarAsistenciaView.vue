@@ -22,11 +22,10 @@
   
 <script>
 import RegistrarAsistencia from '@/components/RegistrarAsistencia.vue';
-import ComboComponent from '@/components/ComboComponent.vue';
  
 export default {
   name: 'RegistrarAsistenciaView',
-  components: { RegistrarAsistencia, ComboComponent },
+  components: { RegistrarAsistencia },
 }
 </script>
   
