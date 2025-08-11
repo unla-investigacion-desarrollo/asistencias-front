@@ -50,11 +50,12 @@ import EditarInscripcionView from '../views/EditarInscripcionView.vue'
 import EditarAudioView from '../views/EditarAudioView.vue'
 import EditarImagenView from '../views/EditarImagenView.vue'
 import EditarVideoView from '../views/EditarVideoView.vue'
-import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
+import RegistrarAsistenciaActividadView from '../views/RegistrarAsistenciaActividadView.vue'
 import ImagenView from '../views/ImagenView.vue'
 import AudioView from '../views/AudioView.vue'
 import VideoView from '../views/VideoView.vue'
 import ContenidoQRView from '../views/ContenidoQRView.vue'
+import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
 
 const routes = [
   {
@@ -321,6 +322,11 @@ const routes = [
     path: '/asistencia',
     name: 'RegistrarAsistenciaView',
     component: RegistrarAsistenciaView
+  },
+  {
+    path: '/asistenciaActividad',
+    name: 'RegistrarAsistenciaActividadView',
+    component: RegistrarAsistenciaActividadView
   },
   {
     path: '/nuevaImagen',
