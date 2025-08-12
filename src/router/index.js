@@ -56,6 +56,7 @@ import AudioView from '../views/AudioView.vue'
 import VideoView from '../views/VideoView.vue'
 import ContenidoQRView from '../views/ContenidoQRView.vue'
 import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
+import CamaraView from '../views/CamaraView.vue'
 
 const routes = [
   {
@@ -347,6 +348,11 @@ const routes = [
     path: '/generarQRContenido/:id',
     name: 'ContenidoQRView',
     component: ContenidoQRView
+  },
+  {
+    path: '/camara/:solapa',
+    name: 'CamaraView',
+    component: CamaraView
   },
   {
     path: '/about',
