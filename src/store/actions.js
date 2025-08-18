@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, inscripcion1, inscripcion2, participante, audios, imagenes, videos } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -706,8 +706,7 @@ export default {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
     let lista = context.getters.getInscripciones();
-    lista.push(inscripcion1);
-    lista.push(inscripcion2);
+    lista.push(invitacion);
     context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, lista);
   } else {
     context.commit(MUTATIONS.RECUPERAR_USUARIO);
