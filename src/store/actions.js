@@ -41,7 +41,9 @@ export default {
   .then(response => {
     console.log(response);
     if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_TIPO_EVENTO, true);
       context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_TIPO_EVENTO, false); }, 10000);
       router.push({
       name: "EventosView",
       params: {
@@ -65,7 +67,9 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "201") {
+      context.commit(MUTATIONS.AGREGO_EVENTO, true);
       context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_EVENTO, false); }, 10000);
       router.push({
         name: "EventosView",
         params: {
@@ -130,8 +134,10 @@ export default {
   api.actualizarEvento(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.EDITO_EVENTO, true);
       context.commit(MUTATIONS.MODIFICAR_UN_EVENTO, payload);
+      setTimeout(() => { context.commit(MUTATIONS.EDITO_EVENTO, false); }, 10000);
       router.push({
         name: "EventosView",
         params: {
@@ -174,7 +180,9 @@ export default {
   .then(response => {
     console.log(response);
     if (response.status == "200") {
+      context.commit(MUTATIONS.EDITO_TIPO_EVENTO, true);
       context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+      setTimeout(() => { context.commit(MUTATIONS.EDITO_TIPO_EVENTO, false); }, 10000);
       router.push({
         name: "EventosView",
         params: {
