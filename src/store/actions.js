@@ -284,7 +284,9 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_ROL, true);
         context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_ROL, false); }, 10000);
         router.push({
             name: "UsuariosView",
             params: {

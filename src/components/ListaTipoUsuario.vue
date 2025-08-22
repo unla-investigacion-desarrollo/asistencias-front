@@ -1,4 +1,36 @@
 <template>
+  <div v-if="agrego" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El rol fue agregado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="edito" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El rol fue modificado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+   <div v-if="elimino" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El rol fue eliminado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
   <div v-if="roles.length != 0">
     <v-table
       height="auto"
@@ -66,39 +98,52 @@
   import { ref } from 'vue'
   const dialog = ref(false)
 </script>
-  <script>
-  import { EDITAR_ROL, ELIMINAR_ROL, OBTENER_ROLES, ACEPTA_ELIMINAR_TIPO_USUARIO } from '../store/actions-types';
-  import MensajeComponent from './MensajeComponent.vue';
-    export default {
-      name: 'ListaTipoUsuario',
-      components: { MensajeComponent },
-      data(){
-        return{};
-      },
-      computed: {
-          roles() {
-              return this.$store.getters.getRoles();
-      }
+<script>
+import { EDITAR_ROL, ELIMINAR_ROL, OBTENER_ROLES, ACEPTA_ELIMINAR_TIPO_USUARIO } from '../store/actions-types';
+import MensajeComponent from './MensajeComponent.vue';
+  export default {
+    name: 'ListaTipoUsuario',
+    components: { MensajeComponent },
+    data(){
+      return{};
     },
-    methods: {
-      editarItem(item){
-          this.$store.dispatch(EDITAR_ROL, item);
+    computed: {
+      roles() {
+        return this.$store.getters.getRoles();
       },
-      modalEliminar(item){
-        this.$store.dispatch(ACEPTA_ELIMINAR_TIPO_USUARIO, item);
+      elimino(){
+        return this.$store.getters.getEliminoRol();
       },
-      eliminarItem(){
-          this.$store.dispatch(ELIMINAR_ROL);
+      agrego(){
+        return this.$store.getters.getAgregoRol();
+      },
+      edito(){
+        return this.$store.getters.getEditoRol();
       }
-    },
-    created() {
-      this.$store.dispatch(OBTENER_ROLES);
-      console.log(this.$store.getters.getRoles());
   },
-  }
-  </script>
-  <style scoped>
-  .remove_item{
-      margin-left: 2%;
-  }
-  </style>
+  methods: {
+    editarItem(item){
+        this.$store.dispatch(EDITAR_ROL, item);
+    },
+    modalEliminar(item){
+      this.$store.dispatch(ACEPTA_ELIMINAR_TIPO_USUARIO, item);
+    },
+    eliminarItem(){
+        this.$store.dispatch(ELIMINAR_ROL);
+    }
+  },
+  created() {
+    this.$store.dispatch(OBTENER_ROLES);
+    console.log(this.$store.getters.getRoles());
+},
+}
+</script>
+<style scoped>
+.remove_item{
+  margin-left: 2%;
+}
+
+.alerta {
+  margin: 2% 0px 2% 0px;
+}
+</style>

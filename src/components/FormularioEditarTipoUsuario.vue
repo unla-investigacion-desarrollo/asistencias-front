@@ -19,7 +19,7 @@
           @click="continuar"
           :disabled="!formValid"
         >
-        Modificar
+        Guardar
         </v-btn>
         <v-btn
           class="me-4"

@@ -121,7 +121,7 @@ export default {
     agregoVideo: false,
     eliminoVideo: false,
     editoVideo: false,
-    demo: true,
+    demo: false,
     asistencia: {
         evento: {},
         actividad: {},
