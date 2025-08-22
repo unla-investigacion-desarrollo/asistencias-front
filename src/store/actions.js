@@ -527,7 +527,9 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "201") {
+      context.commit(MUTATIONS.AGREGO_ACTIVIDAD, true);
       context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_ACTIVIDAD, false); }, 10000);
       router.push({
         name: "EventosView",
         params: {
@@ -550,7 +552,9 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_ACTIVIDAD, true);
         context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, response.data);
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_ACTIVIDAD, false); }, 10000);
         router.push({
           name: "EventosView",
           params: {
@@ -755,7 +759,9 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "201") {
+        context.commit(MUTATIONS.AGREGO_CONTENIDO, true);
         context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
+        setTimeout(() => { context.commit(MUTATIONS.AGREGO_CONTENIDO, false); }, 10000);
         router.push({
           name: "ContenidoAudioVisualView",
           params: {
@@ -858,6 +864,7 @@ export default {
     if (response.status == "200") {
       context.commit(MUTATIONS.EDITO_USUARIO, true);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+      setTimeout(() => { context.commit(MUTATIONS.EDITO_USUARIO, false); }, 10000);
       router.push({
           name: "UsuariosView",
           params: {
@@ -1066,7 +1073,9 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "201") {
+      context.commit(MUTATIONS.AGREGO_AUDIO, true);
       context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_AUDIO, false); }, 10000);
       router.push({
         name: "ContenidoAudioVisualView",
         params: {
@@ -1089,7 +1098,9 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "201") {
+      context.commit(MUTATIONS.AGREGO_IMAGEN, true);
       context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_IMAGEN, false); }, 10000);
       router.push({
         name: "ContenidoAudioVisualView",
         params: {
@@ -1112,7 +1123,9 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "201") {
+      context.commit(MUTATIONS.AGREGO_VIDEO, true);
       context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_VIDEO, false); }, 10000);
       router.push({
         name: "ContenidoAudioVisualView",
         params: {
@@ -1132,6 +1145,7 @@ export default {
 [ACTIONS.AGREGAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
+    context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
     context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
     router.push({
       name: "MensajesView",
@@ -1139,12 +1153,15 @@ export default {
         mensaje: "registro-evento",
       },
     });
+    setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
   } else {
     api.guardarInscripcion(payload)
     .then(response => {
     console.log(response);
       if (response.status == "201") {
+        context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
         context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+        setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
         router.push({
           name: "MensajesView",
           params: {
@@ -1309,7 +1326,9 @@ export default {
 [ACTIONS.ACTUALIZAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
+    context.commit(MUTATIONS.EDITO_INSCRIPCION, true);
     context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+    setTimeout(() => { context.commit(MUTATIONS.EDITO_INSCRIPCION, false); }, 10000);
     router.push({
       name: "MensajesView",
       params: {
@@ -1321,7 +1340,9 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "200") {
+        context.commit(MUTATIONS.EDITO_INSCRIPCION, true);
         context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
+        setTimeout(() => { context.commit(MUTATIONS.EDITO_INSCRIPCION, false); }, 10000);
         router.push({
           name: "MensajesView",
           params: {
