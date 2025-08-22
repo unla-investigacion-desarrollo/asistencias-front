@@ -59,7 +59,7 @@
                 <v-card-text class="bg-surface-light pt-4">
                     <v-row v-for="(item, index) in contenido.videos" :key="index">
                         <v-col>
-                            <iframe width="600" height="400" :src="item.video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe class="video" :src="item.video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </v-col>   
                     </v-row>
                 </v-card-text>
@@ -82,7 +82,7 @@
                 <v-card-text class="bg-surface-light pt-4">
                     <v-row v-for="(item, index) in contenido.audios" :key="index">
                         <v-col>
-                            <audio controls>
+                            <audio controls class="audio">
                             <source :src="item.audio" type="audio/mp3" >
                             Tu navegador no soporta el elemento de audio.
                             </audio>
@@ -145,5 +145,14 @@ export default {
 .boton {
     text-align: center;
     margin: 3% 0px 2% 0px;
+}
+
+.video {
+    width: 100%;
+    height: 400px;
+}
+
+.audio {
+    width: 100%;
 }
 </style>
