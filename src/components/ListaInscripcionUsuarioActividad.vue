@@ -11,6 +11,9 @@
             Evento
           </th>
           <th class="text-left">
+            Actividad
+          </th>
+          <th class="text-left">
             Fecha Inicio
           </th>
           <th class="text-left">
@@ -33,10 +36,11 @@
           :key="item.idInscripcion"
         >
           <td>{{ item.evento.nombre }}</td>
-          <td>{{ formatearFecha(item.evento.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.evento.fechaFin) }}</td>
-          <td>{{ item.evento.edificio }}</td>
-          <td>{{ item.evento.ubicacion }}</td>
+          <td>{{ item.actividad.nombre }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
+          <td>{{ item.actividad.edificio }}</td>
+          <td>{{ item.actividad.ubicacion }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
@@ -85,7 +89,7 @@ import { EDITAR_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ELIMINAR_INSCRIPCION
 import MensajeComponent from './MensajeComponent.vue';
 import { formatearFecha } from '@/config';
   export default {
-    name: 'ListaInscripcionUsuario',
+    name: 'ListaInscripcionUsuarioActividad',
     components: { MensajeComponent },
     data(){
       return {};

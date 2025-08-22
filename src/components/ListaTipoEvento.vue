@@ -1,4 +1,36 @@
 <template>
+  <div v-if="agrego" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El tipo de evento fue agregado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+  <div v-if="edito" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El tipo de evento fue modificado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
+
+   <div v-if="elimino" class="alerta">
+    <v-alert
+      closable
+      icon="$success"
+      title="El tipo de evento fue eliminado exitosamente."
+      text=""
+      type="success"
+      variant="outlined"
+    ></v-alert>
+  </div>
   <div v-if="eventos.length != 0">
     <v-table
       height="auto"
@@ -73,15 +105,24 @@
 <script>
 import { EDITAR_TIPO_EVENTO, ELIMINAR_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS, ACEPTA_ELIMINAR_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-  export default {
-    name: 'ListaTipoEvento',
-    components: { MensajeComponent },
-    data(){
-      return{};
+export default {
+  name: 'ListaTipoEvento',
+  components: { MensajeComponent },
+  data(){
+    return{};
+  },
+  computed: {
+    eventos() {
+      return this.$store.getters.getTipoEventos();
     },
-    computed: {
-        eventos() {
-            return this.$store.getters.getTipoEventos();
+    elimino(){
+      return this.$store.getters.getEliminoTipoEvento();
+    },
+    agrego(){
+      return this.$store.getters.getAgregoTipoEvento();
+    },
+    edito(){
+      return this.$store.getters.getEditoTipoEvento();
     }
   },
   methods: {
@@ -104,5 +145,9 @@ import MensajeComponent from './MensajeComponent.vue';
 <style scoped>
 .remove_item{
     margin-left: 2%;
+}
+
+.alerta {
+  margin: 2% 0px 2% 0px;
 }
 </style>

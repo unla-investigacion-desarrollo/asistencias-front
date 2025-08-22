@@ -30,7 +30,7 @@ const api = {
 
   actualizarEvento(payload) { 
     const body = normalizarDatos(payload);
-    return axios.put(`${dominio}/api/actualizarEvento/${payload.idEvento}`, body);
+    return axios.put(`${dominio}/api/eventos/actualizar/${payload.idEvento}`, body);
   },
 
   eliminarEvento(payload) {

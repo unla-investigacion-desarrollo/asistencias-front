@@ -69,7 +69,16 @@ export default {
           });      
         },
         escaner(){
-          this.$router.push('/escaner');
+          if(this.validoPp){
+                this.$router.push('/escaner');
+            } else {
+                this.$router.push({
+                    name: "CamaraView",
+                    params: {
+                        solapa: "asistencia",
+                    },
+                });
+            }
         }
     },
     data() {
