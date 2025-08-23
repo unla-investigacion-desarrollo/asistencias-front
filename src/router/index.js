@@ -57,6 +57,7 @@ import VideoView from '../views/VideoView.vue'
 import ContenidoQRView from '../views/ContenidoQRView.vue'
 import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
 import CamaraView from '../views/CamaraView.vue'
+import EstadisticasView from '../views/EstadisticasView.vue'
 
 const routes = [
   {
@@ -353,6 +354,11 @@ const routes = [
     path: '/camara/:solapa',
     name: 'CamaraView',
     component: CamaraView
+  },
+  {
+    path: '/estadisticas',
+    name: 'EstadisticasView',
+    component: EstadisticasView
   },
   {
     path: '/about',

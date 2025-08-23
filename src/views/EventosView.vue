@@ -8,6 +8,8 @@
         <v-tab value="eventos">Eventos</v-tab>
         <v-tab value="actividades">Actividades</v-tab>
         <v-tab value="tipo">Tipos de Eventos</v-tab>
+        <v-tab value="inscriptos">Inscriptos</v-tab>
+        <v-tab value="estadisticas">Estadisticas</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
@@ -23,6 +25,12 @@
             <ListaTiposEventosView></ListaTiposEventosView>
         </v-tabs-window-item>
 
+        <v-tabs-window-item value="inscriptos"></v-tabs-window-item>
+
+        <v-tabs-window-item value="estadisticas">
+            <EstadisticasView></EstadisticasView>
+        </v-tabs-window-item>
+
       </v-tabs-window>
 
 </template>
@@ -30,11 +38,11 @@
 import ListaTiposEventosView from './ListaTiposEventosView.vue';
 import ListaEventosView from './ListaEventosView.vue';
 import ListaActividadView from './ListaActividadView.vue';
-
+import EstadisticasView from './EstadisticasView.vue';
 
 export default {
     name: 'EventosView',
-    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView },
+    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView, EstadisticasView },
     data: () => ({
       tab: null,
     }),
