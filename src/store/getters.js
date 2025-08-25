@@ -63,4 +63,5 @@ export default {
     getPae: state => () => state.pae,
     getPp: state => () => state.pp,
     getPas: state => () =>  state.pas,
+    getEstadisticas: state => () =>  state.estadisticas
   };

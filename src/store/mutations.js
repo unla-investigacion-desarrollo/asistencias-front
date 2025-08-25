@@ -310,4 +310,7 @@ export default {
             }
         }
     },
+    [MUTATIONS.TRAER_ESTADISTICAS]: (state, payload) => {
+        state.estadisticas = payload;
+    },
 }

@@ -131,5 +131,6 @@ export default {
     psa: false,
     pae: false,
     pp: true,
-    pas: false
+    pas: false,
+    estadisticas: []
 }

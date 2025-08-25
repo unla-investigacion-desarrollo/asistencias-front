@@ -936,6 +936,93 @@ const invitacion = {
     ]
 };
 
+const estadisticas = [
+    {
+        "evento": {
+            "idEvento": 7,
+            "nombre": "fest",
+            "descripcion": "fest",
+            "fechaInicio": "2025-07-17T00:06:00",
+            "fechaFin": "2025-07-22T00:06:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "aula 1",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 102,
+                "nombre": "Festival",
+                "descripcion": "festival"
+            }
+        },
+        "inscripciones": 40,
+        "asistencias": 20
+    },
+    {
+        "evento": {
+            "idEvento": 1,
+            "nombre": "Jornada Profesional",
+            "descripcion": "Jornada",
+            "fechaInicio": "2025-04-25T20:38:00",
+            "fechaFin": "2025-04-30T20:38:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "Hernandez",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 1,
+                "nombre": "Arte",
+                "descripcion": "Arte"
+            }
+        },
+        "inscripciones": 50,
+        "asistencias": 40
+    },
+    {
+        "evento": {
+            "idEvento": 5,
+            "nombre": "Jornada",
+            "descripcion": "festival",
+            "fechaInicio": "2025-07-25T00:05:00",
+            "fechaFin": "2025-07-29T00:05:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Raul Scalabrini Ortiz",
+            "ubicacion": "aula 2",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 4,
+                "nombre": "Jornadas Profesionales",
+                "descripcion": "Jornadas Profesionales"
+            }
+        },
+        "inscripciones": 30,
+        "asistencias": 30
+    },
+    {
+        "evento": {
+            "idEvento": 6,
+            "nombre": "Python",
+            "descripcion": "Curso",
+            "fechaInicio": "2025-07-25T00:05:00",
+            "fechaFin": "2025-07-29T00:05:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "aula 2",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 152,
+                "nombre": "Cursos",
+                "descripcion": "Curso"
+            }
+        },
+        "inscripciones": 30,
+        "asistencias": 29
+    }
+]
+
 export {
-  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas
 };

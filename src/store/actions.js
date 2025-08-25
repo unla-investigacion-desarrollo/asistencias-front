@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -1619,5 +1619,9 @@ export default {
   });
   context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
+[ACTIONS.OBTENER_ESTADISTICAS] (context) {
+  context.commit(MUTATIONS.TRAER_ESTADISTICAS, estadisticas);
+},
+
 }
 
