@@ -58,6 +58,7 @@ import ContenidoQRView from '../views/ContenidoQRView.vue'
 import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
 import CamaraView from '../views/CamaraView.vue'
 import EstadisticasView from '../views/EstadisticasView.vue'
+import EstadisticasGeneralesView from '../views/EstadisticasGeneralesView.vue'
 
 const routes = [
   {
@@ -359,6 +360,11 @@ const routes = [
     path: '/estadisticas',
     name: 'EstadisticasView',
     component: EstadisticasView
+  },
+  {
+    path: '/estadisticasGenerales',
+    name: 'EstadisticasGeneralesView',
+    component: EstadisticasGeneralesView
   },
   {
     path: '/about',
