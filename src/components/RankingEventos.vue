@@ -87,7 +87,7 @@ export default {
           {
             label: 'Procentaje de efectividad de Eventos',
             backgroundColor: ['#3F51B5'],
-            data: this.ordenar()
+            data: this.ranking
           }
         ]
       } 

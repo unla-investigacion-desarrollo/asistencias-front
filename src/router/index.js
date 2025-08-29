@@ -60,6 +60,7 @@ import CamaraView from '../views/CamaraView.vue'
 import EstadisticasView from '../views/EstadisticasView.vue'
 import EstadisticasGeneralesView from '../views/EstadisticasGeneralesView.vue'
 import RankingEventosView from '../views/RankingEventosView.vue'
+import EstadisticasXEventoView from '../views/EstadisticasXEventoView.vue'
 
 const routes = [
   {
@@ -372,7 +373,11 @@ const routes = [
     name: 'RankingEventosView',
     component: RankingEventosView
   },
-  
+  {
+    path: '/estadisticasEvento',
+    name: 'EstadisticasXEventoView',
+    component: EstadisticasXEventoView
+  },
   {
     path: '/about',
     name: 'about',

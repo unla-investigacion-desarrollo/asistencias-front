@@ -7,14 +7,14 @@
         >
             <template v-slot:title>
               <div class="title_content">
-                <span class="title">Estadisticas Generales</span>
+                <span class="title">Estadisticas de los eventos</span>
               </div>
             </template>
 
             <v-card-text class="bg-surface-light pt-4 title_content">
-                <v-row class="d-flex justify-center" >
-                  <v-col :cols="12" :md="10">
-                    <EstadisticasGenerales></EstadisticasGenerales>
+                <v-row class="d-flex justify-center">
+                  <v-col>
+                    <EstadisticasXEvento></EstadisticasXEvento>
                   </v-col>
                 </v-row>
             </v-card-text>
@@ -24,14 +24,14 @@
   </v-container>
 </template>
 <script>
-import EstadisticasGenerales from '@/components/EstadisticasGenerales.vue';
-
+import EstadisticasXEvento from '@/components/EstadisticasXEvento.vue';
+  
 export default {
-  name: 'EstadisticasGeneralesView',
-  components: { EstadisticasGenerales },
+  name: 'EstadisticasXEventoView',
+  components: { EstadisticasXEvento },
   data() {
     return {};
-  },
+  }
 }
 </script>
   <style scoped>

@@ -1,15 +1,17 @@
 <template>
-      <v-container>
-        <v-row>
-          <v-col>
-            <Bar :data="datoIns" :options="opciones" />
-          </v-col>
-          <v-col>
-            <Bar :data="datos" :options="opciones" />
-          </v-col>
-      </v-row>
-     
-      <div class="container_button">
+  <v-container>
+    <v-row>
+      <v-col>
+        <Bar :data="datoIns" :options="opciones" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <Bar :data="datos" :options="opciones" />
+      </v-col>
+    </v-row>
+    <v-row class="container_button">
+      <v-col>
         <v-btn
           class="me-4"
           color="primary"
@@ -17,8 +19,9 @@
         >
         Volver
         </v-btn>
-      </div>
-    </v-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
   
 <script>
