@@ -59,6 +59,7 @@ import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
 import CamaraView from '../views/CamaraView.vue'
 import EstadisticasView from '../views/EstadisticasView.vue'
 import EstadisticasGeneralesView from '../views/EstadisticasGeneralesView.vue'
+import RankingEventosView from '../views/RankingEventosView.vue'
 
 const routes = [
   {
@@ -366,6 +367,12 @@ const routes = [
     name: 'EstadisticasGeneralesView',
     component: EstadisticasGeneralesView
   },
+  {
+    path: '/ranking',
+    name: 'RankingEventosView',
+    component: RankingEventosView
+  },
+  
   {
     path: '/about',
     name: 'about',
