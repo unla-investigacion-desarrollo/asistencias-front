@@ -4,9 +4,9 @@
       align-tabs="center"
       color="deep-purple-accent-4"
     >
-        <v-tab value="evento">Estadisticas por Evento</v-tab>
-        <v-tab value="general">Estadisticas Generales</v-tab>
-        <v-tab value="ranking">Ranking de eventos</v-tab>
+        <v-tab value="evento">Individuales</v-tab>
+        <v-tab value="general">Generales</v-tab>
+        <v-tab value="ranking">Ranking</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">

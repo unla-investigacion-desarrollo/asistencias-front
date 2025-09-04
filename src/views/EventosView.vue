@@ -14,7 +14,7 @@
 
     <v-tabs-window v-model="tab">
         <v-tabs-window-item value="eventos">
-            <ListaEventosView></ListaEventosView>
+          <ListaEventosView></ListaEventosView>
         </v-tabs-window-item>
 
         <v-tabs-window-item value="actividades">
@@ -22,13 +22,15 @@
         </v-tabs-window-item>
 
         <v-tabs-window-item value="tipo">
-            <ListaTiposEventosView></ListaTiposEventosView>
+          <ListaTiposEventosView></ListaTiposEventosView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="inscriptos"></v-tabs-window-item>
+        <v-tabs-window-item value="inscriptos">
+          <ListaInscriptosView></ListaInscriptosView>
+        </v-tabs-window-item>
 
         <v-tabs-window-item value="estadisticas">
-            <EstadisticasView></EstadisticasView>
+          <EstadisticasView></EstadisticasView>
         </v-tabs-window-item>
 
       </v-tabs-window>
@@ -39,10 +41,11 @@ import ListaTiposEventosView from './ListaTiposEventosView.vue';
 import ListaEventosView from './ListaEventosView.vue';
 import ListaActividadView from './ListaActividadView.vue';
 import EstadisticasView from './EstadisticasView.vue';
+import ListaInscriptosView from './ListaInscriptosView.vue';
 
 export default {
     name: 'EventosView',
-    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView, EstadisticasView },
+    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView, EstadisticasView, ListaInscriptosView },
     data: () => ({
       tab: null,
     }),
