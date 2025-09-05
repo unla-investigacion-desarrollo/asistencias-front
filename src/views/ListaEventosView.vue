@@ -22,6 +22,7 @@
     </v-container>
 </template>
 <script>
+import { EVENTO_NUEVO } from '@/store/actions-types';
 import ListaEvento from '../components/ListaEvento.vue';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     components: { ListaEvento },
     methods: {
         agregar(){
-            this.$router.push('/nuevoEvento')
+            this.$store.dispatch(EVENTO_NUEVO);
         }
     }
 }

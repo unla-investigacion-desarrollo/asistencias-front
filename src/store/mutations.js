@@ -313,4 +313,37 @@ export default {
     [MUTATIONS.TRAER_ESTADISTICAS]: (state, payload) => {
         state.estadisticas = payload;
     },
+    [MUTATIONS.EVENTO_DEFAULT]: (state) => {
+        let payload = {
+            idEvento: "",
+            estado: "Creado"
+        }
+        state.evento = payload;
+    },
+    [MUTATIONS.USUARIO_DEFAULT]: (state) => {
+        let payload = {
+            idUsuario: "",
+            tipoUsuario: {
+                rol: "Participante"
+            }
+        }
+        state.usuario = payload;
+    },
+    [MUTATIONS.ACTIVIDAD_DEFAULT]: (state) => {
+        let payload = {
+            idActividad: "",
+            estado: "Creado"
+        }
+        state.actividad = payload;
+    },
+    [MUTATIONS.INSCRIPCION_DEFAULT]: (state) => {
+        let payload = {
+            idInscripcion: "",
+            seleccion: "Todas"
+        }
+        state.inscripcion = payload;
+    },
+    [MUTATIONS.INSCRIPCION_EDITADA]: (state) => {
+        state.inscripcion.seleccion = "Elijo actividades";
+    },
 }

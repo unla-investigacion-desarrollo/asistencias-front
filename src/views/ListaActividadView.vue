@@ -22,6 +22,7 @@
     </v-container>
 </template>
 <script>
+import { ACTIVIDAD_NUEVA } from '@/store/actions-types';
 import ListaActividad from '../components/ListaActividad.vue';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     components: { ListaActividad },
     methods: {
         agregar(){
-            this.$router.push('/nuevaActividad')
+            this.$store.dispatch(ACTIVIDAD_NUEVA);
         }
     }
 }

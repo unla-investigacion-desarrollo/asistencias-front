@@ -681,6 +681,7 @@ export default {
   context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.INSCRIPCION_DEFAULT);
   context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
   router.push('/inscripcion');
 },
@@ -1622,6 +1623,20 @@ export default {
 [ACTIONS.OBTENER_ESTADISTICAS] (context) {
   context.commit(MUTATIONS.TRAER_ESTADISTICAS, estadisticas);
 },
-
+[ACTIONS.EVENTO_NUEVO] (context) {
+  context.commit(MUTATIONS.EVENTO_DEFAULT);
+  router.push('/nuevoEvento');
+},
+[ACTIONS.USUARIO_NUEVO] (context) {
+  context.commit(MUTATIONS.USUARIO_DEFAULT);
+  router.push('/unlaRegistro');
+},
+[ACTIONS.ACTIVIDAD_NUEVA] (context) {
+  context.commit(MUTATIONS.ACTIVIDAD_DEFAULT);
+  router.push('/nuevaActividad');
+},
+[ACTIONS.INSCRIPCION_EDITADA] (context) {
+  context.commit(MUTATIONS.INSCRIPCION_EDITADA);
+},
 }
 
