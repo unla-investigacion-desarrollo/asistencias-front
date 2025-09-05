@@ -22,6 +22,7 @@
     </v-container>
 </template>
 <script>
+import { CONTENIDO_NUEVO } from '@/store/actions-types';
 import ListaContenido from '../components/ListaContenido.vue';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     components: { ListaContenido },
     methods: {
         agregar(){
-            this.$router.push('/contenido')
+            this.$store.dispatch(CONTENIDO_NUEVO);
         }
     }
 }

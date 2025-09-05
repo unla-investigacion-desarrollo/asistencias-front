@@ -1638,5 +1638,21 @@ export default {
 [ACTIONS.INSCRIPCION_EDITADA] (context) {
   context.commit(MUTATIONS.INSCRIPCION_EDITADA);
 },
+[ACTIONS.CONTENIDO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, {});
+  router.push('/contenido');
+},
+[ACTIONS.AUDIO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AUDIO, {});
+  router.push('/nuevoAudio');
+},
+[ACTIONS.VIDEO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_VIDEO, {});
+  router.push('/nuevoVideo');
+},
+[ACTIONS.IMAGEN_NUEVA] (context) {
+  context.commit(MUTATIONS.GUARDAR_IMAGEN, {});
+  router.push('/nuevaImagen');
+},
 }
 

@@ -82,19 +82,20 @@ import FormularioEditarContenido from '@/components/FormularioEditarContenido.vu
 import ListaContenidoAudio from '@/components/ListaContenidoAudio.vue';
 import ListaContenidoImagen from '@/components/ListaContenidoImagen.vue';
 import ListaContenidoVideo from '@/components/ListaContenidoVideo.vue';
+import { AUDIO_NUEVO, IMAGEN_NUEVA, VIDEO_NUEVO } from '@/store/actions-types';
 
 export default {
   name: 'EditarContenidoView',
   components: { FormularioEditarContenido, ListaContenidoAudio, ListaContenidoImagen, ListaContenidoVideo },
   methods: {
     agregarAudio(){
-        this.$router.push('/nuevoAudio')
+      this.$store.dispatch(AUDIO_NUEVO);
     },
     agregarImagen(){
-        this.$router.push('/nuevaImagen')
+      this.$store.dispatch(IMAGEN_NUEVA);
     },
     agregarVideo(){
-        this.$router.push('/nuevoVideo')
+      this.$store.dispatch(VIDEO_NUEVO);
     }
   }
 }
