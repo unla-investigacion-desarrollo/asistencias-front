@@ -1654,5 +1654,17 @@ export default {
   context.commit(MUTATIONS.GUARDAR_IMAGEN, {});
   router.push('/nuevaImagen');
 },
+[ACTIONS.ROL_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, {});
+  router.push('/nuevoRol');
+},
+[ACTIONS.TIPO_EVENTO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, {});
+  router.push('/nuevoTipoEvento');
+},
+[ACTIONS.USUARIO_GENERAL_NUEVO] (context) {
+  context.commit(MUTATIONS.USUARIO_DEFAULT);
+  router.push('/registro');
+},
 }
 

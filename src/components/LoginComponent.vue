@@ -48,7 +48,7 @@
 </template>
   
 <script>
-import { LOGIN } from '../store/actions-types';
+import { LOGIN, USUARIO_GENERAL_NUEVO } from '../store/actions-types';
 export default {
   name: 'LoginComponent',
   components: {},
@@ -74,7 +74,7 @@ export default {
       this.$store.dispatch(LOGIN, this.model);
     },
     registro(){
-      this.$router.push('registro')
+      this.$store.dispatch(USUARIO_GENERAL_NUEVO);
     }
   }
 }

@@ -22,6 +22,7 @@
     </v-container>
 </template>
 <script>
+import { ROL_NUEVO } from '@/store/actions-types';
 import ListaTipoUsuario from '../components/ListaTipoUsuario.vue';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     components: { ListaTipoUsuario },
     methods: {
         agregar(){
-            this.$router.push('/nuevoRol')
+            this.$store.dispatch(ROL_NUEVO);
         }
     }
 }
