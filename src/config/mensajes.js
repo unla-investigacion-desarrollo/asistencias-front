@@ -27,6 +27,8 @@ const mensajes = {
         '<p>Se elimino la inscripción al evento exitosamente.</p>',
     "sin-estadisticas":
         '<p>No encontramos estadisticas disponibles para este evento.</p>',
+    "sin-inscriptos":
+        '<p>Aún no encontramos inscriptos para este evento.</p>',
     };
 
 export default mensajes;

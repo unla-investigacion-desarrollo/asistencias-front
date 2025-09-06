@@ -132,5 +132,14 @@ export default {
     pae: false,
     pp: true,
     pas: false,
-    estadisticas: []
+    estadisticas: [],
+    inscriptosEvento: {
+        listaUsuarios: [],
+        evento: {}
+    },
+    inscriptosEventoActividad: {
+        listaUsuarios: [],
+        evento: {},
+        actividad: {}
+    }
 }

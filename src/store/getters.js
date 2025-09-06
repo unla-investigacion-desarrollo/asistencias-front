@@ -63,5 +63,7 @@ export default {
     getPae: state => () => state.pae,
     getPp: state => () => state.pp,
     getPas: state => () =>  state.pas,
-    getEstadisticas: state => () =>  state.estadisticas
+    getEstadisticas: state => () =>  state.estadisticas,
+    getInscriptosEvento: state => () =>  state.inscriptosEvento,
+    getInscriptosEventoActividad: state => () =>  state.inscriptosEventoActividad,
   };

@@ -346,4 +346,10 @@ export default {
     [MUTATIONS.INSCRIPCION_EDITADA]: (state) => {
         state.inscripcion.seleccion = "Elijo actividades";
     },
+    [MUTATIONS.INSCRIPTOS_X_EVENTO]: (state, payload) => {
+        state.inscriptosEvento = payload;
+    },
+    [MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD]: (state, payload) => {
+        state.inscriptosEventoActividad = payload;
+    },
 }

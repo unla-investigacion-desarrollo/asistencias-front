@@ -62,6 +62,7 @@ import EstadisticasGeneralesView from '../views/EstadisticasGeneralesView.vue'
 import RankingEventosView from '../views/RankingEventosView.vue'
 import EstadisticasXEventoView from '../views/EstadisticasXEventoView.vue'
 import ListaInscriptosView from '../views/ListaInscriptosView.vue'
+import ListaInscriptosEventoView from '../views/ListaInscriptosEventoView.vue'
 
 const routes = [
   {
@@ -384,7 +385,11 @@ const routes = [
     name: 'ListaInscriptosView',
     component: ListaInscriptosView
   },
-  
+  {
+    path: '/listaInscriptosXEvento',
+    name: 'ListaInscriptosEventoView',
+    component: ListaInscriptosEventoView
+  },
   {
     path: '/about',
     name: 'about',

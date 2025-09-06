@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -1665,6 +1665,10 @@ export default {
 [ACTIONS.USUARIO_GENERAL_NUEVO] (context) {
   context.commit(MUTATIONS.USUARIO_DEFAULT);
   router.push('/registro');
+},
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO] (context) {
+  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, inscriptosEvento);
+  router.push('/listaInscriptosXEvento');
 },
 }
 

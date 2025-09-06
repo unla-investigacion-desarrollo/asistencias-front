@@ -1021,8 +1021,56 @@ const estadisticas = [
         "inscripciones": 30,
         "asistencias": 29
     }
-]
+];
+
+const inscriptosEvento  = {
+    "listaUsuarios": [
+        {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        },
+        {
+        "idUsuario": 2,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000001,
+        "email": "n.uen@hotmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        }
+    ],
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    }
+};
 
 export {
-  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento
 };
