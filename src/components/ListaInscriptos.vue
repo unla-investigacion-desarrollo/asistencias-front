@@ -41,7 +41,7 @@
                 <td>{{ item.asistencias }}</td>
                 <td>
                   <v-btn class="remove_item" color="primary" @click="detalleItem(item.evento)" icon="mdi-note-search-outline"></v-btn>
-              </td>
+                </td>
               </tr>
             </tbody>
           </v-table>

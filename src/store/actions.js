@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad } from "@/config/mock"
 import { hoyFormateado } from "@/config/index"
 
 export default {
@@ -1669,6 +1669,9 @@ export default {
 [ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO] (context) {
   context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, inscriptosEvento);
   router.push('/listaInscriptosXEvento');
+},
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
+  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
 },
 }
 
