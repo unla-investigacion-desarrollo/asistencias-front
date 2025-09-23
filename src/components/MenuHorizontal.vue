@@ -7,7 +7,7 @@
         <v-btn @click="contenido" v-if="!this.validoPp">
             <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios" v-if="!this.validoPp">
+        <v-btn @click="usuarios" v-if="!this.validoPp || !this.validoPae">
             <v-icon class="icon_button">mdi-table-account</v-icon><span class="text" >Usuarios</span>
         </v-btn>
         <v-btn icon>
@@ -37,7 +37,7 @@ export default {
             }
         },
         eventos(){
-            if(this.validoPp){
+            if(this.validoPp || this.validoPae){
                 this.$router.push('/eventosUnla');
             } else {
                 this.$router.push({
@@ -69,7 +69,7 @@ export default {
           });      
         },
         escaner(){
-          if(this.validoPp){
+          if(this.validoPp || this.validoPae){
                 this.$router.push('/escaner');
             } else {
                 this.$router.push({
@@ -106,6 +106,18 @@ export default {
         validoPp(){
             return this.$store.getters.getPp();
         },
+        validoPa(){
+            return this.$store.getters.getPa();
+        },
+        validoPsa(){
+            return this.$store.getters.getPsa();
+        },
+        validoPae(){
+            return this.$store.getters.getPae();
+        },
+        validoPas(){
+            return this.$store.getters.getPas();
+        }
     }
 }
 </script>
