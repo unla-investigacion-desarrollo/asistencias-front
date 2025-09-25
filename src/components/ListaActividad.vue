@@ -95,7 +95,7 @@
           <td>{{ item.cupoLimite }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
@@ -157,6 +157,9 @@ export default {
     },
     edito(){
       return this.$store.getters.getEditoActividad();
+    },
+    validoPas(){
+        return this.$store.getters.getPas();
     }
 },
 methods: {

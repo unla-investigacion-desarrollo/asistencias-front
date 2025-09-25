@@ -21,7 +21,7 @@
           <ListaActividadView></ListaActividadView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="tipo">
+        <v-tabs-window-item value="tipo" v-if="!this.validoPas">
           <ListaTiposEventosView></ListaTiposEventosView>
         </v-tabs-window-item>
 
@@ -29,7 +29,7 @@
           <ListaInscriptosView></ListaInscriptosView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="estadisticas">
+        <v-tabs-window-item value="estadisticas" v-if="!this.validoPas">
           <EstadisticasView></EstadisticasView>
         </v-tabs-window-item>
 
@@ -53,7 +53,12 @@ export default {
       const solapa = this.$route.params.solapa;
       console.log(solapa);
       this.tab = solapa;
-    }
+    },
+    computed: {
+      validoPas(){
+          return this.$store.getters.getPas();
+      }
+  }
 }
 </script>
 

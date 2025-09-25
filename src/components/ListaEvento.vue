@@ -96,8 +96,8 @@
           <td>{{ item.tipoEvento.nombre }}</td>
           <td>{{ item.linkCertificado }}</td>
           <td>
-              <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil" v-if="!this.validoPas"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
               <v-btn class="remove_item" color="secondary" @click="inscripcionItem(item)" icon="mdi-note-plus-outline"></v-btn>
           </td>
@@ -149,18 +149,21 @@ export default {
     return {};
   },
   computed: {
-      eventos() {
-          return this.$store.getters.getEventos();
-      },
-      elimino(){
-        return this.$store.getters.getEliminoEvento();
-      },
-      agrego(){
-        return this.$store.getters.getAgregoEvento();
-      },
-      edito(){
-        return this.$store.getters.getEditoEvento();
-      }
+    eventos() {
+        return this.$store.getters.getEventos();
+    },
+    elimino(){
+      return this.$store.getters.getEliminoEvento();
+    },
+    agrego(){
+      return this.$store.getters.getAgregoEvento();
+    },
+    edito(){
+      return this.$store.getters.getEditoEvento();
+    },
+    validoPas(){
+        return this.$store.getters.getPas();
+    }
 },
   methods: {
     editarItem(item){   
