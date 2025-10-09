@@ -7,7 +7,7 @@
         <v-btn @click="contenido" v-if="!this.validoPp">
             <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios" v-if="!this.validoPp || !this.validoPae || !this.validoPas">
+        <v-btn @click="usuarios" v-if="(!this.validoPp) && (!this.validoPae) && (!this.validoPas)">
             <v-icon class="icon_button">mdi-table-account</v-icon><span class="text" >Usuarios</span>
         </v-btn>
         <v-btn icon>

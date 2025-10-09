@@ -1,7 +1,7 @@
 <template>
       <v-container>
         <v-row>
-          <v-col>
+          <v-col class="grafico">
             <Bar :data="datos" :options="opciones" />
           </v-col>
       </v-row>
@@ -126,5 +126,8 @@ export default {
 }
 .button {
   margin-right: 2%;
+}
+.grafico {
+  height: 300px;
 }
 </style>
