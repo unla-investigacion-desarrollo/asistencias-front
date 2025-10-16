@@ -143,7 +143,7 @@ const api = {
     if(hash !== ""){
       axios.defaults.headers.common['Authorization'] = `Bearer ${hash}` 
     }
-    return axios.get(`${dominio}/api/usuarios/email/${payload}`, body);
+    return axios.get(`${dominio}/api/usuarios/email?email=${payload}`, body);
   },
 
   //Controller Tipo de Evento

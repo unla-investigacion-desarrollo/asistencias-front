@@ -225,7 +225,7 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  //context.commit(MUTATIONS.ACTUALIZO_PAGINA);
 },
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -686,7 +686,11 @@ export default {
   router.push('/inscripcion');
 },
 [ACTIONS.LOGIN] (context, payload) {
-  api.login(payload)
+  let datos = {
+    email: payload.email,
+    clave: payload.clave
+  }
+  api.login(datos)
   .then(response => {
   console.log(response);
     if (response.status == "200") {

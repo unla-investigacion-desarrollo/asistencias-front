@@ -78,8 +78,8 @@ export default {
         state.inscripcion.evento = payload;
     }, 
     [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
-        state.hash = payload;
-        localStorage.setItem("keyuser", payload);
+        state.hash = payload.token;
+        localStorage.setItem("keyuser", payload.token);
     }, 
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
         state.inscripciones = payload;
