@@ -161,10 +161,24 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("agregue el evento");
+      this.model.fechaFin = this.formatearfechas(this.model.fechaFin);
+      this.model.fechaInicio = this.formatearfechas(this.model.fechaInicio);
       this.$store.dispatch(AGREGAR_EVENTO, this.model);
     },
     volver(){
       this.$router.go(-1);
+    },
+    formatearfechas(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "/" + mes + "/" + anio + " " +  hora + ":" + min;
+      }
+      return formato;
     }
   }
 }

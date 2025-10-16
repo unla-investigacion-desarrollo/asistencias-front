@@ -66,7 +66,7 @@ export default {
   api.guardarEvento(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_EVENTO, true);
       context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_EVENTO, false); }, 10000);
