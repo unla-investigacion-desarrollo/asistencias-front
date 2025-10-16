@@ -23,7 +23,7 @@
                 <strong class="font-weight-bold">Fecha de Inicio</strong>
               </v-col>
               <v-col cols="12" sm="8" md="9">
-                {{ formatearFecha(model.fechaInicio) }}
+                {{ model.fechaInicio }}
               </v-col>
             </v-row>
             <v-row>
@@ -31,7 +31,7 @@
                 <strong class="font-weight-bold">Fecha de Fin</strong>
               </v-col>
               <v-col cols="12" sm="8" md="9">
-                {{ formatearFecha(model.fechaFin) }}
+                {{ model.fechaFin }}
               </v-col>
             </v-row>
             <v-row>
@@ -39,7 +39,7 @@
                 <strong class="font-weight-bold">Cierre de Inscripción</strong>
               </v-col>
               <v-col cols="12" sm="8" md="9">
-                {{ formatearFecha(model.fechaCierre) }}
+                {{ model.fechaCierre }}
               </v-col>
             </v-row>
             <v-row>
@@ -109,18 +109,6 @@ export default {
     },
   },
   methods: {
-    formatearFecha(f){
-      let formato = "";
-      if(f != null){
-        let anio = f.substring(0, 4);
-        let mes = f.substring(5, 7);
-        let dia = f.substring(8, 10);
-        let hora = f.substring(11, 13);
-        let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
-      }
-      return formato;
-    },
     volver(){
       this.$router.go(-1);
     }

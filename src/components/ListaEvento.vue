@@ -87,9 +87,9 @@
           <td>{{ item.idEvento }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.descripcion }}</td>
-          <td>{{ formatearFecha(item.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.fechaFin) }}</td>
-          <td>{{ formatearFecha(item.fechaCierre) }}</td>
+          <td>{{ item.fechaInicio }}</td>
+          <td>{{ item.fechaFin }}</td>
+          <td>{{ item.fechaCierre }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
@@ -141,7 +141,7 @@
 <script>
 import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { usuario, formatearFecha } from '@/config';
+import { usuario } from '@/config';
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },

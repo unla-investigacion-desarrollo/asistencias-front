@@ -33,9 +33,9 @@
           :key="item.idEvento"
         >
           <td>{{ item.nombre }}</td>
-          <td>{{ formatearFecha(item.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.fechaFin) }}</td>
-          <td>{{ formatearFecha(item.fechaCierre) }}</td>
+          <td>{{ item.fechaInicio }}</td>
+          <td>{{ item.fechaFin }}</td>
+          <td>{{ item.fechaCierre }}</td>
           <td>{{ item.tipoEvento.nombre }}</td>
           <td>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
@@ -69,18 +69,6 @@ export default {
     detalleItem(item){
         this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
-    formatearFecha(f){
-      let formato = "";
-      if(f != null){
-        let anio = f.substring(0, 4);
-        let mes = f.substring(5, 7);
-        let dia = f.substring(8, 10);
-        let hora = f.substring(11, 13);
-        let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
-      }
-      return formato;
-    }
   },
   created() {
     this.$store.dispatch(OBTENER_PROXIMOS_EVENTOS);

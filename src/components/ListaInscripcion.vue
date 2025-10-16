@@ -52,8 +52,8 @@
           <td>{{ item.usuario.dni }}</td>
           <td>{{ item.evento.nombre }}</td>
           <td>{{ item.actividad.nombre }}</td>
-          <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
+          <td>{{ item.actividad.fechaInicio }}</td>
+          <td>{{ item.actividad.fechaFin }}</td>
           <td>{{ item.actividad.edificio }}</td>
           <td>{{ item.actividad.ubicacion }}</td>
           <td>{{ item.actividad.estado }}</td>
@@ -103,7 +103,6 @@
 <script>
 import { EDITAR_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { formatearFecha } from '@/config';
   export default {
     name: 'ListaInscripcion',
     components: { MensajeComponent },

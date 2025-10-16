@@ -85,8 +85,8 @@
           <td>{{ item.idActividad }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.descripcion }}</td>
-          <td>{{ formatearFecha(item.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.fechaFin) }}</td>
+          <td>{{ item.fechaInicio }}</td>
+          <td>{{ item.fechaFin }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
@@ -137,7 +137,6 @@
 </script>
 <script>
 import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD } from '../store/actions-types';
-import { formatearFecha } from '@/config';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaActividad',
