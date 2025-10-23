@@ -79,7 +79,7 @@
                     <strong class="font-weight-bold">Cupo Limite</strong>
                 </v-col>
                 <v-col cols="12" sm="8" md="9">
-                    {{ model.cupoLimite }}
+                    {{ model.cupoMax }}
                 </v-col>
                 </v-row>
             </v-list-item>

@@ -89,7 +89,7 @@
             label="Cupo Limite"
             :counter="3"
             :max="999"
-            v-model="model.cupoLimite"
+            v-model="model.cupoMax"
             :rules="validationNumber"
             ></v-number-input>
         </v-col>

@@ -92,7 +92,7 @@
           <td>{{ item.estado }}</td>
           <td>{{ item.evento.nombre }}</td>
           <td>{{ item.cupo }}</td>
-          <td>{{ item.cupoLimite }}</td>
+          <td>{{ item.cupoMax }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>

@@ -83,7 +83,7 @@ export default {
         estado: "Creado",
         evento: {},
         cupo: "",
-        cupoLimite: ""
+        cupoMax: ""
     },
     titulosContenido: null,
     actividades: [],

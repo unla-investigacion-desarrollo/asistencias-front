@@ -526,7 +526,7 @@ export default {
   api.agregarActividad(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_ACTIVIDAD, true);
       context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_ACTIVIDAD, false); }, 10000);
