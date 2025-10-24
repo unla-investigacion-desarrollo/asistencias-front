@@ -18,7 +18,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col :cols="12" :md="6">
+        <v-col :cols="12" :md="4">
           <v-text-field
             v-model="model.fechaInicio"
             label="Fecha de inicio"
@@ -27,10 +27,17 @@
             required
           ></v-text-field>
         </v-col>
-        <v-col :cols="12" :md="6">
+        <v-col :cols="12" :md="4">
           <v-text-field
             v-model="model.fechaFin"
             label="Fecha de fin"
+            type="datetime-local" 
+          ></v-text-field>
+        </v-col>
+        <v-col :cols="12" :md="4">
+          <v-text-field
+            v-model="model.fechaCierre"
+            label="Fecha de cierre"
             type="datetime-local" 
           ></v-text-field>
         </v-col>
@@ -160,10 +167,25 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("modifique el evento");
-        this.$store.dispatch(ACTUALIZAR_EVENTO, this.model);
+      this.model.fechaFin = this.formatearfechas(this.model.fechaFin);
+      this.model.fechaInicio = this.formatearfechas(this.model.fechaInicio);
+      this.model.fechaCierre = this.formatearfechas(this.model.fechaCierre);
+      this.$store.dispatch(ACTUALIZAR_EVENTO, this.model);
     },
     volver(){
       this.$router.go(-1);
+    },
+    formatearfechas(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "/" + mes + "/" + anio + " " +  hora + ":" + min;
+      }
+      return formato;
     }
   }
 }

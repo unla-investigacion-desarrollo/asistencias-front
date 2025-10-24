@@ -1122,7 +1122,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
 
-      let lista = response.data;
+      let lista = response.data.eventos;
       /*
       let listaAux = [];
       let aux = {};
