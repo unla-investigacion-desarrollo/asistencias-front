@@ -91,7 +91,7 @@
     </div>
 </template>
 <script>
-import { OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
+import { OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO } from '../store/actions-types';
 export default {
   name: 'DetalleEventoGeneral',
   components: {},
@@ -115,7 +115,7 @@ export default {
 },
     created(){
         if(this.model.nombre !== ''){
-            this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model);
+            this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.model);
         }
     }
 }

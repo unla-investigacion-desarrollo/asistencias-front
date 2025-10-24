@@ -426,6 +426,22 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerActividadesXEventoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 [ACTIONS.OBTENER_ACTIVIDADES_X_ESTADO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.buscarActividadesPorEstado(payload)

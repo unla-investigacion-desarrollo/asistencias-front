@@ -58,7 +58,7 @@
   </div>
 </template>
 <script>
-import { DETALLE_ACTIVIDAD_GENERAL, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
+import { DETALLE_ACTIVIDAD_GENERAL, OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaActividadGeneral',
@@ -79,7 +79,7 @@ methods: {
 created() {
   if(this.$store.getters.getActividades().length == 0){
     if(this.$store.getters.getEvento().nombre != ""){
-      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.$store.getters.getEvento());
+      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.$store.getters.getEvento());
     } 
   }
   console.log(this.$store.getters.getActividades());

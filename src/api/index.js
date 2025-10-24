@@ -117,7 +117,7 @@ const api = {
   },
   buscarActividadesPorEvento(payload){
     const body = normalizarDatos(payload);
-    return axios.get(`${dominio}/api/actividades/evento/${payload.idEvento}`, body);
+    return axios.get(`${dominio}/api/actividades/filtrar?idEvento=${payload.idEvento}`, body);
   },
   //Controller usuarios
   guardarUsuario(payload) {
@@ -328,6 +328,10 @@ const api = {
 
   obtenerProximosEventos(){
     return axios.get(`${dominio}/api/public/eventos/proximos`);
+  },
+
+  traerActividadesXEventoPublico(payload){
+    return axios.get(`${dominio}/api/public/eventos/${payload.idEvento}/actividades`);
   }
 
 };
