@@ -68,8 +68,45 @@ export default {
         state.actividad = {};
     },
     [MUTATIONS.GUARDAR_USUARIO]: (state, payload) => {
+        state.hash = payload.token;
+        localStorage.setItem("keyuser", payload.token);
         state.usuario = payload;
+        state.tipoUsuario = payload.tipoUsuario;
+        let dato = payload.tipoUsuario.rol;
         localStorage.setItem("usuario", JSON.stringify(payload));
+        if((dato != "") || (dato != undefined) || (dato != null)){
+            if(dato == "Participante"){
+                state.pp = true;
+                state.psa = false;
+                state.pae = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "SemiAdministrador") {
+                state.psa = true;
+                state.pp = false;
+                state.pae = false,
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "Autor"){
+                state.pae = true;
+                state.psa = false;
+                state.pp = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "Asistente"){
+                state.pas = true;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+                state.pa = false;
+            } else {
+                state.pa = true;
+                state.pas = false;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+            }
+        }
     }, 
     [MUTATIONS.GUARDAR_AGREGAR_USUARIO]: (state, payload) => {
         state.usuario = payload;

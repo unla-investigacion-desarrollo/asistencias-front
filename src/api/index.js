@@ -1,7 +1,7 @@
 import axios from "axios";
 import { dominio, normalizarDatos } from '../config/index';
 
-axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("keyuser")}` 
+axios.defaults.headers.common['Authorization'] = `Bearer ${window.localStorage.getItem("keyuser")}` 
 
 const api = {
 
@@ -215,7 +215,11 @@ const api = {
 
   actualizarImagen(payload) { 
     const body = normalizarDatos(payload);
-    return axios.put(`${dominio}/api/imagen/${payload.idImagen}`, body);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      imagen: body.imagen
+    }
+    return axios.put(`${dominio}/api/imagen/${payload.idImagen}`, obj);
   },
 
   eliminarImagen(payload) {
@@ -240,7 +244,11 @@ const api = {
 
   actualizarAudio(payload) { 
     const body = normalizarDatos(payload);
-    return axios.put(`${dominio}/api/audio/${payload.idAudio}`, body);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      audio: body.audio
+    }
+    return axios.put(`${dominio}/api/audio/${payload.idAudio}`, obj);
   },
 
   eliminarAudio(payload) {
@@ -265,7 +273,11 @@ const api = {
 
   actualizarVideo(payload) { 
     const body = normalizarDatos(payload);
-    return axios.put(`${dominio}/api/video/${payload.idVideo}`, body);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      video: body.video
+    }
+    return axios.put(`${dominio}/api/video/${payload.idVideo}`, obj);
   },
 
   eliminarVideo(payload) {
@@ -313,6 +325,10 @@ const api = {
   obtenerTiposEventosPublicos() { 
     return axios.get(`${dominio}/api/public/tiposEventos`);
   },
+
+  obtenerProximosEventos(){
+    return axios.get(`${dominio}/api/public/eventos/proximos`);
+  }
 
 };
 

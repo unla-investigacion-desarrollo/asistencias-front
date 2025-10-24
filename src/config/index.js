@@ -29,6 +29,20 @@ const formatearFecha = f => {
   return formato;
 };
 
+const convertirAEmbed = url => {
+  if (url.includes("watch?v=")) {
+    const videoId = url.split("watch?v=")[1].split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1].split("?")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  return url;
+}
+
 const estados = [ 'Creado', 'Iniciado', 'Terminado', 'Suspendido', 'Aplazado' ];
 
 const seleccionActividades = [ 'Todas', 'Elijo actividades' ];
@@ -56,6 +70,6 @@ export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha
+  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha, convertirAEmbed
 };
 

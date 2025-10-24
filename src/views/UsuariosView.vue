@@ -25,8 +25,6 @@
 import ListaRolesView from './ListaRolesView.vue';
 import ListaUsuarioView from './ListaUsuarioView.vue';
 
-
-
 export default {
     name: 'UsuariosView',
     components: { ListaUsuarioView, ListaRolesView },
