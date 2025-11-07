@@ -1151,7 +1151,7 @@ export default {
       }
       console.log(listaAux);*/
       context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, lista);
-      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, lista);
+      //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, lista);
     } 
   })
   .catch(error => {
@@ -1573,7 +1573,7 @@ export default {
     console.log(response);
       if (response.status == "200") {
         context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+        //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
       } 
     })
     .catch(error => {

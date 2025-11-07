@@ -43,7 +43,7 @@
           <td>{{ item.fechaFin }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
-          <td>{{ item.evento.nombre }}</td>
+          <td>{{ item.nombreEvento }}</td>
           <td>{{ item.cupo }}</td>
           <td>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>

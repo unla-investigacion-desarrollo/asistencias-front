@@ -90,7 +90,7 @@
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
-          <td>{{ item.evento.nombre }}</td>
+          <td>{{ item.nombreEvento }}</td>
           <td>{{ item.cupo }}</td>
           <td>{{ item.cupoMax }}</td>
           <td>

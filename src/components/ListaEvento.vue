@@ -32,7 +32,7 @@
     ></v-alert>
   </div>
 
-  <div v-if="eventos.length != 0">
+  <div v-if="eventos.length > 0">
     <v-table
       height="auto"
       fixed-header
