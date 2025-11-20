@@ -767,7 +767,7 @@ export default {
     if (response.status == "200") {
       //context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
-      router.push("/");
+      router.push("/miPerfil");
     } else{
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
     } 
@@ -1138,7 +1138,7 @@ export default {
   console.log(response);
     if (response.status == "200") {
 
-      let lista = response.data.eventos;
+      //let lista = response.data.eventos;
       /*
       let listaAux = [];
       let aux = {};
@@ -1150,7 +1150,7 @@ export default {
         }   
       }
       console.log(listaAux);*/
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, lista);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
       //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, lista);
     } 
   })

@@ -184,7 +184,7 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "/" + mes + "/" + anio + " " +  hora + ":" + min;
+        formato = anio + "-" + mes + "-" + dia + " " +  hora + ":" + min;
       }
       return formato;
     }

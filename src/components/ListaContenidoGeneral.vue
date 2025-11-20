@@ -59,7 +59,7 @@
           :key="item.idContenido"
         >
           <td>{{ item.titulo }}</td>
-          <td>{{ item.evento.nombre }}</td>
+          <td>{{ item.nombreEvento }}</td>
           <td>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
