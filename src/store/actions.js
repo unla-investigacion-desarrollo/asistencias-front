@@ -1150,7 +1150,7 @@ export default {
         }   
       }
       console.log(listaAux);*/
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data.eventos);
       //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, lista);
     } 
   })
