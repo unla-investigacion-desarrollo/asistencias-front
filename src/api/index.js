@@ -97,7 +97,7 @@ const api = {
 
   obtenerInscripcionesPorUsuario(payload){
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.idUsuario}`);
+    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.id}`);
   },
 
   //controller de actividad

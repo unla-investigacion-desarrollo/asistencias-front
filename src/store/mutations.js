@@ -313,31 +313,40 @@ export default {
     },
     [MUTATIONS.ACTUALIZO_PAGINA]: (state) => {
         let dato = JSON.parse(localStorage.getItem("usuario"));
-        if((dato != "") || (dato != undefined) || (dato != null)){
-            if(dato.tipoUsuario.rol == "Participante"){
-                state.pp = true;
-                state.psa = false;
-                state.pae = false;
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "SemiAdministrador") {
-                state.psa = true;
-                state.pp = false;
-                state.pae = false,
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "Autor"){
-                state.pae = true;
-                state.psa = false;
-                state.pp = false;
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "Asistente"){
-                state.pas = true;
-                state.pae = false;
-                state.psa = false;
-                state.pp = false;
-                state.pa = false;
+        if((dato != "") && (dato != undefined) && (dato != null)){
+            if(dato.tipoUsuario != null){
+
+                if(dato.tipoUsuario.rol == "Participante"){
+                    state.pp = true;
+                    state.psa = false;
+                    state.pae = false;
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "SemiAdministrador") {
+                    state.psa = true;
+                    state.pp = false;
+                    state.pae = false,
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "Autor"){
+                    state.pae = true;
+                    state.psa = false;
+                    state.pp = false;
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "Asistente"){
+                    state.pas = true;
+                    state.pae = false;
+                    state.psa = false;
+                    state.pp = false;
+                    state.pa = false;
+                } else {
+                    state.pa = true;
+                    state.pas = false;
+                    state.pae = false;
+                    state.psa = false;
+                    state.pp = false;
+                }
             } else {
                 state.pa = true;
                 state.pas = false;
