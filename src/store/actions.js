@@ -229,8 +229,8 @@ export default {
     .then(response => {
     console.log(response);
       if (response.status == "200") {
-        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data.eventos);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data.eventos);
       } 
     })
     .catch(error => {

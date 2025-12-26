@@ -29,6 +29,8 @@ const mensajes = {
         '<p>No encontramos estadisticas disponibles para este evento.</p>',
     "sin-inscriptos":
         '<p>Aún no encontramos inscriptos para este evento.</p>',
+    "sin-resultados":
+        '<p>No encontramos resultados para la busqueda solicitada</p>',
     };
 
 export default mensajes;
