@@ -48,7 +48,7 @@
     </v-table>
   </div>
   <div class="text_menssage" v-if="inscripciones.length == 0">
-    <Mensaje-component valor="sin-registros"></Mensaje-component>
+    <Mensaje-component valor="sin-inscripciones"></Mensaje-component>
   </div>  
 
   <div>

@@ -976,7 +976,7 @@ export default {
   .then(response => {
     if (response.status == "200") {
       context.commit(MUTATIONS.EDITO_USUARIO, true);
-      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+      context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, response.data);
       setTimeout(() => { context.commit(MUTATIONS.EDITO_USUARIO, false); }, 10000);
       router.push({
           name: "UsuariosView",
@@ -997,7 +997,7 @@ export default {
   }
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
-  context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+  context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, payload);
   router.push('/editarUnlaUsuario');
 },
 [ACTIONS.IDENTIFICO_ERRORES] (context) {

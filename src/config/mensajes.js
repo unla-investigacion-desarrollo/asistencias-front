@@ -31,6 +31,8 @@ const mensajes = {
         '<p>Aún no encontramos inscriptos para este evento.</p>',
     "sin-resultados":
         '<p>No encontramos resultados para la busqueda solicitada</p>',
+    "sin-inscripciones":
+        '<p>Aún no te has inscripto a ningún evento y actividad. <br>Una vez que te anotes a alguno verás tus inscripciones aquí.</p>',
     };
 
 export default mensajes;

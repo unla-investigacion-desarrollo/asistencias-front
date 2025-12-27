@@ -111,7 +111,7 @@ export default {
   components: { VNumberInput },
   data() {
     return {
-      model: this.$store.getters.getUsuario(),
+      model: this.$store.getters.getUsuarioNuevo(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',

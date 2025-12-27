@@ -3,7 +3,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue agregado exitosamente."
+      title="El usuario fue agregado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -14,7 +14,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue modificado exitosamente."
+      title="El usuario fue modificado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -25,7 +25,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue eliminado exitosamente."
+      title="El usuario fue eliminado exitosamente."
       text=""
       type="success"
       variant="outlined"
