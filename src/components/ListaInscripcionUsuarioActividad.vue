@@ -1,5 +1,5 @@
 <template>
-  <div v-if="inscripciones.length != 0">
+  <div v-if="inscripciones.length > 0">
     <v-table
       height="auto"
       fixed-header

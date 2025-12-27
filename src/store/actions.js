@@ -747,6 +747,30 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+},
+[ACTIONS.REGISTRAR_USUARIO_NUEVO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true); 
+  api.guardarUsuario(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_USUARIO, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_USUARIO, false); }, 1000);
+      context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, response.data);
+      router.push({
+          name: "UsuariosView",
+          params: {
+            solapa: "usuarios",
+          },
+        });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
   if(context.getters.getHash() == ''){
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
@@ -810,7 +834,7 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "200") {
-        context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, response.data);
+        context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, response.data.inscripciones);
       } 
     })
     .catch(error => {

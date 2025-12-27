@@ -23,7 +23,7 @@
                     <strong class="font-weight-bold">Evento</strong>
                 </v-col>
                 <v-col cols="12" sm="8" md="9">
-                    {{ model.evento.nombre }}
+                    {{ model.nombreEvento }}
                 </v-col>
                 </v-row>
                 <v-row>

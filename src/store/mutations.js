@@ -111,6 +111,9 @@ export default {
     [MUTATIONS.GUARDAR_AGREGAR_USUARIO]: (state, payload) => {
         state.usuario = payload;
     }, 
+    [MUTATIONS.GUARDAR_USUARIO_NUEVO]: (state, payload) => {
+        state.usuarionuevo = payload;
+    }, 
     [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state, payload) => {
         state.inscripcion.evento = payload;
     }, 

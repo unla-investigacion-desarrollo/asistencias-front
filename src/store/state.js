@@ -141,5 +141,16 @@ export default {
         listaUsuarios: [],
         evento: {},
         actividad: {}
-    }
+    },
+    usuarionuevo: {
+        email: "",
+        clave: "",
+        nombre: "",
+        apellido: "",
+        dni: "",
+        usuario: "",
+        tipoUsuario: {
+            rol: "Participante"
+        }
+    },
 }

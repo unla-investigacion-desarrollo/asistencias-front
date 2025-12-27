@@ -105,13 +105,13 @@
   
 <script>
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { REGISTRAR_USUARIO, OBTENER_ROLES } from '../store/actions-types';
+import { REGISTRAR_USUARIO_NUEVO, OBTENER_ROLES } from '../store/actions-types';
 export default {
   name: 'FormularioRegistro',
   components: { VNumberInput },
   data() {
     return {
-      model: this.$store.getters.getUsuario(),
+      model: this.$store.getters.getUsuarioNuevo(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -158,7 +158,7 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("me registre");
-      this.$store.dispatch(REGISTRAR_USUARIO, this.model);
+      this.$store.dispatch(REGISTRAR_USUARIO_NUEVO, this.model);
     },
     volver(){
       this.$router.go(-1);
