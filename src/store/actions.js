@@ -1016,6 +1016,8 @@ export default {
     });
   } else if (status === "404"  || codigoError.includes("404")){
     router.push("/404");
+  }  else if (status === "409" || codigoError.includes("409")){
+    router.push("/409");
   } else if (status === "401" || codigoError.includes("401")){
     context.commit(MUTATIONS.CERRAR_SESION);
     router.push({

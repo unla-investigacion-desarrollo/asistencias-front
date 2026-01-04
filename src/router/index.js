@@ -64,6 +64,8 @@ import EstadisticasXEventoView from '../views/EstadisticasXEventoView.vue'
 import ListaInscriptosView from '../views/ListaInscriptosView.vue'
 import ListaInscriptosEventoView from '../views/ListaInscriptosEventoView.vue'
 import ListaInscriptosEventoActividadView from '../views/ListaInscriptosEventoActividadView.vue'
+import Pagina204View from '../views/Pagina204View.vue'
+import Pagina409View from '../views/Pagina409View.vue'
 
 const routes = [
   {
@@ -395,6 +397,16 @@ const routes = [
     path: '/listaInscriptosXEventoActividad',
     name: 'ListaInscriptosEventoActividadView',
     component: ListaInscriptosEventoActividadView
+  },
+  {
+    path: '/204',
+    name: 'Pagina204View',
+    component: Pagina204View
+  },
+  {
+    path: '/409',
+    name: 'Pagina409View',
+    component: Pagina409View
   },
   {
     path: '/about',
