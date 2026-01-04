@@ -97,7 +97,7 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     inscripcionItem(item){
-      let usuario = this.$store.getters.getEventos();
+      let usuario = this.$store.getters.getUsuario();
       if(usuario.dni === ''){
         usuario = localStorage.getItem("usuario");
       }

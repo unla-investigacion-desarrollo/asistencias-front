@@ -141,7 +141,7 @@
 <script>
 import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { usuario } from '@/config';
+
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },
@@ -179,15 +179,20 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO, item);
     },
     inscripcionItem(item){
-      if(usuario != null){
-        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
-      } else {
+      let usuario = this.$store.getters.getUsuario();
+      if(usuario.dni === ''){
+        usuario = localStorage.getItem("usuario");
+      }
+      console.log("Este es el usuario: "+ usuario);
+      if(this.$store.getters.getHash() === '' || usuario.dni === ''){
         this.$router.push({
           name: "ErroresView",
           params: {
             mensaje: "usuario-requerido",
           },
         });
+      } else {
+        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
       }
     },
   },

@@ -146,7 +146,7 @@ const api = {
   buscarActividadesPorEvento(payload){
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/actividades/filtrar?idEvento=${payload.idEvento}`, body);
+    return axios.post(`${dominio}/api/actividades/filtrar`, body);
   },
   //Controller usuarios
   guardarUsuario(payload) {

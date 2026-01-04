@@ -401,7 +401,10 @@ export default {
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.buscarActividadesPorEvento(payload)
+  let datos = {
+    idEvento: payload.idEvento
+  }
+  api.buscarActividadesPorEvento(datos)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
