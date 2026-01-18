@@ -1281,6 +1281,22 @@ export default {
 },
 [ACTIONS.AGREGAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let listaAux = [];
+
+  payload.actividades.forEach(e => {
+    listaAux.push({ idActividad: e.idActividad });
+  });
+
+  let datos = {
+    usuario: {
+        idUsuario: payload.usuario.id
+    },
+    evento: {
+        idEvento: payload.evento.idEvento
+    },
+    actividades: listaAux
+  };
+
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
     context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
@@ -1292,7 +1308,7 @@ export default {
     });
     setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
   } else {
-    api.guardarInscripcion(payload)
+    api.guardarInscripcion(datos)
     .then(response => {
     console.log(response);
       if (response.status == "201") {

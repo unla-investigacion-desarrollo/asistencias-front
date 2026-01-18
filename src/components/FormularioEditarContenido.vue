@@ -60,7 +60,7 @@ export default {
     return {
       model: this.$store.getters.getContenido(),
       color: "#8e2736",
-      evento: this.$store.getters.getContenido().evento.nombre,
+      evento: this.$store.getters.getContenido().nombreEvento,
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
