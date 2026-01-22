@@ -66,6 +66,7 @@ import ListaInscriptosEventoView from '../views/ListaInscriptosEventoView.vue'
 import ListaInscriptosEventoActividadView from '../views/ListaInscriptosEventoActividadView.vue'
 import Pagina204View from '../views/Pagina204View.vue'
 import Pagina409View from '../views/Pagina409View.vue'
+import PaginaErrorLoginView from '../views/PaginaErrorLoginView.vue'
 
 const routes = [
   {
@@ -407,6 +408,11 @@ const routes = [
     path: '/409',
     name: 'Pagina409View',
     component: Pagina409View
+  },
+  {
+    path: '/loginError/:error',
+    name: 'PaginaErrorLoginView',
+    component: PaginaErrorLoginView
   },
   {
     path: '/about',

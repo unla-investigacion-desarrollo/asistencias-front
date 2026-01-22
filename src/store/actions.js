@@ -795,9 +795,21 @@ export default {
       //context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push("/miPerfil");
-    } else{
-      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
-    } 
+    } else if(response.status == "500"){
+      router.push({
+        name: "PaginaErrorLoginView",
+        params: {
+          mensaje: "no-encontrado",
+        },
+      });
+    } else if(response.status == "422"){
+      router.push({
+        name: "PaginaErrorLoginView",
+        params: {
+          mensaje: "clave-incorrecta",
+        },
+      });
+  }
   })
   .catch(error => {
     console.log(error);
