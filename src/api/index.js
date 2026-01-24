@@ -387,6 +387,11 @@ const api = {
 
   traerActividadesXEventoPublico(payload){
     return axios.get(`${dominio}/api/public/eventos/${payload.idEvento}/actividades`);
+  },
+
+  olvideMiClave(payload){
+    const body = normalizarDatos(payload);
+    return axios.get(`${dominio}/auth/olvideMiClave`, body);
   }
 
 };

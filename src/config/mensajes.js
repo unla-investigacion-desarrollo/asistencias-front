@@ -33,6 +33,10 @@ const mensajes = {
         '<p>No encontramos resultados para la busqueda solicitada</p>',
     "sin-inscripciones":
         '<p>Aún no te has inscripto a ningún evento y actividad. <br>Una vez que te anotes a alguno verás tus inscripciones aquí.</p>',
+    "actualizo-clave":
+        '<p>La contraseña fue actualizada exitosamente.</p>',
+    "error-clave":
+        '<p>Hubo un problema al actualizar la contraseña. <br>Por favor, intente mas tarde.</p>',
     };
 
 export default mensajes;

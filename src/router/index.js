@@ -67,6 +67,8 @@ import ListaInscriptosEventoActividadView from '../views/ListaInscriptosEventoAc
 import Pagina204View from '../views/Pagina204View.vue'
 import Pagina409View from '../views/Pagina409View.vue'
 import PaginaErrorLoginView from '../views/PaginaErrorLoginView.vue'
+import OlvideMiClaveView from '../views/OlvideMiClaveView.vue'
+import OlvideMiClaveMensajeView from '../views/OlvideMiClaveMensajeView.vue'
 
 const routes = [
   {
@@ -413,6 +415,16 @@ const routes = [
     path: '/loginError/:error',
     name: 'PaginaErrorLoginView',
     component: PaginaErrorLoginView
+  },
+  {
+    path: '/olvideMiClave',
+    name: 'OlvideMiClaveView',
+    component: OlvideMiClaveView
+  },
+  {
+    path: '/clave/:mensaje',
+    name: 'OlvideMiClaveMensajeView',
+    component: OlvideMiClaveMensajeView
   },
   {
     path: '/about',

@@ -1863,5 +1863,34 @@ export default {
 [ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
   context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
 },
+[ACTIONS.OLVIDE_MI_CLAVE] () {
+  router.push('/olvideMiClave');
+},
+[ACTIONS.CAMBIO_MI_CLAVE] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.olvideMiClave(payload)
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      router.push({
+        name: "OlvideMiClaveMensajeView",
+        params: {
+          mensaje: "actualizo-clave",
+        },
+      });
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    router.push({
+        name: "OlvideMiClaveMensajeView",
+        params: {
+          mensaje: "error-clave",
+        },
+      });
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 }
 
