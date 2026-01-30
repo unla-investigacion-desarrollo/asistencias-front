@@ -1618,6 +1618,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
   [ACTIONS.OBTENER_EVENTOS_PUBLICOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);

@@ -1148,6 +1148,40 @@ const inscriptosEventoActividad  = {
     },
 };
 
+const tipoEventos = [
+    {
+        "nombre": "Curso",
+        "imagen": "https://www.ireland-experience.com/wp-content/uploads/2021/02/adu.jpg"
+    },
+    {
+        "nombre": "Arte",
+        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiUeyIQ_VnqRdoxSO9kCbnMow1O7C9tbKRBQ&s"
+    },
+    {
+        "nombre": "Congreso",
+        "imagen": "https://dataconurbano.net/wp-content/uploads/2025/08/Jornadas-de-Economia-Politica-2025-en-la-UNLa1.jpg"
+    },
+    {
+        "nombre": "Seminario",
+        "imagen": "https://diariolaciudadavellaneda.com.ar/wp-content/uploads/2025/11/La-UNLa-fue-sede-de-la-jornada-de-intercambio-del-Programa-Puentes-la-propuesta-que-lleva-carreras-universitarias-a-los-municipios-del-interior-bonaerense_4.jpg"
+    },
+    {
+        "nombre": "Musica",
+        "imagen": "https://laciudadavellaneda.com.ar/wp-content/uploads/orquesta-18.jpg"
+    },
+    {
+        "nombre": "Workshop",
+        "imagen": "https://espazio32.es/wp-content/uploads/2020/03/WorkshopEmpresarial01-1024x682.jpg"
+    },
+    {
+        "nombre": "Conferencia",
+        "imagen": "https://educaciondebate.com.ar/datos/fotos/2025/10/22/295-10/imagen_1949.jpg"
+    },
+    
+    
+    
+];
+
 export {
-  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad, tipoEventos
 };

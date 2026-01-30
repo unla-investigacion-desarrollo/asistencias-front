@@ -75,7 +75,7 @@
   </div>
   </template>
 <script>
-import { OBTENER_EVENTOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaEventoGeneral',
@@ -117,7 +117,7 @@ export default {
   created() {
     if(this.$store.getters.getEventos().length == 0){
       if(this.filtro === ""){
-      this.$store.dispatch(OBTENER_EVENTOS);
+      this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     } else{
       this.$store.dispatch(OBTENER_EVENTO_X_TIPO_EVENTO, this.filtro);
     }

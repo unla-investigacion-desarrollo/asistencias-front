@@ -139,7 +139,7 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
+import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 
 export default {
@@ -167,7 +167,7 @@ export default {
 },
   methods: {
     editarItem(item){   
-        this.$store.dispatch(EDITAR_EVENTO, item);
+      this.$store.dispatch(EDITAR_EVENTO, item);
     },
     modalEliminar(item){
       this.$store.dispatch(ACEPTA_ELIMINAR_EVENTO, item);
@@ -197,7 +197,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch(OBTENER_EVENTOS);
+    this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     console.log(this.$store.getters.getEventos());
 }
 }
