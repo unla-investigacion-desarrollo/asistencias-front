@@ -69,6 +69,8 @@ import Pagina409View from '../views/Pagina409View.vue'
 import PaginaErrorLoginView from '../views/PaginaErrorLoginView.vue'
 import OlvideMiClaveView from '../views/OlvideMiClaveView.vue'
 import OlvideMiClaveMensajeView from '../views/OlvideMiClaveMensajeView.vue'
+import ListaEventosGeneralCategoriaView from '../views/ListaEventosGeneralCategoriaView.vue'
+
 
 const routes = [
   {
@@ -425,6 +427,11 @@ const routes = [
     path: '/clave/:mensaje',
     name: 'OlvideMiClaveMensajeView',
     component: OlvideMiClaveMensajeView
+  },
+  {
+    path: '/eventosCategoria/:id',
+    name: 'ListaEventosGeneralCategoriaView',
+    component: ListaEventosGeneralCategoriaView
   },
   {
     path: '/about',

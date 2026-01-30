@@ -33,8 +33,7 @@
 </template>
 
 <script>
-import { OBTENER_EVENTOS_X_CATEGORIA, OBTENER_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
-import { normalizarDatos } from '../config/index';
+import { OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS, OBTENER_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
 import { tipoEventos } from '@/config/mock';
 
 export default {
@@ -45,9 +44,19 @@ data () {
     },
     methods: {
       continuar(item) {
-        console.log("voy al listado de la categoria del evento");   
-        let filtro = normalizarDatos(item.nombre);
-        this.$store.dispatch(OBTENER_EVENTOS_X_CATEGORIA, filtro);
+        console.log("voy al listado de la categoria del evento");  
+        let lista = this.$store.getters.getTipoEventos();
+        console.log("este es el item" + JSON.stringify(item));
+        let tipo = null;
+        if(lista.length > 0){
+          lista.forEach(e => {
+          if(item.nombre == e.nombre){
+            tipo = e;
+          }
+          });
+        }
+        console.log("este es el tipo" + JSON.stringify(tipo));
+        this.$store.dispatch(OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS, tipo.idTipoEvento); 
       }, 
       obtenerColor(){
         const h = Math.floor(Math.random() * 360);

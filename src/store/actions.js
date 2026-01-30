@@ -1893,5 +1893,27 @@ export default {
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
+[ACTIONS.OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerEventosXTipoEventoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      router.push({
+      name: "ListaEventosGeneralCategoriaView",
+      params: {
+        id: payload,
+      },
+    });    
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 }
 

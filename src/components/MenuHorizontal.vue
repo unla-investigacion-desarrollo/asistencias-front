@@ -12,7 +12,7 @@
       
     </v-btn>
 
-    <v-toolbar-title>Eventos UNLa</v-toolbar-title>
+    <v-toolbar-title class="titulo">Eventos UNLa</v-toolbar-title>
 
     <v-spacer />
         <v-btn @click="eventos">
@@ -157,6 +157,10 @@ export default {
 }
 .icon_button {
     display: block;
+}
+
+.titulo {
+    display: none;
 }
 
 }

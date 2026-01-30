@@ -392,6 +392,10 @@ const api = {
   olvideMiClave(payload){
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/auth/olvideMiClave`, body);
+  },
+
+  traerEventosXTipoEventoPublico(payload){
+    return axios.get(`${dominio}/api/public/eventos/tipo/${payload}`);
   }
 
 };
