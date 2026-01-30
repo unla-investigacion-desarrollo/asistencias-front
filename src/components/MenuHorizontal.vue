@@ -1,6 +1,20 @@
 <template>
-    <v-toolbar :elevation="8" :color="color" title="Eventos UNLa">
-        
+    <v-toolbar :elevation="8" :color="color" title="">
+    <v-btn icon class="pa-0"
+      to="/"
+    >
+    <v-icon size="30">
+        <v-img
+        src="@/assets/favicon_unla.png"
+        contain
+      />
+    </v-icon>
+      
+    </v-btn>
+
+    <v-toolbar-title>Eventos UNLa</v-toolbar-title>
+
+    <v-spacer />
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
@@ -27,6 +41,9 @@ export default {
     methods: {
         inscripcion(){
             this.$router.push('/inscripcion');
+        },
+        inicio(){
+            this.$router.push('/');
         },
         login(){
             let key = this.$store.getters.getHash();
@@ -128,6 +145,10 @@ export default {
 }
 .icon_button {
     display: none;
+}
+
+.logo {
+    margin-left: 1%;
 }
 
 @media (max-width: 650px) {
