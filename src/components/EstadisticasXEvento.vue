@@ -40,7 +40,7 @@
   
 <script>
 import MensajeComponent from '@/components/MensajeComponent.vue';
-import { OBTENER_ESTADISTICAS } from '@/store/actions-types';
+import {OBTENER_EVENTOS, OBTENER_ESTADISTICAS } from '@/store/actions-types';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
@@ -104,6 +104,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch(OBTENER_EVENTOS);
     this.$store.dispatch(OBTENER_ESTADISTICAS);
   }
 }

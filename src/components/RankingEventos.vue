@@ -115,7 +115,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch(OBTENER_ESTADISTICAS);
+    if(this.$store.getters.getEstadisticas().length == 0){
+      this.$store.dispatch(OBTENER_ESTADISTICAS);
+    }
   }
 }
 </script>

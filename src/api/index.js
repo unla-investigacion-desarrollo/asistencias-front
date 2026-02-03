@@ -391,12 +391,23 @@ const api = {
 
   olvideMiClave(payload){
     const body = normalizarDatos(payload);
-    return axios.get(`${dominio}/auth/olvideMiClave`, body);
+    return axios.post(`${dominio}/auth/change-password`, body);
   },
 
   traerEventosXTipoEventoPublico(payload){
     return axios.get(`${dominio}/api/public/eventos/tipo/${payload}`);
+  },
+
+  obtenerEstadisticaIndividual(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/asistencia-actividad/estadisticas/evento/${payload}`);
+  },
+
+  obtenerEstadisticas(){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/asistencia-actividad/obtenerEstadisticas`);
   }
+
 
 };
 

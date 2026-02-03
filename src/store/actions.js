@@ -1812,7 +1812,27 @@ export default {
   }
 },
 [ACTIONS.OBTENER_ESTADISTICAS] (context) {
-  context.commit(MUTATIONS.TRAER_ESTADISTICAS, estadisticas);
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_ESTADISTICAS, estadisticas);
+  } else {
+    api.obtenerEstadisticas()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_ESTADISTICAS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EVENTO_NUEVO] (context) {
   context.commit(MUTATIONS.EVENTO_DEFAULT);
@@ -1934,6 +1954,26 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.OBTENER_ESTADISTICA_INDIVIDUAL] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEstadisticaIndividual(payload.idEvento)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_ESTADISTICAS, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+
 
 }
 

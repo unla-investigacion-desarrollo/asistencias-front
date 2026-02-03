@@ -71,6 +71,7 @@ export default {
     datos(){
       const info = this.$store.getters.getEstadisticas();
       if(info.length > 0){
+
         info.map((dato) => {
             this.etiquetas.push(dato.evento.nombre);
             this.asistencias.push(dato.asistencias);
@@ -98,7 +99,9 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch(OBTENER_ESTADISTICAS);
+    if(this.$store.getters.getEstadisticas().length == 0){
+      this.$store.dispatch(OBTENER_ESTADISTICAS);
+    }
   }
 }
 </script>
