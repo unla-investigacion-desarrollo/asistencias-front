@@ -124,6 +124,9 @@ export default {
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
         state.inscripciones = payload;
     }, 
+    [MUTATIONS.TRAER_INSCRIPCIONES]: (state, payload) => {
+        state.inscripciones = payload;
+    }, 
     [MUTATIONS.GUARDAR_INSCRIPCION_EVENTO]: (state, payload) => {
         state.inscripcion = payload;
     },

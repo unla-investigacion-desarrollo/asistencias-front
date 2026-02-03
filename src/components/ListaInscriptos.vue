@@ -35,8 +35,8 @@
                 :key="item.evento.idEvento"
               >
                 <td>{{ item.evento.nombre }}</td>
-                <td>{{ item.evento.fechaInicio }}</td>
-                <td>{{ item.evento.fechaFin }}</td>
+                <td>{{ formatearFecha(item.evento.fechaInicio) }}</td>
+                <td>{{ formatearFecha(item.evento.fechaFin) }}</td>
                 <td>{{ item.inscripciones }}</td>
                 <td>{{ item.asistencias }}</td>
                 <td>
@@ -80,6 +80,18 @@ export default {
     },
     volver(){
       this.$router.go(-1);
+    },
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
+      }
+      return formato;
     },
   },
   created() {

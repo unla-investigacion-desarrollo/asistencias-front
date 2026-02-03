@@ -37,8 +37,8 @@
         >
           <td>{{ item.evento.nombre }}</td>
           <td>{{ item.actividad.nombre }}</td>
-          <td>{{ item.actividad.fechaInicio }}</td>
-          <td>{{ item.actividad.fechaFin }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
           <td>{{ item.actividad.edificio }}</td>
           <td>{{ item.actividad.ubicacion }}</td>
           <td>
@@ -110,7 +110,19 @@ import MensajeComponent from './MensajeComponent.vue';
     },
     detalleItem(item){
       this.$store.dispatch(DETALLE_INSCRIPCION, item);
-    }
+    },
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
+      }
+      return formato;
+    },
   },
   created() {
     this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO); 
