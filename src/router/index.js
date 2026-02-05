@@ -219,7 +219,7 @@ const routes = [
     component: MiPerfilView
   },
   {
-    path: '/miInscripcion',
+    path: '/miInscripcion/:id',
     name: 'DetalleInscripcionView',
     component: DetalleInscripcionView
   },

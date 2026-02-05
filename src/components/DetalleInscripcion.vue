@@ -75,6 +75,8 @@
   </div>
 </template>
 <script>
+import { OBTENER_INSCRIPCION } from '@/store/actions-types';
+
 export default {
   name: 'DetalleEvento',
   components: {},
@@ -99,7 +101,14 @@ export default {
       }
       return formato;
     },
-}
+  },
+  mounted() {
+      if(this.$store.getters.getInscripcion().idInscripcion == ""){
+          const id = this.$route.params.id;
+          console.log(id);
+          this.$store.dispatch(OBTENER_INSCRIPCION, id);
+      }
+  }
 }
 </script>
 <style scoped>

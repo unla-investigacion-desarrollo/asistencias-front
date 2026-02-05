@@ -100,6 +100,11 @@ const api = {
     return axios.get(`${dominio}/api/inscripciones/usuario/${payload.id}`);
   },
 
+  obtenerInscripcion(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/inscripciones/${payload}`);
+  },
+
   //controller de actividad
   traerActividades() {
     obtenerEncabezado();

@@ -697,7 +697,12 @@ export default {
 },
 [ACTIONS.DETALLE_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  router.push('/miInscripcion');
+  router.push({
+      name: "DetalleInscripcionView",
+      params: {
+        id: payload.idInscripcion,
+      },
+    });
 },
 [ACTIONS.OBTENER_EVENTOS_X_CATEGORIA] (context, payload) {
   context.commit(MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO, payload);
@@ -1961,6 +1966,25 @@ export default {
   console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.TRAER_ESTADISTICAS, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscripcion(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);   
     } 
   })
   .catch(error => {
