@@ -17,7 +17,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="this.model.idInscripcion != ''">
       <v-col>
         <v-card
             class="mx-auto title_section" :elevation="8"
@@ -36,7 +36,7 @@
         </v-card>
       </v-col>
     </v-row>
-      <v-row>
+      <v-row v-if="this.model.idInscripcion != '' && this.qr != null">
         <v-col>
           <v-card
             class="mx-auto title_section" :elevation="8"
@@ -48,12 +48,12 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4 title_content">
-                <qr-code :valueUrl="valueUrl" :size="size" :level="level"></qr-code>
+                <qr-code :valueUrl="qr" :size="size" :level="level"></qr-code>
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
-      <v-row v-if="this.model.evento.edificio != ''">
+      <v-row v-if="this.model.evento.edificio != '' && this.model.idInscripcion != ''">
       <v-col>
         <v-card
           class="mx-auto title_section" :elevation="8"
@@ -83,12 +83,19 @@ export default {
   components: { DetalleInscripcion, QrCode, MapaComponent, ListaActividadInscripcion },
   data() {
     return {
-      model: this.$store.getters.getInscripcion(),
       valueUrl:
         "https://www.unla.edu.ar/",
       size: 250,
       level: "H",
     };
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getInscripcion();
+    },
+    qr(){
+      return this.$store.getters.getInscripcion().codigoQR;
+    }
   },
 }
 </script>

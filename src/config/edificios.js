@@ -15,7 +15,7 @@ const edificios = [
     'Edificio Macedonio Fernandez',
     'Edificio Maria Remedios del Valle',
     'Edificio Paco Urondo',
-    'Edificio Rodolfo Ortega Peña',
+    'Edificio Rodolfo Ortega Pena',
     'Edificio Irma Laciar de Carrica',
     'Cine Universitario Tita Merello',
     'Campo de Deportes Delfo Cabrera'

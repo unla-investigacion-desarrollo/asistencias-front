@@ -102,7 +102,7 @@ const api = {
 
   obtenerInscripcion(payload){
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/inscripciones/${payload}`);
+    return axios.get(`${dominio}/api/inscripciones/completa/${payload}`);
   },
 
   //controller de actividad

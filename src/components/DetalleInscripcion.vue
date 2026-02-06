@@ -1,5 +1,5 @@
 <template>
-    <v-container v-if="model.evento.nombre !== ''">
+    <v-container v-if="model.idInscripcion !== ''">
         <v-list dense class="rounded-lg mx-auto">
           <v-list-item>
             <v-row>
@@ -61,7 +61,7 @@
           </v-list-item>
         </v-list>
     </v-container>
-  <div class="text_menssage" v-if="model.evento.nombre === ''">
+  <div class="text_menssage" v-if="model.idInscripcion === ''">
       <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente desde el listado.</h3>
   </div>
   <div class="container_button">
@@ -82,8 +82,12 @@ export default {
   components: {},
   data() {
     return {
-      model: this.$store.getters.getInscripcion(),
     };
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getInscripcion();
+    },
   },
   methods: {
     volver(){
