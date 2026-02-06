@@ -264,7 +264,7 @@ const routes = [
     component: ListaProximosEventosView
   },
   {
-    path: '/infoEvento',
+    path: '/infoEvento/:id',
     name: 'DetalleEventoGeneralView',
     component: DetalleEventoGeneralView
   },

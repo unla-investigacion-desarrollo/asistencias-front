@@ -91,17 +91,16 @@
     </div>
 </template>
 <script>
-import { OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO } from '../store/actions-types';
+import { OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, OBTENER_EVENTOS_PUBLICOS_ID } from '../store/actions-types';
 export default {
   name: 'DetalleEventoGeneral',
   components: {},
   data() {
     return {
-      model: this.$store.getters.getEvento()
     };
   },
   computed: {
-    evento() {
+    model() {
       return this.$store.getters.getEvento();
     },
     actividades() {
@@ -126,9 +125,12 @@ export default {
     },
 },
     created(){
-        if(this.model.nombre !== ''){
-            this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.model);
-        }
+      if(this.model.nombre == ''){
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
+        this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, id);
+      }
     }
 }
 </script>

@@ -685,7 +685,12 @@ export default {
 },
 [ACTIONS.DETALLE_EVENTO_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-  router.push('/infoEvento');
+  router.push({
+      name: "DetalleEventoGeneralView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
 },
 [ACTIONS.DETALLE_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
@@ -1686,7 +1691,7 @@ export default {
 },
 [ACTIONS.OBTENER_EVENTOS_PUBLICOS_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerEventoPublico(payload.idEvento)
+  api.traerEventoPublico(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {

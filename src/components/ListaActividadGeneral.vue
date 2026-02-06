@@ -91,7 +91,7 @@ methods: {
 created() {
   if(this.$store.getters.getActividades().length == 0){
     if(this.$store.getters.getEvento().nombre != ""){
-      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.$store.getters.getEvento());
+      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.$store.getters.getEvento().idEvento);
     } 
   }
   console.log(this.$store.getters.getActividades());
