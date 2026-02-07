@@ -99,13 +99,17 @@
     </div>
 </template>
 <script>
+import { OBTENER_ACTIVIDADES_PUBLICAS_ID } from '@/store/actions-types';
 export default {
   name: 'DetalleActividad',
   components: {},
   data() {
-    return {
-      model: this.$store.getters.getActividad()
-    };
+    return {};
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getActividad();
+    },
   },
   methods: {
     volver(){
@@ -123,7 +127,14 @@ export default {
       }
       return formato;
     },
-}
+    },
+    created(){
+      if(this.model.nombre == ''){
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_ACTIVIDADES_PUBLICAS_ID, id);
+      }
+    }
 }
 </script>
 <style scoped>

@@ -100,14 +100,17 @@
   </div>
 </template>
 <script>
-
+import { OBTENER_EVENTOS_PUBLICOS_ID } from '../store/actions-types';
 export default {
   name: 'DetalleEvento',
   components: {},
   data() {
-    return {
-      model: this.$store.getters.getEvento()
-    };
+    return {};
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getEvento();
+    },
   },
   methods: {
     volver(){
@@ -125,7 +128,14 @@ export default {
       }
       return formato;
     },
-}
+  },
+    created(){
+      if(this.model.nombre == ''){
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
+      }
+    }
 }
 </script>
 <style scoped>

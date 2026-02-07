@@ -681,7 +681,12 @@ export default {
 },
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-  router.push('/detalleEvento');
+  router.push({
+      name: "DetalleEventoView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
 },
 [ACTIONS.DETALLE_EVENTO_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
@@ -694,7 +699,12 @@ export default {
 },
 [ACTIONS.DETALLE_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
-  router.push('/detalleActividad');
+  router.push({
+      name: "DetalleActividadView",
+      params: {
+        id: payload.idActividad,
+      },
+    });
 },
 [ACTIONS.DETALLE_ACTIVIDAD_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);

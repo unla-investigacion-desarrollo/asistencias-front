@@ -194,12 +194,12 @@ const routes = [
     component: EditarActividadView
   },
   {
-    path: '/detalleEvento',
+    path: '/detalleEvento/:id',
     name: 'DetalleEventoView',
     component: DetalleEventoView
   },
   {
-    path: '/detalleActividad',
+    path: '/detalleActividad/:id',
     name: 'DetalleActividadView',
     component: DetalleActividadView
   },
