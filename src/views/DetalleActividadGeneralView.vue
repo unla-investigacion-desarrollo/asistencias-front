@@ -46,8 +46,12 @@ export default {
   components: { DetalleActividadGeneral, MapaComponent },
   data() {
     return {
-      model: this.$store.getters.getActividad()
     };
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getActividad();
+    }
   },
 }
 </script>

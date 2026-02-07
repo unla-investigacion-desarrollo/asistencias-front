@@ -698,7 +698,12 @@ export default {
 },
 [ACTIONS.DETALLE_ACTIVIDAD_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
-  router.push('/infoActividad');
+  router.push({
+      name: "DetalleActividadGeneralView",
+      params: {
+        id: payload.idActividad,
+      },
+    });
 },
 [ACTIONS.DETALLE_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
@@ -1675,7 +1680,7 @@ export default {
 },
 [ACTIONS.OBTENER_ACTIVIDADES_PUBLICAS_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerActividadPublica(payload.idActividad)
+  api.traerActividadPublica(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {

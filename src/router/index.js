@@ -279,7 +279,7 @@ const routes = [
     component: ListaActividadGeneralView
   },
   {
-    path: '/infoActividad',
+    path: '/infoActividad/:id',
     name: 'DetalleActividadGeneralView',
     component: DetalleActividadGeneralView
   },

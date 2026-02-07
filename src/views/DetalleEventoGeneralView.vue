@@ -66,9 +66,12 @@ export default {
   name: 'DetalleEventoGeneralView',
   components: { DetalleEventoGeneral, MapaComponent, ListaActividadGeneral },
   data() {
-    return {
-      model: this.$store.getters.getEvento()
-    };
+    return {};
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getEvento();
+    }
   },
 }
 </script>
