@@ -62,10 +62,10 @@ export default {
   computed: {
     datos(){
         return {
-          labels: ['Inscripciones', 'Asistencias'],
+          labels: ['Inscripciones', 'Asistencias', 'Ausencias'],
           datasets: [
           {
-            backgroundColor: ['#673AB7', '#3F51B5'],
+            backgroundColor: ['#673AB7', '#3F51B5', '#F44336'],
             data: this.valores
           }
         ]
@@ -94,6 +94,7 @@ export default {
           if(dato.evento.nombre == this.evento){
             this.valores.push(dato.inscripciones);
             this.valores.push(dato.asistencias);
+            this.valores.push(dato.ausencias);
           }
           console.log("Dato del map:" +dato.evento.nombre);
           console.log("Dato seleccionado: "+ this.evento);

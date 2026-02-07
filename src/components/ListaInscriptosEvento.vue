@@ -30,6 +30,9 @@
                 <th class="text-left">
                   Fecha de Inscripción
                 </th>
+                <th class="text-left">
+                  Asistio?
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +47,7 @@
                 <td>{{ item.evento.nombre }}</td>
                 <td>{{ item.asistencia.totalActividades }}</td>
                 <td>{{ formatearFecha(item.fechaInscripcion) }}</td>
-                
+                <td>{{ valorAsistencia(item) }}</td>
               </tr>
             </tbody>
           </v-table>
@@ -80,11 +83,14 @@ export default {
   computed: {
     inscriptos(){
       return this.$store.getters.getInscriptosEvento();
-    },
+    },  
   },
   methods: {
     volver(){
       this.$router.go(-1);
+    },
+    valorAsistencia(item){
+      return item.asistenciaGeneral == false ? "NO" : "SI"; 
     },
     formatearFecha(f){
     let formato = "";

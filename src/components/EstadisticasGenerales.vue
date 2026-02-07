@@ -10,6 +10,11 @@
         <Bar :data="datos" :options="opciones" />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="grafico">
+        <Bar :data="datosAus" :options="opciones" />
+      </v-col>
+    </v-row>
     <v-row class="container_button">
       <v-col>
         <v-btn
@@ -37,8 +42,10 @@ export default {
     return {
       etiquetas: [],
       etiquetasIns: [],
+      etiquetasAus: [],
       asistencias: [],
       inscripciones: [],
+      ausencias: [],
       evento: "",
       encontrado: false,
       opciones: {
@@ -85,6 +92,27 @@ export default {
             label: 'Asistencias',
             backgroundColor: ['#3F51B5'],
             data: this.asistencias
+          }
+        ]
+      } 
+    },
+    datosAus(){
+      const info = this.$store.getters.getEstadisticas();
+      if(info.length > 0){
+
+        info.map((dato) => {
+            this.etiquetasAus.push(dato.evento.nombre);
+            this.ausencias.push(dato.ausencias);
+        }
+        )
+      }
+        return {
+          labels: this.etiquetas,
+          datasets: [
+          {
+            label: 'Ausencias',
+            backgroundColor: ['#F44336'],
+            data: this.ausencias
           }
         ]
       } 

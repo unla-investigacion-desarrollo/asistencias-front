@@ -23,6 +23,9 @@
                 <th class="text-left">
                   Asistencias
                 </th>
+                <th class="text-left">
+                  Ausencias
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +36,7 @@
                 <td>{{ item.evento.nombre }}</td>
                 <td>{{ item.inscripciones }}</td>
                 <td>{{ item.asistencias }}</td>
+                <td>{{ item.ausencias }}</td>
               </tr>
             </tbody>
           </v-table>
@@ -77,7 +81,7 @@ export default {
       if(info.length > 0){
         info.map((dato) => {
             this.etiquetas.push(dato.evento.nombre);
-            this.ranking.push(this.calcularPorcentaje(dato));
+            this.ranking.push(dato.porcentajeAsistencia);
         }
         )
       }
