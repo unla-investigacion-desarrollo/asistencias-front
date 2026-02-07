@@ -847,7 +847,8 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      router.push('/');
+      context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
     } 
   })
   .catch(error => {

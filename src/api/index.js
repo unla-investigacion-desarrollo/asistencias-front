@@ -92,7 +92,8 @@ const api = {
 
   marcarAsistencia(payload){
     obtenerEncabezado();
-    return axios.post(`${dominio}/qr/decode`, payload);
+    let qr = encodeURIComponent(payload);
+    return axios.post(`${dominio}/qr/decode?qrCode=${qr}`);
   },
 
   obtenerInscripcionesPorUsuario(payload){

@@ -1,5 +1,17 @@
 <template>
     <v-container>
+        <v-row v-if="registro" class="alerta">
+            <v-col>
+                <v-alert
+                    closable
+                    icon="$success"
+                    title="La asistencia al evento se registro exitosamente."
+                    text=""
+                    type="success"
+                    variant="outlined"
+                ></v-alert>
+            </v-col>
+        </v-row>
         <v-row>
             <v-col>
                 <p class="error">{{ error }}</p>
@@ -37,7 +49,16 @@ export default {
         error: ''
         }
     },
-
+    //created(){   
+    //    console.log("El resultado es: " + this.result);
+    //    this.$store.dispatch(MARCAR_ASISTENCIA, this.result);
+    //},
+    
+    computed: {
+        registro(){
+            return this.$store.getters.getRegistroInscripcion();
+        },
+    },
     methods: {
         switchCamera () {
         switch (this.camera) {
@@ -50,15 +71,10 @@ export default {
         }
         },
 
-        onDecode (result) {
-            this.result = result;
-            let qr = {
-                qrCode: result
-            };
-            
+        onDecode (result) {  
+            this.result = result;      
             console.log("El resultado es: " + result);
-            console.log("El resultado que se envia es:" + JSON.stringify(qr));
-            this.$store.dispatch(MARCAR_ASISTENCIA, qr);
+            this.$store.dispatch(MARCAR_ASISTENCIA, this.result);
             this.paused = true;
         },
 
@@ -96,6 +112,10 @@ button {
 .error {
     color: red;
     font-weight: bold;
+}
+
+.alerta {
+  margin: 2% 0px 2% 0px;
 }
 
 </style>
