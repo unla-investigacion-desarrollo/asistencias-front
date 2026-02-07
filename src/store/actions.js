@@ -1902,9 +1902,14 @@ export default {
   context.commit(MUTATIONS.USUARIO_DEFAULT);
   router.push('/registro');
 },
-[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO] (context) {
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO] (context, payload) {
   context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, inscriptosEvento);
-  router.push('/listaInscriptosXEvento');
+  router.push({
+      name: "ListaInscriptosEventoView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
 },
 [ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
   context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
@@ -2017,7 +2022,24 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
-
-
+[ACTIONS.OBTENER_INSCRIPTOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscriptosXEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, response.data.inscripciones);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
 }
 

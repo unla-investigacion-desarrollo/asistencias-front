@@ -105,6 +105,11 @@ const api = {
     return axios.get(`${dominio}/api/inscripciones/completa/${payload}`);
   },
 
+  obtenerInscriptosXEvento(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/inscripciones/evento/${payload}`);
+  },
+
   //controller de actividad
   traerActividades() {
     obtenerEncabezado();

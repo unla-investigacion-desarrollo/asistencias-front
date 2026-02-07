@@ -394,7 +394,7 @@ const routes = [
     component: ListaInscriptosView
   },
   {
-    path: '/listaInscriptosXEvento',
+    path: '/listaInscriptosXEvento/:id',
     name: 'ListaInscriptosEventoView',
     component: ListaInscriptosEventoView
   },
