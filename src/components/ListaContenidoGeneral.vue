@@ -110,19 +110,28 @@ import MensajeComponent from './MensajeComponent.vue';
         this.buscar = !this.buscar;
       },
       busqueda(){
-        if(this.filtro == "Evento"){
+        if(this.filtro == "Evento" && this.parametro != ""){
           this.$store.dispatch(TRAER_CONTENIDOS_X_EVENTO, this.parametro);
-        } else {
+        } else if (this.filtro == "Titulo" && this.parametro != ""){
           this.$store.dispatch(TRAER_CONTENIDOS_X_TITULO, this.parametro);
         }
       }
+    },
+    watch: {
+      filtro(nuevo, viejo) {
+        if(nuevo != viejo){
+          this.parametro = "";
+          this.$store.dispatch(TRAER_CONTENIDOS);
+          this.$store.dispatch(OBTENER_EVENTOS);
+        }
+      },
     },
     created() {
       this.$store.dispatch(TRAER_CONTENIDOS);
       this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getContenidos());
       console.log(this.$store.getters.getEventos());
-  },
+    },
   }
   </script>
   <style scoped>

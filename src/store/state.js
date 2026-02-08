@@ -153,4 +153,5 @@ export default {
             rol: "Participante"
         }
     },
+    contenidosFiltro: []
 }

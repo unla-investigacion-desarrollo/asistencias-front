@@ -66,5 +66,6 @@ export default {
     getEstadisticas: state => () =>  state.estadisticas,
     getInscriptosEvento: state => () =>  state.inscriptosEvento,
     getInscriptosEventoActividad: state => () =>  state.inscriptosEventoActividad,
-    getUsuarioNuevo: state => () =>  state.usuarionuevo
+    getUsuarioNuevo: state => () =>  state.usuarionuevo,
+    getContenidosFiltro: state => () =>  state.contenidosFiltro
   };

@@ -251,15 +251,14 @@ const api = {
   },
 
   traerContenidoXEvento(payload){
-    const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/contenidos/buscarPorEvento`, body);
+    return axios.get(`${dominio}/api/contenidos/buscarPorEvento?idEvento=${payload}`);
   },
 
   traerContenidoXTitulo(payload){
-    const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/contenidos/buscarPorTitulo`, body);
+    let titulo = encodeURIComponent(payload);
+    return axios.get(`${dominio}/api/contenidos/buscarPorTitulo?titulo=${titulo}`);
   },
 
   //Controller Imagen

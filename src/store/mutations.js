@@ -237,6 +237,7 @@ export default {
     },   
     [MUTATIONS.OBTENER_CONTENIDOS]: (state, payload) => {
         state.contenidos = payload;
+        state.contenidosFiltro = payload;
         const contenidos = payload.map(c => c.titulo);
         state.titulosContenido = [...new Set(contenidos)];
     },

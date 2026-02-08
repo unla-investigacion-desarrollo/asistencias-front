@@ -37,6 +37,9 @@
         <v-col>
           <v-btn color="primary" @click="mostrar">Filtros</v-btn>
         </v-col>
+        <v-col class="boton">
+          <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+        </v-col>
       </v-row>
     </div>
     <div class="filtro" v-if="buscar">
@@ -137,7 +140,7 @@
 <script>
 import { filtroContenido } from "@/config/index";
 import { TRAER_CONTENIDOS, DETALLE_CONTENIDO, OBTENER_EVENTOS, TRAER_CONTENIDOS_X_EVENTO, 
-  TRAER_CONTENIDOS_X_TITULO, ACEPTA_ELIMINAR_CONTENIDO, EDITAR_CONTENIDO, ELIMINAR_CONTENIDO, 
+  TRAER_CONTENIDOS_X_TITULO, ACEPTA_ELIMINAR_CONTENIDO, EDITAR_CONTENIDO, ELIMINAR_CONTENIDO, CONTENIDO_NUEVO,
   GENERAR_QR} from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
     export default {
@@ -193,13 +196,25 @@ import MensajeComponent from './MensajeComponent.vue';
       mostrar(){
         this.buscar = !this.buscar;
       },
+      agregar(){
+            this.$store.dispatch(CONTENIDO_NUEVO);
+      },
       busqueda(){
-        if(this.filtro == "Evento"){
+        if(this.filtro == "Evento" && this.parametro != ""){
           this.$store.dispatch(TRAER_CONTENIDOS_X_EVENTO, this.parametro);
-        } else {
+        } else if (this.filtro == "Titulo" && this.parametro != ""){
           this.$store.dispatch(TRAER_CONTENIDOS_X_TITULO, this.parametro);
         }
       }
+    },
+    watch: {
+      filtro(nuevo, viejo) {
+        if(nuevo != viejo){
+          this.parametro = "";
+          this.$store.dispatch(TRAER_CONTENIDOS);
+          this.$store.dispatch(OBTENER_EVENTOS);
+        }
+      },
     },
     created() {
       this.$store.dispatch(TRAER_CONTENIDOS);
@@ -223,5 +238,9 @@ import MensajeComponent from './MensajeComponent.vue';
 
 .filtro { 
   margin: 2% 0px 2% 0px;
+}
+
+.boton{
+  text-align: end;
 }
   </style>
