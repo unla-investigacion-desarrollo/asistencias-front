@@ -105,7 +105,7 @@
   
 <script>
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { REGISTRAR_USUARIO_NUEVO, OBTENER_ROLES } from '../store/actions-types';
+import { REGISTRAR_USUARIO_NUEVO, OBTENER_ROLES} from '../store/actions-types';
 export default {
   name: 'FormularioRegistro',
   components: { VNumberInput },
@@ -128,7 +128,11 @@ export default {
   },
   computed: {
     roles() {
-      return this.$store.getters.getRoles();
+      let lista = this.$store.getters.getRoles();
+      if(this.$store.getters.getPsa()){
+        lista.shift();
+      }
+      return lista;
     },
     valiteText(value){
         let respuesta;

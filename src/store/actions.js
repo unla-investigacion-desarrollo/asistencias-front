@@ -1865,7 +1865,7 @@ export default {
   router.push('/nuevoEvento');
 },
 [ACTIONS.USUARIO_NUEVO] (context) {
-  context.commit(MUTATIONS.USUARIO_DEFAULT);
+  context.commit(MUTATIONS.BLANQUEO_REGISTRO);
   router.push('/unlaRegistro');
 },
 [ACTIONS.ACTIVIDAD_NUEVA] (context) {

@@ -47,7 +47,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="!this.validoPsa">
         <v-col>
           <v-select
             v-model="model.tipoUsuario"
@@ -70,7 +70,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="!this.validoPsa">
         <v-col>
           <v-text-field
             v-model="model.clave"
@@ -147,6 +147,9 @@ export default {
     },
     validarCampo(valor){
         return valor.trim() != "";
+    },
+    validoPsa(){
+      return this.$store.getters.getPsa();
     }
   },
   methods: {

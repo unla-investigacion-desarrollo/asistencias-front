@@ -79,7 +79,7 @@
           <td>{{ item.tipoUsuario.rol }}</td>
           <td>
             <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-            <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+            <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPsa"></v-btn>
           </td>
           </tr>
       </tbody>
@@ -137,6 +137,9 @@ import MensajeComponent from './MensajeComponent.vue';
       },
       edito(){
         return this.$store.getters.getEditoUsuario();
+      },
+      validoPsa(){
+        return this.$store.getters.getPsa();
       }
   },
   methods: {

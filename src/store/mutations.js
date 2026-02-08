@@ -405,4 +405,16 @@ export default {
     [MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD]: (state, payload) => {
         state.inscriptosEventoActividad = payload;
     },
+    [MUTATIONS.BLANQUEO_REGISTRO]: (state) => {
+        state.usuarionuevo.email = "";
+        state.usuarionuevo.clave = "";
+        state.usuarionuevo.nombre = "";
+        state.usuarionuevo.apellido = "";
+        state.usuarionuevo.dni = "";
+        state.usuarionuevo.usuario = "";
+        state.usuarionuevo = { tipoUsuario: {
+            rol: "Participante"
+        }};
+    },
 }
+    

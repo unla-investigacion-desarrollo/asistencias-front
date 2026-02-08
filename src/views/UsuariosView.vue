@@ -6,7 +6,7 @@
       color="deep-purple-accent-4"
     >
         <v-tab value="usuarios">Usuarios</v-tab>
-        <v-tab value="roles">Roles</v-tab>
+        <v-tab value="roles" v-if="!this.validoPsa">Roles</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
@@ -14,7 +14,7 @@
             <ListaUsuarioView></ListaUsuarioView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="roles">
+        <v-tabs-window-item v-if="!this.validoPsa" value="roles">
             <ListaRolesView></ListaRolesView>
         </v-tabs-window-item>
 
@@ -35,7 +35,12 @@ export default {
       const solapa = this.$route.params.solapa;
       console.log(solapa);
       this.tab = solapa;
-    }
+    },
+    computed: {
+      validoPsa(){
+        return this.$store.getters.getPsa();
+      }
+  }
 }
 </script>
 

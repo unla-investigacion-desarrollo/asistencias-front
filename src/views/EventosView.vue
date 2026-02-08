@@ -7,9 +7,9 @@
     >
         <v-tab value="eventos">Eventos</v-tab>
         <v-tab value="actividades">Actividades</v-tab>
-        <v-tab value="tipo">Tipos de Eventos</v-tab>
+        <v-tab value="tipo" v-if="!this.validoPas">Tipos de Eventos</v-tab>
         <v-tab value="inscriptos">Inscriptos</v-tab>
-        <v-tab value="estadisticas">Estadisticas</v-tab>
+        <v-tab value="estadisticas" v-if="(!this.validoPas) && (!this.validoPsa)">Estadisticas</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
@@ -29,7 +29,7 @@
           <ListaInscriptosView></ListaInscriptosView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="estadisticas" v-if="!this.validoPas">
+        <v-tabs-window-item value="estadisticas" v-if="(!this.validoPas) && (!this.validoPsa)">
           <EstadisticasView></EstadisticasView>
         </v-tabs-window-item>
 
@@ -56,7 +56,10 @@ export default {
     },
     computed: {
       validoPas(){
-          return this.$store.getters.getPas();
+        return this.$store.getters.getPas();
+      },
+      validoPsa(){
+        return this.$store.getters.getPsa();
       }
   }
 }

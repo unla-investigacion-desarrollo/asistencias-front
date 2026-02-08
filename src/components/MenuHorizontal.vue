@@ -18,7 +18,7 @@
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
-        <v-btn @click="contenido" v-if="!this.validoPp">
+        <v-btn @click="contenido">
             <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
         <v-btn @click="usuarios" v-if="(!this.validoPp) && (!this.validoPae) && (!this.validoPas)">
