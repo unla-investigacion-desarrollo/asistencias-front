@@ -285,11 +285,13 @@ const api = {
   },
 
   traerImagen(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/imagen/${payload}`, body);
   },
 
   obtenerImagenes() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/imagenes`);
   },
 
@@ -317,11 +319,13 @@ const api = {
   },
 
   traerAudio(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/audio/${payload}`, body);
   },
 
   obtenerAudios() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/audios`);
   },
 
@@ -349,11 +353,13 @@ const api = {
   },
 
   traerVideo(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/video/${payload}`, body);
   },
 
   obtenerVideos() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/videos`);
   },
 
@@ -391,7 +397,6 @@ const api = {
   },
 
   obtenerProximosEventos(){
-    obtenerEncabezado();
     return axios.get(`${dominio}/api/public/eventos/proximos`);
   },
 
@@ -407,6 +412,40 @@ const api = {
   traerEventosXTipoEventoPublico(payload){
     return axios.get(`${dominio}/api/public/eventos/tipo/${payload}`);
   },
+
+  traerContenidoPublico(payload){
+    return axios.get(`${dominio}/api/public/contenidos/${payload}`);
+  },
+
+  traerContenidosPublicos(){
+    return axios.get(`${dominio}/api/public/contenidos`);
+  },
+
+  traerAudioPublico(payload){
+    return axios.get(`${dominio}/api/public/audios/${payload}`);
+  },
+
+  traerAudiosPublicos(){
+    return axios.get(`${dominio}/api/public/audios`);
+  },
+
+  traerImagenPublica(payload){
+    return axios.get(`${dominio}/api/public/imagenes/${payload}`);
+  },
+
+  traerImagenesPublicas(){
+    return axios.get(`${dominio}/api/public/imagenes`);
+  },
+
+  traerVideoPublico(payload){
+    return axios.get(`${dominio}/api/public/videos/${payload}`);
+  },
+
+  traerVideosPublicos(){
+    return axios.get(`${dominio}/api/public/videos`);
+  },
+
+  //Estadisticas
 
   obtenerEstadisticaIndividual(payload){
     obtenerEncabezado();

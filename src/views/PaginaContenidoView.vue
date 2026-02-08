@@ -59,7 +59,7 @@
                 <v-card-text class="bg-surface-light pt-4">
                     <v-row v-for="(item, index) in contenido.videos" :key="index">
                         <v-col>
-                            <iframe class="video" :src="item.video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe class="video" :src="convertirVideo(item.video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </v-col>   
                     </v-row>
                 </v-card-text>
@@ -102,7 +102,8 @@
 </template>
 
 <script>
-import { TRAER_CONTENIDO } from '../store/actions-types';
+import { convertirAEmbed } from '@/config';
+import { OBTENER_CONTENIDO_PUBLICO } from '../store/actions-types';
 export default {
     name: 'PaginaContenidoView',
     components: {},
@@ -111,12 +112,16 @@ export default {
             return this.$store.getters.getContenido();
             }
         },
-
+    methods: {
+      convertirVideo(item){
+        return convertirAEmbed(item);
+      },
+    },
     mounted() {
         if(this.$store.getters.getContenido().titulo != ""){
             const id = this.$route.params.id;
             console.log(id);
-            this.$store.dispatch(TRAER_CONTENIDO, id);
+            this.$store.dispatch(OBTENER_CONTENIDO_PUBLICO, id);
         }
     }
 }

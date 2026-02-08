@@ -2089,5 +2089,140 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.OBTENER_CONTENIDO_PUBLICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerContenidoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      router.push({
+      name: "PaginaContenidoView",
+      params: {
+        id: payload,
+      },
+    }); 
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_CONTENIDOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerContenidosPublicos(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+      context.dispatch(ACTIONS.TRAER_FORMATO_CONTENIDOS, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_AUDIO_PUBLICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerAudioPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_AUDIO, response.data); 
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_AUDIOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerAudiosPublicos(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_AUDIOS, response.data); 
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_VIDEO_PUBLICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerVideoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_VIDEO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_VIDEOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerVideosPublicos(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_VIDEOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_IMAGEN_PUBLICA] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerImagenPublica(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_IMAGEN, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_IMAGENES_PUBLICAS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerImagenesPublicas(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_IMAGENES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
 }
 
