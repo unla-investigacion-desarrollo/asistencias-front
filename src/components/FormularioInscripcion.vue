@@ -124,9 +124,16 @@ export default {
           },
         });
       } else {
+        let usuario = null;
+        if(this.$store.getters.getUsuario().nombre != ""){
+          usuario = this.$store.getters.getUsuario();
+        } else {
+          usuario = JSON.parse(localStorage.getItem("usuario"));
+        }
+
       let payload = {
         ...this.model,
-        usuario: this.$store.getters.getUsuario()
+        usuario: usuario
       };
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("me inscribi");

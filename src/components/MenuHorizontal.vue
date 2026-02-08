@@ -1,13 +1,27 @@
 <template>
-    <v-toolbar :elevation="8" :color="color" title="Eventos UNLa">
-        
+    <v-toolbar :elevation="8" :color="color" title="">
+    <v-btn icon class="pa-0"
+      to="/"
+    >
+    <v-icon size="30">
+        <v-img
+        src="@/assets/favicon_unla.png"
+        contain
+      />
+    </v-icon>
+      
+    </v-btn>
+
+    <v-toolbar-title class="titulo">Eventos UNLa</v-toolbar-title>
+
+    <v-spacer />
         <v-btn @click="eventos">
             <v-icon class="icon_button">mdi-calendar</v-icon><span class="text">Eventos</span>
         </v-btn>
-        <v-btn @click="contenido" v-if="!this.validoPp">
+        <v-btn @click="contenido">
             <v-icon class="icon_button">mdi-table-of-contents</v-icon><span class="text" >Contenido</span>
         </v-btn>
-        <v-btn @click="usuarios" v-if="!this.validoPp">
+        <v-btn @click="usuarios" v-if="(!this.validoPp) && (!this.validoPae) && (!this.validoPas)">
             <v-icon class="icon_button">mdi-table-account</v-icon><span class="text" >Usuarios</span>
         </v-btn>
         <v-btn icon>
@@ -28,6 +42,9 @@ export default {
         inscripcion(){
             this.$router.push('/inscripcion');
         },
+        inicio(){
+            this.$router.push('/');
+        },
         login(){
             let key = this.$store.getters.getHash();
             if(key === null || key === undefined || key === ''){
@@ -37,7 +54,7 @@ export default {
             }
         },
         eventos(){
-            if(this.validoPp){
+            if(this.validoPp || this.validoPae){
                 this.$router.push('/eventosUnla');
             } else {
                 this.$router.push({
@@ -69,7 +86,7 @@ export default {
           });      
         },
         escaner(){
-          if(this.validoPp){
+          if(this.validoPp || this.validoPae){
                 this.$router.push('/escaner');
             } else {
                 this.$router.push({
@@ -106,6 +123,18 @@ export default {
         validoPp(){
             return this.$store.getters.getPp();
         },
+        validoPa(){
+            return this.$store.getters.getPa();
+        },
+        validoPsa(){
+            return this.$store.getters.getPsa();
+        },
+        validoPae(){
+            return this.$store.getters.getPae();
+        },
+        validoPas(){
+            return this.$store.getters.getPas();
+        }
     }
 }
 </script>
@@ -118,12 +147,20 @@ export default {
     display: none;
 }
 
+.logo {
+    margin-left: 1%;
+}
+
 @media (max-width: 650px) {
 .text {
     display: none;
 }
 .icon_button {
     display: block;
+}
+
+.titulo {
+    display: none;
 }
 
 }

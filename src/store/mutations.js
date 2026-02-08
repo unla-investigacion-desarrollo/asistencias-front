@@ -68,20 +68,63 @@ export default {
         state.actividad = {};
     },
     [MUTATIONS.GUARDAR_USUARIO]: (state, payload) => {
+        state.hash = payload.token;
+        localStorage.setItem("keyuser", payload.token);
         state.usuario = payload;
+        state.tipoUsuario = payload.tipoUsuario;
+        let dato = payload.tipoUsuario.rol;
         localStorage.setItem("usuario", JSON.stringify(payload));
+        if((dato != "") || (dato != undefined) || (dato != null)){
+            if(dato == "Participante"){
+                state.pp = true;
+                state.psa = false;
+                state.pae = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "SemiAdministrador") {
+                state.psa = true;
+                state.pp = false;
+                state.pae = false,
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "Autor"){
+                state.pae = true;
+                state.psa = false;
+                state.pp = false;
+                state.pas = false;
+                state.pa = false;
+            } else if(dato == "Asistente"){
+                state.pas = true;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+                state.pa = false;
+            } else {
+                state.pa = true;
+                state.pas = false;
+                state.pae = false;
+                state.psa = false;
+                state.pp = false;
+            }
+        }
     }, 
     [MUTATIONS.GUARDAR_AGREGAR_USUARIO]: (state, payload) => {
         state.usuario = payload;
+    }, 
+    [MUTATIONS.GUARDAR_USUARIO_NUEVO]: (state, payload) => {
+        state.usuarionuevo = payload;
     }, 
     [MUTATIONS.GUARDAR_EVENTO_INSCRIPCION]: (state, payload) => {
         state.inscripcion.evento = payload;
     }, 
     [MUTATIONS.GUARDAR_LOGIN]: (state, payload) => {
-        state.hash = payload;
-        localStorage.setItem("keyuser", payload);
+        state.hash = payload.token;
+        localStorage.setItem("keyuser", payload.token);
     }, 
     [MUTATIONS.TRAER_INSCRIPCION_X_USUARIO]: (state, payload) => {
+        state.inscripciones = payload;
+    }, 
+    [MUTATIONS.TRAER_INSCRIPCIONES]: (state, payload) => {
         state.inscripciones = payload;
     }, 
     [MUTATIONS.GUARDAR_INSCRIPCION_EVENTO]: (state, payload) => {
@@ -194,6 +237,7 @@ export default {
     },   
     [MUTATIONS.OBTENER_CONTENIDOS]: (state, payload) => {
         state.contenidos = payload;
+        state.contenidosFiltro = payload;
         const contenidos = payload.map(c => c.titulo);
         state.titulosContenido = [...new Set(contenidos)];
     },
@@ -276,31 +320,40 @@ export default {
     },
     [MUTATIONS.ACTUALIZO_PAGINA]: (state) => {
         let dato = JSON.parse(localStorage.getItem("usuario"));
-        if((dato != "") || (dato != undefined) || (dato != null)){
-            if(dato.tipoUsuario.rol == "Participante"){
-                state.pp = true;
-                state.psa = false;
-                state.pae = false;
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "SemiAdministrador") {
-                state.psa = true;
-                state.pp = false;
-                state.pae = false,
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "Autor"){
-                state.pae = true;
-                state.psa = false;
-                state.pp = false;
-                state.pas = false;
-                state.pa = false;
-            } else if(dato.tipoUsuario.rol == "Asistente"){
-                state.pas = true;
-                state.pae = false;
-                state.psa = false;
-                state.pp = false;
-                state.pa = false;
+        if((dato != "") && (dato != undefined) && (dato != null)){
+            if(dato.tipoUsuario != null){
+
+                if(dato.tipoUsuario.rol == "Participante"){
+                    state.pp = true;
+                    state.psa = false;
+                    state.pae = false;
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "SemiAdministrador") {
+                    state.psa = true;
+                    state.pp = false;
+                    state.pae = false,
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "Autor"){
+                    state.pae = true;
+                    state.psa = false;
+                    state.pp = false;
+                    state.pas = false;
+                    state.pa = false;
+                } else if(dato.tipoUsuario.rol == "Asistente"){
+                    state.pas = true;
+                    state.pae = false;
+                    state.psa = false;
+                    state.pp = false;
+                    state.pa = false;
+                } else {
+                    state.pa = true;
+                    state.pas = false;
+                    state.pae = false;
+                    state.psa = false;
+                    state.pp = false;
+                }
             } else {
                 state.pa = true;
                 state.pas = false;
@@ -310,4 +363,58 @@ export default {
             }
         }
     },
+    [MUTATIONS.TRAER_ESTADISTICAS]: (state, payload) => {
+        state.estadisticas = payload;
+    },
+    [MUTATIONS.EVENTO_DEFAULT]: (state) => {
+        let payload = {
+            idEvento: "",
+            estado: "Creado"
+        }
+        state.evento = payload;
+    },
+    [MUTATIONS.USUARIO_DEFAULT]: (state) => {
+        let payload = {
+            idUsuario: "",
+            tipoUsuario: {
+                rol: "Participante"
+            }
+        }
+        state.usuario = payload;
+    },
+    [MUTATIONS.ACTIVIDAD_DEFAULT]: (state) => {
+        let payload = {
+            idActividad: "",
+            estado: "Creado"
+        }
+        state.actividad = payload;
+    },
+    [MUTATIONS.INSCRIPCION_DEFAULT]: (state) => {
+        let payload = {
+            idInscripcion: "",
+            seleccion: "Todas"
+        }
+        state.inscripcion = payload;
+    },
+    [MUTATIONS.INSCRIPCION_EDITADA]: (state) => {
+        state.inscripcion.seleccion = "Elijo actividades";
+    },
+    [MUTATIONS.INSCRIPTOS_X_EVENTO]: (state, payload) => {
+        state.inscriptosEvento = payload;
+    },
+    [MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD]: (state, payload) => {
+        state.inscriptosEventoActividad = payload;
+    },
+    [MUTATIONS.BLANQUEO_REGISTRO]: (state) => {
+        state.usuarionuevo.email = "";
+        state.usuarionuevo.clave = "";
+        state.usuarionuevo.nombre = "";
+        state.usuarionuevo.apellido = "";
+        state.usuarionuevo.dni = "";
+        state.usuarionuevo.usuario = "";
+        state.usuarionuevo = { tipoUsuario: {
+            rol: "Participante"
+        }};
+    },
 }
+    

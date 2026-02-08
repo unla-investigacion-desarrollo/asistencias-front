@@ -23,7 +23,7 @@
                     <strong class="font-weight-bold">Evento</strong>
                 </v-col>
                 <v-col cols="12" sm="8" md="9">
-                    {{ model.evento.nombre }}
+                    {{ model.nombreEvento }}
                 </v-col>
                 </v-row>
                 <v-row>
@@ -91,15 +91,23 @@
     </div>
 </template>
 <script>
+import { OBTENER_ACTIVIDADES_PUBLICAS_ID } from '@/store/actions-types';
+
 export default {
   name: 'DetalleActividadGeneral',
   components: {},
   data() {
-    return {
-      model: this.$store.getters.getActividad()
-    };
+    return {};
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getActividad();
+    },
   },
   methods: {
+    volver(){
+      this.$router.go(-1);
+    },
     formatearFecha(f){
       let formato = "";
       if(f != null){
@@ -108,14 +116,18 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
       }
       return formato;
     },
-    volver(){
-      this.$router.go(-1);
+    },
+    created(){
+      if(this.model.nombre == ''){
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_ACTIVIDADES_PUBLICAS_ID, id);
+      }
     }
-}
 }
 </script>
 <style scoped>

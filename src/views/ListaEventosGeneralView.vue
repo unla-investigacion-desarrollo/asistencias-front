@@ -1,6 +1,8 @@
 <template>
     <v-container>
-        <v-card
+        <v-row class="lista">
+            <v-col>
+                <v-card
             class="mx-auto title_section" :elevation="8"
         >
             <template v-slot:title>
@@ -15,7 +17,8 @@
                 </div>
             </v-card-text>
         </v-card>
-
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 <script>
@@ -40,5 +43,8 @@ export default {
 .button_title {
     text-align: end;
     margin-bottom: 1%;
+}
+.lista {
+    margin-top: 2%;
 }
 </style>

@@ -37,15 +37,15 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-select
-            v-model="model.evento"
+          <v-autocomplete
+            v-model="evento"
             :items="eventos"
-            :item-props="itemProps"
             label="Evento"
+            :rules="validationText"
             required
-          ></v-select>
+        ></v-autocomplete>
         </v-col>
-      </v-row>
+      </v-row>    
       <v-row>
         <v-col :cols="12" :md="6">
           <v-autocomplete
@@ -90,7 +90,7 @@
               label="Cupo Limite"
               :counter="3"
               :max="999"
-              v-model="model.cupoLimite"
+              v-model="model.cupoMax"
               :rules="validationNumber"
               required
               ></v-number-input>
@@ -131,6 +131,7 @@ export default {
     return {
       model: this.$store.getters.getActividad(),
       color: "#8e2736",
+      evento: "",
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -143,7 +144,7 @@ export default {
   },
   computed: {
     eventos() {
-      return this.$store.getters.getEventos();
+      return this.$store.getters.getEventosFormateados();
     },
     edificios(){
         return edificios;
@@ -171,8 +172,8 @@ export default {
     }
   },
   created() {
-      this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventos());
+    this.$store.dispatch(OBTENER_EVENTOS);
+    console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
     itemProps (item) {
@@ -182,13 +183,47 @@ export default {
       },
     continuar() {
       console.log(this.model);
-      console.log("agregue la actividad al evento");     
-      this.$store.dispatch(AGREGAR_ACTIVIDAD, this.model);
+      console.log("agregue la actividad al evento");
+      let lista = this.$store.getters.getEventos();
+      let e = {};
+      for(let i = 0; i < lista.length; i++){
+        if(this.evento == lista[i].nombre){
+          e = lista[i];
+        }  
+      }
+      console.log(this.model);
+      console.log("actualice la actividad del evento");
+      let act = {
+        nombre: this.model.nombre,
+        descripcion: this.model.descripcion,
+        fechaInicio: this.formatearfechas(this.model.fechaInicio),
+        fechaFin: this.formatearfechas(this.model.fechaFin),
+        estado: this.model.estado,
+        edificio: this.model.edificio,
+        ubicacion: this.model.ubicacion,
+        cupo: this.model.cupo,
+        cupoMax: this.model.cupoMax,
+        evento: {
+            idEvento: e.idEvento
+        }
+      }
+      this.$store.dispatch(AGREGAR_ACTIVIDAD, act);
     },
     volver(){
       this.$router.go(-1);
+    },
+    formatearfechas(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = anio + "-" + mes + "-" + dia + " " +  hora + ":" + min;
+      }
+      return formato;
     }
-    
   }
 }
 </script>

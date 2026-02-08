@@ -25,6 +25,18 @@ const mensajes = {
         '<p>La actualización de la inscripción al evento fue exitosa.</p>',
     "elimino_inscripcion":
         '<p>Se elimino la inscripción al evento exitosamente.</p>',
+    "sin-estadisticas":
+        '<p>No encontramos estadisticas disponibles para este evento.</p>',
+    "sin-inscriptos":
+        '<p>Aún no encontramos inscriptos para este evento.</p>',
+    "sin-resultados":
+        '<p>No encontramos resultados para la busqueda solicitada</p>',
+    "sin-inscripciones":
+        '<p>Aún no te has inscripto a ningún evento y actividad. <br>Una vez que te anotes a alguno verás tus inscripciones aquí.</p>',
+    "actualizo-clave":
+        '<p>La contraseña fue actualizada exitosamente.</p>',
+    "error-clave":
+        '<p>Hubo un problema al actualizar la contraseña. <br>Por favor, intente mas tarde.</p>',
     };
 
 export default mensajes;

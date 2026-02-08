@@ -83,7 +83,7 @@ export default {
         estado: "Creado",
         evento: {},
         cupo: "",
-        cupoLimite: ""
+        cupoMax: ""
     },
     titulosContenido: null,
     actividades: [],
@@ -131,5 +131,27 @@ export default {
     psa: false,
     pae: false,
     pp: true,
-    pas: false
+    pas: false,
+    estadisticas: [],
+    inscriptosEvento: {
+        listaUsuarios: [],
+        evento: {}
+    },
+    inscriptosEventoActividad: {
+        listaUsuarios: [],
+        evento: {},
+        actividad: {}
+    },
+    usuarionuevo: {
+        email: "",
+        clave: "",
+        nombre: "",
+        apellido: "",
+        dni: "",
+        usuario: "",
+        tipoUsuario: {
+            rol: "Participante"
+        }
+    },
+    contenidosFiltro: []
 }

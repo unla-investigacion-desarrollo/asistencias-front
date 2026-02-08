@@ -10,9 +10,6 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <div class="button_title">
-                    <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
-                </div>
                 <div>
                     <ListaContenido></ListaContenido>
                 </div>
@@ -27,11 +24,6 @@ import ListaContenido from '../components/ListaContenido.vue';
 export default {
     name: 'ListaContenidosView',
     components: { ListaContenido },
-    methods: {
-        agregar(){
-            this.$router.push('/contenido')
-        }
-    }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-    <v-container v-if="model.evento.nombre !== ''">
+    <v-container v-if="model.idInscripcion !== ''">
         <v-list dense class="rounded-lg mx-auto">
           <v-list-item>
             <v-row>
@@ -61,7 +61,7 @@
           </v-list-item>
         </v-list>
     </v-container>
-  <div class="text_menssage" v-if="model.evento.nombre === ''">
+  <div class="text_menssage" v-if="model.idInscripcion === ''">
       <h3>Ocurrió un problema al obtener la información, por favor intente acceder nuevamente desde el listado.</h3>
   </div>
   <div class="container_button">
@@ -75,15 +75,24 @@
   </div>
 </template>
 <script>
+import { OBTENER_INSCRIPCION } from '@/store/actions-types';
+
 export default {
   name: 'DetalleEvento',
   components: {},
   data() {
     return {
-      model: this.$store.getters.getInscripcion(),
     };
   },
+  computed: {
+    model() {
+      return this.$store.getters.getInscripcion();
+    },
+  },
   methods: {
+    volver(){
+      this.$router.go(-1);
+    },
     formatearFecha(f){
       let formato = "";
       if(f != null){
@@ -92,14 +101,18 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
       }
       return formato;
     },
-    volver(){
-      this.$router.go(-1);
-    }
-}
+  },
+  mounted() {
+      if(this.$store.getters.getInscripcion().idInscripcion == ""){
+          const id = this.$route.params.id;
+          console.log(id);
+          this.$store.dispatch(OBTENER_INSCRIPCION, id);
+      }
+  }
 }
 </script>
 <style scoped>

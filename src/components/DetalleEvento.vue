@@ -100,16 +100,22 @@
   </div>
 </template>
 <script>
-
+import { OBTENER_EVENTOS_PUBLICOS_ID } from '../store/actions-types';
 export default {
   name: 'DetalleEvento',
   components: {},
   data() {
-    return {
-      model: this.$store.getters.getEvento()
-    };
+    return {};
+  },
+  computed: {
+    model() {
+      return this.$store.getters.getEvento();
+    },
   },
   methods: {
+    volver(){
+      this.$router.go(-1);
+    },
     formatearFecha(f){
       let formato = "";
       if(f != null){
@@ -118,14 +124,18 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
       }
       return formato;
     },
-    volver(){
-      this.$router.go(-1);
+  },
+    created(){
+      if(this.model.nombre == ''){
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
+      }
     }
-}
 }
 </script>
 <style scoped>

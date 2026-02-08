@@ -24,10 +24,24 @@ const formatearFecha = f => {
     let dia = f.substring(8, 10);
     let hora = f.substring(11, 13);
     let min = f.substring(14, 16);
-    formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
+    formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
   }
   return formato;
 };
+
+const convertirAEmbed = url => {
+  if (url.includes("watch?v=")) {
+    const videoId = url.split("watch?v=")[1].split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1].split("?")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  return url;
+}
 
 const estados = [ 'Creado', 'Iniciado', 'Terminado', 'Suspendido', 'Aplazado' ];
 
@@ -56,6 +70,6 @@ export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha
+  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha, convertirAEmbed
 };
 

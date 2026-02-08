@@ -1,5 +1,5 @@
 <template>
-  <div v-if="actividades.length != 0">
+  <div v-if="actividades.length > 0">
     <v-table
       height="auto"
       fixed-header
@@ -40,7 +40,7 @@
           <td>{{ formatearFecha(item.fechaFin) }}</td>
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
-          <td>{{ item.evento.nombre }}</td>
+          <td>{{ this.$store.getters.getInscripcion().evento.nombre }}</td>
           <td>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     actividades() {
-      return this.$store.getters.getInscripcion().actividades;
+      return this.$store.getters.getInscripcion().evento.actividades;
     },
 },
 methods: {
@@ -72,20 +72,20 @@ methods: {
     this.$store.dispatch(DETALLE_ACTIVIDAD_GENERAL, item);
   },
   formatearFecha(f){
-      let formato = "";
-      if(f != null){
-        let anio = f.substring(0, 4);
-        let mes = f.substring(5, 7);
-        let dia = f.substring(8, 10);
-        let hora = f.substring(11, 13);
-        let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + " a las " +  hora + ":" + min;
-      }
-      return formato;
+    let formato = "";
+    if(f != null){
+      let anio = f.substring(0, 4);
+      let mes = f.substring(5, 7);
+      let dia = f.substring(8, 10);
+      let hora = f.substring(11, 13);
+      let min = f.substring(14, 16);
+      formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
     }
+    return formato;
+  },
 },
 created() {
-  if(this.$store.getters.getInscripcion().actividades.length == 0){
+  if(this.$store.getters.getInscripcion().evento.actividades.length == 0){
     if(this.$store.getters.getInscripcion().evento.nombre != ""){
       this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.$store.getters.getInscripcion().evento);
     } 

@@ -43,12 +43,22 @@
           </v-btn>
         </v-col>
       </v-row>
+      <v-row>
+      <v-col>
+          <v-btn variant="text"
+            @click="olvide"
+            color="primary"
+          >
+            Olvide mi clave
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-form>
   </v-container>
 </template>
   
 <script>
-import { LOGIN } from '../store/actions-types';
+import { LOGIN, OLVIDE_MI_CLAVE, USUARIO_GENERAL_NUEVO } from '../store/actions-types';
 export default {
   name: 'LoginComponent',
   components: {},
@@ -74,7 +84,10 @@ export default {
       this.$store.dispatch(LOGIN, this.model);
     },
     registro(){
-      this.$router.push('registro')
+      this.$store.dispatch(USUARIO_GENERAL_NUEVO);
+    },
+    olvide(){
+      this.$store.dispatch(OLVIDE_MI_CLAVE);
     }
   }
 }

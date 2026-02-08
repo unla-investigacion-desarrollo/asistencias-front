@@ -103,7 +103,6 @@
 <script>
 import { EDITAR_INSCRIPCION, OBTENER_INSCRIPCION_X_USUARIO, ELIMINAR_INSCRIPCION, DETALLE_INSCRIPCION, ACEPTA_ELIMINAR_INSCRIPCION } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { formatearFecha } from '@/config';
   export default {
     name: 'ListaInscripcion',
     components: { MensajeComponent },
@@ -127,7 +126,19 @@ import { formatearFecha } from '@/config';
     },
     detalleItem(item){
       this.$store.dispatch(DETALLE_INSCRIPCION, item);
-    }
+    },
+    formatearFecha(f){
+      let formato = "";
+      if(f != null){
+        let anio = f.substring(0, 4);
+        let mes = f.substring(5, 7);
+        let dia = f.substring(8, 10);
+        let hora = f.substring(11, 13);
+        let min = f.substring(14, 16);
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
+      }
+      return formato;
+    },
   },
   created() {
     this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO);

@@ -32,7 +32,7 @@
     ></v-alert>
   </div>
 
-  <div v-if="eventos.length != 0">
+  <div v-if="eventos.length > 0">
     <v-table
       height="auto"
       fixed-header
@@ -96,8 +96,8 @@
           <td>{{ item.tipoEvento.nombre }}</td>
           <td>{{ item.linkCertificado }}</td>
           <td>
-              <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil" v-if="!this.validoPas"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
               <v-btn class="remove_item" color="secondary" @click="inscripcionItem(item)" icon="mdi-note-plus-outline"></v-btn>
           </td>
@@ -139,9 +139,9 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
+import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
-import { usuario, formatearFecha } from '@/config';
+
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },
@@ -149,22 +149,25 @@ export default {
     return {};
   },
   computed: {
-      eventos() {
-          return this.$store.getters.getEventos();
-      },
-      elimino(){
-        return this.$store.getters.getEliminoEvento();
-      },
-      agrego(){
-        return this.$store.getters.getAgregoEvento();
-      },
-      edito(){
-        return this.$store.getters.getEditoEvento();
-      }
+    eventos() {
+        return this.$store.getters.getEventos();
+    },
+    elimino(){
+      return this.$store.getters.getEliminoEvento();
+    },
+    agrego(){
+      return this.$store.getters.getAgregoEvento();
+    },
+    edito(){
+      return this.$store.getters.getEditoEvento();
+    },
+    validoPas(){
+        return this.$store.getters.getPas();
+    }
 },
   methods: {
     editarItem(item){   
-        this.$store.dispatch(EDITAR_EVENTO, item);
+      this.$store.dispatch(EDITAR_EVENTO, item);
     },
     modalEliminar(item){
       this.$store.dispatch(ACEPTA_ELIMINAR_EVENTO, item);
@@ -176,20 +179,37 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO, item);
     },
     inscripcionItem(item){
-      if(usuario != null){
-        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
-      } else {
+      let usuario = this.$store.getters.getUsuario();
+      if(usuario.dni === ''){
+        usuario = localStorage.getItem("usuario");
+      }
+      console.log("Este es el usuario: "+ usuario);
+      if(this.$store.getters.getHash() === '' || usuario.dni === ''){
         this.$router.push({
           name: "ErroresView",
           params: {
             mensaje: "usuario-requerido",
           },
         });
+      } else {
+        this.$store.dispatch(FORMULARIO_INSCRIPCION_EVENTO, item);
       }
     },
+  formatearFecha(f){
+    let formato = "";
+    if(f != null){
+      let anio = f.substring(0, 4);
+      let mes = f.substring(5, 7);
+      let dia = f.substring(8, 10);
+      let hora = f.substring(11, 13);
+      let min = f.substring(14, 16);
+      formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
+    }
+    return formato;
+  },
   },
   created() {
-    this.$store.dispatch(OBTENER_EVENTOS);
+    this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     console.log(this.$store.getters.getEventos());
 }
 }

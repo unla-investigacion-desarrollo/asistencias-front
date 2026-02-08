@@ -936,6 +936,252 @@ const invitacion = {
     ]
 };
 
+const estadisticas = [
+    {
+        "evento": {
+            "idEvento": 7,
+            "nombre": "fest",
+            "descripcion": "fest",
+            "fechaInicio": "2025-07-17T00:06:00",
+            "fechaFin": "2025-07-22T00:06:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "aula 1",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 102,
+                "nombre": "Festival",
+                "descripcion": "festival"
+            }
+        },
+        "inscripciones": 40,
+        "asistencias": 20
+    },
+    {
+        "evento": {
+            "idEvento": 1,
+            "nombre": "Jornada Profesional",
+            "descripcion": "Jornada",
+            "fechaInicio": "2025-04-25T20:38:00",
+            "fechaFin": "2025-04-30T20:38:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "Hernandez",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 1,
+                "nombre": "Arte",
+                "descripcion": "Arte"
+            }
+        },
+        "inscripciones": 50,
+        "asistencias": 40
+    },
+    {
+        "evento": {
+            "idEvento": 5,
+            "nombre": "Jornada",
+            "descripcion": "festival",
+            "fechaInicio": "2025-07-25T00:05:00",
+            "fechaFin": "2025-07-29T00:05:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Raul Scalabrini Ortiz",
+            "ubicacion": "aula 2",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 4,
+                "nombre": "Jornadas Profesionales",
+                "descripcion": "Jornadas Profesionales"
+            }
+        },
+        "inscripciones": 30,
+        "asistencias": 30
+    },
+    {
+        "evento": {
+            "idEvento": 6,
+            "nombre": "Python",
+            "descripcion": "Curso",
+            "fechaInicio": "2025-07-25T00:05:00",
+            "fechaFin": "2025-07-29T00:05:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "aula 2",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 152,
+                "nombre": "Cursos",
+                "descripcion": "Curso"
+            }
+        },
+        "inscripciones": 30,
+        "asistencias": 29
+    }
+];
+
+const inscriptosEvento  = {
+    "listaUsuarios": [
+        {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        },
+        {
+        "idUsuario": 2,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000001,
+        "email": "n.uen@hotmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        }
+    ],
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    }
+};
+
+const inscriptosEventoActividad  = {
+    "listaUsuarios": [
+        {
+        "idUsuario": 1,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000000,
+        "email": "nehuen.db@gmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        },
+        {
+        "idUsuario": 2,
+        "nombre": "Nehuen",
+        "apellido": "Diaz",
+        "dni": 38000001,
+        "email": "n.uen@hotmail.com",
+        "usuario": "nehuen",
+        "clave": "1234",
+        "tipoUsuario": {
+            "idTipoUsuario": 1,
+            "rol": "Administrador"
+            }
+        }
+    ],
+    "evento": {
+        "idEvento": 7,
+        "nombre": "fest",
+        "descripcion": "fest",
+        "fechaInicio": "2025-07-17T00:06:00",
+        "fechaFin": "2025-07-22T00:06:00",
+        "fechaCierre": null,
+        "edificio": "Edificio Jose Hernandez",
+        "ubicacion": "aula 1",
+        "estado": "Creado",
+        "linkCertificado": "",
+        "tipoEvento": {
+            "idTipoEvento": 102,
+            "nombre": "Festival",
+            "descripcion": "festival"
+        }
+    },
+    "actividad": {
+        "idActividad": 102,
+        "nombre": "act",
+        "descripcion": "asdasda",
+        "fechaInicio": "2025-08-02T00:09",
+        "fechaFin": "2025-08-02T00:09",
+        "estado": "Creado",
+        "edificio": "Edificio Manuel Ugarte",
+        "ubicacion": "aula 2",
+        "cupo": 1,
+        "cupoMax": null,
+        "evento": {
+            "idEvento": 7,
+            "nombre": "fest",
+            "descripcion": "fest",
+            "fechaInicio": "2025-07-17T00:06:00",
+            "fechaFin": "2025-07-22T00:06:00",
+            "fechaCierre": null,
+            "edificio": "Edificio Jose Hernandez",
+            "ubicacion": "aula 1",
+            "estado": "Creado",
+            "linkCertificado": "",
+            "tipoEvento": {
+                "idTipoEvento": 102,
+                "nombre": "Festival",
+                "descripcion": "festival"
+            }
+        }
+    },
+};
+
+const tipoEventos = [
+    {
+        "nombre": "Curso",
+        "imagen": "https://www.ireland-experience.com/wp-content/uploads/2021/02/adu.jpg"
+    },
+    {
+        "nombre": "Arte",
+        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiUeyIQ_VnqRdoxSO9kCbnMow1O7C9tbKRBQ&s"
+    },
+    {
+        "nombre": "Congreso",
+        "imagen": "https://dataconurbano.net/wp-content/uploads/2025/08/Jornadas-de-Economia-Politica-2025-en-la-UNLa1.jpg"
+    },
+    {
+        "nombre": "Seminario",
+        "imagen": "https://diariolaciudadavellaneda.com.ar/wp-content/uploads/2025/11/La-UNLa-fue-sede-de-la-jornada-de-intercambio-del-Programa-Puentes-la-propuesta-que-lleva-carreras-universitarias-a-los-municipios-del-interior-bonaerense_4.jpg"
+    },
+    {
+        "nombre": "Musica",
+        "imagen": "https://laciudadavellaneda.com.ar/wp-content/uploads/orquesta-18.jpg"
+    },
+    {
+        "nombre": "Workshop",
+        "imagen": "https://espazio32.es/wp-content/uploads/2020/03/WorkshopEmpresarial01-1024x682.jpg"
+    },
+    {
+        "nombre": "Conferencia",
+        "imagen": "https://educaciondebate.com.ar/datos/fotos/2025/10/22/295-10/imagen_1949.jpg"
+    },
+    
+    
+    
+];
+
 export {
-  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion
+  contenido, contenido2, lista, participante, inscripcion, inscripcion1, inscripcion2, tipoeventos, eventos, roles, usuarios, actividades, usuario, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad, tipoEventos
 };

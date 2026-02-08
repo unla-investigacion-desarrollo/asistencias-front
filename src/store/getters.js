@@ -63,4 +63,9 @@ export default {
     getPae: state => () => state.pae,
     getPp: state => () => state.pp,
     getPas: state => () =>  state.pas,
+    getEstadisticas: state => () =>  state.estadisticas,
+    getInscriptosEvento: state => () =>  state.inscriptosEvento,
+    getInscriptosEventoActividad: state => () =>  state.inscriptosEventoActividad,
+    getUsuarioNuevo: state => () =>  state.usuarionuevo,
+    getContenidosFiltro: state => () =>  state.contenidosFiltro
   };

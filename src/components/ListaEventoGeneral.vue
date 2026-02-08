@@ -75,7 +75,7 @@
   </div>
   </template>
 <script>
-import { OBTENER_EVENTOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
+import { OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTO_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaEventoGeneral',
@@ -97,7 +97,7 @@ export default {
         this.$store.dispatch(DETALLE_EVENTO_GENERAL, item);
     },
     inscripcionItem(item){
-      let usuario = this.$store.getters.getEventos();
+      let usuario = this.$store.getters.getUsuario();
       if(usuario.dni === ''){
         usuario = localStorage.getItem("usuario");
       }
@@ -121,16 +121,15 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        let seg = f.substring(17, 19);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min + ":" + seg;
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
       }
       return formato;
-    }
+    },
   },
   created() {
     if(this.$store.getters.getEventos().length == 0){
       if(this.filtro === ""){
-      this.$store.dispatch(OBTENER_EVENTOS);
+      this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     } else{
       this.$store.dispatch(OBTENER_EVENTO_X_TIPO_EVENTO, this.filtro);
     }

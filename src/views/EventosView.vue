@@ -7,20 +7,30 @@
     >
         <v-tab value="eventos">Eventos</v-tab>
         <v-tab value="actividades">Actividades</v-tab>
-        <v-tab value="tipo">Tipos de Eventos</v-tab>
+        <v-tab value="tipo" v-if="!this.validoPas">Tipos de Eventos</v-tab>
+        <v-tab value="inscriptos">Inscriptos</v-tab>
+        <v-tab value="estadisticas" v-if="(!this.validoPas) && (!this.validoPsa)">Estadisticas</v-tab>
     </v-tabs>
 
     <v-tabs-window v-model="tab">
         <v-tabs-window-item value="eventos">
-            <ListaEventosView></ListaEventosView>
+          <ListaEventosView></ListaEventosView>
         </v-tabs-window-item>
 
         <v-tabs-window-item value="actividades">
           <ListaActividadView></ListaActividadView>
         </v-tabs-window-item>
 
-        <v-tabs-window-item value="tipo">
-            <ListaTiposEventosView></ListaTiposEventosView>
+        <v-tabs-window-item value="tipo" v-if="!this.validoPas">
+          <ListaTiposEventosView></ListaTiposEventosView>
+        </v-tabs-window-item>
+
+        <v-tabs-window-item value="inscriptos">
+          <ListaInscriptosView></ListaInscriptosView>
+        </v-tabs-window-item>
+
+        <v-tabs-window-item value="estadisticas" v-if="(!this.validoPas) && (!this.validoPsa)">
+          <EstadisticasView></EstadisticasView>
         </v-tabs-window-item>
 
       </v-tabs-window>
@@ -30,11 +40,12 @@
 import ListaTiposEventosView from './ListaTiposEventosView.vue';
 import ListaEventosView from './ListaEventosView.vue';
 import ListaActividadView from './ListaActividadView.vue';
-
+import EstadisticasView from './EstadisticasView.vue';
+import ListaInscriptosView from './ListaInscriptosView.vue';
 
 export default {
     name: 'EventosView',
-    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView },
+    components: { ListaEventosView, ListaTiposEventosView, ListaActividadView, EstadisticasView, ListaInscriptosView },
     data: () => ({
       tab: null,
     }),
@@ -42,7 +53,15 @@ export default {
       const solapa = this.$route.params.solapa;
       console.log(solapa);
       this.tab = solapa;
-    }
+    },
+    computed: {
+      validoPas(){
+        return this.$store.getters.getPas();
+      },
+      validoPsa(){
+        return this.$store.getters.getPsa();
+      }
+  }
 }
 </script>
 

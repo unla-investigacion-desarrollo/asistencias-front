@@ -3,7 +3,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue agregado exitosamente."
+      title="El usuario fue agregado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -14,7 +14,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue modificado exitosamente."
+      title="El usuario fue modificado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -25,7 +25,7 @@
     <v-alert
       closable
       icon="$success"
-      title="El rol fue eliminado exitosamente."
+      title="El usuario fue eliminado exitosamente."
       text=""
       type="success"
       variant="outlined"
@@ -79,7 +79,7 @@
           <td>{{ item.tipoUsuario.rol }}</td>
           <td>
             <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-            <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+            <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPsa"></v-btn>
           </td>
           </tr>
       </tbody>
@@ -137,6 +137,9 @@ import MensajeComponent from './MensajeComponent.vue';
       },
       edito(){
         return this.$store.getters.getEditoUsuario();
+      },
+      validoPsa(){
+        return this.$store.getters.getPsa();
       }
   },
   methods: {

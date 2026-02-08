@@ -19,6 +19,10 @@ const errores = {
         '<p>No se pudo completar el registro del usuario debido a que ya hay uno con el mismo DNI y email. <br> Intente con otros datos y vuelva a registrarse.</p>',
     "usuario-inscripto":
         '<p>Ya estas inscripto al evento con tu usuario. <br> Para ver tu inscripción dirigete a tu perfil y lo podrás ver en la pestaña de Mis inscripciones. </p>',
+    "clave-incorrecta":
+        '<p>La contraseña no coincide con los registros del sistema. </p>',
+    "no-encontrado":
+        '<p>No pudimos encontrarte en los registros del sistema. </p>',
     };
 
 export default errores;

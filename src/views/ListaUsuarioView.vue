@@ -22,6 +22,7 @@
     </v-container>
 </template>
 <script>
+import { USUARIO_NUEVO } from '@/store/actions-types';
 import ListaUsuarios from '../components/ListaUsuarios.vue';
 
 export default {
@@ -29,7 +30,7 @@ export default {
     components: { ListaUsuarios },
     methods: {
         agregar(){
-            this.$router.push('/unlaRegistro')
+            this.$store.dispatch(USUARIO_NUEVO);
         }
     }
 }

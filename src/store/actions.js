@@ -2,8 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion } from "@/config/mock"
-import { hoyFormateado } from "@/config/index"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad } from "@/config/mock"
 
 export default {
 
@@ -33,7 +32,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -59,14 +60,16 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.guardarEvento(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_EVENTO, true);
       context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_EVENTO, false); }, 10000);
@@ -84,7 +87,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
   console.log("recupero datos");
@@ -107,7 +112,9 @@ export default {
   });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_TIPO_EVENTO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -127,7 +134,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -152,7 +161,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_EVENTO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -172,7 +183,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -198,7 +211,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
@@ -214,8 +229,8 @@ export default {
     .then(response => {
     console.log(response);
       if (response.status == "200") {
-        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data.eventos);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data.eventos);
       } 
     })
     .catch(error => {
@@ -225,7 +240,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -242,7 +259,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.REGISTRAR_PARTICIPANTE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -280,7 +299,9 @@ export default {
   }
   
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EDITAR_ROL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, payload);
@@ -310,7 +331,9 @@ export default {
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_ROL] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -329,7 +352,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -351,7 +376,9 @@ export default {
   }
   
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_NOMBRE] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -368,11 +395,16 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.buscarActividadesPorEvento(payload)
+  let datos = {
+    idEvento: payload.idEvento
+  }
+  api.buscarActividadesPorEvento(datos)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
@@ -393,7 +425,25 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerActividadesXEventoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_ESTADO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -410,7 +460,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -427,7 +479,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_CUPO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -444,7 +498,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_ACTIVIDADES_X_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -461,7 +517,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_USUARIOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -482,7 +540,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_INFO_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -499,7 +559,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_INFO_USUARIO_EMAIL] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -519,14 +581,16 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.agregarActividad(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_ACTIVIDAD, true);
       context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_ACTIVIDAD, false); }, 10000);
@@ -544,7 +608,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -568,7 +634,9 @@ export default {
       console.log(error);
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EDITAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
@@ -591,7 +659,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
@@ -611,23 +681,48 @@ export default {
 },
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-  router.push('/detalleEvento');
+  router.push({
+      name: "DetalleEventoView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
 },
 [ACTIONS.DETALLE_EVENTO_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-  router.push('/infoEvento');
+  router.push({
+      name: "DetalleEventoGeneralView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
 },
 [ACTIONS.DETALLE_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
-  router.push('/detalleActividad');
+  router.push({
+      name: "DetalleActividadView",
+      params: {
+        id: payload.idActividad,
+      },
+    });
 },
 [ACTIONS.DETALLE_ACTIVIDAD_GENERAL] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
-  router.push('/infoActividad');
+  router.push({
+      name: "DetalleActividadGeneralView",
+      params: {
+        id: payload.idActividad,
+      },
+    });
 },
 [ACTIONS.DETALLE_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  router.push('/miInscripcion');
+  router.push({
+      name: "DetalleInscripcionView",
+      params: {
+        id: payload.idInscripcion,
+      },
+    });
 },
 [ACTIONS.OBTENER_EVENTOS_X_CATEGORIA] (context, payload) {
   context.commit(MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO, payload);
@@ -658,7 +753,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.REGISTRAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true); 
@@ -678,22 +775,66 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+},
+[ACTIONS.REGISTRAR_USUARIO_NUEVO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true); 
+  api.guardarUsuario(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_USUARIO, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_USUARIO, false); }, 1000);
+      context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, response.data);
+      router.push({
+          name: "UsuariosView",
+          params: {
+            solapa: "usuarios",
+          },
+        });
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false); 
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.FORMULARIO_INSCRIPCION_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.INSCRIPCION_DEFAULT);
   context.commit(MUTATIONS.GUARDAR_EVENTO_INSCRIPCION, payload);
   router.push('/inscripcion');
 },
 [ACTIONS.LOGIN] (context, payload) {
-  api.login(payload)
+  let datos = {
+    email: payload.email,
+    clave: payload.clave
+  }
+  api.login(datos)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
-      context.dispatch(ACTIONS.OBTENER_INFO_USUARIO_EMAIL, payload.email);
-    } else{
-      context.dispatch(ACTIONS.IDENTIFICO_ERRORES, response);
-    } 
+      //context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
+      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+      router.push("/miPerfil");
+    } else if(response.status == "500"){
+      router.push({
+        name: "PaginaErrorLoginView",
+        params: {
+          mensaje: "no-encontrado",
+        },
+      });
+    } else if(response.status == "422"){
+      router.push({
+        name: "PaginaErrorLoginView",
+        params: {
+          mensaje: "clave-incorrecta",
+        },
+      });
+  }
   })
   .catch(error => {
     console.log(error);
@@ -706,7 +847,8 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      router.push('/');
+      context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
     } 
   })
   .catch(error => {
@@ -714,7 +856,11 @@ export default {
     context.commit(MUTATIONS.GUARDO_ERROR, error);
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+  }
 },
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -729,7 +875,7 @@ export default {
     .then(response => {
       console.log(response);
       if (response.status == "200") {
-        context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, response.data);
+        context.commit(MUTATIONS.TRAER_INSCRIPCION_X_USUARIO, response.data.inscripciones);
       } 
     })
     .catch(error => {
@@ -739,7 +885,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -777,7 +925,9 @@ export default {
   });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACEPTA_ELIMINAR_EVENTO] (context, payload) {
   console.log(payload);
@@ -836,7 +986,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -855,7 +1007,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_USUARIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -863,7 +1017,7 @@ export default {
   .then(response => {
     if (response.status == "200") {
       context.commit(MUTATIONS.EDITO_USUARIO, true);
-      context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
+      context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, response.data);
       setTimeout(() => { context.commit(MUTATIONS.EDITO_USUARIO, false); }, 10000);
       router.push({
           name: "UsuariosView",
@@ -879,10 +1033,12 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.EDITAR_USUARIO] (context, payload) {
-  context.commit(MUTATIONS.GUARDAR_AGREGAR_USUARIO, payload);
+  context.commit(MUTATIONS.GUARDAR_USUARIO_NUEVO, payload);
   router.push('/editarUnlaUsuario');
 },
 [ACTIONS.IDENTIFICO_ERRORES] (context) {
@@ -898,6 +1054,8 @@ export default {
     });
   } else if (status === "404"  || codigoError.includes("404")){
     router.push("/404");
+  }  else if (status === "409" || codigoError.includes("409")){
+    router.push("/409");
   } else if (status === "401" || codigoError.includes("401")){
     context.commit(MUTATIONS.CERRAR_SESION);
     router.push({
@@ -934,7 +1092,9 @@ export default {
         id: payload,
       },
     });
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZO_DATOS] (context) {
   context.commit(MUTATIONS.ACTUALIZO_DATOS);
@@ -962,7 +1122,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.TRAER_CONTENIDOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -985,7 +1147,9 @@ export default {
     });
   }
  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
- context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+ if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.DETALLE_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -997,7 +1161,9 @@ export default {
       },
     });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.TRAER_FORMATO_EVENTOS] (context, payload) {
   const eventos = payload.map(e => e.nombre);
@@ -1028,16 +1194,19 @@ export default {
       context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
     });
     context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+    if(context.getters.getHash() == ''){
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_PROXIMOS_EVENTOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerEventos()
+  api.obtenerProximosEventos()
   .then(response => {
   console.log(response);
     if (response.status == "200") {
 
-      let lista = response.data;
+      //let lista = response.data.eventos;
+      /*
       let listaAux = [];
       let aux = {};
 
@@ -1047,9 +1216,9 @@ export default {
           listaAux.push(aux);
         }   
       }
-      console.log(listaAux);
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
-      context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+      console.log(listaAux);*/
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data.eventos);
+      //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, lista);
     } 
   })
   .catch(error => {
@@ -1090,7 +1259,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_IMAGEN] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1115,7 +1286,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_VIDEO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1140,10 +1313,28 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.AGREGAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let listaAux = [];
+
+  payload.actividades.forEach(e => {
+    listaAux.push({ idActividad: e.idActividad });
+  });
+
+  let datos = {
+    usuario: {
+        idUsuario: payload.usuario.id
+    },
+    evento: {
+        idEvento: payload.evento.idEvento
+    },
+    actividades: listaAux
+  };
+
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
     context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
@@ -1155,7 +1346,7 @@ export default {
     });
     setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
   } else {
-    api.guardarInscripcion(payload)
+    api.guardarInscripcion(datos)
     .then(response => {
     console.log(response);
       if (response.status == "201") {
@@ -1177,7 +1368,9 @@ export default {
     });
   }  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1213,7 +1406,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1249,7 +1444,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_IMAGEN] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1285,7 +1482,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_VIDEO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1321,7 +1520,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ACTUALIZAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1358,7 +1559,9 @@ export default {
     });
   }  
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_AUDIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1377,7 +1580,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_IMAGEN] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1396,7 +1601,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.ELIMINAR_VIDEO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1415,7 +1622,9 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_TIPOS_EVENTOS_PUBLICOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1435,6 +1644,7 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   },
   [ACTIONS.OBTENER_EVENTOS_PUBLICOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1447,7 +1657,7 @@ export default {
     console.log(response);
       if (response.status == "200") {
         context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+        //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
       } 
     })
     .catch(error => {
@@ -1481,7 +1691,7 @@ export default {
 },
 [ACTIONS.OBTENER_ACTIVIDADES_PUBLICAS_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerActividadPublica(payload.idActividad)
+  api.traerActividadPublica(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
@@ -1497,7 +1707,7 @@ export default {
 },
 [ACTIONS.OBTENER_EVENTOS_PUBLICOS_ID] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.traerEventoPublico(payload.idEvento)
+  api.traerEventoPublico(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
@@ -1566,7 +1776,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_IMAGENES] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1587,7 +1799,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.OBTENER_VIDEOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1608,7 +1822,9 @@ export default {
     });
   }
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 [ACTIONS.GENERAR_QR] (context, payload) {
   router.push({
@@ -1617,7 +1833,261 @@ export default {
       id: payload.idContenido,
     },
   });
-  context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_ESTADISTICAS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.TRAER_ESTADISTICAS, estadisticas);
+  } else {
+    api.obtenerEstadisticas()
+    .then(response => {
+      console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.TRAER_ESTADISTICAS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.EVENTO_NUEVO] (context) {
+  context.commit(MUTATIONS.EVENTO_DEFAULT);
+  router.push('/nuevoEvento');
+},
+[ACTIONS.USUARIO_NUEVO] (context) {
+  context.commit(MUTATIONS.BLANQUEO_REGISTRO);
+  router.push('/unlaRegistro');
+},
+[ACTIONS.ACTIVIDAD_NUEVA] (context) {
+  context.commit(MUTATIONS.ACTIVIDAD_DEFAULT);
+  router.push('/nuevaActividad');
+},
+[ACTIONS.INSCRIPCION_EDITADA] (context) {
+  context.commit(MUTATIONS.INSCRIPCION_EDITADA);
+},
+[ACTIONS.CONTENIDO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_CONTENIDO, {});
+  router.push('/contenido');
+},
+[ACTIONS.AUDIO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AUDIO, {});
+  router.push('/nuevoAudio');
+},
+[ACTIONS.VIDEO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_VIDEO, {});
+  router.push('/nuevoVideo');
+},
+[ACTIONS.IMAGEN_NUEVA] (context) {
+  context.commit(MUTATIONS.GUARDAR_IMAGEN, {});
+  router.push('/nuevaImagen');
+},
+[ACTIONS.ROL_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, {});
+  router.push('/nuevoRol');
+},
+[ACTIONS.TIPO_EVENTO_NUEVO] (context) {
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, {});
+  router.push('/nuevoTipoEvento');
+},
+[ACTIONS.USUARIO_GENERAL_NUEVO] (context) {
+  context.commit(MUTATIONS.USUARIO_DEFAULT);
+  router.push('/registro');
+},
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, inscriptosEvento);
+  router.push({
+      name: "ListaInscriptosEventoView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
+},
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
+  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
+},
+[ACTIONS.OLVIDE_MI_CLAVE] () {
+  router.push('/olvideMiClave');
+},
+[ACTIONS.CAMBIO_MI_CLAVE] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.olvideMiClave(payload)
+  .then(response => {
+    console.log(response);
+    if (response.status == "200") {
+      router.push({
+        name: "OlvideMiClaveMensajeView",
+        params: {
+          mensaje: "actualizo-clave",
+        },
+      });
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    router.push({
+        name: "OlvideMiClaveMensajeView",
+        params: {
+          mensaje: "error-clave",
+        },
+      });
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerEventosXTipoEventoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      router.push({
+      name: "ListaEventosGeneralCategoriaView",
+      params: {
+        id: payload,
+      },
+    });    
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_INSCRIPCIONES] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscripciones()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_INSCRIPCIONES, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_ESTADISTICA_INDIVIDUAL] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerEstadisticaIndividual(payload.idEvento)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_ESTADISTICAS, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_INSCRIPCION] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscripcion(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_INSCRIPTOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscriptosXEvento(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO, response.data.inscripciones);   
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.TRAER_CONTENIDOS_X_TITULO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerContenidoXTitulo(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.TRAER_CONTENIDOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getEventos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(e => {
+    if(payload == e.nombre){
+      valor = e.idEvento;
+    }
+  });
+  }
+  api.traerContenidoXEvento(valor)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_CONTENIDOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 }
 

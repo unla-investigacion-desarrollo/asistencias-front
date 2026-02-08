@@ -57,6 +57,20 @@ import VideoView from '../views/VideoView.vue'
 import ContenidoQRView from '../views/ContenidoQRView.vue'
 import RegistrarAsistenciaView from '../views/RegistrarAsistenciaView.vue'
 import CamaraView from '../views/CamaraView.vue'
+import EstadisticasView from '../views/EstadisticasView.vue'
+import EstadisticasGeneralesView from '../views/EstadisticasGeneralesView.vue'
+import RankingEventosView from '../views/RankingEventosView.vue'
+import EstadisticasXEventoView from '../views/EstadisticasXEventoView.vue'
+import ListaInscriptosView from '../views/ListaInscriptosView.vue'
+import ListaInscriptosEventoView from '../views/ListaInscriptosEventoView.vue'
+import ListaInscriptosEventoActividadView from '../views/ListaInscriptosEventoActividadView.vue'
+import Pagina204View from '../views/Pagina204View.vue'
+import Pagina409View from '../views/Pagina409View.vue'
+import PaginaErrorLoginView from '../views/PaginaErrorLoginView.vue'
+import OlvideMiClaveView from '../views/OlvideMiClaveView.vue'
+import OlvideMiClaveMensajeView from '../views/OlvideMiClaveMensajeView.vue'
+import ListaEventosGeneralCategoriaView from '../views/ListaEventosGeneralCategoriaView.vue'
+
 
 const routes = [
   {
@@ -180,12 +194,12 @@ const routes = [
     component: EditarActividadView
   },
   {
-    path: '/detalleEvento',
+    path: '/detalleEvento/:id',
     name: 'DetalleEventoView',
     component: DetalleEventoView
   },
   {
-    path: '/detalleActividad',
+    path: '/detalleActividad/:id',
     name: 'DetalleActividadView',
     component: DetalleActividadView
   },
@@ -205,7 +219,7 @@ const routes = [
     component: MiPerfilView
   },
   {
-    path: '/miInscripcion',
+    path: '/miInscripcion/:id',
     name: 'DetalleInscripcionView',
     component: DetalleInscripcionView
   },
@@ -250,7 +264,7 @@ const routes = [
     component: ListaProximosEventosView
   },
   {
-    path: '/infoEvento',
+    path: '/infoEvento/:id',
     name: 'DetalleEventoGeneralView',
     component: DetalleEventoGeneralView
   },
@@ -265,7 +279,7 @@ const routes = [
     component: ListaActividadGeneralView
   },
   {
-    path: '/infoActividad',
+    path: '/infoActividad/:id',
     name: 'DetalleActividadGeneralView',
     component: DetalleActividadGeneralView
   },
@@ -353,6 +367,71 @@ const routes = [
     path: '/camara/:solapa',
     name: 'CamaraView',
     component: CamaraView
+  },
+  {
+    path: '/estadisticas',
+    name: 'EstadisticasView',
+    component: EstadisticasView
+  },
+  {
+    path: '/estadisticasGenerales',
+    name: 'EstadisticasGeneralesView',
+    component: EstadisticasGeneralesView
+  },
+  {
+    path: '/ranking',
+    name: 'RankingEventosView',
+    component: RankingEventosView
+  },
+  {
+    path: '/estadisticasEvento',
+    name: 'EstadisticasXEventoView',
+    component: EstadisticasXEventoView
+  },
+  {
+    path: '/listaInscriptosEventos',
+    name: 'ListaInscriptosView',
+    component: ListaInscriptosView
+  },
+  {
+    path: '/listaInscriptosXEvento/:id',
+    name: 'ListaInscriptosEventoView',
+    component: ListaInscriptosEventoView
+  },
+  {
+    path: '/listaInscriptosXEventoActividad',
+    name: 'ListaInscriptosEventoActividadView',
+    component: ListaInscriptosEventoActividadView
+  },
+  {
+    path: '/204',
+    name: 'Pagina204View',
+    component: Pagina204View
+  },
+  {
+    path: '/409',
+    name: 'Pagina409View',
+    component: Pagina409View
+  },
+  {
+    path: '/loginError/:error',
+    name: 'PaginaErrorLoginView',
+    component: PaginaErrorLoginView
+  },
+  {
+    path: '/olvideMiClave',
+    name: 'OlvideMiClaveView',
+    component: OlvideMiClaveView
+  },
+  {
+    path: '/clave/:mensaje',
+    name: 'OlvideMiClaveMensajeView',
+    component: OlvideMiClaveMensajeView
+  },
+  {
+    path: '/eventosCategoria/:id',
+    name: 'ListaEventosGeneralCategoriaView',
+    component: ListaEventosGeneralCategoriaView
   },
   {
     path: '/about',

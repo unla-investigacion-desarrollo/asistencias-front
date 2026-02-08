@@ -1,5 +1,5 @@
 <template>
-  <div v-if="eventos.length != 0">
+  <div v-if="eventos.length > 0">
     <v-table
       height="auto"
       fixed-header
@@ -77,10 +77,10 @@ export default {
         let dia = f.substring(8, 10);
         let hora = f.substring(11, 13);
         let min = f.substring(14, 16);
-        formato = dia + "-" + mes + "-" + anio + ", " +  hora + ":" + min;
+        formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
       }
       return formato;
-    }
+    },
   },
   created() {
     this.$store.dispatch(OBTENER_PROXIMOS_EVENTOS);

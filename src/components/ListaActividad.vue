@@ -90,12 +90,12 @@
           <td>{{ item.edificio }}</td>
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
-          <td>{{ item.evento.nombre }}</td>
+          <td>{{ item.nombreEvento }}</td>
           <td>{{ item.cupo }}</td>
-          <td>{{ item.cupoLimite }}</td>
+          <td>{{ item.cupoMax }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil"></v-btn>
-              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete"></v-btn>
+              <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>
               <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
@@ -137,7 +137,6 @@
 </script>
 <script>
 import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD } from '../store/actions-types';
-import { formatearFecha } from '@/config';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaActividad',
@@ -157,6 +156,9 @@ export default {
     },
     edito(){
       return this.$store.getters.getEditoActividad();
+    },
+    validoPas(){
+        return this.$store.getters.getPas();
     }
 },
 methods: {
@@ -171,6 +173,18 @@ methods: {
   },
   detalleItem(item){
     this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+  },
+  formatearFecha(f){
+    let formato = "";
+    if(f != null){
+      let anio = f.substring(0, 4);
+      let mes = f.substring(5, 7);
+      let dia = f.substring(8, 10);
+      let hora = f.substring(11, 13);
+      let min = f.substring(14, 16);
+      formato = dia + "-" + mes + "-" + anio + " " +  hora + ":" + min;
+    }
+    return formato;
   },
 },
 created() {
