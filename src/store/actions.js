@@ -1173,6 +1173,10 @@ export default {
   const contenidos = payload.map(e => e.titulo);
   context.commit(MUTATIONS.CONTENIDOS_FORMATEADOS, [...new Set(contenidos)]);
 },
+[ACTIONS.TRAER_FORMATO_TIPOS_EVENTOS] (context, payload) {
+  const tiposeventos = payload.map(e => e.nombre);
+  context.commit(MUTATIONS.TIPOS_EVENTOS_FORMATEADOS, [...new Set(tiposeventos)]);
+},
 [ACTIONS.EDITAR_USUARIO_LOGUEADO] () {
   router.push("/editarUsuario");
 },
@@ -1636,6 +1640,7 @@ export default {
     console.log(response);
     if (response.status == "200") {
       context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, response.data);
+      context.dispatch(ACTIONS.TRAER_FORMATO_TIPOS_EVENTOS, response.data);
     } 
   })
   .catch(error => {
@@ -1657,7 +1662,7 @@ export default {
     console.log(response);
       if (response.status == "200") {
         context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
-        //context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
       } 
     })
     .catch(error => {
@@ -2223,6 +2228,55 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.TRAER_EVENTOS_MES_ACTUAL_PUBLICO] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerEventoXMesActual()
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      let lista = response.data.eventos;
+      let listaAux = [];
+      lista.forEach(e => {
+      listaAux.push(e.evento);
+      });
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.TRAER_EVENTOS_X_CATEGORIA] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getTipoEventos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(e => {
+    if(payload == e.nombre){
+      valor = e.idTipoEvento;
+    }
+  });
+  }
+  api.traerEventosXTipoEventoPublico(valor)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 }
 

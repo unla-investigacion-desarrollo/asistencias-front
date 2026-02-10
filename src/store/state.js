@@ -70,6 +70,7 @@ export default {
     },
     eventosFormateados: [],
     contenidosFormateados: [],
+    tiposeventosFormateados: [],
     audios: [],
     videos: [],
     imagenes: [],

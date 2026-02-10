@@ -31,7 +31,38 @@
       variant="outlined"
     ></v-alert>
   </div>
-
+  <div class="filtro">
+      <v-row >
+        <v-col>
+          <v-btn color="primary" @click="mostrar">Filtros</v-btn>
+        </v-col>
+        <v-col class="boton">
+          <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <div class="filtro" v-if="buscar">
+      <v-row>
+        <v-col>
+          <v-select
+          v-model="filtro"
+          :items="opciones"
+          label="Filtros"
+        ></v-select>
+        </v-col>
+        <v-col v-if="filtro === 'Categoria'">
+          <v-autocomplete 
+            v-model="parametro"
+            :items="tiposEventos"
+            label="Categoria"
+            required
+        ></v-autocomplete>
+        </v-col>
+        <v-col>
+          <v-btn class="remove_item" color="primary" @click="busqueda" icon="mdi-magnify"></v-btn>
+        </v-col>
+      </v-row>
+    </div>
   <div v-if="eventos.length > 0">
     <v-table
       height="auto"
@@ -139,18 +170,26 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO } from '../store/actions-types';
+import { EVENTO_NUEVO, EDITAR_EVENTO, ELIMINAR_EVENTO, OBTENER_EVENTOS_PUBLICOS, DETALLE_EVENTO, FORMULARIO_INSCRIPCION_EVENTO, ACEPTA_ELIMINAR_EVENTO, TRAER_EVENTOS_X_CATEGORIA, TRAER_EVENTOS_MES_ACTUAL_PUBLICO, OBTENER_PROXIMOS_EVENTOS, OBTENER_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
+import { filtroEvento } from '@/config';
 
 export default {
   name: 'ListaEvento',
   components: { MensajeComponent },
   data(){
-    return {};
+    return {
+      filtro: "Categoria",
+      buscar: false,
+      parametro: ""
+    };
   },
   computed: {
     eventos() {
-        return this.$store.getters.getEventos();
+      return this.$store.getters.getEventos(); 
+    },
+    tiposEventos(){
+      return this.$store.getters.getTiposEventosFormateados();
     },
     elimino(){
       return this.$store.getters.getEliminoEvento();
@@ -163,9 +202,15 @@ export default {
     },
     validoPas(){
         return this.$store.getters.getPas();
-    }
+    },
+    opciones(){
+      return filtroEvento;
+    },
 },
   methods: {
+    agregar(){
+      this.$store.dispatch(EVENTO_NUEVO);
+    },
     editarItem(item){   
       this.$store.dispatch(EDITAR_EVENTO, item);
     },
@@ -177,6 +222,18 @@ export default {
     },
     detalleItem(item){
         this.$store.dispatch(DETALLE_EVENTO, item);
+    },
+    mostrar(){
+      this.buscar = !this.buscar;
+    },
+    busqueda(){
+        if(this.filtro == "Categoria" && this.parametro != ""){
+          this.$store.dispatch(TRAER_EVENTOS_X_CATEGORIA, this.parametro);
+        } else if (this.filtro == "Mes Actual"){
+          this.$store.dispatch(TRAER_EVENTOS_MES_ACTUAL_PUBLICO, this.parametro);
+        } else if (this.filtro == "Proximos Eventos"){
+          this.$store.dispatch(OBTENER_PROXIMOS_EVENTOS, this.parametro);
+        }
     },
     inscripcionItem(item){
       let usuario = this.$store.getters.getUsuario();
@@ -208,8 +265,18 @@ export default {
     return formato;
   },
   },
+  watch: {
+    filtro(nuevo, viejo) {
+      if(nuevo != viejo){
+        this.parametro = "";
+        this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
+        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+      }
+    },
+  },
   created() {
     this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+    this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
     console.log(this.$store.getters.getEventos());
 }
 }
@@ -225,5 +292,12 @@ export default {
 
 .alerta {
   margin: 2% 0px 2% 0px;
+}
+.filtro { 
+  margin: 2% 0px 2% 0px;
+}
+
+.boton{
+  text-align: end;
 }
 </style>

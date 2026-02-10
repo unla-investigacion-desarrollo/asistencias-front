@@ -38,6 +38,9 @@ export default {
     [MUTATIONS.CONTENIDOS_FORMATEADOS]: (state, payload) => {
         state.contenidosFormateados = payload;
     },
+    [MUTATIONS.TIPOS_EVENTOS_FORMATEADOS]: (state, payload) => {
+        state.tiposeventosFormateados = payload;
+    },
     [MUTATIONS.REGISTRAR_PARTICIPANTE_AL_EVENTO]: (state, payload) => {
         state.inscripcion = payload;
     },

@@ -445,6 +445,10 @@ const api = {
     return axios.get(`${dominio}/api/public/videos`);
   },
 
+  traerEventoXMesActual(){
+    return axios.get(`${dominio}/api/public/eventos/mes-actual`);
+  },
+
   //Estadisticas
 
   obtenerEstadisticaIndividual(payload){
