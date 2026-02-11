@@ -10,9 +10,6 @@
             </template>
 
             <v-card-text class="bg-surface-light pt-4" :elevation="8">
-                <div class="button_title">
-                    <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
-                </div>
                 <div>
                     <ListaActividad></ListaActividad>
                 </div>
@@ -22,17 +19,11 @@
     </v-container>
 </template>
 <script>
-import { ACTIVIDAD_NUEVA } from '@/store/actions-types';
 import ListaActividad from '../components/ListaActividad.vue';
 
 export default {
     name: 'ListaActividadView',
     components: { ListaActividad },
-    methods: {
-        agregar(){
-            this.$store.dispatch(ACTIVIDAD_NUEVA);
-        }
-    }
 }
 </script>
 

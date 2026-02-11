@@ -408,14 +408,6 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      //let lista = response.data;
-      //let listaAux = [];
-      //let aux = {};
-      //for(let i = 0; i < lista.length; i++){
-      //  aux.nombre = lista[i].nombre;
-      //  listaAux.push(aux);
-      //}
-      //console.log(listaAux);
       context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
     } 
   })
@@ -2278,5 +2270,22 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.TRAER_ACTIVIDADES_GENERICO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.buscarActividadesGenericoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_ACTIVIDADES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+
 }
 

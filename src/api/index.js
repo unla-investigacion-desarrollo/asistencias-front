@@ -159,6 +159,11 @@ const api = {
     obtenerEncabezado();
     return axios.post(`${dominio}/api/actividades/filtrar`, body);
   },
+  buscarActividadesGenericoPublico(payload){
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/public/filtrar`, body);
+  },
+  
   //Controller usuarios
   guardarUsuario(payload) {
     const body = normalizarDatos(payload);

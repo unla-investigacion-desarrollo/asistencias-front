@@ -51,7 +51,7 @@ const filtroContenido = [ 'Evento', 'Titulo' ];
 
 const filtroEvento = [ 'Categoria', 'Mes Actual', 'Proximos Eventos' ];
 
-const filtroActividad = [ 'Evento', 'Categoria' ];
+const filtroActividad = [ 'Categoria', 'Evento' ];
 
 const key = localStorage.getItem("keyuser");
 
