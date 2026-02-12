@@ -149,7 +149,7 @@ const routes = [
     component: EditarRolesView
   },
   {
-    path: '/editarEvento',
+    path: '/editarEvento/:id',
     name: 'EditarEventoView',
     component: EditarEventoView
   },
@@ -189,7 +189,7 @@ const routes = [
     component: ListaActividadView
   },
   {
-    path: '/editarActividad',
+    path: '/editarActividad/:id',
     name: 'EditarActividadView',
     component: EditarActividadView
   },

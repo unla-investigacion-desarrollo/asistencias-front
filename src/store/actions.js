@@ -632,7 +632,12 @@ export default {
 },
 [ACTIONS.EDITAR_ACTIVIDAD] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_ACTIVIDAD, payload);
-  router.push('/editarActividad');
+  router.push({
+      name: "EditarActividadView",
+      params: {
+        id: payload.idActividad,
+      },
+    }); 
 },
 [ACTIONS.ELIMINAR_ACTIVIDAD] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -657,7 +662,12 @@ export default {
 },
 [ACTIONS.EDITAR_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
-  router.push('/editarEvento');
+  router.push({
+      name: "EditarEventoView",
+      params: {
+        id: payload.idEvento,
+      },
+    }); 
 },
 [ACTIONS.EDITAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
