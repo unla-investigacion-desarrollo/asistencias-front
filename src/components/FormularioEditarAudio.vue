@@ -58,7 +58,7 @@ export default {
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
       formValid: false,
-      contenido: this.$store.getters.getContenido().titulo
+      contenido: this.$store.getters.getAudio().titulo
     };
   },
   methods: {

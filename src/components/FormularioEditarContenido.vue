@@ -52,7 +52,7 @@
 </template>
   
 <script>
-import { EDITAR_CONTENIDO, OBTENER_EVENTOS } from '../store/actions-types';
+import { ACTUALIZAR_CONTENIDO, OBTENER_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEditarContenido',
   components: { },
@@ -98,7 +98,7 @@ export default {
       console.log(contenido);
 
       console.log("edite el contenido");
-      this.$store.dispatch(EDITAR_CONTENIDO, contenido);
+      this.$store.dispatch(ACTUALIZAR_CONTENIDO, contenido);
     },
     volver(){
       this.$router.go(-1);

@@ -1381,7 +1381,12 @@ export default {
     });
     setTimeout(() => { context.commit(MUTATIONS.EDITO_CONTENIDO, false); }, 10000);
   } else {
-    api.actualizarContenido(payload)
+    let datos = {
+      idEvento: payload.evento.idEvento,
+      titulo: payload.titulo,
+      descripcion: payload.descripcion
+    }
+    api.actualizarContenido(datos, payload.idContenido)
     .then(response => {
       if (response.status == "200") {
         context.commit(MUTATIONS.EDITO_CONTENIDO, true);

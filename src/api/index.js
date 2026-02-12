@@ -233,10 +233,10 @@ const api = {
     return axios.post(`${dominio}/api/contenidos`, body);
   },
 
-  actualizarContenido(payload) { 
+  actualizarContenido(payload, id) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.put(`${dominio}/api/contenidos/${payload.idContenido}`, body);
+    return axios.put(`${dominio}/api/contenidos/${id}`, body);
   },
 
   eliminarContenido(payload) {
