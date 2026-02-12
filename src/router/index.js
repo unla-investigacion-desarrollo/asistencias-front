@@ -319,17 +319,17 @@ const routes = [
     component: EditarInscripcionView
   },
   {
-    path: '/editarAudio',
+    path: '/editarAudio/:id',
     name: 'EditarAudioView',
     component: EditarAudioView
   },
   {
-    path: '/editarImagen',
+    path: '/editarImagen/:id',
     name: 'EditarImagenView',
     component: EditarImagenView
   },
   {
-    path: '/editarVideo',
+    path: '/editarVideo/:id',
     name: 'EditarVideoView',
     component: EditarVideoView
   },

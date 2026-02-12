@@ -45,14 +45,13 @@
 </template>
   
 <script>
-import { ACTUALIZAR_IMAGEN, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_IMAGEN, OBTENER_IMAGEN_PUBLICA, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
   name: 'FormularioEditarImagen',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getImagen(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -85,10 +84,18 @@ export default {
   computed: {
     contenidos() {
       return this.$store.getters.getContenidosFormateados();
-    }
+    },
+    model(){
+      return this.$store.getters.getImagen();
+    },
   },
   created() {
     this.$store.dispatch(TRAER_CONTENIDOS);
+    if(this.model.imagen == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_IMAGEN_PUBLICA, id);
+    }
   }
 }
 </script>

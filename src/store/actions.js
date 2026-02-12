@@ -661,15 +661,30 @@ export default {
 },
 [ACTIONS.EDITAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
-  router.push('/editarAudio');
+  router.push({
+      name: "EditarAudioView",
+      params: {
+        id: payload.idAudio,
+      },
+    }); 
 },
 [ACTIONS.EDITAR_IMAGEN] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
-  router.push('/editarImagen');
+  router.push({
+      name: "EditarImagenView",
+      params: {
+        id: payload.idImagen,
+      },
+    }); 
 },
 [ACTIONS.EDITAR_VIDEO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
-  router.push('/editarVideo');
+  router.push({
+      name: "EditarVideoView",
+      params: {
+        id: payload.idVideo,
+      },
+    }); 
 },
 [ACTIONS.DETALLE_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_EVENTO, payload);
