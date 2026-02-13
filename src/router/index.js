@@ -309,7 +309,7 @@ const routes = [
     component: ContenidoAudioVisualView
   },
   {
-    path: '/editarContenido',
+    path: '/editarContenido/:id',
     name: 'EditarContenidoView',
     component: EditarContenidoView
   },

@@ -1261,7 +1261,12 @@ export default {
 },
 [ACTIONS.EDITAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
-  router.push('/editarContenido');
+  router.push({
+      name: "EditarContenidoView",
+      params: {
+        id: payload.idContenido,
+      },
+    });
 },
 [ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
@@ -2362,6 +2367,23 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
-
+[ACTIONS.TRAER_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerContenido(payload)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
 }
 

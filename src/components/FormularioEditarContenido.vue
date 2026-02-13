@@ -20,7 +20,7 @@
       <v-row>
         <v-col>
           <v-autocomplete
-            v-model="evento"
+            v-model="model.nombreEvento"
             :items="eventos"
             label="Evento"
             :rules="validationText"
@@ -52,15 +52,13 @@
 </template>
   
 <script>
-import { ACTUALIZAR_CONTENIDO, OBTENER_EVENTOS } from '../store/actions-types';
+import { ACTUALIZAR_CONTENIDO, OBTENER_EVENTOS, TRAER_CONTENIDO } from '../store/actions-types';
 export default {
   name: 'FormularioEditarContenido',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getContenido(),
       color: "#8e2736",
-      evento: this.$store.getters.getContenido().nombreEvento,
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -71,11 +69,19 @@ export default {
   computed: {
     eventos() {
       return this.$store.getters.getEventosFormateados();
+    },
+    model(){
+      return this.$store.getters.getContenido();
     }
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getEventosFormateados());
+      if(this.model.titulo == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(TRAER_CONTENIDO, id);
+    }
   },
   methods: {
     itemProps (item) {
@@ -87,7 +93,7 @@ export default {
       let lista = this.$store.getters.getEventos();
       let e = {};
       for(let i = 0; i < lista.length; i++){
-        if(this.evento == lista[i].nombre){
+        if(this.model.nombreEvento == lista[i].nombre){
           e = lista[i];
         }  
       }

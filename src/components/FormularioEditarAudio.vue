@@ -4,7 +4,7 @@
       <v-row>
         <v-col>
           <v-autocomplete
-            v-model="contenido"
+            v-model="model.titulo"
             :items="contenidos"
             label="Contenido"
             :rules="validationText"
@@ -57,7 +57,6 @@ export default {
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
       formValid: false,
-      contenido: this.$store.getters.getAudio().titulo
     };
   },
   methods: {
@@ -66,7 +65,7 @@ export default {
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
-        if(this.contenido == lista[i].titulo){
+        if(this.model.titulo == lista[i].titulo){
           c = lista[i];
         }  
       }
