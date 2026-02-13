@@ -13,16 +13,24 @@ const api = {
     return axios.post(`${dominio}/auth/login`, body);
   },
 
+  //Controller Tipo de Evento
+  
   guardarTipoEvento(payload) {
     const body = normalizarDatos(payload);
     obtenerEncabezado();
     return axios.post(`${dominio}/api/tipoEvento`, body);
   },
 
-  guardarEvento(payload) { 
+  actualizarTipoEvento(payload) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/eventos/guardar`, body);
+    return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
+  },
+
+  traerTipoEvento(payload){
+    const body = normalizarDatos(payload);
+    obtenerEncabezado()
+    return axios.get(`${dominio}/api/tipoEvento/${payload}`, body);
   },
 
   obtenerTiposEventos() { 
@@ -35,6 +43,13 @@ const api = {
     return axios.delete(`${dominio}/api/eliminarTipoEvento/${payload}`);
   },
 
+  // Controller evento
+
+  guardarEvento(payload) { 
+    const body = normalizarDatos(payload);
+    obtenerEncabezado();
+    return axios.post(`${dominio}/api/eventos/guardar`, body);
+  },
   actualizarEvento(payload) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
@@ -55,6 +70,8 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/eventos/${payload}`);
   },
+
+  //Controller inscripcion
 
   registrarParticipanteAlEvento(payload) { 
     const body = normalizarDatos(payload);
@@ -194,12 +211,6 @@ const api = {
     return axios.get(`${dominio}/api/usuarios/email?email=${payload}`, body);
   },
 
-  //Controller Tipo de Evento
-  actualizarTipoEvento(payload) { 
-    const body = normalizarDatos(payload);
-    obtenerEncabezado();
-    return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
-  },
   //Controller Tipo de Usuario
   guardarTipoUsuario(payload) {
     const body = normalizarDatos(payload);
@@ -218,7 +229,7 @@ const api = {
   traerTipoUsuario(payload){
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.get(`${dominio}/tipoUsuario/${payload}`, body);
+    return axios.get(`${dominio}/api/tipoUsuario/${payload}`, body);
   },
   obtenerTiposUsuarios() { 
     obtenerEncabezado();

@@ -217,7 +217,12 @@ export default {
 },
 [ACTIONS.EDITAR_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, payload);
-  router.push('/editarTipoEvento');
+  router.push({
+      name: "EditarTipoEventoView",
+      params: {
+        id: payload.idTipoEvento,
+      },
+    }); 
 },
 [ACTIONS.OBTENER_EVENTOS] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -304,8 +309,13 @@ export default {
   }
 },
 [ACTIONS.EDITAR_ROL] (context, payload) {
-  context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, payload);
-  router.push('/editarRol');
+  context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, payload); 
+  router.push({
+      name: "EditarRolesView",
+      params: {
+        id: payload.idTipoUsuario,
+      },
+    }); 
 },
 [ACTIONS.ACTUALIZAR_ROL] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -2315,6 +2325,42 @@ export default {
     context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
   });
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+},
+[ACTIONS.OBTENER_TIPO_USUARIO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerTipoUsuario(payload)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_AGREGAR_ROL, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_TIPO_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.traerTipoEvento(payload)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.GUARDAR_AGREGAR_TIPO_EVENTO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
 },
 
 }

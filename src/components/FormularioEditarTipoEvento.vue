@@ -39,13 +39,12 @@
 </template>
   
 <script>
-import { ACTUALIZAR_TIPO_EVENTO } from '../store/actions-types';
+import { ACTUALIZAR_TIPO_EVENTO, OBTENER_TIPO_EVENTO } from '../store/actions-types';
 export default {
   name: 'FormularioEditarTipoEvento',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getTipoEvento(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -61,6 +60,18 @@ export default {
     },
     volver(){
       this.$router.go(-1);
+    }
+  },
+  computed: {
+    model(){
+      return this.$store.getters.getTipoEvento();
+    },
+  },
+  created() {
+    if(this.model.nombre == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_TIPO_EVENTO, id);
     }
   }
 }

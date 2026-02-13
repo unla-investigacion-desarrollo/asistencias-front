@@ -34,13 +34,12 @@
 </template>
   
 <script>
-import { ACTUALIZAR_ROL } from '../store/actions-types';
+import { ACTUALIZAR_ROL, OBTENER_TIPO_USUARIO } from '../store/actions-types';
 export default {
   name: 'FormularioEditarTipoUsuario',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getTipoUsuario(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -56,6 +55,18 @@ export default {
     },
     volver(){
       this.$router.go(-1);
+    }
+  },
+  computed: {
+    model(){
+      return this.$store.getters.getTipoUsuario();
+    },
+  },
+  created() {
+    if(this.model.rol == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_TIPO_USUARIO, id);
     }
   }
 }
