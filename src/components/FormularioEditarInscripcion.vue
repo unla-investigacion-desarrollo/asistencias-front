@@ -57,14 +57,13 @@
 <script>
 import { seleccionActividades } from "@/config/index";
 import MensajeComponent from './MensajeComponent.vue';
-import { OBTENER_EVENTOS, ACTUALIZAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO, INSCRIPCION_EDITADA } from '../store/actions-types';
+import { OBTENER_EVENTOS, ACTUALIZAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO, INSCRIPCION_EDITADA, OBTENER_INSCRIPCION } from '../store/actions-types';
 export default {
   name: 'FormularioEditarInscripcion',
   components: { MensajeComponent },
   data() {
     return {
-      model: this.$store.getters.getInscripcion(),
-      listaActividad: []
+      listaActividad: this.$store.getters.getListaActividades()
     };
   },
   computed: {
@@ -88,7 +87,10 @@ export default {
         valido = true;
       }
       return valido;
-    }
+    },
+    model(){
+      return this.$store.getters.getInscripcion();
+    },
   },
   methods: {
     continuar() {
@@ -112,8 +114,7 @@ export default {
         });
       } else {
       let payload = {
-        ...this.model,
-        usuario: this.$store.getters.getUsuario()
+        ...this.model
       };
       console.log("Este es el modelo " + JSON.stringify(this.model));
       console.log("ACTUALIZO INSCRIPCION");
@@ -135,6 +136,11 @@ export default {
     this.$store.dispatch(OBTENER_EVENTOS);
     this.$store.dispatch(INSCRIPCION_EDITADA);
     console.log(this.$store.getters.getEventos());
+    if(this.model.idInscripcion == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_INSCRIPCION, id);
+    }
   }
 }
 </script>

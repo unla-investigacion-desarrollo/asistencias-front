@@ -314,7 +314,7 @@ const routes = [
     component: EditarContenidoView
   },
   {
-    path: '/actualizoInscripcion',
+    path: '/actualizoInscripcion/:id',
     name: 'EditarInscripcionView',
     component: EditarInscripcionView
   },

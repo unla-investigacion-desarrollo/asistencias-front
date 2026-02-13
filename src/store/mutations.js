@@ -132,6 +132,7 @@ export default {
     }, 
     [MUTATIONS.GUARDAR_INSCRIPCION_EVENTO]: (state, payload) => {
         state.inscripcion = payload;
+        state.inscripcion.seleccion = "Elijo actividades";
     },
     [MUTATIONS.GUARDAR_CONTENIDO]: (state, payload) => {
         state.contenido = payload;
@@ -418,6 +419,9 @@ export default {
         state.usuarionuevo = { tipoUsuario: {
             rol: "Participante"
         }};
+    },
+    [MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION]: (state, payload) => {
+        state.listaActividades = payload;
     },
 }
     

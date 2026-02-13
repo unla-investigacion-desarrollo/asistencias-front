@@ -1270,7 +1270,13 @@ export default {
 },
 [ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  router.push('/actualizoInscripcion');
+  context.commit(MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION, payload.evento.actividades);
+  router.push({
+      name: "EditarInscripcionView",
+      params: {
+        id: payload.idInscripcion,
+      },
+    });
 },
 [ACTIONS.AGREGAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
@@ -1578,7 +1584,24 @@ export default {
       },
     });
   } else {
-    api.actualizarInscripcion(payload)
+    let listaAux = [];
+
+    payload.actividades.forEach(e => {
+      listaAux.push({ idActividad: e.idActividad });
+    });
+
+    let datos = 
+      {
+      usuario: {
+          idUsuario: payload.usuario.idUsuario
+      },
+      evento: {
+          idEvento: payload.evento.idEvento
+      },
+      actividades: listaAux
+  };
+
+    api.actualizarInscripcion(datos, payload.idInscripcion)
     .then(response => {
       console.log(response);
       if (response.status == "200") {
@@ -2052,7 +2075,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);   
+      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);
     } 
   })
   .catch(error => {

@@ -90,10 +90,10 @@ const api = {
     return axios.post(`${dominio}/api/inscripciones`, body);
   },
 
-  actualizarInscripcion(payload) { 
+  actualizarInscripcion(payload, id) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.put(`${dominio}/api/inscripcion/${payload.idInscripcion}`, body);
+    return axios.put(`${dominio}/api/inscripciones/${id}`, body);
   },
 
   eliminarInscripcion(payload) {
