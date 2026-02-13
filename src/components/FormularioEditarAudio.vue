@@ -4,7 +4,7 @@
       <v-row>
         <v-col>
           <v-autocomplete
-            v-model="contenido"
+            v-model="model.titulo"
             :items="contenidos"
             label="Contenido"
             :rules="validationText"
@@ -45,20 +45,18 @@
 </template>
   
 <script>
-import { ACTUALIZAR_AUDIO, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_AUDIO, OBTENER_AUDIO_PUBLICO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
   name: 'FormularioEditarAudio',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getAudio(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
       formValid: false,
-      contenido: this.$store.getters.getContenido().titulo
     };
   },
   methods: {
@@ -67,7 +65,7 @@ export default {
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
-        if(this.contenido == lista[i].titulo){
+        if(this.model.titulo == lista[i].titulo){
           c = lista[i];
         }  
       }
@@ -85,10 +83,18 @@ export default {
   computed: {
     contenidos() {
       return this.$store.getters.getContenidosFormateados();
-    }
+    },
+    model(){
+      return this.$store.getters.getAudio();
+    },
   },
   created() {
     this.$store.dispatch(TRAER_CONTENIDOS);
+    if(this.model.audio == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_AUDIO_PUBLICO, id);
+    }
   }
 }
 </script>

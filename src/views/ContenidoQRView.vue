@@ -48,8 +48,10 @@ export default {
   },
   computed: {
         url(){
-            console.log("http://localhost:8081/#/contenido/" + this.$route.params.id);
-            return "http://localhost:8081/#/contenido/" + this.$route.params.id;
+          let pagina = window.location.href;
+          let dominio = pagina.split('#')[0];
+          console.log("la ruta es: " + dominio  + "#/contenido/" + this.$route.params.id);
+          return dominio  + "#/contenido/" + + this.$route.params.id;
         }
     },
   methods: {

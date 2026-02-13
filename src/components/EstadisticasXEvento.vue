@@ -91,13 +91,15 @@ export default {
       this.valores = [];
       if(info.length > 0){
         info.map((dato) => {
-          if(dato.evento.nombre == this.evento){
-            this.valores.push(dato.inscripciones);
-            this.valores.push(dato.asistencias);
-            this.valores.push(dato.ausencias);
+          if(dato.inscripciones > 0){
+            if(dato.evento.nombre == this.evento){
+              this.valores.push(dato.inscripciones);
+              this.valores.push(dato.asistencias);
+              this.valores.push(dato.ausencias);
+            }
+            console.log("Dato del map:" +dato.evento.nombre);
+            console.log("Dato seleccionado: "+ this.evento);
           }
-          console.log("Dato del map:" +dato.evento.nombre);
-          console.log("Dato seleccionado: "+ this.evento);
         }
         )
         this.encontrado = true;

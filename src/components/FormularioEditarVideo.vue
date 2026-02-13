@@ -4,7 +4,7 @@
       <v-row>
         <v-col>
           <v-autocomplete
-            v-model="contenido"
+            v-model="model.titulo"
             :items="contenidos"
             label="Contenido"
             :rules="validationText"
@@ -45,26 +45,27 @@
 </template>
   
 <script>
-import { ACTUALIZAR_VIDEO, TRAER_CONTENIDOS } from '@/store/actions-types';
+import { ACTUALIZAR_VIDEO, OBTENER_VIDEO_PUBLICO, TRAER_CONTENIDOS } from '@/store/actions-types';
 
 export default {
   name: 'FormularioEditarVideo',
   components: { },
   data() {
     return {
-      model: this.$store.getters.getVideo(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
         ],
       formValid: false,
-      contenido: this.$store.getters.getContenido().titulo
     };
   },
   computed: {
     contenidos() {
       return this.$store.getters.getContenidosFormateados();
-    }
+    },
+    model(){
+      return this.$store.getters.getVideo();
+    },
   },
   methods: {
     continuar() {
@@ -72,7 +73,7 @@ export default {
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
-        if(this.contenido == lista[i].titulo){
+        if(this.model.titulo == lista[i].titulo){
           c = lista[i];
         }  
       }
@@ -89,6 +90,11 @@ export default {
   },
   created() {
     this.$store.dispatch(TRAER_CONTENIDOS);
+    if(this.model.video == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_VIDEO_PUBLICO, id);
+    }
   }
 }
 </script>

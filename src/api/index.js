@@ -13,16 +13,24 @@ const api = {
     return axios.post(`${dominio}/auth/login`, body);
   },
 
+  //Controller Tipo de Evento
+  
   guardarTipoEvento(payload) {
     const body = normalizarDatos(payload);
     obtenerEncabezado();
     return axios.post(`${dominio}/api/tipoEvento`, body);
   },
 
-  guardarEvento(payload) { 
+  actualizarTipoEvento(payload) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/eventos/guardar`, body);
+    return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
+  },
+
+  traerTipoEvento(payload){
+    const body = normalizarDatos(payload);
+    obtenerEncabezado()
+    return axios.get(`${dominio}/api/tipoEvento/${payload}`, body);
   },
 
   obtenerTiposEventos() { 
@@ -35,6 +43,13 @@ const api = {
     return axios.delete(`${dominio}/api/eliminarTipoEvento/${payload}`);
   },
 
+  // Controller evento
+
+  guardarEvento(payload) { 
+    const body = normalizarDatos(payload);
+    obtenerEncabezado();
+    return axios.post(`${dominio}/api/eventos/guardar`, body);
+  },
   actualizarEvento(payload) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
@@ -55,6 +70,8 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/eventos/${payload}`);
   },
+
+  //Controller inscripcion
 
   registrarParticipanteAlEvento(payload) { 
     const body = normalizarDatos(payload);
@@ -159,6 +176,11 @@ const api = {
     obtenerEncabezado();
     return axios.post(`${dominio}/api/actividades/filtrar`, body);
   },
+  buscarActividadesGenericoPublico(payload){
+    const body = normalizarDatos(payload);
+    return axios.post(`${dominio}/api/public/filtrar`, body);
+  },
+  
   //Controller usuarios
   guardarUsuario(payload) {
     const body = normalizarDatos(payload);
@@ -189,12 +211,6 @@ const api = {
     return axios.get(`${dominio}/api/usuarios/email?email=${payload}`, body);
   },
 
-  //Controller Tipo de Evento
-  actualizarTipoEvento(payload) { 
-    const body = normalizarDatos(payload);
-    obtenerEncabezado();
-    return axios.put(`${dominio}/api/tipoEvento/${payload.idTipoEvento}`, body);
-  },
   //Controller Tipo de Usuario
   guardarTipoUsuario(payload) {
     const body = normalizarDatos(payload);
@@ -213,7 +229,7 @@ const api = {
   traerTipoUsuario(payload){
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.get(`${dominio}/tipoUsuario/${payload}`, body);
+    return axios.get(`${dominio}/api/tipoUsuario/${payload}`, body);
   },
   obtenerTiposUsuarios() { 
     obtenerEncabezado();
@@ -228,10 +244,10 @@ const api = {
     return axios.post(`${dominio}/api/contenidos`, body);
   },
 
-  actualizarContenido(payload) { 
+  actualizarContenido(payload, id) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.put(`${dominio}/api/contenidos/${payload.idContenido}`, body);
+    return axios.put(`${dominio}/api/contenidos/${id}`, body);
   },
 
   eliminarContenido(payload) {
@@ -285,11 +301,13 @@ const api = {
   },
 
   traerImagen(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/imagen/${payload}`, body);
   },
 
   obtenerImagenes() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/imagenes`);
   },
 
@@ -317,11 +335,13 @@ const api = {
   },
 
   traerAudio(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/audio/${payload}`, body);
   },
 
   obtenerAudios() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/audios`);
   },
 
@@ -349,11 +369,13 @@ const api = {
   },
 
   traerVideo(payload){
+    obtenerEncabezado();
     const body = normalizarDatos(payload);
     return axios.get(`${dominio}/api/video/${payload}`, body);
   },
 
   obtenerVideos() { 
+    obtenerEncabezado();
     return axios.get(`${dominio}/api/videos`);
   },
 
@@ -391,7 +413,6 @@ const api = {
   },
 
   obtenerProximosEventos(){
-    obtenerEncabezado();
     return axios.get(`${dominio}/api/public/eventos/proximos`);
   },
 
@@ -407,6 +428,44 @@ const api = {
   traerEventosXTipoEventoPublico(payload){
     return axios.get(`${dominio}/api/public/eventos/tipo/${payload}`);
   },
+
+  traerContenidoPublico(payload){
+    return axios.get(`${dominio}/api/public/contenidos/${payload}`);
+  },
+
+  traerContenidosPublicos(){
+    return axios.get(`${dominio}/api/public/contenidos`);
+  },
+
+  traerAudioPublico(payload){
+    return axios.get(`${dominio}/api/public/audios/${payload}`);
+  },
+
+  traerAudiosPublicos(){
+    return axios.get(`${dominio}/api/public/audios`);
+  },
+
+  traerImagenPublica(payload){
+    return axios.get(`${dominio}/api/public/imagenes/${payload}`);
+  },
+
+  traerImagenesPublicas(){
+    return axios.get(`${dominio}/api/public/imagenes`);
+  },
+
+  traerVideoPublico(payload){
+    return axios.get(`${dominio}/api/public/videos/${payload}`);
+  },
+
+  traerVideosPublicos(){
+    return axios.get(`${dominio}/api/public/videos`);
+  },
+
+  traerEventoXMesActual(){
+    return axios.get(`${dominio}/api/public/eventos/mes-actual`);
+  },
+
+  //Estadisticas
 
   obtenerEstadisticaIndividual(payload){
     obtenerEncabezado();

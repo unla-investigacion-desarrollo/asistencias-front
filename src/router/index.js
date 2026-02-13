@@ -134,7 +134,7 @@ const routes = [
     component: RegistroView
   },
   {
-    path: '/editarTipoEvento',
+    path: '/editarTipoEvento/:id',
     name: 'EditarTipoEventoView',
     component: EditarTipoEventoView
   },
@@ -144,12 +144,12 @@ const routes = [
     component: ListaRolesView
   },
   {
-    path: '/editarRol',
+    path: '/editarRol/:id',
     name: 'EditarRolesView',
     component: EditarRolesView
   },
   {
-    path: '/editarEvento',
+    path: '/editarEvento/:id',
     name: 'EditarEventoView',
     component: EditarEventoView
   },
@@ -189,7 +189,7 @@ const routes = [
     component: ListaActividadView
   },
   {
-    path: '/editarActividad',
+    path: '/editarActividad/:id',
     name: 'EditarActividadView',
     component: EditarActividadView
   },
@@ -309,7 +309,7 @@ const routes = [
     component: ContenidoAudioVisualView
   },
   {
-    path: '/editarContenido',
+    path: '/editarContenido/:id',
     name: 'EditarContenidoView',
     component: EditarContenidoView
   },
@@ -319,17 +319,17 @@ const routes = [
     component: EditarInscripcionView
   },
   {
-    path: '/editarAudio',
+    path: '/editarAudio/:id',
     name: 'EditarAudioView',
     component: EditarAudioView
   },
   {
-    path: '/editarImagen',
+    path: '/editarImagen/:id',
     name: 'EditarImagenView',
     component: EditarImagenView
   },
   {
-    path: '/editarVideo',
+    path: '/editarVideo/:id',
     name: 'EditarVideoView',
     component: EditarVideoView
   },

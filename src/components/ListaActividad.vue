@@ -31,6 +31,46 @@
       variant="outlined"
     ></v-alert>
   </div>
+  <div class="filtro">
+      <v-row >
+        <v-col>
+          <v-btn color="primary" @click="mostrar">Filtros</v-btn>
+        </v-col>
+        <v-col class="boton">
+          <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <div class="filtro" v-if="buscar">
+      <v-row>
+        <v-col>
+          <v-select
+          v-model="filtro"
+          :items="opciones"
+          label="Filtros"
+        ></v-select>
+        </v-col>
+        <v-col v-if="filtro === 'Categoria'">
+          <v-autocomplete 
+            v-model="parametro"
+            :items="tiposEventos"
+            label="Categoria"
+            required
+        ></v-autocomplete>
+        </v-col>
+        <v-col v-if="filtro === 'Evento'">
+          <v-autocomplete 
+            v-model="parametro"
+            :items="eventos"
+            label="Evento"
+            required
+        ></v-autocomplete>
+        </v-col>
+        <v-col>
+          <v-btn class="remove_item" color="primary" @click="busqueda" icon="mdi-magnify"></v-btn>
+        </v-col>
+      </v-row>
+    </div>
   <div v-if="actividades.length != 0">
     <v-table
       height="auto"
@@ -136,15 +176,26 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD } from '../store/actions-types';
+import { ACTIVIDAD_NUEVA, TRAER_ACTIVIDADES_GENERICO, EDITAR_ACTIVIDAD, ELIMINAR_ACTIVIDAD, OBTENER_ACTIVIDADES, DETALLE_ACTIVIDAD, ACEPTA_ELIMINAR_ACTIVIDAD, OBTENER_TIPOS_EVENTOS_PUBLICOS, OBTENER_EVENTOS_PUBLICOS } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
+import { filtroActividad } from '@/config';
 export default {
   name: 'ListaActividad',
   components: { MensajeComponent },
   data(){
-    return {};
+    return {
+      filtro: "Categoria",
+      buscar: false,
+      parametro: ""
+    };
   },
   computed: {
+    eventos() {
+      return this.$store.getters.getEventosFormateados(); 
+    },
+    tiposEventos(){
+      return this.$store.getters.getTiposEventosFormateados();
+    },
     actividades() {
       return this.$store.getters.getActividades();
     },
@@ -159,9 +210,15 @@ export default {
     },
     validoPas(){
         return this.$store.getters.getPas();
-    }
+    },
+    opciones(){
+      return filtroActividad;
+    },
 },
 methods: {
+  agregar(){
+    this.$store.dispatch(ACTIVIDAD_NUEVA);
+  },
   editarItem(item){
     this.$store.dispatch(EDITAR_ACTIVIDAD, item);
   },
@@ -173,6 +230,46 @@ methods: {
   },
   detalleItem(item){
     this.$store.dispatch(DETALLE_ACTIVIDAD, item);
+  },
+  mostrar(){
+    this.buscar = !this.buscar;
+  },
+  busqueda(){
+      if(this.filtro == "Categoria" && this.parametro != ""){
+        this.$store.dispatch(TRAER_ACTIVIDADES_GENERICO, this.obtenerObjTipoEvento(this.parametro));
+      } else if (this.filtro == "Evento"){
+        this.$store.dispatch(TRAER_ACTIVIDADES_GENERICO, this.obtenerObjEvento(this.parametro));
+      }
+  },
+  obtenerObjEvento(dato){
+    let id;
+    let lista = this.$store.getters.getEventos(); 
+    if(lista.length > 0){
+          lista.forEach(e => {
+          if(dato == e.nombre){
+            id = e.idEvento;
+          }
+          });
+        }
+    let obj = {
+      idEvento: id
+    };
+    return obj;
+  },
+   obtenerObjTipoEvento(dato){
+    let id;
+    let lista = this.$store.getters.getTipoEventos(); 
+    if(lista.length > 0){
+          lista.forEach(e => {
+          if(dato == e.nombre){
+            id = e.idTipoEvento;
+          }
+          });
+        }
+    let obj = {
+      idTipoEvento: id
+    };
+    return obj;
   },
   formatearFecha(f){
     let formato = "";
@@ -187,8 +284,20 @@ methods: {
     return formato;
   },
 },
+watch: {
+  filtro(nuevo, viejo) {
+    if(nuevo != viejo){
+      this.parametro = "";
+      this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
+      this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+      this.$store.dispatch(OBTENER_ACTIVIDADES);
+    }
+  },
+},
 created() {
   this.$store.dispatch(OBTENER_ACTIVIDADES);
+  this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
+  this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
   console.log(this.$store.getters.getActividades());
 },
 }
@@ -203,5 +312,12 @@ margin: 2%;
 }
 .alerta {
 margin: 2% 0px 2% 0px;
+}
+.filtro { 
+  margin: 2% 0px 2% 0px;
+}
+
+.boton{
+  text-align: end;
 }
 </style>

@@ -38,7 +38,7 @@
       <v-row>
         <v-col>
           <v-autocomplete
-            v-model="evento"
+            v-model="model.nombreEvento"
             :items="eventos"
             label="Evento"
             :rules="validationText"
@@ -119,15 +119,13 @@
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
-import { OBTENER_EVENTOS, ACTUALIZAR_ACTIVIDAD } from '../store/actions-types';
+import { OBTENER_EVENTOS, ACTUALIZAR_ACTIVIDAD, OBTENER_ACTIVIDADES_PUBLICAS_ID } from '../store/actions-types';
 export default {
   name: 'FormularioEditarActividad',
   components: { VNumberInput },
   data() {
-    return {
-      model: this.$store.getters.getActividad(),
+    return { 
       color: "#8e2736",
-      evento: this.$store.getters.getActividad().nombreEvento,
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -160,15 +158,20 @@ export default {
         respuesta = 'El campo debe contener al menos 2 digitos';
         return respuesta;
     },
-    validarEmail(){
-        return /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(this.model.email);
-    },
     validarCampo(valor){
         return valor.trim() != "";
-    }
+    },
+    model(){
+      return this.$store.getters.getActividad();
+    } 
   },
   created() {
     this.$store.dispatch(OBTENER_EVENTOS);
+    if(this.model.nombre == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_ACTIVIDADES_PUBLICAS_ID, id);
+    }
     console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
@@ -181,7 +184,7 @@ export default {
       let lista = this.$store.getters.getEventos();
       let e = {};
       for(let i = 0; i < lista.length; i++){
-        if(this.evento == lista[i].nombre){
+        if(this.model.nombreEvento == lista[i].nombre){
           e = lista[i];
         }  
       }

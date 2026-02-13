@@ -111,13 +111,12 @@
 <script>
 import { edificios } from "@/config/edificios";
 import { estados } from "@/config/index";
-import { ACTUALIZAR_EVENTO, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
+import { ACTUALIZAR_EVENTO, OBTENER_EVENTOS_PUBLICOS_ID, OBTENER_TIPOS_EVENTOS } from '../store/actions-types';
 export default {
   name: 'FormularioEditarEvento',
   components: {},
   data() {
     return {
-      model: this.$store.getters.getEvento(),
       validationText: [
         v => !!v || 'El campo es requerido',
         v => (v && v.length >= 2) || 'El campo debe contener al menos 2 caracteres',
@@ -147,16 +146,21 @@ export default {
         respuesta = 'El campo debe contener al menos 2 digitos';
         return respuesta;
     },
-    validarEmail(){
-        return /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(this.model.email);
-    },
     validarCampo(valor){
         return valor.trim() != "";
+    },
+    model(){
+      return this.$store.getters.getEvento();
     }
   },
   created() {
-      this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
-      console.log(this.$store.getters.getTipoEventos());
+    this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
+    if(this.model.nombre == ''){
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
+    }
+    console.log(this.$store.getters.getTipoEventos());
   },
   methods: {
     itemProps (item) {

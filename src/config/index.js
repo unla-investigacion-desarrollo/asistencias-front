@@ -49,6 +49,10 @@ const seleccionActividades = [ 'Todas', 'Elijo actividades' ];
 
 const filtroContenido = [ 'Evento', 'Titulo' ];
 
+const filtroEvento = [ 'Categoria', 'Mes Actual', 'Proximos Eventos' ];
+
+const filtroActividad = [ 'Categoria', 'Evento' ];
+
 const key = localStorage.getItem("keyuser");
 
 const dominio = "http://localhost:8080/eventos"; 
@@ -70,6 +74,6 @@ export {
   dominio, estados, eventos,
   normalizarCaracteres,
   normalizarDatos,
-  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha, convertirAEmbed
+  seleccionActividades, key, filtroContenido, hoyFormateado, usuario, formatearFecha, convertirAEmbed, filtroEvento, filtroActividad
 };
 
