@@ -115,7 +115,7 @@ const api = {
 
   obtenerInscripcionesPorUsuario(payload){
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.id}`);
+    return axios.get(`${dominio}/api/inscripciones/completa/usuario/${payload.id}`);
   },
 
   obtenerInscripcion(payload){

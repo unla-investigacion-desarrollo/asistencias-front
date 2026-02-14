@@ -1177,6 +1177,15 @@ const tipoEventos = [
         "nombre": "Conferencia",
         "imagen": "https://educaciondebate.com.ar/datos/fotos/2025/10/22/295-10/imagen_1949.jpg"
     },
+    {
+        "nombre": "Festival",
+        "imagen": "https://diariolaciudadavellaneda.com.ar/wp-content/uploads/2025/10/cine.jpg"
+    },
+    {
+        "nombre": "Exposicion",
+        "imagen": "https://diariolaciudadavellaneda.com.ar/wp-content/uploads/2025/08/unla.jpg"
+    },
+    
     
     
     

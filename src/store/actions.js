@@ -1270,7 +1270,7 @@ export default {
 },
 [ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  context.commit(MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION, payload.evento.actividades);
+  //context.commit(MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION, payload.evento.actividades);
   router.push({
       name: "EditarInscripcionView",
       params: {
@@ -1587,7 +1587,7 @@ export default {
     let listaAux = [];
 
     payload.actividades.forEach(e => {
-      listaAux.push({ idActividad: e.idActividad });
+      listaAux.push({ actividad: { idActividad: e.idActividad }});
     });
 
     let datos = 
@@ -1598,7 +1598,7 @@ export default {
       evento: {
           idEvento: payload.evento.idEvento
       },
-      actividades: listaAux
+      asistenciasActividades: listaAux
   };
 
     api.actualizarInscripcion(datos, payload.idInscripcion)
