@@ -16,7 +16,7 @@
         <v-col>
           <v-text-field
             v-model="model.imagen"
-            :counter="45"
+            :counter="255"
             label="Link de la Imagen"
             :rules="validationText"
             required

@@ -39,7 +39,7 @@
         <v-col>
           <v-text-field
                   v-model="item.audio"
-                  :counter="45"
+                  :counter="255"
                   label="Link del Audio"
                   :rules="validationText"
               ></v-text-field>
@@ -52,7 +52,7 @@
         <v-col>
           <v-text-field
                   v-model="item.imagen"
-                  :counter="45"
+                  :counter="255"
                   label="Link de la imagen"
                   :rules="validationText"
               ></v-text-field>
@@ -65,7 +65,7 @@
         <v-col>
           <v-text-field
               v-model="item.video"
-              :counter="45"
+              :counter="255"
               label="Link del video"
               :rules="validationText"
           ></v-text-field>
