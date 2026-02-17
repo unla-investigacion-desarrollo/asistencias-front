@@ -249,6 +249,41 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.OBTENER_EVENTO_PREDEFINIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, eventos);
+    context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, eventos);
+  } else {
+    api.obtenerEventos()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        let lista = response.data.eventos;
+        let listaAux = [];
+        lista.forEach(e =>{
+          if(lista.length > 0){
+            if(e.idEvento == payload.idEvento){
+              listaAux.push(e);
+            }
+          }
+        });
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.obtenerEventosXTipoEvento(payload)

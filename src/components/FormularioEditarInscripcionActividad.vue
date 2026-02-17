@@ -57,9 +57,9 @@
 <script>
 import { seleccionActividades } from "@/config/index";
 import MensajeComponent from './MensajeComponent.vue';
-import { OBTENER_EVENTO_PREDEFINIDO, ACTUALIZAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO, INSCRIPCION_EDITADA, OBTENER_INSCRIPCION } from '../store/actions-types';
+import { OBTENER_EVENTOS, ACTUALIZAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO, INSCRIPCION_EDITADA, OBTENER_INSCRIPCION } from '../store/actions-types';
 export default {
-  name: 'FormularioEditarInscripcion',
+  name: 'FormularioEditarInscripcionActividad',
   components: { MensajeComponent },
   data() {
     return {
@@ -133,7 +133,7 @@ export default {
 
   },
   created() {
-    this.$store.dispatch(OBTENER_EVENTO_PREDEFINIDO, this.model.evento);
+    this.$store.dispatch(OBTENER_EVENTOS);
     this.$store.dispatch(INSCRIPCION_EDITADA);
     console.log(this.$store.getters.getEventos());
     if(this.model.idInscripcion == ''){
