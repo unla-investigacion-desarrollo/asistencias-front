@@ -128,6 +128,11 @@ const api = {
     return axios.get(`${dominio}/api/inscripciones/evento/activa/${payload}`);
   },
 
+  obtenerInscripcionesXEventoyActividad(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/inscripciones/evento/${payload.idEvento}/actividad/${payload.idActividad}`);
+  },
+
   //controller de actividad
   traerActividades() {
     obtenerEncabezado();

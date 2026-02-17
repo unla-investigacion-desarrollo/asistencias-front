@@ -1,5 +1,12 @@
 <template>
     <v-container>
+      <div class="filtro">
+      <v-row>
+        <v-col>
+          <v-btn color="primary" @click="busquedaAvanzada">Busqueda Avanzada</v-btn>
+        </v-col>
+      </v-row>
+    </div>
       <v-row v-if="inscriptos.length > 0">
         <v-col>
           <v-table
@@ -71,7 +78,7 @@
 </template>
   
 <script>
-import { OBTENER_INSCRIPTOS_X_EVENTO } from '@/store/actions-types';
+import { OBTENER_INSCRIPTOS_X_EVENTO, DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD } from '@/store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 
 export default {
@@ -104,6 +111,13 @@ export default {
     }
     return formato;
   },
+    busquedaAvanzada(){
+      const id = this.$route.params.id;
+      let datos =  {
+        idEvento: id
+      }
+      this.$store.dispatch(DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD, datos);
+    }
   },
   created() {
     const id = this.$route.params.id;
@@ -123,5 +137,8 @@ export default {
 .text_menssage{
   text-align: center;
   margin: 2%;
+}
+.filtro { 
+  margin: 2% 0px 2% 0px;
 }
 </style>

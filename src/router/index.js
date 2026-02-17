@@ -399,7 +399,7 @@ const routes = [
     component: ListaInscriptosEventoView
   },
   {
-    path: '/listaInscriptosXEventoActividad',
+    path: '/listaInscriptosXEventoActividad/:id',
     name: 'ListaInscriptosEventoActividadView',
     component: ListaInscriptosEventoActividadView
   },

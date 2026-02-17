@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento } from "@/config/mock"
 
 export default {
 
@@ -1977,8 +1977,16 @@ export default {
       },
     });
 },
-[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
-  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  router.push({
+      name: "ListaInscriptosEventoActividadView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
+   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+ // context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
 },
 [ACTIONS.OLVIDE_MI_CLAVE] () {
   router.push('/olvideMiClave');
@@ -2396,6 +2404,24 @@ export default {
   .then(response => {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_INSCRIPTOS_X_EVENTOS_Y_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscripcionesXEventoyActividad(payload)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, response.data);
     } 
   })
   .catch(error => {
