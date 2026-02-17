@@ -889,6 +889,26 @@ export default {
   }
   }
 },
+[ACTIONS.MARCAR_ASISTENCIA_ACTIVIDAD] (context, payload) {
+  api.marcarAsistenciaActividad(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  if(context.getters.getHash() == ''){
+    if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+  }
+},
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){

@@ -101,10 +101,10 @@ const api = {
     return axios.delete(`${dominio}/api/inscripciones/${payload}`);
   },
 
-  registrarAsistencia(payload) { 
-    const body = normalizarDatos(payload);
+  marcarAsistenciaActividad(payload) { 
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/registrarAsistencia`, body);
+    let qr = encodeURIComponent(payload.qr);
+    return axios.post(`${dominio}/qr/decode?qrCode=${qr}&actividadId=${payload.idActividad}`);
   },
 
   marcarAsistencia(payload){

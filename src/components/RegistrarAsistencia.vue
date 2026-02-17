@@ -65,11 +65,11 @@ export default {
       showScanConfirmation: false,
     }
   },
-computed: {
-        registro(){
-            return this.$store.getters.getRegistroInscripcion();
-        },
+  computed: {
+    registro(){
+        return this.$store.getters.getRegistroInscripcion();
     },
+  },
   methods: {
     onCameraOn() {
       this.showScanConfirmation = false
