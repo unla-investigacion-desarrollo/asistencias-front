@@ -14,12 +14,16 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-alert v-if="actividades.length > 0" text="Cuando te inscribas en el evento, te anotaremos en todas las actividades para que no te pierdas nada." type="info" variant="tonal"></v-alert>
+          <v-select
+            v-model="model.seleccion"
+            :items="seleccionActividades"
+            label="Selección de Actividades"
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <v-table v-if="actividades.length > 0"
+          <v-table v-if="model.seleccion !== 'Todas' && actividades.length > 0"
             height="auto"
             fixed-header
             >
@@ -32,7 +36,7 @@
             </thead>
             <tbody>
               <tr v-for="i in actividades" :key="i.id">
-                <td>{{  i.nombre }}</td>
+                <td><v-checkbox v-model="listaActividad" :label="i.nombre" :value="i"></v-checkbox></td>
               </tr>
             </tbody>
           </v-table>
@@ -46,6 +50,8 @@
           class="me-4"
           color="primary"
           @click="continuar"
+          :disabled="validoBoton"
+          v-if="actividades.length != 0"
         >
         Enviar
         </v-btn>
@@ -62,14 +68,16 @@
 </template>
   
 <script>
+import { seleccionActividades } from "@/config/index";
 import MensajeComponent from './MensajeComponent.vue';
 import { OBTENER_EVENTOS, AGREGAR_INSCRIPCION, OBTENER_ACTIVIDADES_X_EVENTO } from '../store/actions-types';
 export default {
-  name: 'FormularioInscripcion',
+  name: 'FormularioInscripcionActividad',
   components: { MensajeComponent },
   data() {
     return {
-      model: this.$store.getters.getInscripcion()
+      model: this.$store.getters.getInscripcion(),
+      listaActividad: []
     };
   },
   computed: {
@@ -79,16 +87,34 @@ export default {
     actividades() {
       return this.$store.getters.getActividades();
     },
-    evento(){
-      return this.model.evento;
+    seleccionActividades(){
+      console.log("Este es el evento:" + this.model.evento.idEvento);
+      this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
+      return seleccionActividades;
     },
     validarCampo(valor){
         return valor.trim() != "";
     },
+    validoBoton(){
+      let valido = false;
+      if(this.model.seleccion != 'Todas' && this.listaActividad.length == 0){
+        valido = true;
+      }
+      return valido;
+    }
   },
   methods: {
     continuar() {
-      this.model.actividades = this.actividades;
+      console.log("La lista esta compuesta por: " + JSON.stringify(this.listaActividad));
+      if(this.model.seleccion == 'Todas'){
+        console.log("Estas son todas las actividades: " + JSON.stringify(this.actividades));
+        console.log("Estas son las actividades del modelo: " + JSON.stringify(this.model.actividades) );
+        this.model.actividades = this.actividades;
+      } else{
+        if(this.listaActividad.length > 0){
+          this.model.actividades = this.listaActividad;
+        }
+      }
       console.log("Estado de las actividades antes de llamar " + JSON.stringify(this.model.actividades));
       if(this.model.actividades == 0){
         this.$router.push({
@@ -124,13 +150,6 @@ export default {
       this.$router.go(-1);
     }
   },
-  watch: {
-      evento(nuevo, viejo) {
-        if(nuevo != viejo){
-          this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
-        }
-      },
-    },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
       console.log(this.$store.getters.getEventos());
