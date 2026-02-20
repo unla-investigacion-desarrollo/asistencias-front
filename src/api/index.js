@@ -286,8 +286,12 @@ const api = {
 
   guardarImagen(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      imagen: body.imagen
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/imagen`, body);
+    return axios.post(`${dominio}/api/imagen`, obj);
   },
 
   actualizarImagen(payload) { 
@@ -320,8 +324,12 @@ const api = {
 
   guardarAudio(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      audio: body.audio
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/audio`, body);
+    return axios.post(`${dominio}/api/audio`, obj);
   },
 
   actualizarAudio(payload) { 
@@ -354,8 +362,12 @@ const api = {
 
   guardarVideo(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      video: body.video
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/video`, body);
+    return axios.post(`${dominio}/api/video`, obj);
   },
 
   actualizarVideo(payload) { 

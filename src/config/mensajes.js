@@ -37,6 +37,8 @@ const mensajes = {
         '<p>La contraseña fue actualizada exitosamente.</p>',
     "error-clave":
         '<p>Hubo un problema al actualizar la contraseña. <br>Por favor, intente mas tarde.</p>',
+    "sin-inscriptos-actividad":
+        '<p>Aún no encontramos inscriptos para la actividad de este evento.</p>',
     };
 
 export default mensajes;

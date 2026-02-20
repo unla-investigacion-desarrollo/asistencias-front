@@ -14,7 +14,7 @@
                 <v-card-text class="bg-surface-light pt-4">
                     <v-row class="description">
                         <v-col>
-                        <p >{{ contenido.descripcion }}</p>
+                            <p >{{ contenido.descripcion }}</p>
                         </v-col>
                     </v-row>  
                 </v-card-text>
@@ -140,6 +140,7 @@ export default {
 
 .description {
     text-align: start;
+    margin: 2%;
 }
 
 .card {

@@ -1338,7 +1338,7 @@ export default {
   api.guardarAudio(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_AUDIO, true);
       context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_AUDIO, false); }, 10000);
@@ -1365,7 +1365,7 @@ export default {
   api.guardarImagen(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_IMAGEN, true);
       context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_IMAGEN, false); }, 10000);
@@ -1392,7 +1392,7 @@ export default {
   api.guardarVideo(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_VIDEO, true);
       context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_VIDEO, false); }, 10000);

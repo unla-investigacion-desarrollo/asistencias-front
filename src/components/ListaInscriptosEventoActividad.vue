@@ -1,6 +1,6 @@
 <template>
     <v-container>
-      <v-row>
+      <v-row class="d-flex justify-center filtro">
         <v-col :cols="12" :md="6">
            <v-select
             v-model="this.actividad"
@@ -71,8 +71,8 @@
           </v-table>
         </v-col>
       </v-row>
-      <div class="text_menssage" v-if="inscriptos.usuarios.length == 0">
-        <Mensaje-component valor="sin-inscriptos"></Mensaje-component>
+      <div class="text_menssage" v-if="inscriptos.usuarios.length == 0 && this.actividad != '' && this.busco == true">
+        <Mensaje-component valor="sin-inscriptos-actividad"></Mensaje-component>
       </div>
       <v-row class="container_button">
         <v-col>
@@ -97,7 +97,8 @@ export default {
   components: { MensajeComponent },
   data() {
     return {
-      actividad: ""
+      actividad: "",
+      busco: false,
     };
   },
   computed: {
@@ -119,6 +120,7 @@ export default {
       return item == false ? "NO" : "SI"; 
     },
     buscar(){
+      this.busco = true;
       this.$store.dispatch(OBTENER_INSCRIPTOS_X_EVENTOS_Y_ACTIVIDAD, this.actividad);
     },
     formatearFecha(f){
@@ -160,5 +162,8 @@ export default {
 .text_menssage{
   text-align: center;
   margin: 2%;
+}
+.filtro{
+  margin-top: 2%;
 }
 </style>

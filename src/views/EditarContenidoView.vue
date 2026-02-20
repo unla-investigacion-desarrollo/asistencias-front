@@ -1,6 +1,6 @@
 <template>
     <v-container>
-      <v-row>
+      <v-row class="container">
         <v-col>
           <v-card
             class="mx-auto title_section" :elevation="8"
@@ -113,5 +113,14 @@ export default {
 .button_title {
     text-align: end;
     margin-bottom: 1%;
+}
+.container {
+  margin-top: 2%;
+}
+
+@media screen and (max-width: 600px) {
+.container{
+  margin-top: 5%;
+}
 }
 </style>
