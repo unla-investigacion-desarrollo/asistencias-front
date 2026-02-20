@@ -1,12 +1,21 @@
 <template>
   <v-app :class="fondo">
     <menu-horizontal></menu-horizontal> 
-    <v-main>
-      <router-view/>
-    </v-main>
-    <div class="spinner">
-      <v-progress-circular class="spinner_content" :size="100" v-if="cargando" color="error" indeterminate></v-progress-circular>
-    </div>
+  
+      <v-main>
+        <router-view/>
+      </v-main>
+      <v-overlay
+        v-model="cargando"
+        persistent
+        class="d-flex align-center justify-center"
+      >
+        <v-progress-circular
+          :size="100"
+          color="error"
+          indeterminate
+        />
+      </v-overlay>
     <footer-component></footer-component>
   </v-app>
 </template>
