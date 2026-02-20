@@ -974,14 +974,14 @@ export default {
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   console.log(payload);
-  let lista = context.getters.getEventos();
-  let evento = {};
-  for(let i = 0; i < lista.length; i++){
-    if(payload.evento == lista[i].nombre){
-      evento = lista[i];
-    }
-  }
-  console.log("Evento elegido " + JSON.stringify(evento));
+  //let lista = context.getters.getEventos();
+  //let evento = {};
+  //for(let i = 0; i < lista.length; i++){
+   // if(payload.evento == lista[i].nombre){
+   //   evento = lista[i];
+   // }
+  //}
+  //console.log("Evento elegido " + JSON.stringify(evento));
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
   } else {
@@ -2223,7 +2223,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
       router.push({
       name: "PaginaContenidoView",
       params: {

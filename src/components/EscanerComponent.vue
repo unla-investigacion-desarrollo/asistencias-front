@@ -24,11 +24,6 @@
       </div>
       
     </qrcode-stream>
-    <v-row>
-      <v-col>
-          El resultado es: {{ this.result }}
-      </v-col>
-    </v-row>
   </div>
 </template>
 

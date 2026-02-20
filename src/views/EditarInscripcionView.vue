@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="container">
       <v-col>
         <v-card
             class="mx-auto title_section" :elevation="8"
@@ -37,5 +37,18 @@ export default {
 }
 .title_content{
   text-align: center;
+}
+.container {
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+@media screen and (max-width: 600px) {
+.container{
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
 }
 </style>

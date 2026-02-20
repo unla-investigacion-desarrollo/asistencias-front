@@ -145,7 +145,7 @@ export default {
         videos: this.videos,
         audios: this.audios,
         imagenes: this.imagenes,
-        evento: e
+        idEvento: e.idEvento
       };
       console.log(contenido);
 
