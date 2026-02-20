@@ -90,10 +90,10 @@ const api = {
     return axios.post(`${dominio}/api/inscripciones`, body);
   },
 
-  actualizarInscripcion(payload) { 
+  actualizarInscripcion(payload, id) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
-    return axios.put(`${dominio}/api/inscripcion/${payload.idInscripcion}`, body);
+    return axios.put(`${dominio}/api/inscripciones/${id}`, body);
   },
 
   eliminarInscripcion(payload) {
@@ -101,10 +101,10 @@ const api = {
     return axios.delete(`${dominio}/api/inscripciones/${payload}`);
   },
 
-  registrarAsistencia(payload) { 
-    const body = normalizarDatos(payload);
+  marcarAsistenciaActividad(payload) { 
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/registrarAsistencia`, body);
+    let qr = encodeURIComponent(payload.qr);
+    return axios.post(`${dominio}/qr/decode?qrCode=${qr}&actividadId=${payload.idActividad}`);
   },
 
   marcarAsistencia(payload){
@@ -115,7 +115,7 @@ const api = {
 
   obtenerInscripcionesPorUsuario(payload){
     obtenerEncabezado();
-    return axios.get(`${dominio}/api/inscripciones/usuario/${payload.id}`);
+    return axios.get(`${dominio}/api/inscripciones/completa/usuario/${payload.id}`);
   },
 
   obtenerInscripcion(payload){
@@ -126,6 +126,11 @@ const api = {
   obtenerInscriptosXEvento(payload){
     obtenerEncabezado();
     return axios.get(`${dominio}/api/inscripciones/evento/activa/${payload}`);
+  },
+
+  obtenerInscripcionesXEventoyActividad(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/inscripciones/evento/${payload.idEvento}/actividad/${payload.idActividad}`);
   },
 
   //controller de actividad
@@ -281,8 +286,12 @@ const api = {
 
   guardarImagen(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      imagen: body.imagen
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/imagen`, body);
+    return axios.post(`${dominio}/api/imagen`, obj);
   },
 
   actualizarImagen(payload) { 
@@ -315,8 +324,12 @@ const api = {
 
   guardarAudio(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      audio: body.audio
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/audio`, body);
+    return axios.post(`${dominio}/api/audio`, obj);
   },
 
   actualizarAudio(payload) { 
@@ -349,8 +362,12 @@ const api = {
 
   guardarVideo(payload) {
     const body = normalizarDatos(payload);
+    let obj = {
+      idContenido: body.contenido.idContenido,
+      video: body.video
+    }
     obtenerEncabezado();
-    return axios.post(`${dominio}/api/video`, body);
+    return axios.post(`${dominio}/api/video`, obj);
   },
 
   actualizarVideo(payload) { 

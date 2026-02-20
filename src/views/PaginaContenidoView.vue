@@ -12,9 +12,9 @@
                 </template>
 
                 <v-card-text class="bg-surface-light pt-4">
-                    <v-row class="description">
+                    <v-row class="description" v-if="contenido.descripcion != ''">
                         <v-col>
-                        <p >{{ contenido.descripcion }}</p>
+                            <p >{{ contenido.descripcion }}</p>
                         </v-col>
                     </v-row>  
                 </v-card-text>
@@ -117,12 +117,10 @@ export default {
         return convertirAEmbed(item);
       },
     },
-    mounted() {
-        if(this.$store.getters.getContenido().titulo != ""){
-            const id = this.$route.params.id;
-            console.log(id);
-            this.$store.dispatch(OBTENER_CONTENIDO_PUBLICO, id);
-        }
+    created() {
+        const id = this.$route.params.id;
+        console.log(id);
+        this.$store.dispatch(OBTENER_CONTENIDO_PUBLICO, id);
     }
 }
 </script>
@@ -140,6 +138,7 @@ export default {
 
 .description {
     text-align: start;
+    margin: 2%;
 }
 
 .card {

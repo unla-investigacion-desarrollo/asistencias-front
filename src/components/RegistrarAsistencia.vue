@@ -14,16 +14,30 @@
         </v-row>
         <v-row>
             <v-col>
-                <p class="error">{{ error }}</p>
-
-                <qrcode-stream :camera="camera" @init="onInit" @decode="onDecode" :paused="paused">
-                    <v-btn id="lector" color="primary" @click="switchCamera">Cambiar Camara</v-btn>
-                </qrcode-stream>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-                El resultado es: {{ this.result }}
+    <qrcode-stream
+      :paused="paused"
+      @detect="onDetect"
+      @camera-on="onCameraOn"
+      @camera-off="onCameraOff"
+      @error="onError"
+    >
+      <div
+        v-show="showScanConfirmation"
+        class="scan-confirmation"
+      >
+      <v-row>
+        <v-col class="icono">
+            <v-icon
+                
+                color="success"
+                icon="mdi-check-circle-outline"
+                size="100"
+        ></v-icon>
+        </v-col>
+      </v-row>
+        
+      </div>
+    </qrcode-stream>
             </v-col>
         </v-row>
     </v-container>
@@ -39,67 +53,47 @@ import { MARCAR_ASISTENCIA } from '../store/actions-types';
 export default {
     name: 'RegistrarAsistencia',
     components: { QrcodeStream },
-    data () {
-        return {
-        camera: 'rear',
-        noRearCamera: false,
-        noFrontCamera: false,
-        paused: false,
-        result: '',
-        error: ''
-        }
-    },
-    //created(){   
-    //    console.log("El resultado es: " + this.result);
-    //    this.$store.dispatch(MARCAR_ASISTENCIA, this.result);
-    //},
-    
-    computed: {
-        registro(){
-            return this.$store.getters.getRegistroInscripcion();
-        },
-    },
-    methods: {
-        switchCamera () {
-        switch (this.camera) {
-            case 'front':
-            this.camera = 'rear';
-            break;
-            case 'rear':
-            this.camera = 'front';
-            break;
-        }
-        },
-
-        onDecode (result) {  
-            this.result = result;      
-            console.log("El resultado es: " + result);
-            this.$store.dispatch(MARCAR_ASISTENCIA, this.result);
-            this.paused = true;
-        },
-
-        async onInit (promise) {
-        try {
-            await promise;
-        } catch (error) {
-            const triedFrontCamera = this.camera === 'front';
-            const triedRearCamera = this.camera === 'rear';
-
-            const cameraMissingError = error.name === 'OverconstrainedError';
-
-            if (triedRearCamera && cameraMissingError) {
-            this.noRearCamera = true;
-            }
-
-            if (triedFrontCamera && cameraMissingError) {
-            this.noFrontCamera = true;
-            }
-
-            console.error(error);
-        }
-        }
+    data() {
+    return {
+      paused: false,
+      result: '',
+      showScanConfirmation: false,
     }
-}
+  },
+  computed: {
+    registro(){
+        return this.$store.getters.getRegistroInscripcion();
+    },
+  },
+  methods: {
+    onCameraOn() {
+      this.showScanConfirmation = false
+    },
+
+    onCameraOff() {
+      this.showScanConfirmation = true
+    },
+
+    onError: console.error,
+
+    async onDetect(detectedCodes) {
+      this.result = JSON.stringify(detectedCodes.map((code) => code.rawValue))
+    
+      console.log("El resultado es: " + JSON.parse(this.result));
+      this.$store.dispatch(MARCAR_ASISTENCIA, JSON.parse(this.result));
+      this.paused = true
+      await this.timeout(500)
+      this.paused = false
+    },
+
+    timeout(ms) {
+      return new Promise((resolve) => {
+        window.setTimeout(resolve, ms)
+      })
+    },
+  }
+    }
+
 </script>
 
 <style scoped>
@@ -116,6 +110,10 @@ button {
 
 .alerta {
   margin: 2% 0px 2% 0px;
+}
+.icono {
+    text-align: center;
+    margin-top: 30%;
 }
 
 </style>

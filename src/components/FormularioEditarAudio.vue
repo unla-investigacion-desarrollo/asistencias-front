@@ -16,7 +16,7 @@
         <v-col>
           <v-text-field
             v-model="model.audio"
-            :counter="45"
+            :counter="255"
             label="Link del Audio"
             :rules="validationText"
             required

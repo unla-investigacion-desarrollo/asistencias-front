@@ -134,14 +134,9 @@ export default {
     pp: true,
     pas: false,
     estadisticas: [],
-    inscriptosEvento: {
-        listaUsuarios: [],
-        evento: {}
-    },
+    inscriptosEvento: {},
     inscriptosEventoActividad: {
-        listaUsuarios: [],
-        evento: {},
-        actividad: {}
+        usuarios: []
     },
     usuarionuevo: {
         email: "",
@@ -154,5 +149,6 @@ export default {
             rol: "Participante"
         }
     },
-    contenidosFiltro: []
+    contenidosFiltro: [],
+    listaActividades: []
 }

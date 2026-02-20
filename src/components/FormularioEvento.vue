@@ -5,7 +5,7 @@
         <v-col>
           <v-text-field
             v-model="model.nombre"
-            :counter="45"
+            :counter="100"
             label="Nombre"
             :rules="validationText"
             required

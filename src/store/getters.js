@@ -68,5 +68,6 @@ export default {
     getInscriptosEvento: state => () =>  state.inscriptosEvento,
     getInscriptosEventoActividad: state => () =>  state.inscriptosEventoActividad,
     getUsuarioNuevo: state => () =>  state.usuarionuevo,
-    getContenidosFiltro: state => () =>  state.contenidosFiltro
+    getContenidosFiltro: state => () =>  state.contenidosFiltro,
+    getListaActividades: state => () =>  state.listaActividades
   };

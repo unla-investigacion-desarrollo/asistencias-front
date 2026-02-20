@@ -33,16 +33,16 @@
       <tbody>
         <tr
           v-for="item in actividades"
-          :key="item.idActividad"
+          :key="item.actividad.idActividad"
         >
-          <td>{{ item.nombre }}</td>
-          <td>{{ formatearFecha(item.fechaInicio) }}</td>
-          <td>{{ formatearFecha(item.fechaFin) }}</td>
-          <td>{{ item.edificio }}</td>
-          <td>{{ item.ubicacion }}</td>
+          <td>{{ item.actividad.nombre }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaInicio) }}</td>
+          <td>{{ formatearFecha(item.actividad.fechaFin) }}</td>
+          <td>{{ item.actividad.edificio }}</td>
+          <td>{{ item.actividad.ubicacion }}</td>
           <td>{{ this.$store.getters.getInscripcion().evento.nombre }}</td>
           <td>
-              <v-btn class="remove_item" color="primary" @click="detalleItem(item)" icon="mdi-note-search-outline"></v-btn>
+              <v-btn class="remove_item" color="primary" @click="detalleItem(item.actividad)" icon="mdi-note-search-outline"></v-btn>
           </td>
           <td></td>
         </tr>
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     actividades() {
-      return this.$store.getters.getInscripcion().evento.actividades;
+      return this.$store.getters.getInscripcion().asistenciasActividades;
     },
 },
 methods: {

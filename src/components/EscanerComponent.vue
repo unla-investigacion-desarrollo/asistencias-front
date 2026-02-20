@@ -1,11 +1,30 @@
 <template>
-<div>
-    <p class="error">{{ error }}</p>
-
-    <qrcode-stream :camera="camera" @init="onInit" @decode="onDecode" :paused="paused">
-        <v-btn id="lector" color="primary" @click="switchCamera">Cambiar Camara</v-btn>
+ <div>
+    <qrcode-stream
+      :paused="paused"
+      @detect="onDetect"
+      @camera-on="onCameraOn"
+      @camera-off="onCameraOff"
+      @error="onError"
+    >
+      <div
+        v-show="showScanConfirmation"
+        class="scan-confirmation"
+      >
+      <v-row>
+        <v-col class="icono">
+            <v-icon
+                
+                color="success"
+                icon="mdi-check-circle-outline"
+                size="100"
+        ></v-icon>
+        </v-col>
+      </v-row>
+      </div>
+      
     </qrcode-stream>
-</div>
+  </div>
 </template>
 
 <script>
@@ -15,70 +34,59 @@ export default {
     name: 'EscanerComponent',
     components: { QrcodeStream },
 
-    data () {
-        return {
-        camera: 'rear',
-        noRearCamera: false,
-        noFrontCamera: false,
-        paused: false,
-        result: '',
-        error: ''
-        }
+    data() {
+    return {
+      paused: false,
+      result: '',
+      showScanConfirmation: false
+    }
+  },
+
+  methods: {
+    onCameraOn() {
+      this.showScanConfirmation = false
     },
 
-    methods: {
-        switchCamera () {
-        switch (this.camera) {
-            case 'front':
-            this.camera = 'rear';
-            break;
-            case 'rear':
-            this.camera = 'front';
-            break;
-        }
-        },
+    onCameraOff() {
+      this.showScanConfirmation = true
+    },
 
-        onDecode (result) {
-            this.result = result;
-            window.location.href=result;
-            console.log("El resultado es: " + result);
-            this.paused = true;
-        },
+    onError: console.error,
 
-        async onInit (promise) {
-        try {
-            await promise;
-        } catch (error) {
-            const triedFrontCamera = this.camera === 'front';
-            const triedRearCamera = this.camera === 'rear';
+    async onDetect(detectedCodes) {
+      this.result = JSON.stringify(detectedCodes.map((code) => code.rawValue))
+    
+      window.location.href=(JSON.parse(this.result));
+      this.paused = true
+      await this.timeout(500)
+      this.paused = false
+    },
 
-            const cameraMissingError = error.name === 'OverconstrainedError';
-
-            if (triedRearCamera && cameraMissingError) {
-            this.noRearCamera = true;
-            }
-
-            if (triedFrontCamera && cameraMissingError) {
-            this.noFrontCamera = true;
-            }
-
-            console.error(error);
-        }
-        }
-    }
+    timeout(ms) {
+      return new Promise((resolve) => {
+        window.setTimeout(resolve, ms)
+      })
+    },
+  }
 }
 </script>
 
 <style scoped>
-button {
-    position: relative;
-    left: 10px;
-    top: 10px;
+.scan-confirmation {
+  position: inherit;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.8);
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
-.error {
-    color: red;
-    font-weight: bold;
+.icono {
+    text-align: center;
+    margin-top: 30%;
 }
 
 </style>

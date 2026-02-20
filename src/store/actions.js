@@ -2,7 +2,7 @@ import router from "@/router";
 import api from "../api";
 import * as ACTIONS from './actions-types';
 import * as MUTATIONS from './mutations-types';
-import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento, inscriptosEventoActividad } from "@/config/mock"
+import { contenido2, lista, tipoeventos, eventos, roles, usuarios, actividades, participante, audios, imagenes, videos, invitacion, estadisticas, inscriptosEvento } from "@/config/mock"
 
 export default {
 
@@ -249,6 +249,41 @@ export default {
     context.commit(MUTATIONS.ACTUALIZO_PAGINA);
   }
 },
+[ACTIONS.OBTENER_EVENTO_PREDEFINIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, eventos);
+    context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, eventos);
+  } else {
+    api.obtenerEventos()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        let lista = response.data.eventos;
+        let listaAux = [];
+        lista.forEach(e =>{
+          if(lista.length > 0){
+            if(e.idEvento == payload.idEvento){
+              listaAux.push(e);
+            }
+          }
+        });
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, listaAux);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, listaAux);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    });
+  }
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+
 [ACTIONS.OBTENER_EVENTO_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.obtenerEventosXTipoEvento(payload)
@@ -889,6 +924,26 @@ export default {
   }
   }
 },
+[ACTIONS.MARCAR_ASISTENCIA_ACTIVIDAD] (context, payload) {
+  api.marcarAsistenciaActividad(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.AGREGO_INSCRIPCION, true);
+      setTimeout(() => { context.commit(MUTATIONS.AGREGO_INSCRIPCION, false); }, 10000);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  if(context.getters.getHash() == ''){
+    if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+  }
+},
 [ACTIONS.OBTENER_INSCRIPCION_X_USUARIO] (context) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
@@ -919,14 +974,14 @@ export default {
 [ACTIONS.AGREGAR_CONTENIDO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   console.log(payload);
-  let lista = context.getters.getEventos();
-  let evento = {};
-  for(let i = 0; i < lista.length; i++){
-    if(payload.evento == lista[i].nombre){
-      evento = lista[i];
-    }
-  }
-  console.log("Evento elegido " + JSON.stringify(evento));
+  //let lista = context.getters.getEventos();
+  //let evento = {};
+  //for(let i = 0; i < lista.length; i++){
+   // if(payload.evento == lista[i].nombre){
+   //   evento = lista[i];
+   // }
+  //}
+  //console.log("Evento elegido " + JSON.stringify(evento));
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.GUARDAR_CONTENIDO, payload);
   } else {
@@ -1270,14 +1325,20 @@ export default {
 },
 [ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  router.push('/actualizoInscripcion');
+  //context.commit(MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION, payload.evento.actividades);
+  router.push({
+      name: "EditarInscripcionView",
+      params: {
+        id: payload.idInscripcion,
+      },
+    });
 },
 [ACTIONS.AGREGAR_AUDIO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.guardarAudio(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_AUDIO, true);
       context.commit(MUTATIONS.GUARDAR_AUDIO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_AUDIO, false); }, 10000);
@@ -1304,7 +1365,7 @@ export default {
   api.guardarImagen(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_IMAGEN, true);
       context.commit(MUTATIONS.GUARDAR_IMAGEN, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_IMAGEN, false); }, 10000);
@@ -1331,7 +1392,7 @@ export default {
   api.guardarVideo(payload)
   .then(response => {
   console.log(response);
-    if (response.status == "201") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.AGREGO_VIDEO, true);
       context.commit(MUTATIONS.GUARDAR_VIDEO, payload);
       setTimeout(() => { context.commit(MUTATIONS.AGREGO_VIDEO, false); }, 10000);
@@ -1578,7 +1639,24 @@ export default {
       },
     });
   } else {
-    api.actualizarInscripcion(payload)
+    let listaAux = [];
+
+    payload.actividades.forEach(e => {
+      listaAux.push({ actividad: { idActividad: e.idActividad }});
+    });
+
+    let datos = 
+      {
+      usuario: {
+          idUsuario: payload.usuario.idUsuario
+      },
+      evento: {
+          idEvento: payload.evento.idEvento
+      },
+      asistenciasActividades: listaAux
+  };
+
+    api.actualizarInscripcion(datos, payload.idInscripcion)
     .then(response => {
       console.log(response);
       if (response.status == "200") {
@@ -1954,8 +2032,16 @@ export default {
       },
     });
 },
-[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context) {
-  context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
+[ACTIONS.DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  router.push({
+      name: "ListaInscriptosEventoActividadView",
+      params: {
+        id: payload.idEvento,
+      },
+    });
+   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+ // context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
 },
 [ACTIONS.OLVIDE_MI_CLAVE] () {
   router.push('/olvideMiClave');
@@ -2052,7 +2138,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);   
+      context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, response.data);
     } 
   })
   .catch(error => {
@@ -2137,7 +2223,7 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
       router.push({
       name: "PaginaContenidoView",
       params: {
@@ -2373,6 +2459,24 @@ export default {
   .then(response => {
     if (response.status == "200") {
       context.commit(MUTATIONS.GUARDAR_CONTENIDO, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  });
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_INSCRIPTOS_X_EVENTOS_Y_ACTIVIDAD] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerInscripcionesXEventoyActividad(payload)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, response.data);
     } 
   })
   .catch(error => {
