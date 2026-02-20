@@ -31,7 +31,44 @@
       variant="outlined"
     ></v-alert>
   </div>
-
+  <div class="filtro">
+      <v-row >
+        <v-col>
+          <v-btn color="primary" @click="mostrar">Filtros</v-btn>
+        </v-col>
+        <v-col class="boton">
+          <v-btn color="primary" rounded="lg" @click="agregar">Agregar</v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <div class="filtro" v-if="buscar">
+      <v-row>
+        <v-col>
+          <v-select
+          v-model="filtro"
+          :items="opciones"
+          label="Filtros"
+        ></v-select>
+        </v-col>
+        <v-col>
+          <v-autocomplete v-if="filtro === 'Evento'"
+            v-model="parametro"
+            :items="eventos"
+            label="Evento"
+            required
+        ></v-autocomplete>
+          <v-autocomplete v-if="filtro === 'Contenido'"
+            v-model="parametro"
+            :items="contenidos"
+            label="Contenido"
+            required
+        ></v-autocomplete>
+        </v-col>
+        <v-col>
+          <v-btn class="remove_item" color="primary" @click="busqueda" icon="mdi-magnify"></v-btn>
+        </v-col>
+      </v-row>
+    </div>
   <div v-if="audios.length != 0">
     <v-table
       height="auto"
@@ -100,15 +137,29 @@
   const dialog = ref(false)
 </script>
 <script>
-import { EDITAR_AUDIO, ELIMINAR_AUDIO, OBTENER_AUDIOS, ACEPTA_ELIMINAR_AUDIO } from '../store/actions-types';
+import { EDITAR_AUDIO, ELIMINAR_AUDIO, OBTENER_AUDIOS, ACEPTA_ELIMINAR_AUDIO, OBTENER_AUDIOS_X_EVENTO, OBTENER_AUDIOS_X_CONTENIDO, OBTENER_EVENTOS_PUBLICOS, OBTENER_CONTENIDOS_PUBLICOS, AUDIO_NUEVO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
+import { filtroAudio } from '@/config';
 export default {
   name: 'ListaAudio',
   components: { MensajeComponent },
   data(){
-    return {};
+    return {
+      filtro: "Evento",
+      buscar: false,
+      parametro: ""
+    };
   },
   computed: {
+      contenidos() {
+        return this.$store.getters.getContenidosFormateados();
+      },
+      eventos() {
+        return this.$store.getters.getEventosFormateados();
+      },
+      opciones(){
+        return filtroAudio;
+      },
       audios() {
           return this.$store.getters.getAudios();
       },
@@ -132,9 +183,33 @@ export default {
     eliminarItem(){
         this.$store.dispatch(ELIMINAR_AUDIO);
     },
+    busqueda(){
+      if(this.filtro == "Evento" && this.parametro != ""){
+        this.$store.dispatch(OBTENER_AUDIOS_X_EVENTO, this.parametro);
+      } else if (this.filtro == "Contenido" && this.parametro != ""){
+        this.$store.dispatch(OBTENER_AUDIOS_X_CONTENIDO, this.parametro);
+      }
+    },
+    mostrar(){
+      this.buscar = !this.buscar;
+    },
+    agregar(){
+          this.$store.dispatch(AUDIO_NUEVO);
+    },
+  },
+  watch: {
+    filtro(nuevo, viejo) {
+      if(nuevo != viejo){
+        this.parametro = "";
+        this.$store.dispatch(OBTENER_CONTENIDOS_PUBLICOS);
+        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+      }
+    },
   },
   created() {
     this.$store.dispatch(OBTENER_AUDIOS);
+    this.$store.dispatch(OBTENER_CONTENIDOS_PUBLICOS);
+    this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     console.log(this.$store.getters.getAudios());
 }
 }
@@ -150,5 +225,13 @@ export default {
 
 .alerta {
   margin: 2% 0px 2% 0px;
+}
+
+.filtro { 
+  margin: 2% 0px 2% 0px;
+}
+
+.boton{
+  text-align: end;
 }
 </style>

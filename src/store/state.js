@@ -86,7 +86,7 @@ export default {
         cupo: "",
         cupoMax: ""
     },
-    titulosContenido: null,
+    titulosContenido: [],
     actividades: [],
     roles: [],
     contenidos: [],

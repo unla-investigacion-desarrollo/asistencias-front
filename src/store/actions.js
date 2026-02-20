@@ -184,7 +184,7 @@ export default {
   .then(response => {
     console.log(response);
     console.log("Elimino este evento: " + JSON.stringify(context.getters.getEvento()));
-    if (response.status == "204") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.ELIMINO_EVENTO, true);
       context.commit(MUTATIONS.ELIMINAR_UN_EVENTO, context.getters.getEvento());
       setTimeout(() => { context.commit(MUTATIONS.ELIMINO_EVENTO, false); }, 10000);
@@ -749,7 +749,7 @@ export default {
   api.eliminarActividad(context.getters.getActividad().idActividad)
   .then(response => {
   console.log("Elimino esta actividad: " + JSON.stringify(context.getters.getActividad()));
-    if (response.status == "204") {
+    if (response.status == "200") {
       context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, true);
       context.commit(MUTATIONS.ELIMINAR_UNA_ACTIVIDAD, context.getters.getActividad());
       setTimeout(() => { context.commit(MUTATIONS.ELIMINO_ACTIVIDAD, false); }, 120000);
@@ -2650,6 +2650,180 @@ export default {
   .then(response => {
     if (response.status == "200") {
       context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_AUDIOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getEventos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(e => {
+    if(payload == e.nombre){
+      valor = e.idEvento;
+    }
+  });
+  }
+  api.traerAudiosPorEvento(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_AUDIOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_AUDIOS_X_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getContenidos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(c => {
+    if(payload == c.titulo){
+      valor = c.idContenido;
+    }
+  });
+  }
+  api.traerAudiosPorContenido(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_AUDIOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_VIDEOS_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getEventos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(e => {
+    if(payload == e.nombre){
+      valor = e.idEvento;
+    }
+  });
+  }
+  api.traerVideosPorEvento(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_VIDEOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_VIDEOS_X_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getContenidos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(c => {
+    if(payload == c.titulo){
+      valor = c.idContenido;
+    }
+  });
+  }
+  api.traerVideosPorContenido(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_VIDEOS, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_IMAGENES_X_EVENTO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getEventos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(e => {
+    if(payload == e.nombre){
+      valor = e.idEvento;
+    }
+  });
+  }
+  api.traerImagenesPorEvento(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_IMAGENES, response.data);
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+  if(context.getters.getHash() == ''){
+    context.commit(MUTATIONS.ACTUALIZO_PAGINA);
+  }
+},
+[ACTIONS.OBTENER_IMAGENES_X_CONTENIDO] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  let lista = context.getters.getContenidos();
+  let valor = "";
+  if(lista.length > 0){
+    lista.forEach(c => {
+    if(payload == c.titulo){
+      valor = c.idContenido;
+    }
+  });
+  }
+  api.traerImagenesPorContenido(valor)
+  .then(response => {
+    if (response.status == "200") {
+      context.commit(MUTATIONS.TRAER_IMAGENES, response.data);
     } 
   })
   .catch(error => {
