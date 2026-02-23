@@ -320,6 +320,16 @@ const api = {
     return axios.get(`${dominio}/api/imagenes`);
   },
 
+  traerImagenesPorEvento(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/imagenes/evento/${payload}`);
+  },
+
+  traerImagenesPorContenido(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/imagenes/contenido/${payload}`);
+  },
+
   //Controller Audio
 
   guardarAudio(payload) {
@@ -356,6 +366,16 @@ const api = {
   obtenerAudios() { 
     obtenerEncabezado();
     return axios.get(`${dominio}/api/audios`);
+  },
+
+  traerAudiosPorEvento(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/audios/evento/${payload}`);
+  },
+
+  traerAudiosPorContenido(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/audios/contenido/${payload}`);
   },
 
   //Controller Video
@@ -395,6 +415,17 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/videos`);
   },
+
+  traerVideosPorEvento(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/videos/evento/${payload}`);
+  },
+
+  traerVideosPorContenido(payload){
+    obtenerEncabezado();
+    return axios.get(`${dominio}/api/videos/contenido/${payload}`);
+  },
+
 
   //Controller publico
 

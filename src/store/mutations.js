@@ -242,8 +242,10 @@ export default {
     [MUTATIONS.OBTENER_CONTENIDOS]: (state, payload) => {
         state.contenidos = payload;
         state.contenidosFiltro = payload;
-        const contenidos = payload.map(c => c.titulo);
-        state.titulosContenido = [...new Set(contenidos)];
+        if(state.titulosContenido.length == 0){
+            const contenidos = payload.map(c => c.titulo);
+            state.titulosContenido = [...new Set(contenidos)];
+        }
     },
     [MUTATIONS.GUARDO_FILTRO_CATEGORIA_EVENTO]: (state, payload) => {
         state.filtroCategoriaEvento = payload;

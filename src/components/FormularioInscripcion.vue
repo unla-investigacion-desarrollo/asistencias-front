@@ -38,7 +38,7 @@
           </v-table>
         </v-col>
       </v-row>
-      <div class="text_menssage" v-if="actividades.length == 0">
+      <div class="text_menssage" v-if="actividades.length == 0 && this.busco">
         <Mensaje-component valor="sin-actividades"></Mensaje-component>
       </div>
       <div class="container_button">
@@ -69,7 +69,8 @@ export default {
   components: { MensajeComponent },
   data() {
     return {
-      model: this.$store.getters.getInscripcion()
+      model: this.$store.getters.getInscripcion(),
+      busco: false
     };
   },
   computed: {
@@ -127,12 +128,17 @@ export default {
   watch: {
       evento(nuevo, viejo) {
         if(nuevo != viejo){
+          this.busco = true;
           this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
         }
       },
     },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
+      if(this.model.evento.nombre != ''){
+        this.busco = true;
+        this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
+      }
       console.log(this.$store.getters.getEventos());
   }
 }
