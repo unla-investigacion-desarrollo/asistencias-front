@@ -1,6 +1,13 @@
 <template>
     <v-container>
       <v-row>
+        <v-col class="boton">
+          <v-btn color="primary" @click="exportarCSV">
+            Exportar Datos
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <v-table
             height="auto"
@@ -25,6 +32,9 @@
                   Asistencias
                 </th>
                 <th class="text-left">
+                  Ausencias
+                </th>
+                <th class="text-left">
                   Detalle
                 </th>
               </tr>
@@ -39,6 +49,7 @@
                 <td>{{ formatearFecha(item.evento.fechaFin) }}</td>
                 <td>{{ item.inscripciones }}</td>
                 <td>{{ item.asistencias }}</td>
+                <td>{{ item.ausencias }}</td>
                 <td>
                   <v-btn class="remove_item" color="primary" @click="detalleItem(item.evento)" icon="mdi-note-search-outline"></v-btn>
                 </td>
@@ -93,6 +104,47 @@ export default {
       }
       return formato;
     },
+    exportarCSV() {
+      const datos = this.inscriptos.map(item => ({
+        Evento: item.evento.nombre,
+        Inicio:  new Date(item.evento.fechaInicio)
+                .toLocaleString('es-AR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+                .replace(',', ''),
+        Fin: new Date(item.evento.fechaFin)
+                .toLocaleString('es-AR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+                .replace(',', ''),
+        Inscripciones: item.inscripciones,
+        Asistencias: item.asistencias,
+        Ausencias: item.ausencias
+      }))
+
+      const headers = Object.keys(datos[0]).join(',')
+      const rows = datos.map(obj => Object.values(obj).join(','))
+
+      const csvContent = [headers, ...rows].join('\n')
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const url = URL.createObjectURL(blob)
+
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'reporte_eventos.csv')
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
   },
   created() {
     this.$store.dispatch(OBTENER_ESTADISTICAS);
@@ -106,5 +158,8 @@ export default {
 }
 .button {
   margin-right: 2%;
+}
+.boton{
+  text-align: end;
 }
 </style>
