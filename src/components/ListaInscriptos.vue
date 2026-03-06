@@ -10,7 +10,7 @@
       <v-row>
         <v-col>
           <v-table
-            height="auto"
+            :height="this.calcularAltura()"
             fixed-header
             class="rounded-lg mx-auto"
           >
@@ -86,6 +86,13 @@ export default {
     }
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.inscriptos.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     detalleItem(item){
         this.$store.dispatch(DETALLE_INSCRIPTOS_X_EVENTO, item);
     },

@@ -368,6 +368,14 @@ export default {
                 state.pp = false;
             }
         }
+        let dni = state.usuario.dni; 
+        let key = state.hash;
+        if(dni == ""){
+            state.usuario = JSON.parse(localStorage.getItem("usuario"));
+        } 
+        if(key == ""){
+            state.hash = localStorage.getItem("keyuser");
+        } 
     },
     [MUTATIONS.TRAER_ESTADISTICAS]: (state, payload) => {
         state.estadisticas = payload;

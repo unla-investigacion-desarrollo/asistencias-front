@@ -33,7 +33,7 @@
   </div>
   <div v-if="roles.length != 0">
     <v-table
-      height="auto"
+      :height="this.calcularAltura()"
       fixed-header
       class="rounded-lg mx-auto"
     >
@@ -122,6 +122,13 @@ import MensajeComponent from './MensajeComponent.vue';
       }
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.roles.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     editarItem(item){
         this.$store.dispatch(EDITAR_ROL, item);
     },

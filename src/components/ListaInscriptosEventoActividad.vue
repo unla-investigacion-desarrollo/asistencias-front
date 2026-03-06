@@ -20,7 +20,7 @@
       <v-row v-if="inscriptos.usuarios.length > 0">
         <v-col>
           <v-table
-            height="auto"
+            :height="this.calcularAltura()"
             fixed-header
             class="rounded-lg mx-auto"
           >
@@ -123,6 +123,13 @@ export default {
     }
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.inscriptos.usuarios.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     volver(){
       this.$router.go(-1);
     },

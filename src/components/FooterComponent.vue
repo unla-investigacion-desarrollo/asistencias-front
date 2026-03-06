@@ -59,6 +59,7 @@ data: () => ({
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: minmax(50px, auto);
+  margin-top: 2%;
 }
 
 .footer_icons{
