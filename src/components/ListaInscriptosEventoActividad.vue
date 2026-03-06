@@ -10,14 +10,17 @@
             required
           ></v-select>
         </v-col>
-        <v-col :cols="12" :md="1">
+        <v-col>
           <v-btn color="primary" @click="buscar" icon="mdi-magnify"></v-btn>     
         </v-col> 
+        <v-col class="boton">
+          <v-btn color="primary" @click="exportarCSV" :disabled="validarBoton">Exportar Datos</v-btn>
+        </v-col>
       </v-row>
       <v-row v-if="inscriptos.usuarios.length > 0">
         <v-col>
           <v-table
-            height="auto"
+            :height="this.calcularAltura()"
             fixed-header
             class="rounded-lg mx-auto"
           >
@@ -110,9 +113,23 @@ export default {
     },
     evento(){
       return this.$store.getters.getEvento();
+    },
+    validarBoton(){
+      let valido = false;
+      if(this.inscriptos.usuarios.length == 0){
+        valido = true;
+      }
+      return valido;
     }
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.inscriptos.usuarios.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     volver(){
       this.$router.go(-1);
     },
@@ -139,6 +156,42 @@ export default {
       return {
         title: item.nombre,
       }
+    },
+    exportarCSV() {
+      const datos = this.inscriptos.usuarios.map(item => ({
+        Nombre: item.usuario.nombre,
+        Apellido: item.usuario.apellido,
+        DNI: item.usuario.dni,
+        Email: item.usuario.email,
+        Evento: item.evento.nombre,
+        Actividad: item.actividad.nombre,
+        "Fecha de Inscripcion": new Date(item.inscripcion.fechaInscripcion)
+                .toLocaleString('es-AR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+                .replace(',', ''),
+        "Asistio Actividad": this.valorAsistencia(item.asistenciaActividad.asistencia),
+        "Asistio Evento": this.valorAsistencia(item.inscripcion.asistenciaGeneral)
+      }))
+
+      const headers = Object.keys(datos[0]).join(',')
+      const rows = datos.map(obj => Object.values(obj).join(','))
+
+      const csvContent = [headers, ...rows].join('\n')
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const url = URL.createObjectURL(blob)
+
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'reporte_eventos.csv')
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   },
   created() {
@@ -165,5 +218,8 @@ export default {
 }
 .filtro{
   margin-top: 2%;
+}
+.boton{
+  text-align: end;
 }
 </style>

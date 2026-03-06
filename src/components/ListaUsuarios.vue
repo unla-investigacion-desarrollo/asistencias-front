@@ -33,7 +33,7 @@
   </div>
   <div v-if="usuarios.length != 0">
       <v-table
-      height="auto"
+      :height="this.calcularAltura()"
       fixed-header
       class="rounded-lg mx-auto"
       >
@@ -143,6 +143,13 @@ import MensajeComponent from './MensajeComponent.vue';
       }
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.usuarios.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     editarItem(item){
       this.$store.dispatch(EDITAR_USUARIO, item);
     },

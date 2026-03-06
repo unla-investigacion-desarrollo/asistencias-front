@@ -73,7 +73,7 @@
     </div>
   <div v-if="actividades.length != 0">
     <v-table
-      height="auto"
+      :height="this.calcularAltura()"
       fixed-header
       class="rounded-lg mx-auto"
     >
@@ -283,6 +283,13 @@ methods: {
     }
     return formato;
   },
+  calcularAltura(){
+      let altura = "auto";
+      if(this.actividades.length >= 6){
+        altura = "600px";
+      }
+      return altura;
+    },
 },
 watch: {
   filtro(nuevo, viejo) {

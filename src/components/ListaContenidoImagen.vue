@@ -34,7 +34,7 @@
 
   <div v-if="imagenes.length != 0">
     <v-table
-      height="auto"
+      :height="this.calcularAltura()"
       fixed-header
       class="rounded-lg mx-auto"
     >
@@ -123,6 +123,13 @@ export default {
     }
 },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.imagenes.length >= 6){
+        altura = "600px";
+      }
+      return altura;
+    },
     editarItem(item){   
         this.$store.dispatch(EDITAR_IMAGEN, item);
     },

@@ -5,12 +5,15 @@
         <v-col>
           <v-btn color="primary" @click="busquedaAvanzada">Busqueda Avanzada</v-btn>
         </v-col>
+        <v-col class="boton">
+          <v-btn color="primary" @click="exportarCSV">Exportar Datos</v-btn>
+        </v-col>
       </v-row>
     </div>
       <v-row v-if="inscriptos.length > 0">
         <v-col>
           <v-table
-            height="auto"
+            :height="this.calcularAltura()"
             fixed-header
             class="rounded-lg mx-auto"
           >
@@ -93,6 +96,13 @@ export default {
     },  
   },
   methods: {
+    calcularAltura(){
+      let altura = "auto";
+      if(this.inscriptos.length >= 12){
+        altura = "600px";
+      }
+      return altura;
+    },
     volver(){
       this.$router.go(-1);
     },
@@ -117,6 +127,41 @@ export default {
         idEvento: id
       }
       this.$store.dispatch(DETALLE_INSCRIPTOS_X_EVENTO_ACTIVIDAD, datos);
+    },
+    exportarCSV() {
+      const datos = this.inscriptos.map(item => ({
+        Nombre: item.usuario.nombre,
+        Apellido: item.usuario.apellido,
+        DNI: item.usuario.dni,
+        Email: item.usuario.email,
+        Evento: item.evento.nombre,
+        "Actividades Inscriptas": item.asistencia.totalActividades,
+        "Fecha de Inscripcion": new Date(item.fechaInscripcion)
+                .toLocaleString('es-AR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+                .replace(',', ''),
+        Asistio: this.valorAsistencia(item)
+      }))
+
+      const headers = Object.keys(datos[0]).join(',')
+      const rows = datos.map(obj => Object.values(obj).join(','))
+
+      const csvContent = [headers, ...rows].join('\n')
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const url = URL.createObjectURL(blob)
+
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'reporte_eventos.csv')
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   },
   created() {
@@ -140,5 +185,8 @@ export default {
 }
 .filtro { 
   margin: 2% 0px 2% 0px;
+}
+.boton{
+  text-align: end;
 }
 </style>

@@ -71,7 +71,7 @@
       </v-row>
     </div>
     <v-table
-      height="auto"
+      :height="this.calcularAltura()"
       fixed-header
       class="rounded-lg mx-auto"
     >
@@ -178,6 +178,13 @@ import MensajeComponent from './MensajeComponent.vue';
         }
     },
     methods: {
+      calcularAltura(){
+        let altura = "auto";
+        if(this.contenidos.length >= 12){
+          altura = "600px";
+        }
+        return altura;
+      },
       editarItem(item){   
         this.$store.dispatch(EDITAR_CONTENIDO, item);
       },
