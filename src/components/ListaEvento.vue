@@ -100,11 +100,7 @@
           </th>
           <th class="text-left">
             Tipo de Evento
-          </th>
-          <th class="text-left">
-            Certificado
-          </th>
-          
+          </th>   
           <th class="text-left">
             Acciones
           </th>
@@ -125,7 +121,6 @@
           <td>{{ item.ubicacion }}</td>
           <td>{{ item.estado }}</td>
           <td>{{ item.tipoEvento.nombre }}</td>
-          <td>{{ item.linkCertificado }}</td>
           <td>
               <v-btn class="remove_item" color="warning" @click="editarItem(item)" icon="mdi-pencil" v-if="!this.validoPas"></v-btn>
               <v-btn class="remove_item" color="error" @click="modalEliminar(item) & (dialog = true)" icon="mdi-delete" v-if="!this.validoPas"></v-btn>
