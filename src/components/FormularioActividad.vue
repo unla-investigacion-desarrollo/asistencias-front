@@ -79,6 +79,7 @@
               label="Cupo"
               :counter="3"
               :max="999"
+              :min="0"
               v-model="model.cupo"
               :rules="validationNumber"
               required
@@ -90,6 +91,7 @@
               label="Cupo Limite"
               :counter="3"
               :max="999"
+              :min="0"
               v-model="model.cupoMax"
               :rules="validationNumber"
               required
