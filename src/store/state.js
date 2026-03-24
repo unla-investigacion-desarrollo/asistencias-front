@@ -1,7 +1,7 @@
 export default {
     hash: "",
     usuario: {
-        email: "nehuen.db@gmail.com",
+        email: "",
         clave: "",
         nombre: "",
         apellido: "",
