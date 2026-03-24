@@ -32,6 +32,7 @@
           label="DNI"
           :counter="8"
           :max="99999999"
+          :min="0"
           v-model="model.dni"
           :rules="validationDNI"
         ></v-number-input>
