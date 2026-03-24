@@ -32,6 +32,7 @@
             v-model="model.fechaFin"
             label="Fecha de fin"
             type="datetime-local" 
+            :rules="validationText"
           ></v-text-field>
         </v-col>
         <v-col :cols="12" :md="4">
@@ -48,6 +49,7 @@
             v-model="model.edificio"
             :items="edificios"
             label="Edificio"
+            :rules="validationText"
             required
         ></v-autocomplete>
         </v-col>
@@ -64,7 +66,7 @@
       <v-row>
         <v-col :cols="12" :md="6">
           <v-select
-            v-model="model.tipoEvento"
+            v-model="tipoEvento"
             :items="eventos"
             :item-props="itemProps"
             label="Tipo de evento"
@@ -92,7 +94,7 @@
             class="me-4"
             color="primary"
             @click="continuar"
-            :disabled="!formValid"
+            :disabled="this.validoBoton"
           >
           Guardar
           </v-btn>
@@ -118,6 +120,7 @@ export default {
   data() {
     return {
       model: this.$store.getters.getEvento(),
+      tipoEvento: this.$store.getters.getTipoEventos()[0],
       color: "#8e2736",
       validationText: [
         v => !!v || 'El campo es requerido',
@@ -127,6 +130,9 @@ export default {
     };
   },
   computed: {
+    validoBoton(){
+      return !(this.formValid && (this.model.edificio != "") && (this.tipoEvento != ""));
+    },
     eventos() {
       return this.$store.getters.getTipoEventos();
     },
@@ -168,6 +174,7 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("agregue el evento");
+      this.model.tipoEvento = this.tipoEvento;
       this.model.fechaFin = this.formatearfechas(this.model.fechaFin);
       this.model.fechaInicio = this.formatearfechas(this.model.fechaInicio);
       this.model.fechaCierre = this.formatearfechas(this.model.fechaCierre);

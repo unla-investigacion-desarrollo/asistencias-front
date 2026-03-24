@@ -1174,6 +1174,10 @@ const tipoEventos = [
         "imagen": "https://espazio32.es/wp-content/uploads/2020/03/WorkshopEmpresarial01-1024x682.jpg"
     },
     {
+        "nombre": "Talleres",
+        "imagen": "https://espazio32.es/wp-content/uploads/2020/03/WorkshopEmpresarial01-1024x682.jpg"
+    },
+    {
         "nombre": "Conferencia",
         "imagen": "https://educaciondebate.com.ar/datos/fotos/2025/10/22/295-10/imagen_1949.jpg"
     },
