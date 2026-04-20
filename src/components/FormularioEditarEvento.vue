@@ -32,6 +32,8 @@
             v-model="model.fechaFin"
             label="Fecha de fin"
             type="datetime-local" 
+            :rules="validationText"
+            required
           ></v-text-field>
         </v-col>
         <v-col :cols="12" :md="4">

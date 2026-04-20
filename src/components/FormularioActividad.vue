@@ -32,6 +32,8 @@
               v-model="model.fechaFin"
               label="Fecha de fin"
               type="datetime-local" 
+              :rules="validationText"
+              required
             ></v-text-field>
         </v-col>
       </v-row>
@@ -52,6 +54,7 @@
               v-model="model.edificio"
               :items="edificios"
               label="Edificio"
+              :rules="validationText"
               required
           ></v-autocomplete>
         </v-col>
