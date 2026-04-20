@@ -71,18 +71,6 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row v-if="!this.validoPsa">
-        <v-col>
-          <v-text-field
-            v-model="model.clave"
-            :counter="45"
-            maxlength="45"
-            label="Contraseña"
-            :rules="validationText"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
       <div class="container_button">
         <v-btn
           class="me-4"
