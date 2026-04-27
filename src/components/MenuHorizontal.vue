@@ -34,8 +34,6 @@
 </template>
   
 <script>
-//import { validarUsuarioPermisos } from "@/config/validaciones";
-
 export default {
     name: 'MenuHorizontal',
     methods: {

@@ -99,7 +99,6 @@ export default {
 },
 [ACTIONS.OBTENER_TIPOS_EVENTOS] (context) {
   console.log("recupero datos");
-  //context.dispatch(ACTIONS.ACTUALIZO_DATOS);
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   if(context.getters.getDemo()){
     context.commit(MUTATIONS.OBTENER_TIPOS_EVENTOS, tipoeventos);
@@ -947,7 +946,6 @@ export default {
   .then(response => {
   console.log(response);
     if (response.status == "200") {
-      //context.commit(MUTATIONS.GUARDAR_LOGIN, response.data);
       context.commit(MUTATIONS.GUARDAR_USUARIO, response.data);
       router.push("/miPerfil");
     } else if(response.status == "500"){
@@ -1395,7 +1393,6 @@ export default {
 },
 [ACTIONS.EDITAR_INSCRIPCION] (context, payload) {
   context.commit(MUTATIONS.GUARDAR_INSCRIPCION_EVENTO, payload);
-  //context.commit(MUTATIONS.GUARDA_LISTA_ACTIVIDADES_INSCRIPCION, payload.evento.actividades);
   router.push({
       name: "EditarInscripcionView",
       params: {
@@ -2170,7 +2167,6 @@ export default {
       },
     });
    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
- // context.commit(MUTATIONS.INSCRIPTOS_X_EVENTO_ACTIVIDAD, inscriptosEventoActividad);
 },
 [ACTIONS.OLVIDE_MI_CLAVE] () {
   router.push('/olvideMiClave');
