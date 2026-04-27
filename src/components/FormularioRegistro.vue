@@ -163,6 +163,16 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("me registre");
+      if(this.model.tipoUsuario.rol == "Participante"){
+        let lista = this.$store.getters.getRoles();
+        if(lista.length > 0){
+          lista.forEach(e => {
+          if("Participante" == e.rol){
+            this.model.tipoUsuario = e;
+          }
+          });
+        }
+      }
       this.$store.dispatch(REGISTRAR_USUARIO_NUEVO, this.model);
     },
     volver(){
