@@ -125,7 +125,17 @@ export default {
     continuar() {
       console.log(this.model);
       console.log("modifique el usuario");
-      this.$store.dispatch(ACTUALIZAR_USUARIO_LOGUEADO, this.model);
+      let datos = {
+        apellido: this.model.apellido,
+        clave: this.model.clave,
+        dni: this.model.dni,
+        email: this.model.email,
+        idUsuario: this.model.id,
+        nombre: this.model.nombre,
+        tipoUsuario: this.model.tipoUsuario,
+        usuario: this.model.usuario
+      }
+      this.$store.dispatch(ACTUALIZAR_USUARIO_LOGUEADO, datos);
     },
     volver(){
       this.$router.go(-1);
