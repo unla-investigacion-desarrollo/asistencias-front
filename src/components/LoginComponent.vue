@@ -20,6 +20,9 @@
             label="Contraseña"
             :rules="validationText"
             maxlength="45"
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            @click:append-inner="visible = !visible"
             required
           ></v-text-field>
         </v-col>
@@ -56,7 +59,10 @@
     </v-form>
   </v-container>
 </template>
-  
+<script setup>
+  import { ref } from 'vue'
+  const visible = ref(false)
+</script>
 <script>
 import { LOGIN, OLVIDE_MI_CLAVE, USUARIO_GENERAL_NUEVO } from '../store/actions-types';
 export default {
