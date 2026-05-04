@@ -47,18 +47,6 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col>
-          <v-text-field
-            v-model="model.clave"
-            :counter="45"
-            maxlength="45"
-            label="Contraseña"
-            :rules="validationText"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
       <div class="container_button">
         <v-btn
           class="me-4"
@@ -127,7 +115,6 @@ export default {
       console.log("modifique el usuario");
       let datos = {
         apellido: this.model.apellido,
-        clave: this.model.clave,
         dni: this.model.dni,
         email: this.model.email,
         idUsuario: this.model.id,
