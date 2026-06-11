@@ -13,8 +13,6 @@ const api = {
     return axios.post(`${dominio}/auth/login`, body);
   },
 
-  //Controller Tipo de Evento
-  
   guardarTipoEvento(payload) {
     const body = normalizarDatos(payload);
     obtenerEncabezado();
@@ -43,8 +41,6 @@ const api = {
     return axios.delete(`${dominio}/api/eliminarTipoEvento/${payload}`);
   },
 
-  // Controller evento
-
   guardarEvento(payload) { 
     const body = normalizarDatos(payload);
     obtenerEncabezado();
@@ -70,8 +66,6 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/eventos/${payload}`);
   },
-
-  //Controller inscripcion
 
   registrarParticipanteAlEvento(payload) { 
     const body = normalizarDatos(payload);
@@ -133,7 +127,6 @@ const api = {
     return axios.get(`${dominio}/api/inscripciones/evento/${payload.idEvento}/actividad/${payload.idActividad}`);
   },
 
-  //controller de actividad
   traerActividades() {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/actividades`);
@@ -186,7 +179,6 @@ const api = {
     return axios.post(`${dominio}/api/public/filtrar`, body);
   },
   
-  //Controller usuarios
   guardarUsuario(payload) {
     const body = normalizarDatos(payload);
     return axios.post(`${dominio}/api/usuarios`, body);
@@ -216,7 +208,6 @@ const api = {
     return axios.get(`${dominio}/api/usuarios/email?email=${payload}`, body);
   },
 
-  //Controller Tipo de Usuario
   guardarTipoUsuario(payload) {
     const body = normalizarDatos(payload);
     obtenerEncabezado();
@@ -240,8 +231,6 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/tipoUsuarios`);
   },
-
-  //Controller contenido
 
   guardarContenido(payload) {
     const body = normalizarDatos(payload);
@@ -281,8 +270,6 @@ const api = {
     let titulo = encodeURIComponent(payload);
     return axios.get(`${dominio}/api/contenidos/buscarPorTitulo?titulo=${titulo}`);
   },
-
-  //Controller Imagen
 
   guardarImagen(payload) {
     const body = normalizarDatos(payload);
@@ -330,8 +317,6 @@ const api = {
     return axios.get(`${dominio}/api/imagenes/contenido/${payload}`);
   },
 
-  //Controller Audio
-
   guardarAudio(payload) {
     const body = normalizarDatos(payload);
     let obj = {
@@ -378,8 +363,6 @@ const api = {
     return axios.get(`${dominio}/api/audios/contenido/${payload}`);
   },
 
-  //Controller Video
-
   guardarVideo(payload) {
     const body = normalizarDatos(payload);
     let obj = {
@@ -425,9 +408,6 @@ const api = {
     obtenerEncabezado();
     return axios.get(`${dominio}/api/videos/contenido/${payload}`);
   },
-
-
-  //Controller publico
 
   traerEventoPublico(payload){
     const body = normalizarDatos(payload);
@@ -512,8 +492,6 @@ const api = {
   traerEventoXMesActual(){
     return axios.get(`${dominio}/api/public/eventos/mes-actual`);
   },
-
-  //Estadisticas
 
   obtenerEstadisticaIndividual(payload){
     obtenerEncabezado();

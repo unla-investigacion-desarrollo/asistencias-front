@@ -71,7 +71,6 @@ const hora = String(hoy.getHours()).padStart(2, '0');
 const minuto = String(hoy.getMinutes()).padStart(2, '0');
 const segundo = String(hoy.getSeconds()).padStart(2, '0');
 
-// Formateo la fecha en el formato "YYYY-MM-DDTHH:mm:ss"
 const hoyFormateado = `${anio}-${mes}-${dia}T${hora}:${minuto}:${segundo}`;
 
 const usuario = localStorage.getItem("usuario");
