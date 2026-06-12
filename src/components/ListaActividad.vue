@@ -305,7 +305,6 @@ created() {
   this.$store.dispatch(OBTENER_ACTIVIDADES);
   this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
   this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
-  console.log(this.$store.getters.getActividades());
 },
 }
 </script>

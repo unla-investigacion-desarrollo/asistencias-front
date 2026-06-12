@@ -50,7 +50,6 @@ export default {
         url(){
           let pagina = window.location.href;
           let dominio = pagina.split('#')[0];
-          console.log("la ruta es: " + dominio  + "#/contenido/" + this.$route.params.id);
           return dominio  + "#/contenido/" + + this.$route.params.id;
         }
     },

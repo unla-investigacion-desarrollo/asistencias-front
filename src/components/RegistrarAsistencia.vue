@@ -79,7 +79,6 @@ export default {
     async onDetect(detectedCodes) {
       this.result = JSON.stringify(detectedCodes.map((code) => code.rawValue))
     
-      console.log("El resultado es: " + JSON.parse(this.result));
       this.$store.dispatch(MARCAR_ASISTENCIA, JSON.parse(this.result));
       this.paused = true
       await this.timeout(500)

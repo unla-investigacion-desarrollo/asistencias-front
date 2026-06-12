@@ -123,7 +123,6 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
     itemProps (item) {
@@ -147,9 +146,6 @@ export default {
         imagenes: this.imagenes,
         idEvento: e.idEvento
       };
-      console.log(contenido);
-
-      console.log("agregue el contenido");
       this.$store.dispatch(AGREGAR_CONTENIDO, contenido);
     },
     agregarAudio(){

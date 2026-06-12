@@ -119,7 +119,6 @@ export default {
     },
     created() {
         const id = this.$route.params.id;
-        console.log(id);
         this.$store.dispatch(OBTENER_CONTENIDO_PUBLICO, id);
     }
 }

@@ -109,7 +109,6 @@ export default {
   mounted() {
       if(this.$store.getters.getInscripcion().idInscripcion == ""){
           const id = this.$route.params.id;
-          console.log(id);
           this.$store.dispatch(OBTENER_INSCRIPCION, id);
       }
   }

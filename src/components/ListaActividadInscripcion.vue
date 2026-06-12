@@ -97,7 +97,6 @@ created() {
       this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.$store.getters.getInscripcion().evento);
     } 
   }
-  console.log(this.$store.getters.getActividades());
 },
 }
 </script>

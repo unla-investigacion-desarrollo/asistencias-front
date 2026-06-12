@@ -49,8 +49,6 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
-      console.log("modifique el tipo de usuario");
       this.$store.dispatch(ACTUALIZAR_ROL, this.model);
     },
     volver(){
@@ -65,7 +63,6 @@ export default {
   created() {
     if(this.model.rol == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_TIPO_USUARIO, id);
     }
   }

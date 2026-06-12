@@ -174,10 +174,8 @@ export default {
     this.$store.dispatch(OBTENER_EVENTOS);
     if(this.model.nombre == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_ACTIVIDADES_PUBLICAS_ID, id);
     }
-    console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
     itemProps (item) {
@@ -193,8 +191,6 @@ export default {
           e = lista[i];
         }  
       }
-      console.log(this.model);
-      console.log("actualice la actividad del evento");
       let act = {
         idActividad: this.model.idActividad,
         nombre: this.model.nombre,

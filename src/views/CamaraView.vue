@@ -36,7 +36,6 @@ export default {
     }),
     mounted() {
       const solapa = this.$route.params.solapa;
-      console.log(solapa);
       this.tab = solapa;
     }
 }

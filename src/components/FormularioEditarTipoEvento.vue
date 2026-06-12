@@ -54,8 +54,6 @@ export default {
   },
   methods: {
     continuar() {
-        console.log(this.model);
-        console.log("modifique el tipo de evento");
       this.$store.dispatch(ACTUALIZAR_TIPO_EVENTO, this.model);
     },
     volver(){
@@ -70,7 +68,6 @@ export default {
   created() {
     if(this.model.nombre == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_TIPO_EVENTO, id);
     }
   }

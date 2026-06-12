@@ -97,8 +97,6 @@ export default {
               this.valores.push(dato.asistencias);
               this.valores.push(dato.ausencias);
             }
-            console.log("Dato del map:" +dato.evento.nombre);
-            console.log("Dato seleccionado: "+ this.evento);
           }
         }
         )

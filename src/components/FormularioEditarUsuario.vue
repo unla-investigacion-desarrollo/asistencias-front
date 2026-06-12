@@ -148,8 +148,6 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
-      console.log("modifique el usuario");
       this.$store.dispatch(ACTUALIZAR_USUARIO, this.model);
     },
     volver(){
@@ -158,7 +156,6 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_ROLES);
-      console.log(this.$store.getters.getRoles());
   },
 }
 </script>

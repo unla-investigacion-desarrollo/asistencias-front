@@ -91,7 +91,6 @@ export default {
   },
   created() {
     this.$store.dispatch(OBTENER_PROXIMOS_EVENTOS);
-    console.log(this.$store.getters.getEventos());
 }
 }
 </script>

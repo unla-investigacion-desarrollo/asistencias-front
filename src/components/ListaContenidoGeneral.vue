@@ -110,7 +110,6 @@ import MensajeComponent from './MensajeComponent.vue';
         return altura;
       },
       detalleItem(item){
-        console.log("Este es el item" + JSON.stringify(item));
         this.$store.dispatch(DETALLE_CONTENIDO, item);
       },
       mostrar(){
@@ -136,8 +135,6 @@ import MensajeComponent from './MensajeComponent.vue';
     created() {
       this.$store.dispatch(OBTENER_CONTENIDOS_PUBLICOS);
       this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
-      console.log(this.$store.getters.getContenidos());
-      console.log(this.$store.getters.getEventos());
     },
   }
   </script>

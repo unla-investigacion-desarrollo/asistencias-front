@@ -106,7 +106,6 @@ export default {
       if(usuario.dni === ''){
         usuario = localStorage.getItem("usuario");
       }
-      console.log("Este es el usuario: "+ usuario);
       if(this.$store.getters.getHash() === '' || usuario.dni === ''){
         this.$router.push({
           name: "ErroresView",
@@ -134,7 +133,6 @@ export default {
   mounted() {
     if(this.$store.getters.getEventos().length == 0 && !this.busco){
         const id = this.$route.params.id;
-        console.log("este es el id" +id);
         this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO, id);
         this.busco = true;
     }

@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
@@ -74,8 +73,7 @@ export default {
       let audio = {
         ...this.model,
         contenido: c
-      }
-      console.log("Agrego el audio: " + JSON.stringify(audio));     
+      }  
       this.$store.dispatch(AGREGAR_AUDIO, audio);
     },
     volver(){

@@ -111,8 +111,6 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
-      console.log("modifique el usuario");
       let datos = {
         apellido: this.model.apellido,
         dni: this.model.dni,

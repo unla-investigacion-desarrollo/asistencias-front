@@ -69,7 +69,6 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
@@ -80,8 +79,7 @@ export default {
       let video = {
         ...this.model,
         contenido: c
-      }
-      console.log("Edito el video: " + JSON.stringify(video));     
+      }   
       this.$store.dispatch(ACTUALIZAR_VIDEO, video);
     },
     volver(){
@@ -92,7 +90,6 @@ export default {
     this.$store.dispatch(TRAER_CONTENIDOS);
     if(this.model.video == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_VIDEO_PUBLICO, id);
     }
   }

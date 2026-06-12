@@ -217,7 +217,6 @@ export default {
     this.$store.dispatch(OBTENER_CONTENIDOS_PUBLICOS);
     this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     this.$store.dispatch(OBTENER_VIDEOS);
-    console.log(this.$store.getters.getVideos());
 }
 }
 </script>

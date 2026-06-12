@@ -101,7 +101,6 @@ created() {
       this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, this.$store.getters.getEvento().idEvento);
     } 
   }
-  console.log(this.$store.getters.getActividades());
 },
 }
 </script>

@@ -44,9 +44,7 @@ data () {
     },
     methods: {
       continuar(item) {
-        console.log("voy al listado de la categoria del evento");  
         let lista = this.$store.getters.getTipoEventos();
-        console.log("este es el item" + JSON.stringify(item));
         let tipo = null;
         if(lista.length > 0){
           lista.forEach(e => {
@@ -55,7 +53,6 @@ data () {
           }
           });
         }
-        console.log("este es el tipo" + JSON.stringify(tipo));
         this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO, tipo.idTipoEvento); 
       }, 
       obtenerColor(){

@@ -178,7 +178,6 @@ export default {
   },
   created() {
     this.$store.dispatch(OBTENER_EVENTOS);
-    console.log(this.$store.getters.getEventosFormateados());
   },
   methods: {
     itemProps (item) {
@@ -187,8 +186,6 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
-      console.log("agregue la actividad al evento");
       let lista = this.$store.getters.getEventos();
       let e = {};
       for(let i = 0; i < lista.length; i++){
@@ -196,8 +193,6 @@ export default {
           e = lista[i];
         }  
       }
-      console.log(this.model);
-      console.log("actualice la actividad del evento");
       let act = {
         nombre: this.model.nombre,
         descripcion: this.model.descripcion,

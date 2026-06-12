@@ -162,7 +162,6 @@ import MensajeComponent from './MensajeComponent.vue';
   },
   created() {
     this.$store.dispatch(OBTENER_USUARIOS);
-    console.log(this.$store.getters.getUsuarios());
 },
 }
 </script>

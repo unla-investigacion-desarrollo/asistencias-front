@@ -133,7 +133,6 @@ import MensajeComponent from './MensajeComponent.vue';
   },
   created() {
     this.$store.dispatch(OBTENER_INSCRIPCION_X_USUARIO); 
-    console.log(this.$store.getters.getInscripciones());
 },
 }
 </script>

@@ -161,8 +161,6 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
-      console.log("me registre");
       if(this.model.tipoUsuario.rol == "Participante"){
         let lista = this.$store.getters.getRoles();
         if(lista.length > 0){
@@ -181,7 +179,6 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_ROLES);
-      console.log(this.$store.getters.getRoles());
   },
 }
 </script>

@@ -60,8 +60,7 @@ export default {
     };
   },
   methods: {
-    continuar() {
-      console.log(this.model);   
+    continuar() {  
       let lista = this.$store.getters.getContenidos();
       let c = {};
       for(let i = 0; i < lista.length; i++){
@@ -73,7 +72,6 @@ export default {
         ...this.model,
         contenido: c
       }
-      console.log("Edito la imagen: " + JSON.stringify(imagen)); 
       this.$store.dispatch(ACTUALIZAR_IMAGEN, imagen);
     },
     volver(){
@@ -92,7 +90,6 @@ export default {
     this.$store.dispatch(TRAER_CONTENIDOS);
     if(this.model.imagen == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_IMAGEN_PUBLICA, id);
     }
   }

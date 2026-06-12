@@ -50,8 +50,6 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
-      console.log("agregue rol");
       this.$store.dispatch(AGREGAR_TIPO_USUARIO, this.model);
     },
     volver(){
