@@ -415,6 +415,10 @@ const api = {
   },
 
   obtenerEventosPublicos() { 
+    return axios.get(`${dominio}/api/public/eventosNoIniciados`);
+  },
+
+  obtenerTodosEventosPublicos() { 
     return axios.get(`${dominio}/api/public/eventos`);
   },
 
@@ -454,6 +458,10 @@ const api = {
   },
 
   traerEventosXTipoEventoPublico(payload){
+    return axios.get(`${dominio}/api/public/eventosNoIniciados/tipo/${payload}`);
+  },
+
+  traerTodosEventosXTipoEventoPublico(payload){
     return axios.get(`${dominio}/api/public/eventos/tipo/${payload}`);
   },
 

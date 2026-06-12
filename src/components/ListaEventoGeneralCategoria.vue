@@ -75,7 +75,7 @@
   </div>
   </template>
 <script>
-import { DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
+import { DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaEventoGeneralCategoria',
@@ -135,7 +135,7 @@ export default {
     if(this.$store.getters.getEventos().length == 0 && !this.busco){
         const id = this.$route.params.id;
         console.log("este es el id" +id);
-        this.$store.dispatch(OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS, id);
+        this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO, id);
         this.busco = true;
     }
     }
