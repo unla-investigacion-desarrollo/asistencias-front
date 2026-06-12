@@ -88,7 +88,6 @@ export default {
       return this.$store.getters.getActividades();
     },
     seleccionActividades(){
-      console.log("Este es el evento:" + this.model.evento.idEvento);
       this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
       return seleccionActividades;
     },
@@ -105,17 +104,13 @@ export default {
   },
   methods: {
     continuar() {
-      console.log("La lista esta compuesta por: " + JSON.stringify(this.listaActividad));
       if(this.model.seleccion == 'Todas'){
-        console.log("Estas son todas las actividades: " + JSON.stringify(this.actividades));
-        console.log("Estas son las actividades del modelo: " + JSON.stringify(this.model.actividades) );
         this.model.actividades = this.actividades;
       } else{
         if(this.listaActividad.length > 0){
           this.model.actividades = this.listaActividad;
         }
       }
-      console.log("Estado de las actividades antes de llamar " + JSON.stringify(this.model.actividades));
       if(this.model.actividades == 0){
         this.$router.push({
           name: "ErroresView",
@@ -135,8 +130,6 @@ export default {
         ...this.model,
         usuario: usuario
       };
-      console.log("Este es el modelo " + JSON.stringify(this.model));
-      console.log("me inscribi");
 
       this.$store.dispatch(AGREGAR_INSCRIPCION, payload);
     }
@@ -152,7 +145,6 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventos());
   }
 }
 </script>

@@ -76,10 +76,8 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_EVENTOS);
-      console.log(this.$store.getters.getEventosFormateados());
       if(this.model.titulo == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(TRAER_CONTENIDO, id);
     }
   },
@@ -101,9 +99,6 @@ export default {
         ... this.model,
         evento: e
       };
-      console.log(contenido);
-
-      console.log("edite el contenido");
       this.$store.dispatch(ACTUALIZAR_CONTENIDO, contenido);
     },
     volver(){

@@ -145,7 +145,6 @@ export default {
   },
   created() {
     this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
-    console.log(this.$store.getters.getTipoEventos());
 },
 }
 </script>

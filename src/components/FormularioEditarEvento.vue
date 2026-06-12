@@ -159,10 +159,8 @@ export default {
     this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
     if(this.model.nombre == ''){
       const id = this.$route.params.id;
-      console.log(id);
       this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
     }
-    console.log(this.$store.getters.getTipoEventos());
   },
   methods: {
     itemProps (item) {
@@ -171,12 +169,20 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
-      console.log("modifique el evento");
-      this.model.fechaFin = this.formatearfechas(this.model.fechaFin);
-      this.model.fechaInicio = this.formatearfechas(this.model.fechaInicio);
-      this.model.fechaCierre = this.formatearfechas(this.model.fechaCierre);
-      this.$store.dispatch(ACTUALIZAR_EVENTO, this.model);
+      let datos = {
+        nombre: this.model.nombre,
+        descripcion: this.model.descripcion,
+        fechaInicio: this.formatearfechas(this.model.fechaInicio),
+        fechaFin: this.formatearfechas(this.model.fechaFin),
+        fechaCierre: this.formatearfechas(this.model.fechaCierre),
+        edificio: this.model.edificio,
+        ubicacion: this.model.ubicacion,
+        tipoEvento: this.model.tipoEvento,
+        estado: this.model.estado,
+        linkCertificado: this.model.linkCertificado,
+        idEvento: this.model.idEvento
+      };
+      this.$store.dispatch(ACTUALIZAR_EVENTO, datos);
     },
     volver(){
       this.$router.go(-1);

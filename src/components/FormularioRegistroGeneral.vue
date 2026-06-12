@@ -139,9 +139,7 @@ export default {
   },
   methods: {
     continuar() {
-      console.log(this.model);
       this.model.tipoUsuario = participante;
-      console.log("me registre");
       this.$store.dispatch(REGISTRAR_USUARIO, this.model);
     },
     volver(){

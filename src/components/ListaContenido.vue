@@ -195,7 +195,6 @@ import MensajeComponent from './MensajeComponent.vue';
         this.$store.dispatch(ELIMINAR_CONTENIDO);
       },
       detalleItem(item){
-        console.log("Este es el item" + JSON.stringify(item));
         this.$store.dispatch(DETALLE_CONTENIDO, item);
       },
       generarQR(item){
@@ -227,8 +226,6 @@ import MensajeComponent from './MensajeComponent.vue';
     created() {
       this.$store.dispatch(OBTENER_CONTENIDOS_PUBLICOS);
       this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
-      console.log(this.$store.getters.getContenidos());
-      console.log(this.$store.getters.getEventos());
   },
   }
   </script>

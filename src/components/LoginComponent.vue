@@ -85,8 +85,6 @@ export default {
   },
   methods: {
     continuar() {
-        console.log(this.model);
-        console.log("me loguee");
       this.$store.dispatch(LOGIN, this.model);
     },
     registro(){

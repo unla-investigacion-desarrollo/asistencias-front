@@ -55,8 +55,6 @@ export default {
   },
   methods: {
     continuar() {
-        console.log(this.model);
-        console.log("agregue el tipo de evento");
       this.$store.dispatch(AGREGAR_TIPO_EVENTO, this.model);
     },
     volver(){

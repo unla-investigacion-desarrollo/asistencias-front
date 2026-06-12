@@ -242,7 +242,6 @@ export default {
       if(usuario.dni === ''){
         usuario = localStorage.getItem("usuario");
       }
-      console.log("Este es el usuario: "+ usuario);
       if(this.$store.getters.getHash() === '' || usuario.dni === ''){
         this.$router.push({
           name: "ErroresView",
@@ -279,7 +278,6 @@ export default {
   created() {
     this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
     this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
-    console.log(this.$store.getters.getEventos());
 }
 }
 </script>

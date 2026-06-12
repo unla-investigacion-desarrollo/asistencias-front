@@ -127,7 +127,6 @@ export default {
     created(){
       if(this.model.nombre == ''){
         const id = this.$route.params.id;
-        console.log(id);
         this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS_ID, id);
         this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO_PUBLICO, id);
       }

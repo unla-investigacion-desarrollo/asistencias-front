@@ -163,7 +163,6 @@ export default {
   },
   created() {
       this.$store.dispatch(OBTENER_TIPOS_EVENTOS);
-      console.log(this.$store.getters.getTipoEventos());
   },
   methods: {
     itemProps (item) {
@@ -172,8 +171,6 @@ export default {
         }
       },
     continuar() {
-      console.log(this.model);
-      console.log("agregue el evento");
       this.model.tipoEvento = this.tipoEvento;
       this.model.fechaFin = this.formatearfechas(this.model.fechaFin);
       this.model.fechaInicio = this.formatearfechas(this.model.fechaInicio);

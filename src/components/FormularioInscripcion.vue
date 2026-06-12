@@ -90,7 +90,6 @@ export default {
   methods: {
     continuar() {
       this.model.actividades = this.actividades;
-      console.log("Estado de las actividades antes de llamar " + JSON.stringify(this.model.actividades));
       if(this.model.actividades == 0){
         this.$router.push({
           name: "ErroresView",
@@ -110,8 +109,6 @@ export default {
         ...this.model,
         usuario: usuario
       };
-      console.log("Este es el modelo " + JSON.stringify(this.model));
-      console.log("me inscribi");
 
       this.$store.dispatch(AGREGAR_INSCRIPCION, payload);
     }
@@ -139,7 +136,6 @@ export default {
         this.busco = true;
         this.$store.dispatch(OBTENER_ACTIVIDADES_X_EVENTO, this.model.evento);
       }
-      console.log(this.$store.getters.getEventos());
   }
 }
 </script>

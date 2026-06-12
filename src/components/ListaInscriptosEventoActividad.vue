@@ -196,7 +196,6 @@ export default {
   },
   created() {
     const id = this.$route.params.id;
-    console.log(id);
     let datos = {
       idEvento: id
     }
