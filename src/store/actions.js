@@ -2250,7 +2250,7 @@ export default {
 },
 [ACTIONS.OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
-  api.obtenerTodosEventosPublicos(payload)
+  api.traerTodosEventosXTipoEventoPublico(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {
