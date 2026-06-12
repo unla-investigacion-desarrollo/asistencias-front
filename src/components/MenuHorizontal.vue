@@ -102,22 +102,6 @@ export default {
         }
     },
     computed: {
-        validarPermisos(){
-            let usuario = this.$store.getters.getUsuario();
-            console.log("este usuario :" + JSON.stringify(usuario));
-            let accede = false;
-            if(usuario !== null){
-                console.log("ingrese a validar perfil");
-                let perfil = usuario.tipoUsuario.rol;
-                if (perfil !== null && (perfil === 'Administrador' || perfil === 'SemiAdministrador')) {
-                    accede = true;
-                }
-                return accede;
-               
-            }else{
-                return accede;
-            }    
-        },
         validoPp(){
             return this.$store.getters.getPp();
         },

@@ -104,7 +104,7 @@
   </template>
 <script>
 import { filtroEvento } from '@/config';
-import { OBTENER_EVENTOS_PUBLICOS, OBTENER_TIPOS_EVENTOS_PUBLICOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, TRAER_EVENTOS_X_CATEGORIA, TRAER_EVENTOS_MES_ACTUAL_PUBLICO, OBTENER_PROXIMOS_EVENTOS } from '../store/actions-types';
+import { OBTENER_EVENTOS_NO_INICIADOS, OBTENER_TIPOS_EVENTOS_PUBLICOS, DETALLE_EVENTO_GENERAL, FORMULARIO_INSCRIPCION_EVENTO, TRAER_EVENTOS_X_CATEGORIA, TRAER_EVENTOS_MES_ACTUAL_PUBLICO, OBTENER_PROXIMOS_EVENTOS } from '../store/actions-types';
 import MensajeComponent from './MensajeComponent.vue';
 export default {
   name: 'ListaEventoGeneral',
@@ -185,12 +185,12 @@ export default {
       if(nuevo != viejo){
         this.parametro = "";
         this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
-        this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+        this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS);
       }
     },
   },
   created() {
-    this.$store.dispatch(OBTENER_EVENTOS_PUBLICOS);
+    this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS);
     this.$store.dispatch(OBTENER_TIPOS_EVENTOS_PUBLICOS);
     console.log(this.$store.getters.getEventos());
 }

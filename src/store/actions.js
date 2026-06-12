@@ -1873,6 +1873,31 @@ export default {
     context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, eventos);
     context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   } else {
+    api.obtenerTodosEventosPublicos()
+    .then(response => {
+    console.log(response);
+      if (response.status == "200") {
+        context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+        context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, response.data);
+      } 
+    })
+    .catch(error => {
+      console.log(error);
+      context.commit(MUTATIONS.GUARDO_ERROR, error);
+      context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+    })
+    .finally(() => {
+      context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+    });
+  }
+},
+[ACTIONS.OBTENER_EVENTOS_NO_INICIADOS] (context) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  if(context.getters.getDemo()){
+    context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, eventos);
+    context.dispatch(ACTIONS.TRAER_FORMATO_EVENTOS, eventos);
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  } else {
     api.obtenerEventosPublicos()
     .then(response => {
     console.log(response);
@@ -2199,9 +2224,33 @@ export default {
     context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
   });
 },
-[ACTIONS.OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS] (context, payload) {
+[ACTIONS.OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO] (context, payload) {
   context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
   api.traerEventosXTipoEventoPublico(payload)
+  .then(response => {
+  console.log(response);
+    if (response.status == "200") {
+      context.commit(MUTATIONS.OBTENER_LISTA_EVENTOS, response.data);
+      router.push({
+      name: "ListaEventosGeneralCategoriaView",
+      params: {
+        id: payload,
+      },
+    });    
+    } 
+  })
+  .catch(error => {
+    console.log(error);
+    context.commit(MUTATIONS.GUARDO_ERROR, error);
+    context.dispatch(ACTIONS.IDENTIFICO_ERRORES);
+  })
+  .finally(() => {
+    context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, false);
+  });
+},
+[ACTIONS.OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS] (context, payload) {
+  context.commit(MUTATIONS.ACTIVAR_DESACTIVAR_SPINNER, true);
+  api.obtenerTodosEventosPublicos(payload)
   .then(response => {
   console.log(response);
     if (response.status == "200") {

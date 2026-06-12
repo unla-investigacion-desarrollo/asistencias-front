@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS, OBTENER_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
+import { OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO, OBTENER_TIPOS_EVENTOS_PUBLICOS } from '../store/actions-types';
 import { tipoEventos } from '@/config/mock';
 
 export default {
@@ -56,7 +56,7 @@ data () {
           });
         }
         console.log("este es el tipo" + JSON.stringify(tipo));
-        this.$store.dispatch(OBTENER_EVENTOS_X_TIPOS_EVENTOS_PUBLICOS, tipo.idTipoEvento); 
+        this.$store.dispatch(OBTENER_EVENTOS_NO_INICIADOS_X_TIPO_EVENTO, tipo.idTipoEvento); 
       }, 
       obtenerColor(){
         const h = Math.floor(Math.random() * 360);
