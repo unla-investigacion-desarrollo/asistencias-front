@@ -46,6 +46,7 @@
           class="me-4"
           color="primary"
           @click="continuar"
+          v-if="actividades.length != 0"
         >
         Enviar
         </v-btn>
